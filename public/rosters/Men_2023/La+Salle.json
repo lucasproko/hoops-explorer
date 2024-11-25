@@ -1,1 +1,208 @@
-{"JoSanchez-ra":{"player_code_id":{"code":"JoSanchez-ra","id":"Sanchez-Ramos, Jorge"},"number":"10","pos":"G","height":"6-2","height_in":74,"year_class":"So.","gp":0,"origin":"Torrelodones, Spain"},"LuMercandino":{"player_code_id":{"code":"LuMercandino","id":"Mercandino, Lucas"},"number":"25","pos":"F","height":"6-6","height_in":78,"year_class":"So.","gp":8,"origin":"Córdoba, Argentina"},"EfTahmaz":{"player_code_id":{"code":"EfTahmaz","id":"Tahmaz, Efe"},"number":"14","pos":"F","height":"6-8","height_in":80,"year_class":"Fr.","gp":3,"origin":"Istanbul, Turkey"},"ToGardler":{"player_code_id":{"code":"ToGardler","id":"Gardler, Tommy"},"number":"12","pos":"G","height":"6-1","height_in":73,"year_class":"Jr.","gp":10,"origin":"Broomall, PA"},"DaShepherd":{"player_code_id":{"code":"DaShepherd","id":"Shepherd, Daeshon"},"number":"13","pos":"G","height":"6-5","height_in":77,"year_class":"Jr.","gp":33,"origin":"Philadelphia, PA"},"RoJocius":{"player_code_id":{"code":"RoJocius","id":"Jocius, Rokas"},"number":"35","pos":"F","height":"6-10","height_in":82,"year_class":"So.","gp":33,"origin":"Kaunas, Republic of Lithuania"},"RyZan":{"player_code_id":{"code":"RyZan","id":"Zan, Ryan"},"number":"21","pos":"F","height":"6-7","height_in":79,"year_class":"So.","gp":30,"origin":"Princeton, NJ"},"JaJoseph":{"player_code_id":{"code":"JaJoseph","id":"Joseph, Jay"},"number":"11","pos":"F","height":"6-7","height_in":79,"year_class":"So.","gp":5,"origin":"Springfield, PA"},"AnMarrero":{"player_code_id":{"code":"AnMarrero","id":"Marrero, Andres"},"number":"0","pos":"G","height":"6-5","height_in":77,"year_class":"So.","gp":26,"origin":"Caracas, Venezuela"},"AnGill":{"player_code_id":{"code":"AnGill","id":"Gill, Anwar"},"number":"3","pos":"G","height":"6-4","height_in":76,"year_class":"Sr.","gp":29,"origin":"Washington, DC"},"KhBrantley":{"player_code_id":{"code":"KhBrantley","id":"Brantley, Khalil"},"number":"5","pos":"G","height":"6-1","height_in":73,"year_class":"Jr.","gp":33,"origin":"Brooklyn, NY"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Fran Dunphy"},"number":"","pos":"","height":"","year_class":"","gp":-1},"MiKovacevic":{"player_code_id":{"code":"MiKovacevic","id":"Kovacevic, Milos"},"number":"31","pos":"F","height":"6-9","height_in":81,"year_class":"Jr.","gp":5,"origin":"Belgrade, Serbia"},"TuVaFasasi":{"player_code_id":{"code":"TuVaFasasi","id":"Vahlberg Fasasi, Tunde"},"number":"34","pos":"G","height":"6-8","height_in":80,"year_class":"Fr.","gp":33,"origin":"Stockholm, Sweden"},"ChIreland":{"player_code_id":{"code":"ChIreland","id":"Ireland, Charles"},"number":"1","pos":"G","height":"6-2","height_in":74,"year_class":"Jr.","gp":0,"origin":"Glenside, PA"},"JhBrickus":{"player_code_id":{"code":"JhBrickus","id":"Brickus, Jhamir"},"number":"2","pos":"G","height":"5-11","height_in":71,"year_class":"Sr.","gp":33,"origin":"Coatesville, PA"}}
+{
+   "JoSanchez-ra": {
+      "player_code_id": {
+         "code": "JoSanchez-ra",
+         "id": "Sanchez-Ramos, Jorge"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Torrelodones, Spain"
+   },
+   "LuMercandino": {
+      "player_code_id": {
+         "code": "LuMercandino",
+         "id": "Mercandino, Lucas"
+      },
+      "number": "25",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 8,
+      "origin": "Córdoba, Argentina"
+   },
+   "EfTahmaz": {
+      "player_code_id": {
+         "code": "EfTahmaz",
+         "id": "Tahmaz, Efe"
+      },
+      "number": "14",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 3,
+      "origin": "Istanbul, Turkey"
+   },
+   "ToGardler": {
+      "player_code_id": {
+         "code": "ToGardler",
+         "id": "Gardler, Tommy"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Jr",
+      "gp": 10,
+      "origin": "Broomall, PA"
+   },
+   "DaShepherd": {
+      "player_code_id": {
+         "code": "DaShepherd",
+         "id": "Shepherd, Daeshon"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 33,
+      "origin": "Philadelphia, PA"
+   },
+   "RoJocius": {
+      "player_code_id": {
+         "code": "RoJocius",
+         "id": "Jocius, Rokas"
+      },
+      "number": "35",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "So",
+      "gp": 33,
+      "origin": "Kaunas, Republic of Lithuania"
+   },
+   "RyZan": {
+      "player_code_id": {
+         "code": "RyZan",
+         "id": "Zan, Ryan"
+      },
+      "number": "21",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 30,
+      "origin": "Princeton, NJ"
+   },
+   "JaJoseph": {
+      "player_code_id": {
+         "code": "JaJoseph",
+         "id": "Joseph, Jay"
+      },
+      "number": "11",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 5,
+      "origin": "Springfield, PA"
+   },
+   "AnMarrero": {
+      "player_code_id": {
+         "code": "AnMarrero",
+         "id": "Marrero, Andres"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So",
+      "gp": 26,
+      "origin": "Caracas, Venezuela"
+   },
+   "AnGill": {
+      "player_code_id": {
+         "code": "AnGill",
+         "id": "Gill, Anwar"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 29,
+      "origin": "Washington, DC"
+   },
+   "KhBrantley": {
+      "player_code_id": {
+         "code": "KhBrantley",
+         "id": "Brantley, Khalil"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Jr",
+      "gp": 33,
+      "origin": "Brooklyn, NY"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Fran Dunphy"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "MiKovacevic": {
+      "player_code_id": {
+         "code": "MiKovacevic",
+         "id": "Kovacevic, Milos"
+      },
+      "number": "31",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Jr",
+      "gp": 5,
+      "origin": "Belgrade, Serbia"
+   },
+   "TuVaFasasi": {
+      "player_code_id": {
+         "code": "TuVaFasasi",
+         "id": "Vahlberg Fasasi, Tunde"
+      },
+      "number": "34",
+      "pos": "G",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 33,
+      "origin": "Stockholm, Sweden"
+   },
+   "ChIreland": {
+      "player_code_id": {
+         "code": "ChIreland",
+         "id": "Ireland, Charles"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Glenside, PA"
+   },
+   "JhBrickus": {
+      "player_code_id": {
+         "code": "JhBrickus",
+         "id": "Brickus, Jhamir"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Sr",
+      "gp": 33,
+      "origin": "Coatesville, PA"
+   }
+}

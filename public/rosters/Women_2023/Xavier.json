@@ -1,1 +1,208 @@
-{"NiBlackford":{"player_code_id":{"code":"NiBlackford","id":"Blackford, Nila"},"number":"4","pos":"F","height":"6-2","height_in":74,"year_class":"Sr.","gp":23,"origin":"Louisville, KY"},"JuGarciaRoig":{"player_code_id":{"code":"JuGarciaRoig","id":"Garcia Roig, Julia"},"number":"10","pos":"G","height":"5-7","height_in":67,"year_class":"Fr.","gp":26,"origin":"Barcelona, Spain"},"AbShubert":{"player_code_id":{"code":"AbShubert","id":"Shubert, Aby"},"number":"11","pos":"G","height":"5-8","height_in":68,"year_class":"Fr.","gp":20,"origin":"Kasson, MN"},"BeWard":{"player_code_id":{"code":"BeWard","id":"Ward, Bella"},"number":"22","pos":"F","height":"5-11","height_in":71,"year_class":"So.","gp":0,"origin":"Blacklick, OH"},"ShCalhoun":{"player_code_id":{"code":"ShCalhoun","id":"Calhoun, Shelby"},"number":"0","pos":"G","height":"5-11","height_in":71,"year_class":"Sr.","gp":4,"origin":"Louisville, KY"},"DaLopez":{"player_code_id":{"code":"DaLopez","id":"Lopez, Daniela"},"number":"44","pos":"G","height":"5-8","height_in":68,"year_class":"Fr.","gp":28,"origin":"Barcelona, Spain"},"DeHogan":{"player_code_id":{"code":"DeHogan","id":"Hogan, Delaney"},"number":"24","pos":"F","height":"6-0","height_in":72,"year_class":"Sr.","gp":7,"origin":"Fort Wayne, IN"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Billi Chambers"},"number":"","pos":"","height":"","year_class":"","gp":-1},"AaHarris":{"player_code_id":{"code":"AaHarris","id":"Harris, Aanaya"},"number":"23","pos":"G","height":"5-11","height_in":71,"year_class":"Jr.","gp":23,"origin":"Omaha, NE"},"LiKvirkvelia":{"player_code_id":{"code":"LiKvirkvelia","id":"Kvirkvelia, Lika"},"number":"13","pos":"C","height":"6-4","height_in":76,"year_class":"Fr.","gp":27,"origin":"Kobuleti, Georgia"},"TaPurvis":{"player_code_id":{"code":"TaPurvis","id":"Purvis, Tae'lor"},"number":"5","pos":"G","height":"5-7","height_in":67,"year_class":"Sr.","gp":27,"origin":"Houston, TX"},"TaSmith":{"player_code_id":{"code":"TaSmith","id":"Smith, Taylor"},"number":"3","pos":"G","height":"5-8","height_in":68,"year_class":"Sr.","gp":19,"origin":"Marietta, GA"},"AiMayo":{"player_code_id":{"code":"AiMayo","id":"Mayo, Aizhanique"},"number":"2","pos":"G","height":"5-9","height_in":69,"year_class":"Fr.","gp":20,"origin":"Bridgeport, CT"},"KaWoods":{"player_code_id":{"code":"KaWoods","id":"Woods, Kaysia"},"number":"12","pos":"G","height":"6-0","height_in":72,"year_class":"Jr.","gp":15,"origin":"Lincoln, NE"},"MaScarlett":{"player_code_id":{"code":"MaScarlett","id":"Scarlett, Mackayla"},"number":"15","pos":"G","height":"5-10","height_in":70,"year_class":"Sr.","gp":22,"origin":"Bronx, NY"},"LoChristie":{"player_code_id":{"code":"LoChristie","id":"Christie, Loren"},"number":"1","pos":"F","height":"6-3","height_in":75,"year_class":"Sr.","gp":0,"origin":"Hertfordshire, United Kingdom"}}
+{
+   "NiBlackford": {
+      "player_code_id": {
+         "code": "NiBlackford",
+         "id": "Blackford, Nila"
+      },
+      "number": "4",
+      "pos": "F",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 23,
+      "origin": "Louisville, KY"
+   },
+   "JuGarciaRoig": {
+      "player_code_id": {
+         "code": "JuGarciaRoig",
+         "id": "Garcia Roig, Julia"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "5-7",
+      "height_in": 67,
+      "year_class": "Fr",
+      "gp": 26,
+      "origin": "Barcelona, Spain"
+   },
+   "AbShubert": {
+      "player_code_id": {
+         "code": "AbShubert",
+         "id": "Shubert, Aby"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "5-8",
+      "height_in": 68,
+      "year_class": "Fr",
+      "gp": 20,
+      "origin": "Kasson, MN"
+   },
+   "BeWard": {
+      "player_code_id": {
+         "code": "BeWard",
+         "id": "Ward, Bella"
+      },
+      "number": "22",
+      "pos": "F",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Blacklick, OH"
+   },
+   "ShCalhoun": {
+      "player_code_id": {
+         "code": "ShCalhoun",
+         "id": "Calhoun, Shelby"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Sr",
+      "gp": 4,
+      "origin": "Louisville, KY"
+   },
+   "DaLopez": {
+      "player_code_id": {
+         "code": "DaLopez",
+         "id": "Lopez, Daniela"
+      },
+      "number": "44",
+      "pos": "G",
+      "height": "5-8",
+      "height_in": 68,
+      "year_class": "Fr",
+      "gp": 28,
+      "origin": "Barcelona, Spain"
+   },
+   "DeHogan": {
+      "player_code_id": {
+         "code": "DeHogan",
+         "id": "Hogan, Delaney"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr",
+      "gp": 7,
+      "origin": "Fort Wayne, IN"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Billi Chambers"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "AaHarris": {
+      "player_code_id": {
+         "code": "AaHarris",
+         "id": "Harris, Aanaya"
+      },
+      "number": "23",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Jr",
+      "gp": 23,
+      "origin": "Omaha, NE"
+   },
+   "LiKvirkvelia": {
+      "player_code_id": {
+         "code": "LiKvirkvelia",
+         "id": "Kvirkvelia, Lika"
+      },
+      "number": "13",
+      "pos": "C",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 27,
+      "origin": "Kobuleti, Georgia"
+   },
+   "TaPurvis": {
+      "player_code_id": {
+         "code": "TaPurvis",
+         "id": "Purvis, Tae'lor"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "5-7",
+      "height_in": 67,
+      "year_class": "Sr",
+      "gp": 27,
+      "origin": "Houston, TX"
+   },
+   "TaSmith": {
+      "player_code_id": {
+         "code": "TaSmith",
+         "id": "Smith, Taylor"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "5-8",
+      "height_in": 68,
+      "year_class": "Sr",
+      "gp": 19,
+      "origin": "Marietta, GA"
+   },
+   "AiMayo": {
+      "player_code_id": {
+         "code": "AiMayo",
+         "id": "Mayo, Aizhanique"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "5-9",
+      "height_in": 69,
+      "year_class": "Fr",
+      "gp": 20,
+      "origin": "Bridgeport, CT"
+   },
+   "KaWoods": {
+      "player_code_id": {
+         "code": "KaWoods",
+         "id": "Woods, Kaysia"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr",
+      "gp": 15,
+      "origin": "Lincoln, NE"
+   },
+   "MaScarlett": {
+      "player_code_id": {
+         "code": "MaScarlett",
+         "id": "Scarlett, Mackayla"
+      },
+      "number": "15",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Sr",
+      "gp": 22,
+      "origin": "Bronx, NY"
+   },
+   "LoChristie": {
+      "player_code_id": {
+         "code": "LoChristie",
+         "id": "Christie, Loren"
+      },
+      "number": "1",
+      "pos": "F",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Hertfordshire, United Kingdom"
+   }
+}

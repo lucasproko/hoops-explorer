@@ -1,1 +1,182 @@
-{"JaBrown":{"player_code_id":{"code":"JaBrown","id":"Brown, Jada"},"number":"2","pos":"G","height":"5-8","height_in":68,"year_class":"So.","gp":19,"origin":"Bentonville, AR"},"BeLachance":{"player_code_id":{"code":"BeLachance","id":"LaChance, Bella"},"number":"21","pos":"G","height":"5-6","height_in":66,"year_class":"Sr.","gp":22,"origin":"Davie, FL"},"AiMitchell":{"player_code_id":{"code":"AiMitchell","id":"Mitchell, Aiyana"},"number":"14","pos":"F","height":"6-4","height_in":76,"year_class":"Fr.","gp":15,"origin":"Colorado Springs, CO"},"SaWashington":{"player_code_id":{"code":"SaWashington","id":"Washington, Sacha"},"number":"35","pos":"F","height":"6-2","height_in":74,"year_class":"Jr.","gp":33,"origin":"Lawrenceville, GA"},"IyMoore":{"player_code_id":{"code":"IyMoore","id":"Moore, Iyana"},"number":"23","pos":"G","height":"5-8","height_in":68,"year_class":"Jr.","gp":33,"origin":"Milwaukee, WI"},"MaGreene":{"player_code_id":{"code":"MaGreene","id":"Greene, Madison"},"number":"4","pos":"G","height":"5-6","height_in":66,"year_class":"Fr.","gp":11,"origin":"Columbus, OH"},"JoCambridge":{"player_code_id":{"code":"JoCambridge","id":"Cambridge, Jordyn"},"number":"3","pos":"G","height":"5-9","height_in":69,"year_class":"Sr.","gp":33,"origin":"Nashville, TN"},"JuPissott":{"player_code_id":{"code":"JuPissott","id":"Pissott, Justine"},"number":"13","pos":"G","height":"6-4","height_in":76,"year_class":"So.","gp":33,"origin":"Toms River, NJ"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Shea Ralph"},"number":"","pos":"","height":"","year_class":"","gp":-1},"AgMakurat":{"player_code_id":{"code":"AgMakurat","id":"Makurat, Aga"},"number":"24","pos":"G","height":"6-2","height_in":74,"year_class":"Fr.","gp":33,"origin":"Gmina Sierakowice, Poland"},"BaGilmore":{"player_code_id":{"code":"BaGilmore","id":"Gilmore, Bailey"},"number":"10","pos":"F","height":"6-3","height_in":75,"year_class":"Fr.","gp":0,"origin":"Midway, GA"},"RyAllen":{"player_code_id":{"code":"RyAllen","id":"Allen, Ryanne"},"number":"5","pos":"G","height":"6-1","height_in":73,"year_class":"So.","gp":30,"origin":"Warminster, PA"},"JoOliver":{"player_code_id":{"code":"JoOliver","id":"Oliver, Jordyn"},"number":"11","pos":"G","height":"5-10","height_in":70,"year_class":"Sr.","gp":32,"origin":"Prosper, TX"},"KhPierre":{"player_code_id":{"code":"KhPierre","id":"Pierre, Khamil"},"number":"12","pos":"F","height":"6-2","height_in":74,"year_class":"Fr.","gp":33,"origin":"Queen Creek, AZ"}}
+{
+   "JaBrown": {
+      "player_code_id": {
+         "code": "JaBrown",
+         "id": "Brown, Jada"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "5-8",
+      "height_in": 68,
+      "year_class": "So",
+      "gp": 19,
+      "origin": "Bentonville, AR"
+   },
+   "BeLachance": {
+      "player_code_id": {
+         "code": "BeLachance",
+         "id": "LaChance, Bella"
+      },
+      "number": "21",
+      "pos": "G",
+      "height": "5-6",
+      "height_in": 66,
+      "year_class": "Sr",
+      "gp": 22,
+      "origin": "Davie, FL"
+   },
+   "AiMitchell": {
+      "player_code_id": {
+         "code": "AiMitchell",
+         "id": "Mitchell, Aiyana"
+      },
+      "number": "14",
+      "pos": "F",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 15,
+      "origin": "Colorado Springs, CO"
+   },
+   "SaWashington": {
+      "player_code_id": {
+         "code": "SaWashington",
+         "id": "Washington, Sacha"
+      },
+      "number": "35",
+      "pos": "F",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr",
+      "gp": 33,
+      "origin": "Lawrenceville, GA"
+   },
+   "IyMoore": {
+      "player_code_id": {
+         "code": "IyMoore",
+         "id": "Moore, Iyana"
+      },
+      "number": "23",
+      "pos": "G",
+      "height": "5-8",
+      "height_in": 68,
+      "year_class": "Jr",
+      "gp": 33,
+      "origin": "Milwaukee, WI"
+   },
+   "MaGreene": {
+      "player_code_id": {
+         "code": "MaGreene",
+         "id": "Greene, Madison"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "5-6",
+      "height_in": 66,
+      "year_class": "Fr",
+      "gp": 11,
+      "origin": "Columbus, OH"
+   },
+   "JoCambridge": {
+      "player_code_id": {
+         "code": "JoCambridge",
+         "id": "Cambridge, Jordyn"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "5-9",
+      "height_in": 69,
+      "year_class": "Sr",
+      "gp": 33,
+      "origin": "Nashville, TN"
+   },
+   "JuPissott": {
+      "player_code_id": {
+         "code": "JuPissott",
+         "id": "Pissott, Justine"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 33,
+      "origin": "Toms River, NJ"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Shea Ralph"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "AgMakurat": {
+      "player_code_id": {
+         "code": "AgMakurat",
+         "id": "Makurat, Aga"
+      },
+      "number": "24",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 33,
+      "origin": "Gmina Sierakowice, Poland"
+   },
+   "BaGilmore": {
+      "player_code_id": {
+         "code": "BaGilmore",
+         "id": "Gilmore, Bailey"
+      },
+      "number": "10",
+      "pos": "F",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Midway, GA"
+   },
+   "RyAllen": {
+      "player_code_id": {
+         "code": "RyAllen",
+         "id": "Allen, Ryanne"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "So",
+      "gp": 30,
+      "origin": "Warminster, PA"
+   },
+   "JoOliver": {
+      "player_code_id": {
+         "code": "JoOliver",
+         "id": "Oliver, Jordyn"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Sr",
+      "gp": 32,
+      "origin": "Prosper, TX"
+   },
+   "KhPierre": {
+      "player_code_id": {
+         "code": "KhPierre",
+         "id": "Pierre, Khamil"
+      },
+      "number": "12",
+      "pos": "F",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 33,
+      "origin": "Queen Creek, AZ"
+   }
+}

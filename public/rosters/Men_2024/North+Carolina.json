@@ -1,1 +1,219 @@
-{"VeLubin":{"player_code_id":{"code":"VeLubin","id":"Lubin, Ven-Allen"},"number":"22","pos":"F","height":"6-8","height_in":80,"year_class":"Jr.","gp":0,"origin":"Orlando, FL","role":"PF/C"},"JaBrown":{"player_code_id":{"code":"JaBrown","id":"Brown, James"},"number":"2","pos":"F","height":"6-10","height_in":82,"year_class":"Fr.","gp":0,"origin":"Aurora, IL","role":"C"},"JaWashington":{"player_code_id":{"code":"JaWashington","id":"Washington, Jalen"},"number":"13","pos":"F","height":"6-10","height_in":82,"year_class":"Jr.","gp":0,"origin":"Gary, IN","role":"PF/C"},"DrPowell":{"player_code_id":{"code":"DrPowell","id":"Powell, Drake"},"number":"9","pos":"G","height":"6-6","height_in":78,"year_class":"Fr.","gp":0,"origin":"Pittsboro, NC","role":"WG"},"RjDavis":{"player_code_id":{"code":"RjDavis","id":"Davis, RJ"},"number":"4","pos":"G","height":"6-0","height_in":72,"year_class":"Sr.","gp":0,"origin":"White Plains, NY","role":"s-PG"},"ElDavis":{"player_code_id":{"code":"ElDavis","id":"Davis, Elijah"},"number":"6","pos":"G","height":"6-3","height_in":75,"year_class":"Sr.","gp":0,"origin":"Chapel Hill, NC"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Hubert Davis"},"number":"","pos":"","height":"","year_class":"","gp":-1},"CaTyson":{"player_code_id":{"code":"CaTyson","id":"Tyson, Cade"},"number":"5","pos":"F","height":"6-7","height_in":79,"year_class":"Jr.","gp":0,"origin":"Monroe, NC","role":"WF"},"DaMayo":{"player_code_id":{"code":"DaMayo","id":"Mayo Jr., Dante"},"number":"30","pos":"G","height":"6-1","height_in":73,"year_class":"Fr.","gp":0,"origin":"Gaithersburg, MD"},"JoHolbrook":{"player_code_id":{"code":"JoHolbrook","id":"Holbrook, John"},"number":"15","pos":"F","height":"6-8","height_in":80,"year_class":"Fr.","gp":0,"origin":"Hickory, NC"},"JaWithers":{"player_code_id":{"code":"JaWithers","id":"Withers, Jae'Lyn"},"number":"24","pos":"F","height":"6-9","height_in":81,"year_class":"Sr.","gp":0,"origin":"Charlotte, NC","role":"S-PF"},"IaJackson":{"player_code_id":{"code":"IaJackson","id":"Jackson, Ian"},"number":"11","pos":"G","height":"6-4","height_in":76,"year_class":"Fr.","gp":0,"origin":"Bronx, NY","role":"WG"},"SeTrimble":{"player_code_id":{"code":"SeTrimble","id":"Trimble, Seth"},"number":"7","pos":"G","height":"6-3","height_in":75,"year_class":"Jr.","gp":0,"origin":"Menomonee Falls, WI","role":"WG"},"TyClaude":{"player_code_id":{"code":"TyClaude","id":"Claude, Tyzhaun"},"number":"0","pos":"F","height":"6-8","height_in":80,"year_class":"Sr.","gp":0,"origin":"Goldsboro, NC","role":"C"},"ElCadeau":{"player_code_id":{"code":"ElCadeau","id":"Cadeau, Elliot"},"number":"3","pos":"G","height":"6-1","height_in":73,"year_class":"So.","gp":0,"origin":"West Orange, NJ","role":"s-PG"},"RuHawkins":{"player_code_id":{"code":"RuHawkins","id":"Hawkins, Russell"},"number":"14","pos":"G","height":"6-1","height_in":73,"year_class":"So.","gp":0,"origin":"Charlotte, NC"}}
+{
+   "VeLubin": {
+      "player_code_id": {
+         "code": "VeLubin",
+         "id": "Lubin, Ven-Allen"
+      },
+      "number": "22",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Orlando, FL",
+      "role": "PF/C"
+   },
+   "JaBrown": {
+      "player_code_id": {
+         "code": "JaBrown",
+         "id": "Brown, James"
+      },
+      "number": "2",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Aurora, IL",
+      "role": "C"
+   },
+   "JaWashington": {
+      "player_code_id": {
+         "code": "JaWashington",
+         "id": "Washington, Jalen"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Gary, IN",
+      "role": "PF/C"
+   },
+   "DrPowell": {
+      "player_code_id": {
+         "code": "DrPowell",
+         "id": "Powell, Drake"
+      },
+      "number": "9",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Pittsboro, NC",
+      "role": "WG"
+   },
+   "RjDavis": {
+      "player_code_id": {
+         "code": "RjDavis",
+         "id": "Davis, RJ"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "White Plains, NY",
+      "role": "s-PG"
+   },
+   "ElDavis": {
+      "player_code_id": {
+         "code": "ElDavis",
+         "id": "Davis, Elijah"
+      },
+      "number": "6",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Chapel Hill, NC"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Hubert Davis"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "CaTyson": {
+      "player_code_id": {
+         "code": "CaTyson",
+         "id": "Tyson, Cade"
+      },
+      "number": "5",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Monroe, NC",
+      "role": "WF"
+   },
+   "DaMayo": {
+      "player_code_id": {
+         "code": "DaMayo",
+         "id": "Mayo Jr., Dante"
+      },
+      "number": "30",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Gaithersburg, MD"
+   },
+   "JoHolbrook": {
+      "player_code_id": {
+         "code": "JoHolbrook",
+         "id": "Holbrook, John"
+      },
+      "number": "15",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Hickory, NC"
+   },
+   "JaWithers": {
+      "player_code_id": {
+         "code": "JaWithers",
+         "id": "Withers, Jae'Lyn"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Charlotte, NC",
+      "role": "S-PF"
+   },
+   "IaJackson": {
+      "player_code_id": {
+         "code": "IaJackson",
+         "id": "Jackson, Ian"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Bronx, NY",
+      "role": "WG"
+   },
+   "SeTrimble": {
+      "player_code_id": {
+         "code": "SeTrimble",
+         "id": "Trimble, Seth"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Menomonee Falls, WI",
+      "role": "WG"
+   },
+   "TyClaude": {
+      "player_code_id": {
+         "code": "TyClaude",
+         "id": "Claude, Tyzhaun"
+      },
+      "number": "0",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Goldsboro, NC",
+      "role": "C"
+   },
+   "ElCadeau": {
+      "player_code_id": {
+         "code": "ElCadeau",
+         "id": "Cadeau, Elliot"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "West Orange, NJ",
+      "role": "s-PG"
+   },
+   "RuHawkins": {
+      "player_code_id": {
+         "code": "RuHawkins",
+         "id": "Hawkins, Russell"
+      },
+      "number": "14",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Charlotte, NC"
+   }
+}

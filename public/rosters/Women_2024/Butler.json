@@ -1,1 +1,193 @@
-{"SyJaynes":{"player_code_id":{"code":"SyJaynes","id":"Jaynes, Sydney"},"number":"32","pos":"F","height":"6-3","height_in":75,"year_class":"Sr.","gp":0,"origin":"Brownstown, IN","role":"F/C?"},"LiCarmody":{"player_code_id":{"code":"LiCarmody","id":"Carmody, Lily"},"number":"12","pos":"G","height":"5-11","height_in":71,"year_class":"Fr.","gp":0,"origin":"Melbourne, Australia","role":"G?"},"LiZeinstra":{"player_code_id":{"code":"LiZeinstra","id":"Zeinstra, Lily"},"number":"10","pos":"G","height":"5-11","height_in":71,"year_class":"Fr.","gp":0,"origin":"Byron Center, MI","role":"G?"},"JoMeulemans":{"player_code_id":{"code":"JoMeulemans","id":"Meulemans, Jordan"},"number":"23","pos":"G","height":"6-0","height_in":72,"year_class":"Jr.","gp":0,"origin":"De Pere, WI"},"CaStrande":{"player_code_id":{"code":"CaStrande","id":"Strande, Caroline"},"number":"21","pos":"G","height":"5-11","height_in":71,"year_class":"Sr.","gp":0,"origin":"Racine, WI","role":"G?"},"KaNorman":{"player_code_id":{"code":"KaNorman","id":"Norman, Karsyn"},"number":"1","pos":"G","height":"5-6","height_in":66,"year_class":"So.","gp":0,"origin":"Bedford, IN","role":"G?"},"McSwanson":{"player_code_id":{"code":"McSwanson","id":"Swanson, Mckenzie"},"number":"5","pos":"F","height":"6-3","height_in":75,"year_class":"Fr.","gp":0,"origin":"Rochester, MI"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Austin Parkinson"},"number":"","pos":"","height":"","year_class":"","gp":-1},"LiStoddard":{"player_code_id":{"code":"LiStoddard","id":"Stoddard, Lilly"},"number":"31","pos":"F","height":"6-4","height_in":76,"year_class":"Jr.","gp":0,"origin":"Crown Point, IN","role":"F/C?"},"ArWiggins":{"player_code_id":{"code":"ArWiggins","id":"Wiggins, Ari"},"number":"3","pos":"G","height":"5-8","height_in":68,"year_class":"Sr.","gp":0,"origin":"Indianapolis, IN","role":"G?"},"KiMcguff":{"player_code_id":{"code":"KiMcguff","id":"McGuff, Kilyn"},"number":"11","pos":"G","height":"6-0","height_in":72,"year_class":"Sr.","gp":0,"origin":"Columbus, OH","role":"G?"},"JoLand":{"player_code_id":{"code":"JoLand","id":"Land, Jocelyn"},"number":"14","pos":"F","height":"6-0","height_in":72,"year_class":"Fr.","gp":0,"origin":"Chanhassen, MN","role":"F/C?"},"CrCarter":{"player_code_id":{"code":"CrCarter","id":"Carter, Cristen"},"number":"24","pos":"F","height":"6-4","height_in":76,"year_class":"So.","gp":0,"origin":"Indianapolis, IN","role":"F/C?"},"RiMakalusky":{"player_code_id":{"code":"RiMakalusky","id":"Makalusky, Riley"},"number":"2","pos":"G","height":"6-2","height_in":74,"year_class":"So.","gp":0,"origin":"Fishers, IN","role":"G?"}}
+{
+   "SyJaynes": {
+      "player_code_id": {
+         "code": "SyJaynes",
+         "id": "Jaynes, Sydney"
+      },
+      "number": "32",
+      "pos": "F",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Brownstown, IN",
+      "role": "F/C?"
+   },
+   "LiCarmody": {
+      "player_code_id": {
+         "code": "LiCarmody",
+         "id": "Carmody, Lily"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Melbourne, Australia",
+      "role": "G?"
+   },
+   "LiZeinstra": {
+      "player_code_id": {
+         "code": "LiZeinstra",
+         "id": "Zeinstra, Lily"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Byron Center, MI",
+      "role": "G?"
+   },
+   "JoMeulemans": {
+      "player_code_id": {
+         "code": "JoMeulemans",
+         "id": "Meulemans, Jordan"
+      },
+      "number": "23",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "De Pere, WI"
+   },
+   "CaStrande": {
+      "player_code_id": {
+         "code": "CaStrande",
+         "id": "Strande, Caroline"
+      },
+      "number": "21",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Racine, WI",
+      "role": "G?"
+   },
+   "KaNorman": {
+      "player_code_id": {
+         "code": "KaNorman",
+         "id": "Norman, Karsyn"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "5-6",
+      "height_in": 66,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Bedford, IN",
+      "role": "G?"
+   },
+   "McSwanson": {
+      "player_code_id": {
+         "code": "McSwanson",
+         "id": "Swanson, Mckenzie"
+      },
+      "number": "5",
+      "pos": "F",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Rochester, MI"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Austin Parkinson"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "LiStoddard": {
+      "player_code_id": {
+         "code": "LiStoddard",
+         "id": "Stoddard, Lilly"
+      },
+      "number": "31",
+      "pos": "F",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Crown Point, IN",
+      "role": "F/C?"
+   },
+   "ArWiggins": {
+      "player_code_id": {
+         "code": "ArWiggins",
+         "id": "Wiggins, Ari"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "5-8",
+      "height_in": 68,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Indianapolis, IN",
+      "role": "G?"
+   },
+   "KiMcguff": {
+      "player_code_id": {
+         "code": "KiMcguff",
+         "id": "McGuff, Kilyn"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Columbus, OH",
+      "role": "G?"
+   },
+   "JoLand": {
+      "player_code_id": {
+         "code": "JoLand",
+         "id": "Land, Jocelyn"
+      },
+      "number": "14",
+      "pos": "F",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Chanhassen, MN",
+      "role": "F/C?"
+   },
+   "CrCarter": {
+      "player_code_id": {
+         "code": "CrCarter",
+         "id": "Carter, Cristen"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Indianapolis, IN",
+      "role": "F/C?"
+   },
+   "RiMakalusky": {
+      "player_code_id": {
+         "code": "RiMakalusky",
+         "id": "Makalusky, Riley"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Fishers, IN",
+      "role": "G?"
+   }
+}

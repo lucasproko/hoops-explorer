@@ -1,1 +1,222 @@
-{"ThHallock":{"player_code_id":{"code":"ThHallock","id":"Hallock, Theryn"},"number":"4","pos":"G","height":"5-10","height_in":70,"year_class":"Jr.","gp":0,"origin":"Grand Rapids, MI","role":"G?"},"JaSimmons":{"player_code_id":{"code":"JaSimmons","id":"Simmons, Jaddan"},"number":"1","pos":"G","height":"5-9","height_in":69,"year_class":"Sr.","gp":0,"origin":"Houston, TX","role":"G?"},"KeBlair":{"player_code_id":{"code":"KeBlair","id":"Blair, Kennedy"},"number":"35","pos":"G","height":"5-9","height_in":69,"year_class":"Fr.","gp":0,"origin":"Dearborn, MI","role":"G?"},"AbKimball":{"player_code_id":{"code":"AbKimball","id":"Kimball, Abbey"},"number":"2","pos":"G","height":"5-10","height_in":70,"year_class":"Jr.","gp":0,"origin":"Grand Rapids, MI","role":"G?"},"SiDouglas":{"player_code_id":{"code":"SiDouglas","id":"Douglas, Sinai"},"number":"0","pos":"G","height":"5-4","height_in":64,"year_class":"Fr.","gp":0,"origin":"","role":"G?"},"EmShumate":{"player_code_id":{"code":"EmShumate","id":"Shumate, Emma"},"number":"5","pos":"G","height":"6-1","height_in":73,"year_class":"So.","gp":0,"origin":"Dresden, OH","role":"G?"},"GrVanslooten":{"player_code_id":{"code":"GrVanslooten","id":"VanSlooten, Grace"},"number":"14","pos":"F","height":"6-3","height_in":75,"year_class":"Jr.","gp":0,"origin":"Toledo, OH","role":"F/C?"},"JuWoodard":{"player_code_id":{"code":"JuWoodard","id":"Woodard, Juliann"},"number":"33","pos":"F","height":"6-0","height_in":72,"year_class":"Fr.","gp":0,"origin":"North Vernon, IN","role":"F/C?"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Robyn Fralick"},"number":"","pos":"","height":"","year_class":"","gp":-1},"JoTate":{"player_code_id":{"code":"JoTate","id":"Tate, Jocelyn"},"number":"11","pos":"F","height":"5-11","height_in":71,"year_class":"Sr.","gp":0,"origin":"Pickerington, OH","role":"F/C?"},"NyHampton":{"player_code_id":{"code":"NyHampton","id":"Hampton, Nyla"},"number":"22","pos":"G","height":"5-7","height_in":67,"year_class":"Sr.","gp":0,"origin":"Huber Heights, OH","role":"G?"},"HeHolley":{"player_code_id":{"code":"HeHolley","id":"Holley, Helen"},"number":"10","pos":"F","height":"6-0","height_in":72,"year_class":"Fr.","gp":0,"origin":"Cleveland, OH","role":"F/C?"},"JuAyrault":{"player_code_id":{"code":"JuAyrault","id":"Ayrault, Julia"},"number":"40","pos":"G","height":"6-2","height_in":74,"year_class":"Sr.","gp":0,"origin":"Grosse Pointe Woods, MI","role":"G?"},"MaMeng":{"player_code_id":{"code":"MaMeng","id":"Meng, Mary"},"number":"21","pos":"C","height":"6-5","height_in":77,"year_class":"Fr.","gp":0,"origin":"Grafton, OH","role":"C"},"IsAlexander":{"player_code_id":{"code":"IsAlexander","id":"Alexander, Isaline"},"number":"12","pos":"F","height":"6-3","height_in":75,"year_class":"Sr.","gp":0,"origin":"London, Canada"},"InSotelo":{"player_code_id":{"code":"InSotelo","id":"Sotelo, Ines"},"number":"15","pos":"C","height":"6-3","height_in":75,"year_class":"Fr.","gp":0,"origin":"","role":"C"}}
+{
+   "ThHallock": {
+      "player_code_id": {
+         "code": "ThHallock",
+         "id": "Hallock, Theryn"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Grand Rapids, MI",
+      "role": "G?"
+   },
+   "JaSimmons": {
+      "player_code_id": {
+         "code": "JaSimmons",
+         "id": "Simmons, Jaddan"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "5-9",
+      "height_in": 69,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Houston, TX",
+      "role": "G?"
+   },
+   "KeBlair": {
+      "player_code_id": {
+         "code": "KeBlair",
+         "id": "Blair, Kennedy"
+      },
+      "number": "35",
+      "pos": "G",
+      "height": "5-9",
+      "height_in": 69,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Dearborn, MI",
+      "role": "G?"
+   },
+   "AbKimball": {
+      "player_code_id": {
+         "code": "AbKimball",
+         "id": "Kimball, Abbey"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Grand Rapids, MI",
+      "role": "G?"
+   },
+   "SiDouglas": {
+      "player_code_id": {
+         "code": "SiDouglas",
+         "id": "Douglas, Sinai"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "5-4",
+      "height_in": 64,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "",
+      "role": "G?"
+   },
+   "EmShumate": {
+      "player_code_id": {
+         "code": "EmShumate",
+         "id": "Shumate, Emma"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Dresden, OH",
+      "role": "G?"
+   },
+   "GrVanslooten": {
+      "player_code_id": {
+         "code": "GrVanslooten",
+         "id": "VanSlooten, Grace"
+      },
+      "number": "14",
+      "pos": "F",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Toledo, OH",
+      "role": "F/C?"
+   },
+   "JuWoodard": {
+      "player_code_id": {
+         "code": "JuWoodard",
+         "id": "Woodard, Juliann"
+      },
+      "number": "33",
+      "pos": "F",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "North Vernon, IN",
+      "role": "F/C?"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Robyn Fralick"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "JoTate": {
+      "player_code_id": {
+         "code": "JoTate",
+         "id": "Tate, Jocelyn"
+      },
+      "number": "11",
+      "pos": "F",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Pickerington, OH",
+      "role": "F/C?"
+   },
+   "NyHampton": {
+      "player_code_id": {
+         "code": "NyHampton",
+         "id": "Hampton, Nyla"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "5-7",
+      "height_in": 67,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Huber Heights, OH",
+      "role": "G?"
+   },
+   "HeHolley": {
+      "player_code_id": {
+         "code": "HeHolley",
+         "id": "Holley, Helen"
+      },
+      "number": "10",
+      "pos": "F",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Cleveland, OH",
+      "role": "F/C?"
+   },
+   "JuAyrault": {
+      "player_code_id": {
+         "code": "JuAyrault",
+         "id": "Ayrault, Julia"
+      },
+      "number": "40",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Grosse Pointe Woods, MI",
+      "role": "G?"
+   },
+   "MaMeng": {
+      "player_code_id": {
+         "code": "MaMeng",
+         "id": "Meng, Mary"
+      },
+      "number": "21",
+      "pos": "C",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Grafton, OH",
+      "role": "C"
+   },
+   "IsAlexander": {
+      "player_code_id": {
+         "code": "IsAlexander",
+         "id": "Alexander, Isaline"
+      },
+      "number": "12",
+      "pos": "F",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "London, Canada"
+   },
+   "InSotelo": {
+      "player_code_id": {
+         "code": "InSotelo",
+         "id": "Sotelo, Ines"
+      },
+      "number": "15",
+      "pos": "C",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "",
+      "role": "C"
+   }
+}

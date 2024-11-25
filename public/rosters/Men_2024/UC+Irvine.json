@@ -8,7 +8,7 @@
       "pos": "G",
       "height": "6-3",
       "height_in": 75,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Mission Viejo, CA",
       "role": "CG"
@@ -22,7 +22,7 @@
       "pos": "G",
       "height": "6-4",
       "height_in": 76,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "Istanbul, Turkey"
    },
@@ -35,7 +35,7 @@
       "pos": "G",
       "height": "6-4",
       "height_in": 76,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "La Canada Flintridge, CA",
       "role": "WG"
@@ -49,7 +49,7 @@
       "pos": "F",
       "height": "6-6",
       "height_in": 78,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Los Angeles, CA"
    },
@@ -62,7 +62,7 @@
       "pos": "G",
       "height": "6-5",
       "height_in": 77,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "San Diego, CA"
    },
@@ -75,7 +75,7 @@
       "pos": "G",
       "height": "6-3",
       "height_in": 75,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "Pasadena, CA"
    },
@@ -88,7 +88,7 @@
       "pos": "C",
       "height": "7-0",
       "height_in": 84,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Karlsfeld, Germany",
       "role": "PF/C"
@@ -102,7 +102,7 @@
       "pos": "F",
       "height": "6-9",
       "height_in": 81,
-      "year_class": "So.",
+      "year_class": "So",
       "gp": 0,
       "origin": "Hamilton, New Zealand"
    },
@@ -126,7 +126,7 @@
       "pos": "G",
       "height": "6-3",
       "height_in": 75,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Long Beach, CA",
       "role": "WG"
@@ -140,7 +140,7 @@
       "pos": "G",
       "height": "5-10",
       "height_in": 70,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "Surrey, Canada"
    },
@@ -153,7 +153,7 @@
       "pos": "G",
       "height": "6-0",
       "height_in": 72,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "La Canada Flintridge, CA"
    },
@@ -166,7 +166,7 @@
       "pos": "F",
       "height": "6-10",
       "height_in": 82,
-      "year_class": "Jr.",
+      "year_class": "Jr",
       "gp": 0,
       "origin": "Aliso Viejo, CA"
    },
@@ -179,7 +179,7 @@
       "pos": "G",
       "height": "6-4",
       "height_in": 76,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "Gilbert, AZ"
    },
@@ -192,7 +192,7 @@
       "pos": "C",
       "height": "6-11",
       "height_in": 83,
-      "year_class": "So.",
+      "year_class": "So",
       "gp": 0,
       "origin": "Cumming, GA"
    },
@@ -205,7 +205,7 @@
       "pos": "G",
       "height": "6-1",
       "height_in": 73,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Sioux Falls, SD",
       "role": "CG"
@@ -219,7 +219,7 @@
       "pos": "G",
       "height": "6-2",
       "height_in": 74,
-      "year_class": "So.",
+      "year_class": "So",
       "gp": 0,
       "origin": "Los Angeles, CA",
       "role": "CG"

@@ -1,1 +1,182 @@
-{"ChDavis":{"player_code_id":{"code":"ChDavis","id":"Davis, Chace"},"number":"1","pos":"G","height":"6-3","height_in":75,"year_class":"Jr.","gp":28,"origin":"Fort Washington, MD"},"DaClaxton":{"player_code_id":{"code":"DaClaxton","id":"Claxton, Damani"},"number":"5","pos":"G","height":"6-0","height_in":72,"year_class":"So.","gp":29,"origin":"Bronx, NY"},"DeEllis":{"player_code_id":{"code":"DeEllis","id":"Ellis, Devon"},"number":"11","pos":"G","height":"6-7","height_in":79,"year_class":"So.","gp":26,"origin":"Chicago, IL"},"ElWilson":{"player_code_id":{"code":"ElWilson","id":"Wilson, Elijah"},"number":"3","pos":"G","height":"6-5","height_in":77,"year_class":"Jr.","gp":27,"origin":"Lithonia, GA"},"MaAthian":{"player_code_id":{"code":"MaAthian","id":"Athian, Malang"},"number":"22","pos":"F","height":"6-7","height_in":79,"year_class":"Jr.","gp":24,"origin":"Melbourne, Australia"},"ViNaboya":{"player_code_id":{"code":"ViNaboya","id":"Naboya, Victory"},"number":"13","pos":"F","height":"6-8","height_in":80,"year_class":"So.","gp":21,"origin":"Temple Hills, MD"},"KeOkworogwo":{"player_code_id":{"code":"KeOkworogwo","id":"Okworogwo, Kelechi"},"number":"33","pos":"F","height":"6-6","height_in":78,"year_class":"So.","gp":28,"origin":"Bronx, NY"},"DiJohnson":{"player_code_id":{"code":"DiJohnson","id":"Johnson, Dionte"},"number":"2","pos":"G","height":"6-0","height_in":72,"year_class":"So.","gp":28,"origin":"Bronx, NY"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Jason Crafton"},"number":"","pos":"","height":"","year_class":"","gp":-1},"AnWilson":{"player_code_id":{"code":"AnWilson","id":"Wilson, Antwan"},"number":"14","pos":"G","height":"6-5","height_in":77,"year_class":"Fr.","gp":15,"origin":"Salisbury, MD"},"ToNnadozie":{"player_code_id":{"code":"ToNnadozie","id":"Nnadozie, Toby"},"number":"0","pos":"G","height":"6-3","height_in":75,"year_class":"So.","gp":29,"origin":"Baltimore, MD"},"IsYaw":{"player_code_id":{"code":"IsYaw","id":"Yaw, Israel"},"number":"20","pos":"F","height":"6-9","height_in":81,"year_class":"So.","gp":29,"origin":"Georgetown, Guyana"},"TrHupstead":{"player_code_id":{"code":"TrHupstead","id":"Hupstead, Troy"},"number":"24","pos":"F","height":"6-7","height_in":79,"year_class":"Jr.","gp":26,"origin":"Mount Vernon, NY"},"TyMack":{"player_code_id":{"code":"TyMack","id":"Mack, Tyler"},"number":"4","pos":"G","height":"6-5","height_in":77,"year_class":"Jr.","gp":29,"origin":"Warren, MI"}}
+{
+   "ChDavis": {
+      "player_code_id": {
+         "code": "ChDavis",
+         "id": "Davis, Chace"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 28,
+      "origin": "Fort Washington, MD"
+   },
+   "DaClaxton": {
+      "player_code_id": {
+         "code": "DaClaxton",
+         "id": "Claxton, Damani"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "So",
+      "gp": 29,
+      "origin": "Bronx, NY"
+   },
+   "DeEllis": {
+      "player_code_id": {
+         "code": "DeEllis",
+         "id": "Ellis, Devon"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 26,
+      "origin": "Chicago, IL"
+   },
+   "ElWilson": {
+      "player_code_id": {
+         "code": "ElWilson",
+         "id": "Wilson, Elijah"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 27,
+      "origin": "Lithonia, GA"
+   },
+   "MaAthian": {
+      "player_code_id": {
+         "code": "MaAthian",
+         "id": "Athian, Malang"
+      },
+      "number": "22",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 24,
+      "origin": "Melbourne, Australia"
+   },
+   "ViNaboya": {
+      "player_code_id": {
+         "code": "ViNaboya",
+         "id": "Naboya, Victory"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 21,
+      "origin": "Temple Hills, MD"
+   },
+   "KeOkworogwo": {
+      "player_code_id": {
+         "code": "KeOkworogwo",
+         "id": "Okworogwo, Kelechi"
+      },
+      "number": "33",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 28,
+      "origin": "Bronx, NY"
+   },
+   "DiJohnson": {
+      "player_code_id": {
+         "code": "DiJohnson",
+         "id": "Johnson, Dionte"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "So",
+      "gp": 28,
+      "origin": "Bronx, NY"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Jason Crafton"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "AnWilson": {
+      "player_code_id": {
+         "code": "AnWilson",
+         "id": "Wilson, Antwan"
+      },
+      "number": "14",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 15,
+      "origin": "Salisbury, MD"
+   },
+   "ToNnadozie": {
+      "player_code_id": {
+         "code": "ToNnadozie",
+         "id": "Nnadozie, Toby"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "So",
+      "gp": 29,
+      "origin": "Baltimore, MD"
+   },
+   "IsYaw": {
+      "player_code_id": {
+         "code": "IsYaw",
+         "id": "Yaw, Israel"
+      },
+      "number": "20",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "So",
+      "gp": 29,
+      "origin": "Georgetown, Guyana"
+   },
+   "TrHupstead": {
+      "player_code_id": {
+         "code": "TrHupstead",
+         "id": "Hupstead, Troy"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 26,
+      "origin": "Mount Vernon, NY"
+   },
+   "TyMack": {
+      "player_code_id": {
+         "code": "TyMack",
+         "id": "Mack, Tyler"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 29,
+      "origin": "Warren, MI"
+   }
+}

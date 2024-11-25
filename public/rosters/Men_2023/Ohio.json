@@ -1,1 +1,195 @@
-{"BeNicol":{"player_code_id":{"code":"BeNicol","id":"Nicol, Ben"},"number":"7","pos":"F","height":"6-7","height_in":79,"year_class":"Fr.","gp":0,"origin":"Charleston, WV"},"QuCorna":{"player_code_id":{"code":"QuCorna","id":"Corna, Quinn"},"number":"15","pos":"G","height":"6-3","height_in":75,"year_class":"So.","gp":7,"origin":"Columbus, OH"},"JaHunter":{"player_code_id":{"code":"JaHunter","id":"Hunter, Jaylin"},"number":"12","pos":"G","height":"5-11","height_in":71,"year_class":"Sr.","gp":33,"origin":"Manchester, CT"},"IkCornish":{"player_code_id":{"code":"IkCornish","id":"Cornish, Ike"},"number":"24","pos":"G","height":"6-6","height_in":78,"year_class":"So.","gp":32,"origin":"Baltimore, MD"},"AjBrown":{"player_code_id":{"code":"AjBrown","id":"Brown, AJ"},"number":"3","pos":"G","height":"6-4","height_in":76,"year_class":"So.","gp":9,"origin":"Orlando, FL"},"AjClayton":{"player_code_id":{"code":"AjClayton","id":"Clayton, AJ"},"number":"23","pos":"F","height":"6-7","height_in":79,"year_class":"Jr.","gp":33,"origin":"Roseville, OH"},"GaWiznitzer":{"player_code_id":{"code":"GaWiznitzer","id":"Wiznitzer, Gabe"},"number":"11","pos":"C","height":"6-11","height_in":83,"year_class":"Sr.","gp":33,"origin":"Walhalla, SC"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Jeff Boals"},"number":"","pos":"","height":"","year_class":"","gp":-1},"ShMitchell":{"player_code_id":{"code":"ShMitchell","id":"Mitchell, Shereef"},"number":"4","pos":"G","height":"6-1","height_in":73,"year_class":"Sr.","gp":32,"origin":"Omaha, NE"},"IjEzuma":{"player_code_id":{"code":"IjEzuma","id":"Ezuma, IJ"},"number":"21","pos":"F","height":"6-8","height_in":80,"year_class":"Jr.","gp":0,"origin":"Raleigh, NC"},"ElJames":{"player_code_id":{"code":"ElJames","id":"James, Elmore"},"number":"1","pos":"G","height":"6-3","height_in":75,"year_class":"So.","gp":31,"origin":"Cleveland, OH"},"AiHadaway":{"player_code_id":{"code":"AiHadaway","id":"Hadaway, Aidan"},"number":"10","pos":"F","height":"6-8","height_in":80,"year_class":"So.","gp":33,"origin":"Lafayette, GA"},"MiBrown":{"player_code_id":{"code":"MiBrown","id":"Brown, Miles"},"number":"2","pos":"G","height":"6-1","height_in":73,"year_class":"Sr.","gp":23,"origin":"Rochester, NY"},"BeEstis":{"player_code_id":{"code":"BeEstis","id":"Estis, Ben"},"number":"14","pos":"G","height":"6-1","height_in":73,"year_class":"So.","gp":7,"origin":"Southlake, TX"},"AjSheldon":{"player_code_id":{"code":"AjSheldon","id":"Sheldon, Ajay"},"number":"0","pos":"G","height":"6-1","height_in":73,"year_class":"So.","gp":33,"origin":"Dublin, OH"}}
+{
+   "BeNicol": {
+      "player_code_id": {
+         "code": "BeNicol",
+         "id": "Nicol, Ben"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Charleston, WV"
+   },
+   "QuCorna": {
+      "player_code_id": {
+         "code": "QuCorna",
+         "id": "Corna, Quinn"
+      },
+      "number": "15",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "So",
+      "gp": 7,
+      "origin": "Columbus, OH"
+   },
+   "JaHunter": {
+      "player_code_id": {
+         "code": "JaHunter",
+         "id": "Hunter, Jaylin"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Sr",
+      "gp": 33,
+      "origin": "Manchester, CT"
+   },
+   "IkCornish": {
+      "player_code_id": {
+         "code": "IkCornish",
+         "id": "Cornish, Ike"
+      },
+      "number": "24",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 32,
+      "origin": "Baltimore, MD"
+   },
+   "AjBrown": {
+      "player_code_id": {
+         "code": "AjBrown",
+         "id": "Brown, AJ"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 9,
+      "origin": "Orlando, FL"
+   },
+   "AjClayton": {
+      "player_code_id": {
+         "code": "AjClayton",
+         "id": "Clayton, AJ"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 33,
+      "origin": "Roseville, OH"
+   },
+   "GaWiznitzer": {
+      "player_code_id": {
+         "code": "GaWiznitzer",
+         "id": "Wiznitzer, Gabe"
+      },
+      "number": "11",
+      "pos": "C",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Sr",
+      "gp": 33,
+      "origin": "Walhalla, SC"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Jeff Boals"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "ShMitchell": {
+      "player_code_id": {
+         "code": "ShMitchell",
+         "id": "Mitchell, Shereef"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr",
+      "gp": 32,
+      "origin": "Omaha, NE"
+   },
+   "IjEzuma": {
+      "player_code_id": {
+         "code": "IjEzuma",
+         "id": "Ezuma, IJ"
+      },
+      "number": "21",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Raleigh, NC"
+   },
+   "ElJames": {
+      "player_code_id": {
+         "code": "ElJames",
+         "id": "James, Elmore"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "So",
+      "gp": 31,
+      "origin": "Cleveland, OH"
+   },
+   "AiHadaway": {
+      "player_code_id": {
+         "code": "AiHadaway",
+         "id": "Hadaway, Aidan"
+      },
+      "number": "10",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 33,
+      "origin": "Lafayette, GA"
+   },
+   "MiBrown": {
+      "player_code_id": {
+         "code": "MiBrown",
+         "id": "Brown, Miles"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr",
+      "gp": 23,
+      "origin": "Rochester, NY"
+   },
+   "BeEstis": {
+      "player_code_id": {
+         "code": "BeEstis",
+         "id": "Estis, Ben"
+      },
+      "number": "14",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "So",
+      "gp": 7,
+      "origin": "Southlake, TX"
+   },
+   "AjSheldon": {
+      "player_code_id": {
+         "code": "AjSheldon",
+         "id": "Sheldon, Ajay"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "So",
+      "gp": 33,
+      "origin": "Dublin, OH"
+   }
+}

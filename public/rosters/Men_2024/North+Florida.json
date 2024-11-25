@@ -1,1 +1,206 @@
-{"KaOriol":{"player_code_id":{"code":"KaOriol","id":"Oriol, Kamrin"},"number":"11","pos":"G","height":"6-3","height_in":75,"year_class":"Jr.","gp":0,"origin":"Saint Petersburg, FL","role":"G?"},"AlVargo":{"player_code_id":{"code":"AlVargo","id":"Vargo, Alex"},"number":"13","pos":"G","height":"6-5","height_in":77,"year_class":"So.","gp":0,"origin":""},"JoHarris":{"player_code_id":{"code":"JoHarris","id":"Harris, Josh"},"number":"10","pos":"F","height":"6-8","height_in":80,"year_class":"Fr.","gp":0,"origin":"Pembroke Pines, FL","role":"F/C?"},"DaOliver":{"player_code_id":{"code":"DaOliver","id":"Oliver, Dante"},"number":"5","pos":"G","height":"6-5","height_in":77,"year_class":"Fr.","gp":0,"origin":"Knoxville, TN","role":"G?"},"NaLliteras":{"player_code_id":{"code":"NaLliteras","id":"Lliteras, Nate"},"number":"2","pos":"G","height":"6-6","height_in":78,"year_class":"Sr.","gp":0,"origin":"Seward, NE","role":"WG"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Matthew Driscoll"},"number":"","pos":"","height":"","year_class":"","gp":-1},"AmMoss":{"player_code_id":{"code":"AmMoss","id":"Moss, Ametri"},"number":"55","pos":"G","height":"6-0","height_in":72,"year_class":"Sr.","gp":0,"origin":"Clarksville, TN","role":"s-PG"},"OsBerry":{"player_code_id":{"code":"OsBerry","id":"Berry, Oscar"},"number":"33","pos":"G","height":"6-5","height_in":77,"year_class":"Sr.","gp":0,"origin":"Melbourne, Australia","role":"CG"},"LiMurphy":{"player_code_id":{"code":"LiMurphy","id":"Murphy, Liam"},"number":"7","pos":"F","height":"6-7","height_in":79,"year_class":"Sr.","gp":0,"origin":"Staten Island, NY","role":"WF"},"MaLee":{"player_code_id":{"code":"MaLee","id":"Lee, Mason"},"number":"3","pos":"G","height":"6-7","height_in":79,"year_class":"Fr.","gp":0,"origin":"Jacksonville Beach, FL","role":"G?"},"JaSmith":{"player_code_id":{"code":"JaSmith","id":"Smith, Jaylen"},"number":"4","pos":"G","height":"5-11","height_in":71,"year_class":"So.","gp":0,"origin":"Ocoee, FL","role":"s-PG"},"ArBegaj":{"player_code_id":{"code":"ArBegaj","id":"Begaj, Arden"},"number":"12","pos":"F","height":"7-0","height_in":84,"year_class":"Fr.","gp":0,"origin":"Toronto, Canada"},"JaMiles":{"player_code_id":{"code":"JaMiles","id":"Miles, Jasai"},"number":"0","pos":"G","height":"6-6","height_in":78,"year_class":"So.","gp":0,"origin":"Miami, FL","role":"WG"},"TaThompson":{"player_code_id":{"code":"TaThompson","id":"Thompson, Taylor"},"number":"1","pos":"G","height":"6-2","height_in":74,"year_class":"Fr.","gp":0,"origin":"Jacksonville, FL"},"NeDyachok":{"player_code_id":{"code":"NeDyachok","id":"Dyachok, Nestor"},"number":"24","pos":"F","height":"6-9","height_in":81,"year_class":"Sr.","gp":0,"origin":"Moscow, Russia","role":"F/C?"}}
+{
+   "KaOriol": {
+      "player_code_id": {
+         "code": "KaOriol",
+         "id": "Oriol, Kamrin"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Saint Petersburg, FL",
+      "role": "G?"
+   },
+   "AlVargo": {
+      "player_code_id": {
+         "code": "AlVargo",
+         "id": "Vargo, Alex"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So",
+      "gp": 0,
+      "origin": ""
+   },
+   "JoHarris": {
+      "player_code_id": {
+         "code": "JoHarris",
+         "id": "Harris, Josh"
+      },
+      "number": "10",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Pembroke Pines, FL",
+      "role": "F/C?"
+   },
+   "DaOliver": {
+      "player_code_id": {
+         "code": "DaOliver",
+         "id": "Oliver, Dante"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Knoxville, TN",
+      "role": "G?"
+   },
+   "NaLliteras": {
+      "player_code_id": {
+         "code": "NaLliteras",
+         "id": "Lliteras, Nate"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Seward, NE",
+      "role": "WG"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Matthew Driscoll"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "AmMoss": {
+      "player_code_id": {
+         "code": "AmMoss",
+         "id": "Moss, Ametri"
+      },
+      "number": "55",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Clarksville, TN",
+      "role": "s-PG"
+   },
+   "OsBerry": {
+      "player_code_id": {
+         "code": "OsBerry",
+         "id": "Berry, Oscar"
+      },
+      "number": "33",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Melbourne, Australia",
+      "role": "CG"
+   },
+   "LiMurphy": {
+      "player_code_id": {
+         "code": "LiMurphy",
+         "id": "Murphy, Liam"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Staten Island, NY",
+      "role": "WF"
+   },
+   "MaLee": {
+      "player_code_id": {
+         "code": "MaLee",
+         "id": "Lee, Mason"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Jacksonville Beach, FL",
+      "role": "G?"
+   },
+   "JaSmith": {
+      "player_code_id": {
+         "code": "JaSmith",
+         "id": "Smith, Jaylen"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Ocoee, FL",
+      "role": "s-PG"
+   },
+   "ArBegaj": {
+      "player_code_id": {
+         "code": "ArBegaj",
+         "id": "Begaj, Arden"
+      },
+      "number": "12",
+      "pos": "F",
+      "height": "7-0",
+      "height_in": 84,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Toronto, Canada"
+   },
+   "JaMiles": {
+      "player_code_id": {
+         "code": "JaMiles",
+         "id": "Miles, Jasai"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Miami, FL",
+      "role": "WG"
+   },
+   "TaThompson": {
+      "player_code_id": {
+         "code": "TaThompson",
+         "id": "Thompson, Taylor"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Jacksonville, FL"
+   },
+   "NeDyachok": {
+      "player_code_id": {
+         "code": "NeDyachok",
+         "id": "Dyachok, Nestor"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Moscow, Russia",
+      "role": "F/C?"
+   }
+}

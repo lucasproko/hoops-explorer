@@ -8,7 +8,7 @@
       "pos": "F",
       "height": "6-10",
       "height_in": 82,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "Logan, UT"
    },
@@ -21,7 +21,7 @@
       "pos": "F",
       "height": "6-5",
       "height_in": 77,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Lima, OH"
    },
@@ -34,7 +34,7 @@
       "pos": "G",
       "height": "6-2",
       "height_in": 74,
-      "year_class": "Jr.",
+      "year_class": "Jr",
       "gp": 0,
       "origin": "Saint Paul, MN"
    },
@@ -47,7 +47,7 @@
       "pos": "F",
       "height": "6-6",
       "height_in": 78,
-      "year_class": "Jr.",
+      "year_class": "Jr",
       "gp": 0,
       "origin": "Milwaukee, WI"
    },
@@ -60,7 +60,7 @@
       "pos": "C",
       "height": "7-0",
       "height_in": 84,
-      "year_class": "Jr.",
+      "year_class": "Jr",
       "gp": 0,
       "origin": "Carlsbad, CA"
    },
@@ -73,7 +73,7 @@
       "pos": "G",
       "height": "6-3",
       "height_in": 75,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Los Angeles, CA"
    },
@@ -86,7 +86,7 @@
       "pos": "G",
       "height": "6-4",
       "height_in": 76,
-      "year_class": "Jr.",
+      "year_class": "Jr",
       "gp": 0,
       "origin": "Sydney, Australia"
    },
@@ -99,7 +99,7 @@
       "pos": "G",
       "height": "6-5",
       "height_in": 77,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Las Vegas, NV",
       "role": "CG"
@@ -124,7 +124,7 @@
       "pos": "G",
       "height": "6-2",
       "height_in": 74,
-      "year_class": "Jr.",
+      "year_class": "Jr",
       "gp": 0,
       "origin": "Las Vegas, NV",
       "role": "CG"
@@ -138,7 +138,7 @@
       "pos": "F",
       "height": "6-8",
       "height_in": 80,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Milwaukee, WI",
       "role": "WF"
@@ -152,7 +152,7 @@
       "pos": "G",
       "height": "6-4",
       "height_in": 76,
-      "year_class": "So.",
+      "year_class": "So",
       "gp": 0,
       "origin": "Highland, UT"
    },
@@ -165,7 +165,7 @@
       "pos": "F",
       "height": "6-7",
       "height_in": 79,
-      "year_class": "So.",
+      "year_class": "So",
       "gp": 0,
       "origin": "Fort Wayne, IN"
    },
@@ -178,7 +178,7 @@
       "pos": "G",
       "height": "6-0",
       "height_in": 72,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "Katy, TX"
    },
@@ -191,7 +191,7 @@
       "pos": "G",
       "height": "6-0",
       "height_in": 72,
-      "year_class": "Jr.",
+      "year_class": "Jr",
       "gp": 0,
       "origin": "Las Vegas, NV"
    },
@@ -204,7 +204,7 @@
       "pos": "G",
       "height": "6-0",
       "height_in": 72,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Huntington, UT"
    },
@@ -217,7 +217,7 @@
       "pos": "F",
       "height": "6-8",
       "height_in": 80,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Fort Wayne, IN"
    },
@@ -230,7 +230,7 @@
       "pos": "G",
       "height": "6-7",
       "height_in": 79,
-      "year_class": "So.",
+      "year_class": "So",
       "gp": 0,
       "origin": "Las Cruces, NM"
    },
@@ -243,7 +243,7 @@
       "pos": "F",
       "height": "6-11",
       "height_in": 83,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Champlin, MN"
    },
@@ -256,7 +256,7 @@
       "pos": "F",
       "height": "6-8",
       "height_in": 80,
-      "year_class": "So.",
+      "year_class": "So",
       "gp": 0,
       "origin": "Parowan, UT",
       "role": "C"
@@ -270,7 +270,7 @@
       "pos": "G",
       "height": "5-10",
       "height_in": 70,
-      "year_class": "Jr.",
+      "year_class": "Jr",
       "gp": 0,
       "origin": "Columbia, MO"
    },
@@ -283,7 +283,7 @@
       "pos": "G",
       "height": "6-0",
       "height_in": 72,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Woodbury, MN"
    }

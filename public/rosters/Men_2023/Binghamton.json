@@ -1,1 +1,195 @@
-{"GaWalsh":{"player_code_id":{"code":"GaWalsh","id":"Walsh, Gavin"},"number":"22","pos":"F","height":"6-7","height_in":79,"year_class":"Fr.","gp":27,"origin":"Baltimore, MD"},"RoPhillips":{"player_code_id":{"code":"RoPhillips","id":"Phillips, Robby"},"number":"5","pos":"F","height":"6-5","height_in":77,"year_class":"Fr.","gp":4,"origin":"Ridgewood, NJ"},"ArHarried":{"player_code_id":{"code":"ArHarried","id":"Harried, Armon"},"number":"2","pos":"F","height":"6-5","height_in":77,"year_class":"Sr.","gp":30,"origin":"Baltimore, MD"},"SyTorrence":{"player_code_id":{"code":"SyTorrence","id":"Torrence, Symir"},"number":"23","pos":"G","height":"6-3","height_in":75,"year_class":"Sr.","gp":24,"origin":"Solvay, NY"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Levell Sanders"},"number":"","pos":"","height":"","year_class":"","gp":-1},"MaSims":{"player_code_id":{"code":"MaSims","id":"Sims, Max"},"number":"35","pos":"G","height":"6-5","height_in":77,"year_class":"Fr.","gp":7,"origin":"Tampa, FL"},"TyChenery":{"player_code_id":{"code":"TyChenery","id":"Chenery, Tymu"},"number":"0","pos":"F","height":"6-6","height_in":78,"year_class":"Sr.","gp":27,"origin":"Philadelphia, PA"},"EvAshe":{"player_code_id":{"code":"EvAshe","id":"Ashe, Evan"},"number":"3","pos":"G","height":"6-3","height_in":75,"year_class":"Fr.","gp":16,"origin":"Wake Forest, NC"},"TaBalogun":{"player_code_id":{"code":"TaBalogun","id":"Balogun, Tariq"},"number":"1","pos":"C","height":"6-10","height_in":82,"year_class":"Sr.","gp":27,"origin":"London, United Kingdom"},"MaStewart":{"player_code_id":{"code":"MaStewart","id":"Stewart, Masud"},"number":"4","pos":"G","height":"6-1","height_in":73,"year_class":"So.","gp":8,"origin":"Historic New Castle, DE"},"TaWhite":{"player_code_id":{"code":"TaWhite","id":"White, Taveion"},"number":"10","pos":"C","height":"6-8","height_in":80,"year_class":"Sr.","gp":6,"origin":"Prosper, TX"},"StSnagg":{"player_code_id":{"code":"StSnagg","id":"Snagg, Stephan"},"number":"33","pos":"F","height":"6-7","height_in":79,"year_class":"Fr.","gp":0,"origin":"Queens Village, NY"},"DaPetcash":{"player_code_id":{"code":"DaPetcash","id":"Petcash, Dan"},"number":"11","pos":"G","height":"6-4","height_in":76,"year_class":"Sr.","gp":27,"origin":"Pittsburgh, PA"},"NeBenson":{"player_code_id":{"code":"NeBenson","id":"Benson, Nehemiah"},"number":"24","pos":"F","height":"6-7","height_in":79,"year_class":"Jr.","gp":30,"origin":"Streetsboro, OH"},"ChWalker":{"player_code_id":{"code":"ChWalker","id":"Walker, Chris"},"number":"13","pos":"G","height":"6-6","height_in":78,"year_class":"So.","gp":29,"origin":"Wellington, FL"}}
+{
+   "GaWalsh": {
+      "player_code_id": {
+         "code": "GaWalsh",
+         "id": "Walsh, Gavin"
+      },
+      "number": "22",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 27,
+      "origin": "Baltimore, MD"
+   },
+   "RoPhillips": {
+      "player_code_id": {
+         "code": "RoPhillips",
+         "id": "Phillips, Robby"
+      },
+      "number": "5",
+      "pos": "F",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 4,
+      "origin": "Ridgewood, NJ"
+   },
+   "ArHarried": {
+      "player_code_id": {
+         "code": "ArHarried",
+         "id": "Harried, Armon"
+      },
+      "number": "2",
+      "pos": "F",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 30,
+      "origin": "Baltimore, MD"
+   },
+   "SyTorrence": {
+      "player_code_id": {
+         "code": "SyTorrence",
+         "id": "Torrence, Symir"
+      },
+      "number": "23",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 24,
+      "origin": "Solvay, NY"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Levell Sanders"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "MaSims": {
+      "player_code_id": {
+         "code": "MaSims",
+         "id": "Sims, Max"
+      },
+      "number": "35",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 7,
+      "origin": "Tampa, FL"
+   },
+   "TyChenery": {
+      "player_code_id": {
+         "code": "TyChenery",
+         "id": "Chenery, Tymu"
+      },
+      "number": "0",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 27,
+      "origin": "Philadelphia, PA"
+   },
+   "EvAshe": {
+      "player_code_id": {
+         "code": "EvAshe",
+         "id": "Ashe, Evan"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 16,
+      "origin": "Wake Forest, NC"
+   },
+   "TaBalogun": {
+      "player_code_id": {
+         "code": "TaBalogun",
+         "id": "Balogun, Tariq"
+      },
+      "number": "1",
+      "pos": "C",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 27,
+      "origin": "London, United Kingdom"
+   },
+   "MaStewart": {
+      "player_code_id": {
+         "code": "MaStewart",
+         "id": "Stewart, Masud"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "So",
+      "gp": 8,
+      "origin": "Historic New Castle, DE"
+   },
+   "TaWhite": {
+      "player_code_id": {
+         "code": "TaWhite",
+         "id": "White, Taveion"
+      },
+      "number": "10",
+      "pos": "C",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Sr",
+      "gp": 6,
+      "origin": "Prosper, TX"
+   },
+   "StSnagg": {
+      "player_code_id": {
+         "code": "StSnagg",
+         "id": "Snagg, Stephan"
+      },
+      "number": "33",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Queens Village, NY"
+   },
+   "DaPetcash": {
+      "player_code_id": {
+         "code": "DaPetcash",
+         "id": "Petcash, Dan"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 27,
+      "origin": "Pittsburgh, PA"
+   },
+   "NeBenson": {
+      "player_code_id": {
+         "code": "NeBenson",
+         "id": "Benson, Nehemiah"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 30,
+      "origin": "Streetsboro, OH"
+   },
+   "ChWalker": {
+      "player_code_id": {
+         "code": "ChWalker",
+         "id": "Walker, Chris"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 29,
+      "origin": "Wellington, FL"
+   }
+}

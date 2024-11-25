@@ -1,1 +1,207 @@
-{"JaLemelman":{"player_code_id":{"code":"JaLemelman","id":"Lemelman, Jake"},"number":"11","pos":"G","height":"6-2","height_in":74,"year_class":"Fr.","gp":0,"origin":"","role":"G?"},"JePlanutis":{"player_code_id":{"code":"JePlanutis","id":"Planutis, Jeff"},"number":"31","pos":"G","height":"6-6","height_in":78,"year_class":"Sr.","gp":0,"origin":"","role":"G?"},"ChGamble":{"player_code_id":{"code":"ChGamble","id":"Gamble, Christian"},"number":"10","pos":"G","height":"6-1","height_in":73,"year_class":"Jr.","gp":0,"origin":"","role":"G?"},"ChMcclenneha":{"player_code_id":{"code":"ChMcclenneha","id":"McClennehan Jr., Charles"},"number":"23","pos":"F","height":"6-8","height_in":80,"year_class":"Jr.","gp":0,"origin":"","role":"F/C?"},"ShRathan-may":{"player_code_id":{"code":"ShRathan-may","id":"Rathan-Mayes, Shemar"},"number":"22","pos":"G","height":"5-11","height_in":71,"year_class":"Sr.","gp":0,"origin":"Scarborough, Canada","role":"G?"},"MaJusianiec":{"player_code_id":{"code":"MaJusianiec","id":"Jusianiec, Max"},"number":"21","pos":"G","height":"6-7","height_in":79,"year_class":"Jr.","gp":0,"origin":"","role":"G?"},"JeHafemeiste":{"player_code_id":{"code":"JeHafemeiste","id":"Hafemeister, Jesse"},"number":"12","pos":"G","height":"6-5","height_in":77,"year_class":"Sr.","gp":0,"origin":"Mendham, NJ"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Gary Manchel"},"number":"","pos":"","height":"","year_class":"","gp":-1},"BeBlunt":{"player_code_id":{"code":"BeBlunt","id":"Blunt, Bernie"},"number":"4","pos":"G","height":"6-0","height_in":72,"year_class":"Sr.","gp":0,"origin":"Morgantown, PA","role":"G?"},"QaMartin":{"player_code_id":{"code":"QaMartin","id":"Martin, Qadir"},"number":"2","pos":"F","height":"6-5","height_in":77,"year_class":"Fr.","gp":0,"origin":"","role":"F/C?"},"SeLang":{"player_code_id":{"code":"SeLang","id":"Lang, Sean"},"number":"1","pos":"G","height":"6-3","height_in":75,"year_class":"Sr.","gp":0,"origin":"","role":"G?"},"JaThomas":{"player_code_id":{"code":"JaThomas","id":"Thomas, James"},"number":"34","pos":"F","height":"6-6","height_in":78,"year_class":"So.","gp":0,"origin":"","role":"F/C?"},"MyIvanauskas":{"player_code_id":{"code":"MyIvanauskas","id":"Ivanauskas, Mykolaus"},"number":"5","pos":"F","height":"6-8","height_in":80,"year_class":"Fr.","gp":0,"origin":"","role":"F/C?"},"DeJackson":{"player_code_id":{"code":"DeJackson","id":"Jackson Jr., Deshaun"},"number":"0","pos":"G","height":"6-2","height_in":74,"year_class":"Fr.","gp":0,"origin":""},"AiReichert":{"player_code_id":{"code":"AiReichert","id":"Reichert, Aidan"},"number":"32","pos":"G","height":"6-4","height_in":76,"year_class":"Sr.","gp":0,"origin":"","role":"G?"}}
+{
+   "JaLemelman": {
+      "player_code_id": {
+         "code": "JaLemelman",
+         "id": "Lemelman, Jake"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "",
+      "role": "G?"
+   },
+   "JePlanutis": {
+      "player_code_id": {
+         "code": "JePlanutis",
+         "id": "Planutis, Jeff"
+      },
+      "number": "31",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "",
+      "role": "G?"
+   },
+   "ChGamble": {
+      "player_code_id": {
+         "code": "ChGamble",
+         "id": "Gamble, Christian"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "",
+      "role": "G?"
+   },
+   "ChMcclenneha": {
+      "player_code_id": {
+         "code": "ChMcclenneha",
+         "id": "McClennehan Jr., Charles"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "",
+      "role": "F/C?"
+   },
+   "ShRathan-may": {
+      "player_code_id": {
+         "code": "ShRathan-may",
+         "id": "Rathan-Mayes, Shemar"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Scarborough, Canada",
+      "role": "G?"
+   },
+   "MaJusianiec": {
+      "player_code_id": {
+         "code": "MaJusianiec",
+         "id": "Jusianiec, Max"
+      },
+      "number": "21",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "",
+      "role": "G?"
+   },
+   "JeHafemeiste": {
+      "player_code_id": {
+         "code": "JeHafemeiste",
+         "id": "Hafemeister, Jesse"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Mendham, NJ"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Gary Manchel"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "BeBlunt": {
+      "player_code_id": {
+         "code": "BeBlunt",
+         "id": "Blunt, Bernie"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Morgantown, PA",
+      "role": "G?"
+   },
+   "QaMartin": {
+      "player_code_id": {
+         "code": "QaMartin",
+         "id": "Martin, Qadir"
+      },
+      "number": "2",
+      "pos": "F",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "",
+      "role": "F/C?"
+   },
+   "SeLang": {
+      "player_code_id": {
+         "code": "SeLang",
+         "id": "Lang, Sean"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "",
+      "role": "G?"
+   },
+   "JaThomas": {
+      "player_code_id": {
+         "code": "JaThomas",
+         "id": "Thomas, James"
+      },
+      "number": "34",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "",
+      "role": "F/C?"
+   },
+   "MyIvanauskas": {
+      "player_code_id": {
+         "code": "MyIvanauskas",
+         "id": "Ivanauskas, Mykolaus"
+      },
+      "number": "5",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "",
+      "role": "F/C?"
+   },
+   "DeJackson": {
+      "player_code_id": {
+         "code": "DeJackson",
+         "id": "Jackson Jr., Deshaun"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": ""
+   },
+   "AiReichert": {
+      "player_code_id": {
+         "code": "AiReichert",
+         "id": "Reichert, Aidan"
+      },
+      "number": "32",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "",
+      "role": "G?"
+   }
+}

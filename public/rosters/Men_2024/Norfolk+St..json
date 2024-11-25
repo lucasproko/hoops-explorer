@@ -8,7 +8,7 @@
       "pos": "G",
       "height": "6-2",
       "height_in": 74,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Philadelphia, PA"
    },
@@ -21,7 +21,7 @@
       "pos": "F",
       "height": "6-10",
       "height_in": 82,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Coatesville, PA"
    },
@@ -34,7 +34,7 @@
       "pos": "F",
       "height": "6-7",
       "height_in": 79,
-      "year_class": "So.",
+      "year_class": "So",
       "gp": 0,
       "origin": "Petersburg, VA",
       "role": "WF"
@@ -48,7 +48,7 @@
       "pos": "G",
       "height": "6-3",
       "height_in": 75,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Trenton, NJ",
       "role": "WG"
@@ -73,7 +73,7 @@
       "pos": "G",
       "height": "6-5",
       "height_in": 77,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Norfolk, VA",
       "role": "WG"
@@ -87,7 +87,7 @@
       "pos": "F",
       "height": "6-9",
       "height_in": 81,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "High Point, NC",
       "role": "PF/C"
@@ -101,7 +101,7 @@
       "pos": "G",
       "height": "6-1",
       "height_in": 73,
-      "year_class": "Jr.",
+      "year_class": "Jr",
       "gp": 0,
       "origin": "Harlem, New York",
       "role": "CG"
@@ -115,7 +115,7 @@
       "pos": "G",
       "height": "6-5",
       "height_in": 77,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "Paris, France"
    },
@@ -128,7 +128,7 @@
       "pos": "F",
       "height": "6-8",
       "height_in": 80,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "Huntsville, AL",
       "role": "WF"
@@ -142,7 +142,7 @@
       "pos": "G",
       "height": "6-1",
       "height_in": 73,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Indianapolis, IN",
       "role": "CG"
@@ -156,7 +156,7 @@
       "pos": "G",
       "height": "6-5",
       "height_in": 77,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": ""
    },
@@ -169,7 +169,7 @@
       "pos": "F",
       "height": "6-8",
       "height_in": 80,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": ""
    },
@@ -182,7 +182,7 @@
       "pos": "G",
       "height": "6-3",
       "height_in": 75,
-      "year_class": "So.",
+      "year_class": "So",
       "gp": 0,
       "origin": "Hampton, VA"
    }

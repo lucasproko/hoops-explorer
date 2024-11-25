@@ -1,1 +1,250 @@
-{"CoSherman":{"player_code_id":{"code":"CoSherman","id":"Sherman, Cole"},"number":"4","pos":"G","height":"5-11","height_in":71,"year_class":"Jr.","gp":0,"origin":"Louisville, KY","role":"G?"},"AlKhalifa":{"player_code_id":{"code":"AlKhalifa","id":"Khalifa, Aly"},"number":"15","pos":"C","height":"6-11","height_in":83,"year_class":"Sr.","gp":0,"origin":"Alexandria, Egypt","role":"PF/C"},"FrAnselem-ib":{"player_code_id":{"code":"FrAnselem-ib","id":"Anselem-Ibe, Frank"},"number":"13","pos":"C","height":"6-10","height_in":82,"year_class":"Sr.","gp":0,"origin":"Lagos, Nigeria","role":"C"},"AiMccool":{"player_code_id":{"code":"AiMccool","id":"McCool, Aidan"},"number":"33","pos":"G","height":"6-3","height_in":75,"year_class":"Sr.","gp":0,"origin":"Charleston, SC","role":"G?"},"ReSmith":{"player_code_id":{"code":"ReSmith","id":"Smith, Reyne"},"number":"6","pos":"G","height":"6-2","height_in":74,"year_class":"Sr.","gp":0,"origin":"Ulverstone, Australia","role":"CG"},"JaScott":{"player_code_id":{"code":"JaScott","id":"Scott, James"},"number":"0","pos":"F","height":"6-11","height_in":83,"year_class":"So.","gp":0,"origin":"Fayetteville, NY","role":"F/C?"},"J'Hadley":{"player_code_id":{"code":"J'Hadley","id":"Hadley, J'Vonne"},"number":"1","pos":"G","height":"6-6","height_in":78,"year_class":"Sr.","gp":0,"origin":"Saint Paul, MN","role":"WG"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Pat Kelsey"},"number":"","pos":"","height":"","year_class":"","gp":-1},"ChHepburn":{"player_code_id":{"code":"ChHepburn","id":"Hepburn, Chucky"},"number":"24","pos":"G","height":"6-2","height_in":74,"year_class":"Sr.","gp":0,"origin":"Omaha, NE","role":"s-PG"},"PaAntonelli":{"player_code_id":{"code":"PaAntonelli","id":"Antonelli, Patrick"},"number":"12","pos":"G","height":"5-11","height_in":71,"year_class":"Sr.","gp":0,"origin":"","role":"G?"},"SpLegg":{"player_code_id":{"code":"SpLegg","id":"Legg, Spencer"},"number":"55","pos":"F","height":"6-6","height_in":78,"year_class":"Jr.","gp":0,"origin":"Washington, DC"},"KoJohnson":{"player_code_id":{"code":"KoJohnson","id":"Johnson, Koren"},"number":"3","pos":"G","height":"6-2","height_in":74,"year_class":"Jr.","gp":0,"origin":"Seattle, WA","role":"s-PG"},"NoWaterman":{"player_code_id":{"code":"NoWaterman","id":"Waterman, Noah"},"number":"93","pos":"F","height":"6-11","height_in":83,"year_class":"Sr.","gp":0,"origin":"Savannah, NY","role":"S-PF"},"TeEdwards":{"player_code_id":{"code":"TeEdwards","id":"Edwards Jr., Terrence"},"number":"5","pos":"G","height":"6-6","height_in":78,"year_class":"Sr.","gp":0,"origin":"Atlanta, GA","role":"CG"},"KhRooths":{"player_code_id":{"code":"KhRooths","id":"Rooths, Khani"},"number":"9","pos":"F","height":"6-8","height_in":80,"year_class":"Fr.","gp":0,"origin":"","role":"S-PF"},"AbTraore":{"player_code_id":{"code":"AbTraore","id":"Traore, Aboubacar"},"number":"25","pos":"F","height":"6-5","height_in":77,"year_class":"Sr.","gp":0,"origin":"Abidjan, Ivory Coast","role":"WF"},"KaPryor":{"player_code_id":{"code":"KaPryor","id":"Pryor, Kasean"},"number":"7","pos":"F","height":"6-10","height_in":82,"year_class":"Sr.","gp":0,"origin":"Chicago, IL","role":"S-PF"},"KoRodgers":{"player_code_id":{"code":"KoRodgers","id":"Rodgers, Kobe"},"number":"11","pos":"G","height":"6-3","height_in":75,"year_class":"Sr.","gp":0,"origin":"Cincinnati, OH","role":"WG"}}
+{
+   "CoSherman": {
+      "player_code_id": {
+         "code": "CoSherman",
+         "id": "Sherman, Cole"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Louisville, KY",
+      "role": "G?"
+   },
+   "AlKhalifa": {
+      "player_code_id": {
+         "code": "AlKhalifa",
+         "id": "Khalifa, Aly"
+      },
+      "number": "15",
+      "pos": "C",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Alexandria, Egypt",
+      "role": "PF/C"
+   },
+   "FrAnselem-ib": {
+      "player_code_id": {
+         "code": "FrAnselem-ib",
+         "id": "Anselem-Ibe, Frank"
+      },
+      "number": "13",
+      "pos": "C",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Lagos, Nigeria",
+      "role": "C"
+   },
+   "AiMccool": {
+      "player_code_id": {
+         "code": "AiMccool",
+         "id": "McCool, Aidan"
+      },
+      "number": "33",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Charleston, SC",
+      "role": "G?"
+   },
+   "ReSmith": {
+      "player_code_id": {
+         "code": "ReSmith",
+         "id": "Smith, Reyne"
+      },
+      "number": "6",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Ulverstone, Australia",
+      "role": "CG"
+   },
+   "JaScott": {
+      "player_code_id": {
+         "code": "JaScott",
+         "id": "Scott, James"
+      },
+      "number": "0",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Fayetteville, NY",
+      "role": "F/C?"
+   },
+   "J'Hadley": {
+      "player_code_id": {
+         "code": "J'Hadley",
+         "id": "Hadley, J'Vonne"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Saint Paul, MN",
+      "role": "WG"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Pat Kelsey"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "ChHepburn": {
+      "player_code_id": {
+         "code": "ChHepburn",
+         "id": "Hepburn, Chucky"
+      },
+      "number": "24",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Omaha, NE",
+      "role": "s-PG"
+   },
+   "PaAntonelli": {
+      "player_code_id": {
+         "code": "PaAntonelli",
+         "id": "Antonelli, Patrick"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "",
+      "role": "G?"
+   },
+   "SpLegg": {
+      "player_code_id": {
+         "code": "SpLegg",
+         "id": "Legg, Spencer"
+      },
+      "number": "55",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Washington, DC"
+   },
+   "KoJohnson": {
+      "player_code_id": {
+         "code": "KoJohnson",
+         "id": "Johnson, Koren"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Seattle, WA",
+      "role": "s-PG"
+   },
+   "NoWaterman": {
+      "player_code_id": {
+         "code": "NoWaterman",
+         "id": "Waterman, Noah"
+      },
+      "number": "93",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Savannah, NY",
+      "role": "S-PF"
+   },
+   "TeEdwards": {
+      "player_code_id": {
+         "code": "TeEdwards",
+         "id": "Edwards Jr., Terrence"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Atlanta, GA",
+      "role": "CG"
+   },
+   "KhRooths": {
+      "player_code_id": {
+         "code": "KhRooths",
+         "id": "Rooths, Khani"
+      },
+      "number": "9",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "",
+      "role": "S-PF"
+   },
+   "AbTraore": {
+      "player_code_id": {
+         "code": "AbTraore",
+         "id": "Traore, Aboubacar"
+      },
+      "number": "25",
+      "pos": "F",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Abidjan, Ivory Coast",
+      "role": "WF"
+   },
+   "KaPryor": {
+      "player_code_id": {
+         "code": "KaPryor",
+         "id": "Pryor, Kasean"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Chicago, IL",
+      "role": "S-PF"
+   },
+   "KoRodgers": {
+      "player_code_id": {
+         "code": "KoRodgers",
+         "id": "Rodgers, Kobe"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Cincinnati, OH",
+      "role": "WG"
+   }
+}

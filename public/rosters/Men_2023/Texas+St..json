@@ -1,1 +1,195 @@
-{"ChNix":{"player_code_id":{"code":"ChNix","id":"Nix, Chris"},"number":"25","pos":"F","height":"6-9","height_in":81,"year_class":"Sr.","gp":32,"origin":"Bellevue, TN"},"DoHorne":{"player_code_id":{"code":"DoHorne","id":"Horne, Dontae"},"number":"2","pos":"G","height":"6-4","height_in":76,"year_class":"Jr.","gp":31,"origin":"Memphis, TN"},"ElTate":{"player_code_id":{"code":"ElTate","id":"Tate, Elijah"},"number":"15","pos":"G","height":"6-4","height_in":76,"year_class":"Jr.","gp":27,"origin":"Baton Rouge, LA"},"DaSykes":{"player_code_id":{"code":"DaSykes","id":"Sykes, Davion"},"number":"4","pos":"F","height":"6-6","height_in":78,"year_class":"So.","gp":22,"origin":"Duncanville, TX"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Terrence Johnson"},"number":"","pos":"","height":"","year_class":"","gp":-1},"JoMason":{"player_code_id":{"code":"JoMason","id":"Mason, Jordan"},"number":"5","pos":"G","height":"6-4","height_in":76,"year_class":"So.","gp":29,"origin":"San Antonio, TX"},"BrLove":{"player_code_id":{"code":"BrLove","id":"Love, Brandon"},"number":"24","pos":"F","height":"6-10","height_in":82,"year_class":"Jr.","gp":34,"origin":"Houston, TX"},"KaGumbs":{"player_code_id":{"code":"KaGumbs","id":"Gumbs, Kaden"},"number":"11","pos":"G","height":"6-2","height_in":74,"year_class":"Fr.","gp":25,"origin":"San Marcos, TX"},"CoBenson":{"player_code_id":{"code":"CoBenson","id":"Benson, Coleton"},"number":"22","pos":"G","height":"6-1","height_in":73,"year_class":"So.","gp":25,"origin":"Austin, TX"},"JoO'garro":{"player_code_id":{"code":"JoO'garro","id":"O'Garro, Joshua"},"number":"23","pos":"G","height":"6-6","height_in":78,"year_class":"Jr.","gp":33,"origin":"George Town, Cayman Islands"},"DrDrinnon":{"player_code_id":{"code":"DrDrinnon","id":"Drinnon, Drue"},"number":"55","pos":"G","height":"6-0","height_in":72,"year_class":"Sr.","gp":0,"origin":"Smyrna, GA"},"TyMorgan":{"player_code_id":{"code":"TyMorgan","id":"Morgan, Tyrel"},"number":"1","pos":"F","height":"6-5","height_in":77,"year_class":"Sr.","gp":2,"origin":"Atlanta, GA"},"RyBolton":{"player_code_id":{"code":"RyBolton","id":"Bolton Jr., Ryan"},"number":"34","pos":"F","height":"6-11","height_in":83,"year_class":"Fr.","gp":0,"origin":"Waller, TX"},"ChTurner":{"player_code_id":{"code":"ChTurner","id":"Turner, Christian"},"number":"30","pos":"F","height":"6-7","height_in":79,"year_class":"Jr.","gp":35,"origin":"Grand Prairie, TX"},"DyDawson":{"player_code_id":{"code":"DyDawson","id":"Dawson, Dylan"},"number":"0","pos":"G","height":"6-3","height_in":75,"year_class":"Sr.","gp":33,"origin":"Humble, TX"}}
+{
+   "ChNix": {
+      "player_code_id": {
+         "code": "ChNix",
+         "id": "Nix, Chris"
+      },
+      "number": "25",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 32,
+      "origin": "Bellevue, TN"
+   },
+   "DoHorne": {
+      "player_code_id": {
+         "code": "DoHorne",
+         "id": "Horne, Dontae"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 31,
+      "origin": "Memphis, TN"
+   },
+   "ElTate": {
+      "player_code_id": {
+         "code": "ElTate",
+         "id": "Tate, Elijah"
+      },
+      "number": "15",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 27,
+      "origin": "Baton Rouge, LA"
+   },
+   "DaSykes": {
+      "player_code_id": {
+         "code": "DaSykes",
+         "id": "Sykes, Davion"
+      },
+      "number": "4",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 22,
+      "origin": "Duncanville, TX"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Terrence Johnson"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "JoMason": {
+      "player_code_id": {
+         "code": "JoMason",
+         "id": "Mason, Jordan"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 29,
+      "origin": "San Antonio, TX"
+   },
+   "BrLove": {
+      "player_code_id": {
+         "code": "BrLove",
+         "id": "Love, Brandon"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr",
+      "gp": 34,
+      "origin": "Houston, TX"
+   },
+   "KaGumbs": {
+      "player_code_id": {
+         "code": "KaGumbs",
+         "id": "Gumbs, Kaden"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 25,
+      "origin": "San Marcos, TX"
+   },
+   "CoBenson": {
+      "player_code_id": {
+         "code": "CoBenson",
+         "id": "Benson, Coleton"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "So",
+      "gp": 25,
+      "origin": "Austin, TX"
+   },
+   "JoO'garro": {
+      "player_code_id": {
+         "code": "JoO'garro",
+         "id": "O'Garro, Joshua"
+      },
+      "number": "23",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 33,
+      "origin": "George Town, Cayman Islands"
+   },
+   "DrDrinnon": {
+      "player_code_id": {
+         "code": "DrDrinnon",
+         "id": "Drinnon, Drue"
+      },
+      "number": "55",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Smyrna, GA"
+   },
+   "TyMorgan": {
+      "player_code_id": {
+         "code": "TyMorgan",
+         "id": "Morgan, Tyrel"
+      },
+      "number": "1",
+      "pos": "F",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 2,
+      "origin": "Atlanta, GA"
+   },
+   "RyBolton": {
+      "player_code_id": {
+         "code": "RyBolton",
+         "id": "Bolton Jr., Ryan"
+      },
+      "number": "34",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Waller, TX"
+   },
+   "ChTurner": {
+      "player_code_id": {
+         "code": "ChTurner",
+         "id": "Turner, Christian"
+      },
+      "number": "30",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 35,
+      "origin": "Grand Prairie, TX"
+   },
+   "DyDawson": {
+      "player_code_id": {
+         "code": "DyDawson",
+         "id": "Dawson, Dylan"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 33,
+      "origin": "Humble, TX"
+   }
+}

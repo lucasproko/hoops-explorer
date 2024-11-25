@@ -1,1 +1,233 @@
-{"GrGarrison":{"player_code_id":{"code":"GrGarrison","id":"Garrison, Grey"},"number":"10","pos":"F","height":"6-7","height_in":79,"year_class":"So.","gp":0,"origin":"Bellingham, WA"},"JaWilliford":{"player_code_id":{"code":"JaWilliford","id":"Williford, Ja'Quavis"},"number":"1","pos":"G","height":"6-7","height_in":79,"year_class":"Fr.","gp":0,"origin":"Tampa, FL"},"GaMarrs":{"player_code_id":{"code":"GaMarrs","id":"Marrs, Gavin"},"number":"8","pos":"F","height":"7-0","height_in":84,"year_class":"So.","gp":0,"origin":"Ellensburg, WA","role":"F/C?"},"IsSy":{"player_code_id":{"code":"IsSy","id":"Sy, Isaiah"},"number":"13","pos":"F","height":"6-7","height_in":79,"year_class":"So.","gp":0,"origin":"Marseille, France","role":"F/C?"},"JoMunch":{"player_code_id":{"code":"JoMunch","id":"Munch, Johan"},"number":"24","pos":"F","height":"6-11","height_in":83,"year_class":"Fr.","gp":0,"origin":"Copenhagen, Denmark","role":"F/C?"},"JoLake":{"player_code_id":{"code":"JoLake","id":"Lake II, Josiah"},"number":"2","pos":"G","height":"6-2","height_in":74,"year_class":"So.","gp":0,"origin":"Tualatin, OR","role":"s-PG"},"DaMinor":{"player_code_id":{"code":"DaMinor","id":"Minor, Damarco"},"number":"0","pos":"G","height":"6-0","height_in":72,"year_class":"Sr.","gp":0,"origin":"Harvey, IL","role":"WG"},"ThNdong":{"player_code_id":{"code":"ThNdong","id":"Ndong, Thomas"},"number":"22","pos":"F","height":"6-10","height_in":82,"year_class":"So.","gp":0,"origin":"Montreal, Canada"},"NaKingz":{"player_code_id":{"code":"NaKingz","id":"Kingz, Nate"},"number":"7","pos":"G","height":"6-5","height_in":77,"year_class":"Sr.","gp":0,"origin":"Salem, OR","role":"G?"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Wayne Tinkle"},"number":"","pos":"","height":"","year_class":"","gp":-1},"MaMarsh":{"player_code_id":{"code":"MaMarsh","id":"Marsh, Matthew"},"number":"15","pos":"C","height":"7-1","height_in":85,"year_class":"Jr.","gp":0,"origin":"Cornwall, United Kingdom","role":"C"},"KaYarkut":{"player_code_id":{"code":"KaYarkut","id":"Yarkut, Kaan"},"number":"6","pos":"F","height":"6-6","height_in":78,"year_class":"Fr.","gp":0,"origin":"Ankara, Turkey"},"LiLelevicius":{"player_code_id":{"code":"LiLelevicius","id":"Lelevicius, Liutauras"},"number":"37","pos":"G","height":"6-7","height_in":79,"year_class":"So.","gp":0,"origin":"Kaunas, Republic of Lithuania","role":"G?"},"DaCraig":{"player_code_id":{"code":"DaCraig","id":"Craig, DaJohn"},"number":"3","pos":"G","height":"6-1","height_in":73,"year_class":"So.","gp":0,"origin":"Indianapolis, IN","role":"G?"},"MiRataj":{"player_code_id":{"code":"MiRataj","id":"Rataj, Michael"},"number":"12","pos":"F","height":"6-9","height_in":81,"year_class":"Jr.","gp":0,"origin":"Augsburg, Germany","role":"WF"},"MaLogue":{"player_code_id":{"code":"MaLogue","id":"Logue, Maxim"},"number":"77","pos":"F","height":"6-9","height_in":81,"year_class":"Fr.","gp":0,"origin":"Lyon, France","role":"F/C?"},"PaFallah":{"player_code_id":{"code":"PaFallah","id":"Fallah, Parsa"},"number":"11","pos":"C","height":"6-9","height_in":81,"year_class":"Jr.","gp":0,"origin":"Amol, Iran","role":"PF/C"}}
+{
+   "GrGarrison": {
+      "player_code_id": {
+         "code": "GrGarrison",
+         "id": "Garrison, Grey"
+      },
+      "number": "10",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Bellingham, WA"
+   },
+   "JaWilliford": {
+      "player_code_id": {
+         "code": "JaWilliford",
+         "id": "Williford, Ja'Quavis"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Tampa, FL"
+   },
+   "GaMarrs": {
+      "player_code_id": {
+         "code": "GaMarrs",
+         "id": "Marrs, Gavin"
+      },
+      "number": "8",
+      "pos": "F",
+      "height": "7-0",
+      "height_in": 84,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Ellensburg, WA",
+      "role": "F/C?"
+   },
+   "IsSy": {
+      "player_code_id": {
+         "code": "IsSy",
+         "id": "Sy, Isaiah"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Marseille, France",
+      "role": "F/C?"
+   },
+   "JoMunch": {
+      "player_code_id": {
+         "code": "JoMunch",
+         "id": "Munch, Johan"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Copenhagen, Denmark",
+      "role": "F/C?"
+   },
+   "JoLake": {
+      "player_code_id": {
+         "code": "JoLake",
+         "id": "Lake II, Josiah"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Tualatin, OR",
+      "role": "s-PG"
+   },
+   "DaMinor": {
+      "player_code_id": {
+         "code": "DaMinor",
+         "id": "Minor, Damarco"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Harvey, IL",
+      "role": "WG"
+   },
+   "ThNdong": {
+      "player_code_id": {
+         "code": "ThNdong",
+         "id": "Ndong, Thomas"
+      },
+      "number": "22",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Montreal, Canada"
+   },
+   "NaKingz": {
+      "player_code_id": {
+         "code": "NaKingz",
+         "id": "Kingz, Nate"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Salem, OR",
+      "role": "G?"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Wayne Tinkle"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "MaMarsh": {
+      "player_code_id": {
+         "code": "MaMarsh",
+         "id": "Marsh, Matthew"
+      },
+      "number": "15",
+      "pos": "C",
+      "height": "7-1",
+      "height_in": 85,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Cornwall, United Kingdom",
+      "role": "C"
+   },
+   "KaYarkut": {
+      "player_code_id": {
+         "code": "KaYarkut",
+         "id": "Yarkut, Kaan"
+      },
+      "number": "6",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Ankara, Turkey"
+   },
+   "LiLelevicius": {
+      "player_code_id": {
+         "code": "LiLelevicius",
+         "id": "Lelevicius, Liutauras"
+      },
+      "number": "37",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Kaunas, Republic of Lithuania",
+      "role": "G?"
+   },
+   "DaCraig": {
+      "player_code_id": {
+         "code": "DaCraig",
+         "id": "Craig, DaJohn"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Indianapolis, IN",
+      "role": "G?"
+   },
+   "MiRataj": {
+      "player_code_id": {
+         "code": "MiRataj",
+         "id": "Rataj, Michael"
+      },
+      "number": "12",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Augsburg, Germany",
+      "role": "WF"
+   },
+   "MaLogue": {
+      "player_code_id": {
+         "code": "MaLogue",
+         "id": "Logue, Maxim"
+      },
+      "number": "77",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Lyon, France",
+      "role": "F/C?"
+   },
+   "PaFallah": {
+      "player_code_id": {
+         "code": "PaFallah",
+         "id": "Fallah, Parsa"
+      },
+      "number": "11",
+      "pos": "C",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Amol, Iran",
+      "role": "PF/C"
+   }
+}

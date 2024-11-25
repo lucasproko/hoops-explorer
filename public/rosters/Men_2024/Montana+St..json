@@ -8,7 +8,7 @@
       "pos": "F",
       "height": "6-7",
       "height_in": 79,
-      "year_class": "Jr.",
+      "year_class": "Jr",
       "gp": 0,
       "origin": "Dallas, TX",
       "role": "WF"
@@ -22,7 +22,7 @@
       "pos": "F",
       "height": "6-7",
       "height_in": 79,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "Salt Lake City, UT"
    },
@@ -35,7 +35,7 @@
       "pos": "F",
       "height": "6-7",
       "height_in": 79,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Sheridan, WY",
       "role": "S-PF"
@@ -49,7 +49,7 @@
       "pos": "G",
       "height": "6-4",
       "height_in": 76,
-      "year_class": "Jr.",
+      "year_class": "Jr",
       "gp": 0,
       "origin": "Carson, CA"
    },
@@ -62,7 +62,7 @@
       "pos": "G",
       "height": "6-6",
       "height_in": 78,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "Belton, TX"
    },
@@ -75,7 +75,7 @@
       "pos": "G",
       "height": "5-11",
       "height_in": 71,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "Boulder, CO"
    },
@@ -88,7 +88,7 @@
       "pos": "F",
       "height": "6-11",
       "height_in": 83,
-      "year_class": "So.",
+      "year_class": "So",
       "gp": 0,
       "origin": "Sebastopol, CA"
    },
@@ -101,7 +101,7 @@
       "pos": "F",
       "height": "6-5",
       "height_in": 77,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Seattle, WA",
       "role": "WG"
@@ -115,7 +115,7 @@
       "pos": "G",
       "height": "6-7",
       "height_in": 79,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Palmer, AK"
    },
@@ -128,7 +128,7 @@
       "pos": "F",
       "height": "6-10",
       "height_in": 82,
-      "year_class": "Jr.",
+      "year_class": "Jr",
       "gp": 0,
       "origin": "Mukilteo, WA"
    },
@@ -152,7 +152,7 @@
       "pos": "G",
       "height": "6-4",
       "height_in": 76,
-      "year_class": "Jr.",
+      "year_class": "Jr",
       "gp": 0,
       "origin": "Fountain Valley, CA"
    },
@@ -165,7 +165,7 @@
       "pos": "G",
       "height": "6-2",
       "height_in": 74,
-      "year_class": "Jr.",
+      "year_class": "Jr",
       "gp": 0,
       "origin": "Agoura Hills, CA"
    },
@@ -178,7 +178,7 @@
       "pos": "F",
       "height": "6-9",
       "height_in": 81,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Laguna Niguel, CA"
    },
@@ -191,7 +191,7 @@
       "pos": "G",
       "height": "6-8",
       "height_in": 80,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Snoqualmie, WA",
       "role": "WG"
@@ -205,7 +205,7 @@
       "pos": "G",
       "height": "6-6",
       "height_in": 78,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Snoqualmie, WA",
       "role": "CG"
@@ -219,7 +219,7 @@
       "pos": "G",
       "height": "6-5",
       "height_in": 77,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Monroe, OR",
       "role": "WG"

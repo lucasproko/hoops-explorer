@@ -1,1 +1,169 @@
-{"AmMabry":{"player_code_id":{"code":"AmMabry","id":"Mabry, Amira"},"number":"23","pos":"F","height":"6-0","height_in":72,"year_class":"So.","gp":32,"origin":"Converse, TX"},"KyWhittingto":{"player_code_id":{"code":"KyWhittingto","id":"Whittington, Kyren"},"number":"0","pos":"G","height":"5-9","height_in":69,"year_class":"Jr.","gp":27,"origin":"Folsom, LA"},"ChGrattini":{"player_code_id":{"code":"ChGrattini","id":"Grattini, Chiara"},"number":"24","pos":"G","height":"5-9","height_in":69,"year_class":"Jr.","gp":32,"origin":"Turin, Italy"},"KiMiddleton":{"player_code_id":{"code":"KiMiddleton","id":"Middleton, Kierra"},"number":"2","pos":"G","height":"5-7","height_in":67,"year_class":"Jr.","gp":1,"origin":"Arlington, TX"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Lisa Stockton"},"number":"","pos":"","height":"","year_class":"","gp":-1},"IrParau":{"player_code_id":{"code":"IrParau","id":"Parau, Irina"},"number":"21","pos":"F","height":"6-1","height_in":73,"year_class":"Sr.","gp":32,"origin":"Cluj-Napoca, Romania"},"LiBa":{"player_code_id":{"code":"LiBa","id":"Ba, Lily"},"number":"33","pos":"C","height":"6-3","height_in":75,"year_class":"Fr.","gp":16,"origin":"Overland Park, KS"},"McCarter":{"player_code_id":{"code":"McCarter","id":"Carter, McKenzi"},"number":"22","pos":"F","height":"6-1","height_in":73,"year_class":"Jr.","gp":27,"origin":"Fort Worth, TX"},"HaPratt":{"player_code_id":{"code":"HaPratt","id":"Pratt, Hannah"},"number":"12","pos":"F","height":"6-1","height_in":73,"year_class":"Sr.","gp":32,"origin":"Boca Raton, FL"},"JoMadison-ke":{"player_code_id":{"code":"JoMadison-ke","id":"Madison-Key, Joy"},"number":"8","pos":"G","height":"5-8","height_in":68,"year_class":"Fr.","gp":24,"origin":"Grand Prairie, TX"},"JaWomack":{"player_code_id":{"code":"JaWomack","id":"Womack, Jaylee"},"number":"5","pos":"G","height":"5-10","height_in":70,"year_class":"So.","gp":14,"origin":"Springfield, LA"},"MaGalic":{"player_code_id":{"code":"MaGalic","id":"Galic, Marta"},"number":"3","pos":"G","height":"6-0","height_in":72,"year_class":"Sr.","gp":31,"origin":"Zagreb, Croatia"},"KaRainey":{"player_code_id":{"code":"KaRainey","id":"Rainey, Kaylah"},"number":"1","pos":"G","height":"5-6","height_in":66,"year_class":"Sr.","gp":30,"origin":"Belleville, IL"}}
+{
+   "AmMabry": {
+      "player_code_id": {
+         "code": "AmMabry",
+         "id": "Mabry, Amira"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "So",
+      "gp": 32,
+      "origin": "Converse, TX"
+   },
+   "KyWhittingto": {
+      "player_code_id": {
+         "code": "KyWhittingto",
+         "id": "Whittington, Kyren"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "5-9",
+      "height_in": 69,
+      "year_class": "Jr",
+      "gp": 27,
+      "origin": "Folsom, LA"
+   },
+   "ChGrattini": {
+      "player_code_id": {
+         "code": "ChGrattini",
+         "id": "Grattini, Chiara"
+      },
+      "number": "24",
+      "pos": "G",
+      "height": "5-9",
+      "height_in": 69,
+      "year_class": "Jr",
+      "gp": 32,
+      "origin": "Turin, Italy"
+   },
+   "KiMiddleton": {
+      "player_code_id": {
+         "code": "KiMiddleton",
+         "id": "Middleton, Kierra"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "5-7",
+      "height_in": 67,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Arlington, TX"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Lisa Stockton"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "IrParau": {
+      "player_code_id": {
+         "code": "IrParau",
+         "id": "Parau, Irina"
+      },
+      "number": "21",
+      "pos": "F",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr",
+      "gp": 32,
+      "origin": "Cluj-Napoca, Romania"
+   },
+   "LiBa": {
+      "player_code_id": {
+         "code": "LiBa",
+         "id": "Ba, Lily"
+      },
+      "number": "33",
+      "pos": "C",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 16,
+      "origin": "Overland Park, KS"
+   },
+   "McCarter": {
+      "player_code_id": {
+         "code": "McCarter",
+         "id": "Carter, McKenzi"
+      },
+      "number": "22",
+      "pos": "F",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Jr",
+      "gp": 27,
+      "origin": "Fort Worth, TX"
+   },
+   "HaPratt": {
+      "player_code_id": {
+         "code": "HaPratt",
+         "id": "Pratt, Hannah"
+      },
+      "number": "12",
+      "pos": "F",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr",
+      "gp": 32,
+      "origin": "Boca Raton, FL"
+   },
+   "JoMadison-ke": {
+      "player_code_id": {
+         "code": "JoMadison-ke",
+         "id": "Madison-Key, Joy"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "5-8",
+      "height_in": 68,
+      "year_class": "Fr",
+      "gp": 24,
+      "origin": "Grand Prairie, TX"
+   },
+   "JaWomack": {
+      "player_code_id": {
+         "code": "JaWomack",
+         "id": "Womack, Jaylee"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "So",
+      "gp": 14,
+      "origin": "Springfield, LA"
+   },
+   "MaGalic": {
+      "player_code_id": {
+         "code": "MaGalic",
+         "id": "Galic, Marta"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr",
+      "gp": 31,
+      "origin": "Zagreb, Croatia"
+   },
+   "KaRainey": {
+      "player_code_id": {
+         "code": "KaRainey",
+         "id": "Rainey, Kaylah"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "5-6",
+      "height_in": 66,
+      "year_class": "Sr",
+      "gp": 30,
+      "origin": "Belleville, IL"
+   }
+}

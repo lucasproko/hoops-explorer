@@ -1,1 +1,231 @@
-{"GuSalem":{"player_code_id":{"code":"GuSalem","id":"Salem, Gus"},"number":"23","pos":"G","height":"6-2","height_in":74,"year_class":"Fr.","gp":0,"origin":"Los Angeles, CA"},"RyHatcher":{"player_code_id":{"code":"RyHatcher","id":"Hatcher, Ryan"},"number":"9","pos":"G","height":"6-2","height_in":74,"year_class":"Fr.","gp":0,"origin":"Detroit, MI"},"TrPhillips":{"player_code_id":{"code":"TrPhillips","id":"Phillips, Trey"},"number":"11","pos":"F","height":"6-7","height_in":79,"year_class":"So.","gp":0,"origin":"Scottsdale, AZ"},"HuHarding":{"player_code_id":{"code":"HuHarding","id":"Harding, Hunter"},"number":"12","pos":"C","height":"7-0","height_in":84,"year_class":"So.","gp":0,"origin":"Toronto, Canada","role":"C"},"QuHeady":{"player_code_id":{"code":"QuHeady","id":"Heady, Quentin"},"number":"5","pos":"F","height":"6-6","height_in":78,"year_class":"So.","gp":0,"origin":"Sauk Village, IL"},"MoHabhab":{"player_code_id":{"code":"MoHabhab","id":"Habhab, Mohammad"},"number":"3","pos":"F","height":"6-9","height_in":81,"year_class":"Fr.","gp":0,"origin":"Dearborn, MI","role":"F/C?"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Tony Barbee"},"number":"","pos":"","height":"","year_class":"","gp":-1},"DaBonds":{"player_code_id":{"code":"DaBonds","id":"Bonds, Damarion"},"number":"7","pos":"G","height":"6-6","height_in":78,"year_class":"Jr.","gp":0,"origin":"Pontiac, MI","role":"G?"},"AnPritchard":{"player_code_id":{"code":"AnPritchard","id":"Pritchard, Anthony"},"number":"30","pos":"G","height":"6-3","height_in":75,"year_class":"Sr.","gp":0,"origin":"Tulsa, OK","role":"s-PG"},"KyVanderjagt":{"player_code_id":{"code":"KyVanderjagt","id":"VanderJagt, Kyler"},"number":"4","pos":"G","height":"6-4","height_in":76,"year_class":"Jr.","gp":0,"origin":"Grand Rapids, MI","role":"WG"},"ArMighty":{"player_code_id":{"code":"ArMighty","id":"Mighty, Armani"},"number":"26","pos":"C","height":"6-10","height_in":82,"year_class":"Jr.","gp":0,"origin":"Toronto, Canada"},"DrBarbee":{"player_code_id":{"code":"DrBarbee","id":"Barbee, Drew"},"number":"22","pos":"G","height":"6-3","height_in":75,"year_class":"Fr.","gp":0,"origin":"Mount Pleasant, MI"},"JaHeady":{"player_code_id":{"code":"JaHeady","id":"Heady, Jakobi"},"number":"0","pos":"G","height":"6-6","height_in":78,"year_class":"Sr.","gp":0,"origin":"Sauk Village, IL","role":"WG"},"BrNdjonga":{"player_code_id":{"code":"BrNdjonga","id":"Ndjonga, Bryan"},"number":"13","pos":"F","height":"6-9","height_in":81,"year_class":"So.","gp":0,"origin":"Yaoundé, Cameroon","role":"WF"},"UgJarusevici":{"player_code_id":{"code":"UgJarusevici","id":"Jarusevicius, Ugnius"},"number":"21","pos":"F","height":"6-10","height_in":82,"year_class":"Jr.","gp":0,"origin":"Alytus, Republic of Lithuania","role":"PF/C"},"ShSimpson":{"player_code_id":{"code":"ShSimpson","id":"Simpson, Shaedon"},"number":"1","pos":"G","height":"6-6","height_in":78,"year_class":"Fr.","gp":0,"origin":"Toronto, Canada","role":"G?"},"CaVasko":{"player_code_id":{"code":"CaVasko","id":"Vasko, Cayden"},"number":"2","pos":"G","height":"6-6","height_in":78,"year_class":"So.","gp":0,"origin":"Lowell, IN","role":"WG"}}
+{
+   "GuSalem": {
+      "player_code_id": {
+         "code": "GuSalem",
+         "id": "Salem, Gus"
+      },
+      "number": "23",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Los Angeles, CA"
+   },
+   "RyHatcher": {
+      "player_code_id": {
+         "code": "RyHatcher",
+         "id": "Hatcher, Ryan"
+      },
+      "number": "9",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Detroit, MI"
+   },
+   "TrPhillips": {
+      "player_code_id": {
+         "code": "TrPhillips",
+         "id": "Phillips, Trey"
+      },
+      "number": "11",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Scottsdale, AZ"
+   },
+   "HuHarding": {
+      "player_code_id": {
+         "code": "HuHarding",
+         "id": "Harding, Hunter"
+      },
+      "number": "12",
+      "pos": "C",
+      "height": "7-0",
+      "height_in": 84,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Toronto, Canada",
+      "role": "C"
+   },
+   "QuHeady": {
+      "player_code_id": {
+         "code": "QuHeady",
+         "id": "Heady, Quentin"
+      },
+      "number": "5",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Sauk Village, IL"
+   },
+   "MoHabhab": {
+      "player_code_id": {
+         "code": "MoHabhab",
+         "id": "Habhab, Mohammad"
+      },
+      "number": "3",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Dearborn, MI",
+      "role": "F/C?"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Tony Barbee"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "DaBonds": {
+      "player_code_id": {
+         "code": "DaBonds",
+         "id": "Bonds, Damarion"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Pontiac, MI",
+      "role": "G?"
+   },
+   "AnPritchard": {
+      "player_code_id": {
+         "code": "AnPritchard",
+         "id": "Pritchard, Anthony"
+      },
+      "number": "30",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Tulsa, OK",
+      "role": "s-PG"
+   },
+   "KyVanderjagt": {
+      "player_code_id": {
+         "code": "KyVanderjagt",
+         "id": "VanderJagt, Kyler"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Grand Rapids, MI",
+      "role": "WG"
+   },
+   "ArMighty": {
+      "player_code_id": {
+         "code": "ArMighty",
+         "id": "Mighty, Armani"
+      },
+      "number": "26",
+      "pos": "C",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Toronto, Canada"
+   },
+   "DrBarbee": {
+      "player_code_id": {
+         "code": "DrBarbee",
+         "id": "Barbee, Drew"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Mount Pleasant, MI"
+   },
+   "JaHeady": {
+      "player_code_id": {
+         "code": "JaHeady",
+         "id": "Heady, Jakobi"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Sauk Village, IL",
+      "role": "WG"
+   },
+   "BrNdjonga": {
+      "player_code_id": {
+         "code": "BrNdjonga",
+         "id": "Ndjonga, Bryan"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Yaoundé, Cameroon",
+      "role": "WF"
+   },
+   "UgJarusevici": {
+      "player_code_id": {
+         "code": "UgJarusevici",
+         "id": "Jarusevicius, Ugnius"
+      },
+      "number": "21",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Alytus, Republic of Lithuania",
+      "role": "PF/C"
+   },
+   "ShSimpson": {
+      "player_code_id": {
+         "code": "ShSimpson",
+         "id": "Simpson, Shaedon"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Toronto, Canada",
+      "role": "G?"
+   },
+   "CaVasko": {
+      "player_code_id": {
+         "code": "CaVasko",
+         "id": "Vasko, Cayden"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Lowell, IN",
+      "role": "WG"
+   }
+}

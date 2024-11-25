@@ -8,7 +8,7 @@
       "pos": "G",
       "height": "6-3",
       "height_in": 75,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "Moraga, CA"
    },
@@ -21,7 +21,7 @@
       "pos": "F",
       "height": "6-9",
       "height_in": 81,
-      "year_class": "Jr.",
+      "year_class": "Jr",
       "gp": 0,
       "origin": "Brisbane, Australia",
       "role": "PF/C"
@@ -35,7 +35,7 @@
       "pos": "G",
       "height": "6-5",
       "height_in": 77,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "Santa Monica, CA"
    },
@@ -48,7 +48,7 @@
       "pos": "C",
       "height": "6-10",
       "height_in": 82,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Almere, Netherlands",
       "role": "PF/C"
@@ -62,7 +62,7 @@
       "pos": "F",
       "height": "6-6",
       "height_in": 78,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "Tokyo, Japan"
    },
@@ -75,7 +75,7 @@
       "pos": "G",
       "height": "6-2",
       "height_in": 74,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Gilroy, CA",
       "role": "CG"
@@ -100,7 +100,7 @@
       "pos": "F",
       "height": "6-9",
       "height_in": 81,
-      "year_class": "So.",
+      "year_class": "So",
       "gp": 0,
       "origin": "Yokohama, Japan"
    },
@@ -113,7 +113,7 @@
       "pos": "G",
       "height": "6-4",
       "height_in": 76,
-      "year_class": "So.",
+      "year_class": "So",
       "gp": 0,
       "origin": "Antwerp, Belgium"
    },
@@ -126,7 +126,7 @@
       "pos": "G",
       "height": "6-5",
       "height_in": 77,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "Verona, Italy"
    },
@@ -139,7 +139,7 @@
       "pos": "C",
       "height": "6-10",
       "height_in": 82,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Spokane Valley, WA",
       "role": "PF/C"
@@ -153,7 +153,7 @@
       "pos": "G",
       "height": "6-0",
       "height_in": 72,
-      "year_class": "Jr.",
+      "year_class": "Jr",
       "gp": 0,
       "origin": "Wayzata, MN"
    },
@@ -166,7 +166,7 @@
       "pos": "G",
       "height": "6-2",
       "height_in": 74,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "Wahiawa, HI"
    },
@@ -179,7 +179,7 @@
       "pos": "G",
       "height": "6-4",
       "height_in": 76,
-      "year_class": "So.",
+      "year_class": "So",
       "gp": 0,
       "origin": "Auckland, New Zealand",
       "role": "WG"
@@ -193,7 +193,7 @@
       "pos": "G",
       "height": "6-5",
       "height_in": 77,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Melbourne, Australia"
    },
@@ -206,7 +206,7 @@
       "pos": "F",
       "height": "6-8",
       "height_in": 80,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Kaunas, Republic of Lithuania",
       "role": "S-PF"

@@ -1,1 +1,218 @@
-{"MaAntenucci":{"player_code_id":{"code":"MaAntenucci","id":"Antenucci, Maddie"},"number":"11","pos":"G","height":"5-10","height_in":70,"year_class":"Sr.","gp":0,"origin":"Cincinnati, OH","role":"G?"},"KaGordon":{"player_code_id":{"code":"KaGordon","id":"Gordon, Karina"},"number":"0","pos":"G","height":"5-9","height_in":69,"year_class":"So.","gp":0,"origin":"Hallandale Beach, FL","role":"G?"},"AnMortag":{"player_code_id":{"code":"AnMortag","id":"Mortag, Anna"},"number":"34","pos":"F","height":"6-1","height_in":73,"year_class":"Sr.","gp":0,"origin":"Milwaukee, WI"},"EmTheodule":{"player_code_id":{"code":"EmTheodule","id":"Theodule, Emani"},"number":"33","pos":"G","height":"5-6","height_in":66,"year_class":"So.","gp":0,"origin":"Miramar, FL"},"EmJefferson":{"player_code_id":{"code":"EmJefferson","id":"Jefferson, Emani"},"number":"1","pos":"G","height":"5-6","height_in":66,"year_class":"Sr.","gp":0,"origin":"Miami, FL","role":"G?"},"CaSantoro":{"player_code_id":{"code":"CaSantoro","id":"Santoro, Casey"},"number":"14","pos":"G","height":"5-4","height_in":64,"year_class":"Sr.","gp":0,"origin":"Bellevue, OH","role":"G?"},"CeRolle":{"player_code_id":{"code":"CeRolle","id":"Rolle, Cerina"},"number":"3","pos":"G","height":"5-9","height_in":69,"year_class":"Sr.","gp":0,"origin":"Eustis, FL","role":"G?"},"LaTaylor":{"player_code_id":{"code":"LaTaylor","id":"Taylor, Lauryn"},"number":"24","pos":"C","height":"5-11","height_in":71,"year_class":"Sr.","gp":0,"origin":"Blythewood, SC","role":"C"},"MaRetamales":{"player_code_id":{"code":"MaRetamales","id":"Retamales, Maca"},"number":"10","pos":"G","height":"6-1","height_in":73,"year_class":"Sr.","gp":0,"origin":"Santiago, Chile"},"AlPaige":{"player_code_id":{"code":"AlPaige","id":"Paige, Alahna"},"number":"5","pos":"G","height":"5-4","height_in":64,"year_class":"Sr.","gp":0,"origin":"Rochester, NY","role":"G?"},"KhMitchell-s":{"player_code_id":{"code":"KhMitchell-s","id":"Mitchell-Steen, Khamari"},"number":"7","pos":"G","height":"5-7","height_in":67,"year_class":"Jr.","gp":0,"origin":"Oak Ridge, TN","role":"G?"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Karl Smesko"},"number":"","pos":"","height":"","year_class":"","gp":-1},"JoCampbell":{"player_code_id":{"code":"JoCampbell","id":"Campbell, Jordan"},"number":"23","pos":"G","height":"5-9","height_in":69,"year_class":"Jr.","gp":0,"origin":"Purcellville, VA"},"SkGill":{"player_code_id":{"code":"SkGill","id":"Gill, Skyler"},"number":"32","pos":"F","height":"5-10","height_in":70,"year_class":"Sr.","gp":0,"origin":"Wichita, KS","role":"F/C?"},"DoCairns":{"player_code_id":{"code":"DoCairns","id":"Cairns, Dolly"},"number":"4","pos":"G","height":"5-6","height_in":66,"year_class":"Sr.","gp":0,"origin":"Saratoga Springs, NY","role":"G?"},"KaFlowers":{"player_code_id":{"code":"KaFlowers","id":"Flowers, Kaelyn"},"number":"12","pos":"G","height":"5-6","height_in":66,"year_class":"Fr.","gp":0,"origin":"Murfreesboro, TN"}}
+{
+   "MaAntenucci": {
+      "player_code_id": {
+         "code": "MaAntenucci",
+         "id": "Antenucci, Maddie"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Cincinnati, OH",
+      "role": "G?"
+   },
+   "KaGordon": {
+      "player_code_id": {
+         "code": "KaGordon",
+         "id": "Gordon, Karina"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "5-9",
+      "height_in": 69,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Hallandale Beach, FL",
+      "role": "G?"
+   },
+   "AnMortag": {
+      "player_code_id": {
+         "code": "AnMortag",
+         "id": "Mortag, Anna"
+      },
+      "number": "34",
+      "pos": "F",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Milwaukee, WI"
+   },
+   "EmTheodule": {
+      "player_code_id": {
+         "code": "EmTheodule",
+         "id": "Theodule, Emani"
+      },
+      "number": "33",
+      "pos": "G",
+      "height": "5-6",
+      "height_in": 66,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Miramar, FL"
+   },
+   "EmJefferson": {
+      "player_code_id": {
+         "code": "EmJefferson",
+         "id": "Jefferson, Emani"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "5-6",
+      "height_in": 66,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Miami, FL",
+      "role": "G?"
+   },
+   "CaSantoro": {
+      "player_code_id": {
+         "code": "CaSantoro",
+         "id": "Santoro, Casey"
+      },
+      "number": "14",
+      "pos": "G",
+      "height": "5-4",
+      "height_in": 64,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Bellevue, OH",
+      "role": "G?"
+   },
+   "CeRolle": {
+      "player_code_id": {
+         "code": "CeRolle",
+         "id": "Rolle, Cerina"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "5-9",
+      "height_in": 69,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Eustis, FL",
+      "role": "G?"
+   },
+   "LaTaylor": {
+      "player_code_id": {
+         "code": "LaTaylor",
+         "id": "Taylor, Lauryn"
+      },
+      "number": "24",
+      "pos": "C",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Blythewood, SC",
+      "role": "C"
+   },
+   "MaRetamales": {
+      "player_code_id": {
+         "code": "MaRetamales",
+         "id": "Retamales, Maca"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Santiago, Chile"
+   },
+   "AlPaige": {
+      "player_code_id": {
+         "code": "AlPaige",
+         "id": "Paige, Alahna"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "5-4",
+      "height_in": 64,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Rochester, NY",
+      "role": "G?"
+   },
+   "KhMitchell-s": {
+      "player_code_id": {
+         "code": "KhMitchell-s",
+         "id": "Mitchell-Steen, Khamari"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "5-7",
+      "height_in": 67,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Oak Ridge, TN",
+      "role": "G?"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Karl Smesko"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "JoCampbell": {
+      "player_code_id": {
+         "code": "JoCampbell",
+         "id": "Campbell, Jordan"
+      },
+      "number": "23",
+      "pos": "G",
+      "height": "5-9",
+      "height_in": 69,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Purcellville, VA"
+   },
+   "SkGill": {
+      "player_code_id": {
+         "code": "SkGill",
+         "id": "Gill, Skyler"
+      },
+      "number": "32",
+      "pos": "F",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Wichita, KS",
+      "role": "F/C?"
+   },
+   "DoCairns": {
+      "player_code_id": {
+         "code": "DoCairns",
+         "id": "Cairns, Dolly"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "5-6",
+      "height_in": 66,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Saratoga Springs, NY",
+      "role": "G?"
+   },
+   "KaFlowers": {
+      "player_code_id": {
+         "code": "KaFlowers",
+         "id": "Flowers, Kaelyn"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "5-6",
+      "height_in": 66,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Murfreesboro, TN"
+   }
+}

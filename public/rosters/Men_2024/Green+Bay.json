@@ -1,1 +1,260 @@
-{"MaHall":{"player_code_id":{"code":"MaHall","id":"Hall, Marcus"},"number":"13","pos":"F","height":"6-6","height_in":78,"year_class":"So.","gp":0,"origin":"Schofield, WI","role":"S-PF"},"BrFitzgerald":{"player_code_id":{"code":"BrFitzgerald","id":"Fitzgerald, Brady"},"number":"21","pos":"G","height":"6-4","height_in":76,"year_class":"Fr.","gp":0,"origin":"Fortville, IN"},"DoSantoro":{"player_code_id":{"code":"DoSantoro","id":"Santoro, Donovan"},"number":"7","pos":"F","height":"6-8","height_in":80,"year_class":"So.","gp":0,"origin":"Los Angeles, CA","role":"F/C?"},"FoWonders":{"player_code_id":{"code":"FoWonders","id":"Wonders, Foster"},"number":"0","pos":"G","height":"6-5","height_in":77,"year_class":"Jr.","gp":0,"origin":"Iron Mountain, MI","role":"WG"},"RyWade":{"player_code_id":{"code":"RyWade","id":"Wade, Ryan"},"number":"15","pos":"G","height":"6-2","height_in":74,"year_class":"Sr.","gp":0,"origin":"Ann Arbor, MI","role":"s-PG"},"PrRuedinger":{"player_code_id":{"code":"PrRuedinger","id":"Ruedinger, Preston"},"number":"2","pos":"G","height":"6-2","height_in":74,"year_class":"Jr.","gp":0,"origin":"Oshkosh, WI","role":"CG"},"MoCisse":{"player_code_id":{"code":"MoCisse","id":"Cisse, Mouhamadou"},"number":"77","pos":"C","height":"6-10","height_in":82,"year_class":"Jr.","gp":0,"origin":"Dakar, Senegal"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Doug Gottlieb"},"number":"","pos":"","height":"","year_class":"","gp":-1},"AnRoy":{"player_code_id":{"code":"AnRoy","id":"Roy, Anthony"},"number":"9","pos":"G","height":"6-5","height_in":77,"year_class":"Sr.","gp":0,"origin":"Oakland, CA","role":"G?"},"MaWrecke":{"player_code_id":{"code":"MaWrecke","id":"Wrecke, Mac"},"number":"4","pos":"G","height":"6-5","height_in":77,"year_class":"So.","gp":0,"origin":"Hartland, WI","role":"G?"},"BeTweedy":{"player_code_id":{"code":"BeTweedy","id":"Tweedy, Ben"},"number":"6","pos":"G","height":"6-2","height_in":74,"year_class":"Fr.","gp":0,"origin":"Southport, Australia","role":"G?"},"AyGoll":{"player_code_id":{"code":"AyGoll","id":"Goll, Ayden"},"number":"1","pos":"G","height":"6-2","height_in":74,"year_class":"Fr.","gp":0,"origin":"Milton, WI"},"IsMiranda":{"player_code_id":{"code":"IsMiranda","id":"Miranda, Isaiah"},"number":"14","pos":"F","height":"7-1","height_in":85,"year_class":"So.","gp":0,"origin":"Pawtucket, RI","role":"F/C?"},"CjO'hara":{"player_code_id":{"code":"CjO'hara","id":"O'Hara, C.J."},"number":"10","pos":"G","height":"6-4","height_in":76,"year_class":"Fr.","gp":0,"origin":"Minneapolis, MN","role":"G?"},"JeJohnson":{"player_code_id":{"code":"JeJohnson","id":"Johnson, Jeremiah"},"number":"3","pos":"G","height":"6-3","height_in":75,"year_class":"Fr.","gp":0,"origin":"Phoenix, AZ","role":"G?"},"CaWilkins":{"player_code_id":{"code":"CaWilkins","id":"Wilkins, Caden"},"number":"23","pos":"F","height":"6-6","height_in":78,"year_class":"Fr.","gp":0,"origin":"Bettendorf, IA"},"MuMuoneke":{"player_code_id":{"code":"MuMuoneke","id":"Muoneke, Muodubem"},"number":"11","pos":"G","height":"6-5","height_in":77,"year_class":"Jr.","gp":0,"origin":"Cypress, TX","role":"G?"},"BeBasich":{"player_code_id":{"code":"BeBasich","id":"Basich, Bennett"},"number":"8","pos":"G","height":"6-4","height_in":76,"year_class":"Fr.","gp":0,"origin":"Hartland, WI"},"RoOselka":{"player_code_id":{"code":"RoOselka","id":"Oselka, Roee"},"number":"31","pos":"C","height":"6-10","height_in":82,"year_class":"Fr.","gp":0,"origin":"Giv'atayim, Israel","role":"C"}}
+{
+   "MaHall": {
+      "player_code_id": {
+         "code": "MaHall",
+         "id": "Hall, Marcus"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Schofield, WI",
+      "role": "S-PF"
+   },
+   "BrFitzgerald": {
+      "player_code_id": {
+         "code": "BrFitzgerald",
+         "id": "Fitzgerald, Brady"
+      },
+      "number": "21",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Fortville, IN"
+   },
+   "DoSantoro": {
+      "player_code_id": {
+         "code": "DoSantoro",
+         "id": "Santoro, Donovan"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Los Angeles, CA",
+      "role": "F/C?"
+   },
+   "FoWonders": {
+      "player_code_id": {
+         "code": "FoWonders",
+         "id": "Wonders, Foster"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Iron Mountain, MI",
+      "role": "WG"
+   },
+   "RyWade": {
+      "player_code_id": {
+         "code": "RyWade",
+         "id": "Wade, Ryan"
+      },
+      "number": "15",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Ann Arbor, MI",
+      "role": "s-PG"
+   },
+   "PrRuedinger": {
+      "player_code_id": {
+         "code": "PrRuedinger",
+         "id": "Ruedinger, Preston"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Oshkosh, WI",
+      "role": "CG"
+   },
+   "MoCisse": {
+      "player_code_id": {
+         "code": "MoCisse",
+         "id": "Cisse, Mouhamadou"
+      },
+      "number": "77",
+      "pos": "C",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Dakar, Senegal"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Doug Gottlieb"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "AnRoy": {
+      "player_code_id": {
+         "code": "AnRoy",
+         "id": "Roy, Anthony"
+      },
+      "number": "9",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Oakland, CA",
+      "role": "G?"
+   },
+   "MaWrecke": {
+      "player_code_id": {
+         "code": "MaWrecke",
+         "id": "Wrecke, Mac"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Hartland, WI",
+      "role": "G?"
+   },
+   "BeTweedy": {
+      "player_code_id": {
+         "code": "BeTweedy",
+         "id": "Tweedy, Ben"
+      },
+      "number": "6",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Southport, Australia",
+      "role": "G?"
+   },
+   "AyGoll": {
+      "player_code_id": {
+         "code": "AyGoll",
+         "id": "Goll, Ayden"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Milton, WI"
+   },
+   "IsMiranda": {
+      "player_code_id": {
+         "code": "IsMiranda",
+         "id": "Miranda, Isaiah"
+      },
+      "number": "14",
+      "pos": "F",
+      "height": "7-1",
+      "height_in": 85,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Pawtucket, RI",
+      "role": "F/C?"
+   },
+   "CjO'hara": {
+      "player_code_id": {
+         "code": "CjO'hara",
+         "id": "O'Hara, C.J."
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Minneapolis, MN",
+      "role": "G?"
+   },
+   "JeJohnson": {
+      "player_code_id": {
+         "code": "JeJohnson",
+         "id": "Johnson, Jeremiah"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Phoenix, AZ",
+      "role": "G?"
+   },
+   "CaWilkins": {
+      "player_code_id": {
+         "code": "CaWilkins",
+         "id": "Wilkins, Caden"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Bettendorf, IA"
+   },
+   "MuMuoneke": {
+      "player_code_id": {
+         "code": "MuMuoneke",
+         "id": "Muoneke, Muodubem"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Cypress, TX",
+      "role": "G?"
+   },
+   "BeBasich": {
+      "player_code_id": {
+         "code": "BeBasich",
+         "id": "Basich, Bennett"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Hartland, WI"
+   },
+   "RoOselka": {
+      "player_code_id": {
+         "code": "RoOselka",
+         "id": "Oselka, Roee"
+      },
+      "number": "31",
+      "pos": "C",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Giv'atayim, Israel",
+      "role": "C"
+   }
+}

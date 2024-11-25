@@ -8,7 +8,7 @@
       "pos": "G",
       "height": "6-4",
       "height_in": 76,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Montrose, NY",
       "role": "WG"
@@ -22,7 +22,7 @@
       "pos": "G",
       "height": "6-1",
       "height_in": 73,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "Brockton, MA"
    },
@@ -35,7 +35,7 @@
       "pos": "F",
       "height": "6-8",
       "height_in": 80,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Alexander City, AL",
       "role": "PF/C"
@@ -49,7 +49,7 @@
       "pos": "F",
       "height": "6-6",
       "height_in": 78,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Phoenix, AZ"
    },
@@ -62,7 +62,7 @@
       "pos": "F",
       "height": "6-7",
       "height_in": 79,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Hagerstown, MD"
    },
@@ -86,7 +86,7 @@
       "pos": "F",
       "height": "6-7",
       "height_in": 79,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Waldorf, MD",
       "role": "C"
@@ -100,7 +100,7 @@
       "pos": "G",
       "height": "6-1",
       "height_in": 73,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Wilkes-Barre, PA",
       "role": "WG"
@@ -114,7 +114,7 @@
       "pos": "G",
       "height": "6-6",
       "height_in": 78,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": ""
    },
@@ -127,7 +127,7 @@
       "pos": "G",
       "height": "6-2",
       "height_in": 74,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Crownsville, MD"
    },
@@ -140,7 +140,7 @@
       "pos": "F",
       "height": "6-7",
       "height_in": 79,
-      "year_class": "So.",
+      "year_class": "So",
       "gp": 0,
       "origin": "Las Vegas, NV"
    },
@@ -153,7 +153,7 @@
       "pos": "G",
       "height": "6-3",
       "height_in": 75,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "Bowie, MD"
    },
@@ -166,7 +166,7 @@
       "pos": "G",
       "height": "6-4",
       "height_in": 76,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Youngstown, OH"
    },
@@ -179,7 +179,7 @@
       "pos": "G",
       "height": "6-2",
       "height_in": 74,
-      "year_class": "Jr.",
+      "year_class": "Jr",
       "gp": 0,
       "origin": "Westerville, OH",
       "role": "s-PG"
@@ -193,7 +193,7 @@
       "pos": "G",
       "height": "6-5",
       "height_in": 77,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": ""
    },
@@ -206,7 +206,7 @@
       "pos": "F",
       "height": "6-7",
       "height_in": 79,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Upper Marlboro, MD",
       "role": "WF"

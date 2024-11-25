@@ -496,6 +496,20 @@ export async function main() {
               console.log(`Couldn't load [${rosterInfoFile}]: [${err}]`);
               return undefined;
             });
+          // From 2024/25 the year_class has a "." at the end of it, we'll remove that:
+          if (rosterInfoJson) {
+            _.forEach(
+              rosterInfoJson as Record<PlayerCode, RosterEntry>,
+              (rosterEntry) => {
+                if (rosterEntry.year_class) {
+                  rosterEntry.year_class = rosterEntry.year_class.replace(
+                    ".",
+                    ""
+                  );
+                }
+              }
+            );
+          }
           // Build a structured model of the roster info from disk - later we will add
           // the positional info based on stats
           const rosterInfoJsonToWrite = _.cloneDeep(rosterInfoJson) as Record<

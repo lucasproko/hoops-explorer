@@ -1,1 +1,221 @@
-{"DaSkogman":{"player_code_id":{"code":"DaSkogman","id":"Skogman, David"},"number":"42","pos":"F","height":"6-10","height_in":82,"year_class":"Sr.","gp":17,"origin":"Waukesha, WI"},"MiKatsock":{"player_code_id":{"code":"MiKatsock","id":"Katsock, Michael"},"number":"24","pos":"F","height":"6-6","height_in":78,"year_class":"Jr.","gp":5,"origin":"Washington, DC"},"MiLoughnane":{"player_code_id":{"code":"MiLoughnane","id":"Loughnane, Mike"},"number":"4","pos":"G","height":"6-4","height_in":76,"year_class":"Fr.","gp":11,"origin":"Quincy, MA"},"SeLogan":{"player_code_id":{"code":"SeLogan","id":"Logan, Sean"},"number":"15","pos":"F","height":"6-10","height_in":82,"year_class":"So.","gp":32,"origin":"Westfield, NJ"},"GrHuffman":{"player_code_id":{"code":"GrHuffman","id":"Huffman, Grant"},"number":"5","pos":"G","height":"6-3","height_in":75,"year_class":"Sr.","gp":32,"origin":"Aurora, OH"},"ReBailey":{"player_code_id":{"code":"ReBailey","id":"Bailey, Reed"},"number":"1","pos":"F","height":"6-11","height_in":83,"year_class":"So.","gp":32,"origin":"Harvard, MA"},"BrMatheny":{"player_code_id":{"code":"BrMatheny","id":"Matheny, Brock"},"number":"51","pos":"G","height":"5-10","height_in":70,"year_class":"So.","gp":5,"origin":"Davidson, NC"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Matt McKillop"},"number":"","pos":"","height":"","year_class":"","gp":-1},"ChSosnik":{"player_code_id":{"code":"ChSosnik","id":"Sosnik, Chris"},"number":"55","pos":"G","height":"6-2","height_in":74,"year_class":"Sr.","gp":6,"origin":"Washington, DC"},"RiGhedini":{"player_code_id":{"code":"RiGhedini","id":"Ghedini, Riccardo"},"number":"22","pos":"G","height":"6-7","height_in":79,"year_class":"So.","gp":15,"origin":"Milan, Italy"},"HuAdam":{"player_code_id":{"code":"HuAdam","id":"Adam, Hunter"},"number":"12","pos":"F","height":"6-7","height_in":79,"year_class":"Fr.","gp":32,"origin":"Christchurch, New Zealand"},"RiSchulte":{"player_code_id":{"code":"RiSchulte","id":"Schulte, Rikus"},"number":"20","pos":"F","height":"6-9","height_in":81,"year_class":"Fr.","gp":13,"origin":"Munster, Germany"},"BoDurkin":{"player_code_id":{"code":"BoDurkin","id":"Durkin, Bobby"},"number":"2","pos":"F","height":"6-7","height_in":79,"year_class":"Fr.","gp":32,"origin":"Darien, IL"},"CoKochera":{"player_code_id":{"code":"CoKochera","id":"Kochera, Connor"},"number":"23","pos":"G","height":"6-5","height_in":77,"year_class":"Sr.","gp":32,"origin":"Arlington Heights, IL"},"AcSpadone":{"player_code_id":{"code":"AcSpadone","id":"Spadone, Achile"},"number":"3","pos":"G","height":"6-4","height_in":76,"year_class":"So.","gp":31,"origin":"Geneva, Switzerland"},"JaMoss":{"player_code_id":{"code":"JaMoss","id":"Moss, Jarvis"},"number":"0","pos":"G","height":"6-4","height_in":76,"year_class":"So.","gp":17,"origin":"Concord, NC"},"AnBrizzi":{"player_code_id":{"code":"AnBrizzi","id":"Brizzi, Angelo"},"number":"14","pos":"G","height":"6-3","height_in":75,"year_class":"So.","gp":32,"origin":"Warrenton, VA"}}
+{
+   "DaSkogman": {
+      "player_code_id": {
+         "code": "DaSkogman",
+         "id": "Skogman, David"
+      },
+      "number": "42",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 17,
+      "origin": "Waukesha, WI"
+   },
+   "MiKatsock": {
+      "player_code_id": {
+         "code": "MiKatsock",
+         "id": "Katsock, Michael"
+      },
+      "number": "24",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 5,
+      "origin": "Washington, DC"
+   },
+   "MiLoughnane": {
+      "player_code_id": {
+         "code": "MiLoughnane",
+         "id": "Loughnane, Mike"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 11,
+      "origin": "Quincy, MA"
+   },
+   "SeLogan": {
+      "player_code_id": {
+         "code": "SeLogan",
+         "id": "Logan, Sean"
+      },
+      "number": "15",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "So",
+      "gp": 32,
+      "origin": "Westfield, NJ"
+   },
+   "GrHuffman": {
+      "player_code_id": {
+         "code": "GrHuffman",
+         "id": "Huffman, Grant"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 32,
+      "origin": "Aurora, OH"
+   },
+   "ReBailey": {
+      "player_code_id": {
+         "code": "ReBailey",
+         "id": "Bailey, Reed"
+      },
+      "number": "1",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "So",
+      "gp": 32,
+      "origin": "Harvard, MA"
+   },
+   "BrMatheny": {
+      "player_code_id": {
+         "code": "BrMatheny",
+         "id": "Matheny, Brock"
+      },
+      "number": "51",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "So",
+      "gp": 5,
+      "origin": "Davidson, NC"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Matt McKillop"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "ChSosnik": {
+      "player_code_id": {
+         "code": "ChSosnik",
+         "id": "Sosnik, Chris"
+      },
+      "number": "55",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 6,
+      "origin": "Washington, DC"
+   },
+   "RiGhedini": {
+      "player_code_id": {
+         "code": "RiGhedini",
+         "id": "Ghedini, Riccardo"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 15,
+      "origin": "Milan, Italy"
+   },
+   "HuAdam": {
+      "player_code_id": {
+         "code": "HuAdam",
+         "id": "Adam, Hunter"
+      },
+      "number": "12",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 32,
+      "origin": "Christchurch, New Zealand"
+   },
+   "RiSchulte": {
+      "player_code_id": {
+         "code": "RiSchulte",
+         "id": "Schulte, Rikus"
+      },
+      "number": "20",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr",
+      "gp": 13,
+      "origin": "Munster, Germany"
+   },
+   "BoDurkin": {
+      "player_code_id": {
+         "code": "BoDurkin",
+         "id": "Durkin, Bobby"
+      },
+      "number": "2",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 32,
+      "origin": "Darien, IL"
+   },
+   "CoKochera": {
+      "player_code_id": {
+         "code": "CoKochera",
+         "id": "Kochera, Connor"
+      },
+      "number": "23",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 32,
+      "origin": "Arlington Heights, IL"
+   },
+   "AcSpadone": {
+      "player_code_id": {
+         "code": "AcSpadone",
+         "id": "Spadone, Achile"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 31,
+      "origin": "Geneva, Switzerland"
+   },
+   "JaMoss": {
+      "player_code_id": {
+         "code": "JaMoss",
+         "id": "Moss, Jarvis"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 17,
+      "origin": "Concord, NC"
+   },
+   "AnBrizzi": {
+      "player_code_id": {
+         "code": "AnBrizzi",
+         "id": "Brizzi, Angelo"
+      },
+      "number": "14",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "So",
+      "gp": 32,
+      "origin": "Warrenton, VA"
+   }
+}

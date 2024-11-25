@@ -1,1 +1,234 @@
-{"BrHeld":{"player_code_id":{"code":"BrHeld","id":"Held, Brandon"},"number":"33","pos":"G","height":"6-3","height_in":75,"year_class":"Jr.","gp":6,"origin":"Marriottsville, MD"},"KoLewis":{"player_code_id":{"code":"KoLewis","id":"Lewis, Kordell"},"number":"22","pos":"G","height":"5-10","height_in":70,"year_class":"Jr.","gp":1,"origin":"Rockville, MD"},"ToSulaiman":{"player_code_id":{"code":"ToSulaiman","id":"Sulaiman, Tomiwa"},"number":"1","pos":"F","height":"6-6","height_in":78,"year_class":"Jr.","gp":34,"origin":"London, United Kingdom"},"ChMay":{"player_code_id":{"code":"ChMay","id":"May, Christian"},"number":"5","pos":"G","height":"6-5","height_in":77,"year_class":"So.","gp":34,"origin":"Edinburg, VA"},"DyWilliamson":{"player_code_id":{"code":"DyWilliamson","id":"Williamson, Dylan"},"number":"4","pos":"G","height":"6-1","height_in":73,"year_class":"So.","gp":34,"origin":"Upper Marlboro, MD"},"CoPaar":{"player_code_id":{"code":"CoPaar","id":"Paar, Cole"},"number":"30","pos":"F","height":"6-9","height_in":81,"year_class":"So.","gp":11,"origin":"Mount Airy, MD"},"RaHicks":{"player_code_id":{"code":"RaHicks","id":"Hicks, Rahdir"},"number":"10","pos":"G","height":"6-0","height_in":72,"year_class":"Jr.","gp":5,"origin":"Coatesville, PA"},"MeLowery":{"player_code_id":{"code":"MeLowery","id":"Lowery, Mekhi"},"number":"11","pos":"G","height":"6-7","height_in":79,"year_class":"Fr.","gp":34,"origin":"Bellwood, IL"},"TyTejada":{"player_code_id":{"code":"TyTejada","id":"Tejada, Tyler"},"number":"15","pos":"G","height":"6-8","height_in":80,"year_class":"Fr.","gp":34,"origin":"Teaneck, NJ"},"MeJones":{"player_code_id":{"code":"MeJones","id":"Jones, Messiah"},"number":"25","pos":"F","height":"6-6","height_in":78,"year_class":"Sr.","gp":34,"origin":"Chicago, IL"},"JaCole":{"player_code_id":{"code":"JaCole","id":"Cole, Jaiden"},"number":"2","pos":"G","height":"6-4","height_in":76,"year_class":"Fr.","gp":12,"origin":"Toronto, Canada"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Patrick Skerry"},"number":"","pos":"","height":"","year_class":"","gp":-1},"TyColeman":{"player_code_id":{"code":"TyColeman","id":"Coleman, Tyler"},"number":"3","pos":"F","height":"6-7","height_in":79,"year_class":"Jr.","gp":27,"origin":"Woodbridge, VA"},"MaWatson":{"player_code_id":{"code":"MaWatson","id":"Watson, Marcus"},"number":"23","pos":"G","height":"6-5","height_in":77,"year_class":"Sr.","gp":0,"origin":"Buford, GA"},"ChThompson":{"player_code_id":{"code":"ChThompson","id":"Thompson, Charles"},"number":"32","pos":"F","height":"6-7","height_in":79,"year_class":"Sr.","gp":34,"origin":"Fort Washington, MD"},"NeTarke":{"player_code_id":{"code":"NeTarke","id":"Tarke, Nendah"},"number":"24","pos":"G","height":"6-4","height_in":76,"year_class":"Jr.","gp":24,"origin":"Gaithersburg, MD"},"ChPaar":{"player_code_id":{"code":"ChPaar","id":"Paar, Chase"},"number":"13","pos":"F","height":"6-10","height_in":82,"year_class":"Sr.","gp":34,"origin":"Mount Airy, MD"},"JaPrince":{"player_code_id":{"code":"JaPrince","id":"Prince, Jackson"},"number":"12","pos":"G","height":"6-4","height_in":76,"year_class":"Fr.","gp":4,"origin":"Waldorf, MD"}}
+{
+   "BrHeld": {
+      "player_code_id": {
+         "code": "BrHeld",
+         "id": "Held, Brandon"
+      },
+      "number": "33",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 6,
+      "origin": "Marriottsville, MD"
+   },
+   "KoLewis": {
+      "player_code_id": {
+         "code": "KoLewis",
+         "id": "Lewis, Kordell"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Jr",
+      "gp": 1,
+      "origin": "Rockville, MD"
+   },
+   "ToSulaiman": {
+      "player_code_id": {
+         "code": "ToSulaiman",
+         "id": "Sulaiman, Tomiwa"
+      },
+      "number": "1",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 34,
+      "origin": "London, United Kingdom"
+   },
+   "ChMay": {
+      "player_code_id": {
+         "code": "ChMay",
+         "id": "May, Christian"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So",
+      "gp": 34,
+      "origin": "Edinburg, VA"
+   },
+   "DyWilliamson": {
+      "player_code_id": {
+         "code": "DyWilliamson",
+         "id": "Williamson, Dylan"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "So",
+      "gp": 34,
+      "origin": "Upper Marlboro, MD"
+   },
+   "CoPaar": {
+      "player_code_id": {
+         "code": "CoPaar",
+         "id": "Paar, Cole"
+      },
+      "number": "30",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "So",
+      "gp": 11,
+      "origin": "Mount Airy, MD"
+   },
+   "RaHicks": {
+      "player_code_id": {
+         "code": "RaHicks",
+         "id": "Hicks, Rahdir"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr",
+      "gp": 5,
+      "origin": "Coatesville, PA"
+   },
+   "MeLowery": {
+      "player_code_id": {
+         "code": "MeLowery",
+         "id": "Lowery, Mekhi"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 34,
+      "origin": "Bellwood, IL"
+   },
+   "TyTejada": {
+      "player_code_id": {
+         "code": "TyTejada",
+         "id": "Tejada, Tyler"
+      },
+      "number": "15",
+      "pos": "G",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 34,
+      "origin": "Teaneck, NJ"
+   },
+   "MeJones": {
+      "player_code_id": {
+         "code": "MeJones",
+         "id": "Jones, Messiah"
+      },
+      "number": "25",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 34,
+      "origin": "Chicago, IL"
+   },
+   "JaCole": {
+      "player_code_id": {
+         "code": "JaCole",
+         "id": "Cole, Jaiden"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 12,
+      "origin": "Toronto, Canada"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Patrick Skerry"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "TyColeman": {
+      "player_code_id": {
+         "code": "TyColeman",
+         "id": "Coleman, Tyler"
+      },
+      "number": "3",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 27,
+      "origin": "Woodbridge, VA"
+   },
+   "MaWatson": {
+      "player_code_id": {
+         "code": "MaWatson",
+         "id": "Watson, Marcus"
+      },
+      "number": "23",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Buford, GA"
+   },
+   "ChThompson": {
+      "player_code_id": {
+         "code": "ChThompson",
+         "id": "Thompson, Charles"
+      },
+      "number": "32",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 34,
+      "origin": "Fort Washington, MD"
+   },
+   "NeTarke": {
+      "player_code_id": {
+         "code": "NeTarke",
+         "id": "Tarke, Nendah"
+      },
+      "number": "24",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 24,
+      "origin": "Gaithersburg, MD"
+   },
+   "ChPaar": {
+      "player_code_id": {
+         "code": "ChPaar",
+         "id": "Paar, Chase"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 34,
+      "origin": "Mount Airy, MD"
+   },
+   "JaPrince": {
+      "player_code_id": {
+         "code": "JaPrince",
+         "id": "Prince, Jackson"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 4,
+      "origin": "Waldorf, MD"
+   }
+}

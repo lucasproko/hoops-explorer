@@ -8,7 +8,7 @@
       "pos": "C",
       "height": "7-3",
       "height_in": 87,
-      "year_class": "So.",
+      "year_class": "So",
       "gp": 0,
       "origin": "Independence, KY",
       "role": "C"
@@ -22,7 +22,7 @@
       "pos": "G",
       "height": "6-6",
       "height_in": 78,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Haarlem, Netherlands",
       "role": "CG"
@@ -36,7 +36,7 @@
       "pos": "G",
       "height": "6-5",
       "height_in": 77,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "Moon Township, PA"
    },
@@ -49,7 +49,7 @@
       "pos": "G",
       "height": "5-10",
       "height_in": 70,
-      "year_class": "Jr.",
+      "year_class": "Jr",
       "gp": 0,
       "origin": "Richmond, VA",
       "role": "s-PG"
@@ -63,7 +63,7 @@
       "pos": "G",
       "height": "6-4",
       "height_in": 76,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "Pittsburgh, PA"
    },
@@ -76,7 +76,7 @@
       "pos": "F",
       "height": "6-6",
       "height_in": 78,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Rahway, NJ",
       "role": "WF"
@@ -90,7 +90,7 @@
       "pos": "F",
       "height": "6-9",
       "height_in": 81,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "Philadelphia, PA"
    },
@@ -103,7 +103,7 @@
       "pos": "F",
       "height": "6-6",
       "height_in": 78,
-      "year_class": "Jr.",
+      "year_class": "Jr",
       "gp": 0,
       "origin": "Tallahassee, FL"
    },
@@ -127,7 +127,7 @@
       "pos": "G",
       "height": "6-1",
       "height_in": 73,
-      "year_class": "So.",
+      "year_class": "So",
       "gp": 0,
       "origin": "Hubbard, OH"
    },
@@ -140,7 +140,7 @@
       "pos": "C",
       "height": "7-0",
       "height_in": 84,
-      "year_class": "Jr.",
+      "year_class": "Jr",
       "gp": 0,
       "origin": "Paramaribo, Suriname"
    },
@@ -153,7 +153,7 @@
       "pos": "G",
       "height": "6-3",
       "height_in": 75,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Norcross, GA"
    },
@@ -166,7 +166,7 @@
       "pos": "G",
       "height": "6-4",
       "height_in": 76,
-      "year_class": "So.",
+      "year_class": "So",
       "gp": 0,
       "origin": "Lansing, MI"
    },
@@ -179,7 +179,7 @@
       "pos": "G",
       "height": "6-5",
       "height_in": 77,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "Chicago, IL"
    },
@@ -192,7 +192,7 @@
       "pos": "G",
       "height": "6-1",
       "height_in": 73,
-      "year_class": "Jr.",
+      "year_class": "Jr",
       "gp": 0,
       "origin": "Detroit, MI"
    },
@@ -205,7 +205,7 @@
       "pos": "G",
       "height": "6-5",
       "height_in": 77,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Cleveland, OH",
       "role": "WG"
@@ -219,7 +219,7 @@
       "pos": "G",
       "height": "5-7",
       "height_in": 67,
-      "year_class": "So.",
+      "year_class": "So",
       "gp": 0,
       "origin": "Akron, OH"
    }

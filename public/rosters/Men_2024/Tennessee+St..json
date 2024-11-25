@@ -8,7 +8,7 @@
       "pos": "F",
       "height": "6-6",
       "height_in": 78,
-      "year_class": "Jr.",
+      "year_class": "Jr",
       "gp": 0,
       "origin": "Worcester, MA"
    },
@@ -21,7 +21,7 @@
       "pos": "F",
       "height": "6-5",
       "height_in": 77,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Hattiesburg, MS",
       "role": "WF"
@@ -35,7 +35,7 @@
       "pos": "G",
       "height": "6-3",
       "height_in": 75,
-      "year_class": "So.",
+      "year_class": "So",
       "gp": 0,
       "origin": "Wyandanch, NY"
    },
@@ -48,7 +48,7 @@
       "pos": "G",
       "height": "6-4",
       "height_in": 76,
-      "year_class": "So.",
+      "year_class": "So",
       "gp": 0,
       "origin": "Killen, AL"
    },
@@ -61,7 +61,7 @@
       "pos": "C",
       "height": "7-0",
       "height_in": 84,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "London, United Kingdom"
    },
@@ -74,7 +74,7 @@
       "pos": "F",
       "height": "6-10",
       "height_in": 82,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "Alberton, Canada"
    },
@@ -87,7 +87,7 @@
       "pos": "G",
       "height": "6-6",
       "height_in": 78,
-      "year_class": "Jr.",
+      "year_class": "Jr",
       "gp": 0,
       "origin": "Columbus, GA"
    },
@@ -100,7 +100,7 @@
       "pos": "F",
       "height": "6-9",
       "height_in": 81,
-      "year_class": "So.",
+      "year_class": "So",
       "gp": 0,
       "origin": "Augusta, GA"
    },
@@ -113,7 +113,7 @@
       "pos": "G",
       "height": "6-5",
       "height_in": 77,
-      "year_class": "Jr.",
+      "year_class": "Jr",
       "gp": 0,
       "origin": "Brooklyn, NY",
       "role": "WG"
@@ -138,7 +138,7 @@
       "pos": "G",
       "height": "6-2",
       "height_in": 74,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "Nashville, TN"
    },
@@ -151,7 +151,7 @@
       "pos": "G",
       "height": "6-2",
       "height_in": 74,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "Indianapolis, IN"
    },
@@ -164,7 +164,7 @@
       "pos": "F",
       "height": "6-9",
       "height_in": 81,
-      "year_class": "Sr.",
+      "year_class": "Sr",
       "gp": 0,
       "origin": "Atlanta, GA",
       "role": "C"
@@ -178,7 +178,7 @@
       "pos": "F",
       "height": "6-7",
       "height_in": 79,
-      "year_class": "Fr.",
+      "year_class": "Fr",
       "gp": 0,
       "origin": "Franklin, TN"
    },
@@ -191,7 +191,7 @@
       "pos": "G",
       "height": "6-7",
       "height_in": 79,
-      "year_class": "So.",
+      "year_class": "So",
       "gp": 0,
       "origin": "Montreal, Canada"
    },
@@ -204,7 +204,7 @@
       "pos": "G",
       "height": "6-1",
       "height_in": 73,
-      "year_class": "Jr.",
+      "year_class": "Jr",
       "gp": 0,
       "origin": "Surprise, AZ",
       "role": "s-PG"
@@ -218,7 +218,7 @@
       "pos": "F",
       "height": "6-8",
       "height_in": 80,
-      "year_class": "So.",
+      "year_class": "So",
       "gp": 0,
       "origin": "Clarksville, TN",
       "role": "C"

@@ -1,1 +1,232 @@
-{"AmAllen":{"player_code_id":{"code":"AmAllen","id":"Allen, Amare"},"number":"13","pos":"F","height":"6-7","height_in":79,"year_class":"Fr.","gp":0,"origin":"Ajax, Canada"},"KiGribben":{"player_code_id":{"code":"KiGribben","id":"Gribben, Killian"},"number":"10","pos":"F","height":"6-10","height_in":82,"year_class":"Jr.","gp":0,"origin":"Letterkenny, Ireland","role":"S-PF"},"CaCrawford":{"player_code_id":{"code":"CaCrawford","id":"Crawford, Caleb"},"number":"4","pos":"G","height":"5-10","height_in":70,"year_class":"Fr.","gp":0,"origin":"Bronx, NY"},"JoShea":{"player_code_id":{"code":"JoShea","id":"Shea, John"},"number":"15","pos":"F","height":"6-6","height_in":78,"year_class":"Jr.","gp":0,"origin":"Auburn, ME"},"KeTynes":{"player_code_id":{"code":"KeTynes","id":"Tynes, Kellen"},"number":"1","pos":"G","height":"6-3","height_in":75,"year_class":"Sr.","gp":0,"origin":"Dartmouth, Canada","role":"s-PG"},"AjLopez":{"player_code_id":{"code":"AjLopez","id":"Lopez, A.J."},"number":"14","pos":"G","height":"6-5","height_in":77,"year_class":"Sr.","gp":0,"origin":"Brooklyn, NY","role":"WG"},"LoCarey":{"player_code_id":{"code":"LoCarey","id":"Carey, Logan"},"number":"0","pos":"G","height":"6-3","height_in":75,"year_class":"So.","gp":0,"origin":"Shelton, CT","role":"G?"},"MiNenadic":{"player_code_id":{"code":"MiNenadic","id":"Nenadic, Milos"},"number":"12","pos":"F","height":"6-10","height_in":82,"year_class":"Sr.","gp":0,"origin":"Kitchener, Canada"},"KeSteele":{"player_code_id":{"code":"KeSteele","id":"Steele, Keelan"},"number":"25","pos":"F","height":"6-10","height_in":82,"year_class":"Jr.","gp":0,"origin":"Altona, Canada","role":"F/C?"},"JaClayton":{"player_code_id":{"code":"JaClayton","id":"Clayton, Jaden"},"number":"3","pos":"G","height":"6-1","height_in":73,"year_class":"Jr.","gp":0,"origin":"Whitby, Canada","role":"s-PG"},"IsBonilla":{"player_code_id":{"code":"IsBonilla","id":"Bonilla, Isaac"},"number":"5","pos":"G","height":"6-0","height_in":72,"year_class":"So.","gp":0,"origin":"Danville, NH","role":"G?"},"RiTutic":{"player_code_id":{"code":"RiTutic","id":"Tutic, Ridvan"},"number":"11","pos":"F","height":"6-10","height_in":82,"year_class":"Jr.","gp":0,"origin":"Novi Pazar, Serbia","role":"PF/C"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Chris Markwood"},"number":"","pos":"","height":"","year_class":"","gp":-1},"NoPerovic":{"player_code_id":{"code":"NoPerovic","id":"Perovic, Novak"},"number":"31","pos":"G","height":"6-7","height_in":79,"year_class":"Sr.","gp":0,"origin":"Belgrade, Serbia","role":"G?"},"QuBurns":{"player_code_id":{"code":"QuBurns","id":"Burns, Quion"},"number":"22","pos":"G","height":"6-5","height_in":77,"year_class":"Sr.","gp":0,"origin":"White Plains, NY","role":"WG"},"ChMantis":{"player_code_id":{"code":"ChMantis","id":"Mantis, Christopher"},"number":"2","pos":"F","height":"6-7","height_in":79,"year_class":"Sr.","gp":0,"origin":"Lowell, IN","role":"WF"},"DaLopes":{"player_code_id":{"code":"DaLopes","id":"Lopes, Darius"},"number":"8","pos":"G","height":"6-2","height_in":74,"year_class":"Fr.","gp":0,"origin":"West Warwick, RI"}}
+{
+   "AmAllen": {
+      "player_code_id": {
+         "code": "AmAllen",
+         "id": "Allen, Amare"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Ajax, Canada"
+   },
+   "KiGribben": {
+      "player_code_id": {
+         "code": "KiGribben",
+         "id": "Gribben, Killian"
+      },
+      "number": "10",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Letterkenny, Ireland",
+      "role": "S-PF"
+   },
+   "CaCrawford": {
+      "player_code_id": {
+         "code": "CaCrawford",
+         "id": "Crawford, Caleb"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Bronx, NY"
+   },
+   "JoShea": {
+      "player_code_id": {
+         "code": "JoShea",
+         "id": "Shea, John"
+      },
+      "number": "15",
+      "pos": "F",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Auburn, ME"
+   },
+   "KeTynes": {
+      "player_code_id": {
+         "code": "KeTynes",
+         "id": "Tynes, Kellen"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Dartmouth, Canada",
+      "role": "s-PG"
+   },
+   "AjLopez": {
+      "player_code_id": {
+         "code": "AjLopez",
+         "id": "Lopez, A.J."
+      },
+      "number": "14",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Brooklyn, NY",
+      "role": "WG"
+   },
+   "LoCarey": {
+      "player_code_id": {
+         "code": "LoCarey",
+         "id": "Carey, Logan"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Shelton, CT",
+      "role": "G?"
+   },
+   "MiNenadic": {
+      "player_code_id": {
+         "code": "MiNenadic",
+         "id": "Nenadic, Milos"
+      },
+      "number": "12",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Kitchener, Canada"
+   },
+   "KeSteele": {
+      "player_code_id": {
+         "code": "KeSteele",
+         "id": "Steele, Keelan"
+      },
+      "number": "25",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Altona, Canada",
+      "role": "F/C?"
+   },
+   "JaClayton": {
+      "player_code_id": {
+         "code": "JaClayton",
+         "id": "Clayton, Jaden"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Whitby, Canada",
+      "role": "s-PG"
+   },
+   "IsBonilla": {
+      "player_code_id": {
+         "code": "IsBonilla",
+         "id": "Bonilla, Isaac"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Danville, NH",
+      "role": "G?"
+   },
+   "RiTutic": {
+      "player_code_id": {
+         "code": "RiTutic",
+         "id": "Tutic, Ridvan"
+      },
+      "number": "11",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Novi Pazar, Serbia",
+      "role": "PF/C"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Chris Markwood"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "NoPerovic": {
+      "player_code_id": {
+         "code": "NoPerovic",
+         "id": "Perovic, Novak"
+      },
+      "number": "31",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Belgrade, Serbia",
+      "role": "G?"
+   },
+   "QuBurns": {
+      "player_code_id": {
+         "code": "QuBurns",
+         "id": "Burns, Quion"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "White Plains, NY",
+      "role": "WG"
+   },
+   "ChMantis": {
+      "player_code_id": {
+         "code": "ChMantis",
+         "id": "Mantis, Christopher"
+      },
+      "number": "2",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Lowell, IN",
+      "role": "WF"
+   },
+   "DaLopes": {
+      "player_code_id": {
+         "code": "DaLopes",
+         "id": "Lopes, Darius"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "West Warwick, RI"
+   }
+}

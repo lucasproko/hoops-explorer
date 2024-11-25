@@ -1,1 +1,208 @@
-{"BrCannon":{"player_code_id":{"code":"BrCannon","id":"Cannon, Brinley"},"number":"24","pos":"G","height":"6-1","height_in":73,"year_class":"Fr.","gp":0,"origin":"Shelley, ID"},"SaBartholome":{"player_code_id":{"code":"SaBartholome","id":"Bartholomew, Sarah"},"number":"45","pos":"C","height":"6-3","height_in":75,"year_class":"Fr.","gp":0,"origin":"Highland, UT"},"ArMackey-wil":{"player_code_id":{"code":"ArMackey-wil","id":"Mackey-Williams, Arielle"},"number":"8","pos":"G","height":"5-9","height_in":69,"year_class":"Sr.","gp":0,"origin":"Ngati Porou, New Zealand"},"EmCalvert":{"player_code_id":{"code":"EmCalvert","id":"Calvert, Emma"},"number":"25","pos":"F","height":"6-4","height_in":76,"year_class":"Sr.","gp":0,"origin":"Farr West, UT"},"DeGibb":{"player_code_id":{"code":"DeGibb","id":"Gibb, Delaney"},"number":"11","pos":"G","height":"5-10","height_in":70,"year_class":"Fr.","gp":0,"origin":"Raymond, Canada"},"MaHudgins":{"player_code_id":{"code":"MaHudgins","id":"Hudgins, Marya"},"number":"23","pos":"G","height":"6-0","height_in":72,"year_class":"Jr.","gp":0,"origin":"Aurora, CO"},"KaBarber":{"player_code_id":{"code":"KaBarber","id":"Barber, Kambree"},"number":"14","pos":"G","height":"6-0","height_in":72,"year_class":"Fr.","gp":0,"origin":"Rigby, ID"},"KeGillispie":{"player_code_id":{"code":"KeGillispie","id":"Gillispie, Kendra"},"number":"35","pos":"F","height":"6-2","height_in":74,"year_class":"Sr.","gp":0,"origin":"Oklahoma City, OK"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Amber Whiting"},"number":"","pos":"","height":"","year_class":"","gp":-1},"HeHamson":{"player_code_id":{"code":"HeHamson","id":"Hamson, Heather"},"number":"21","pos":"F","height":"6-3","height_in":75,"year_class":"Sr.","gp":0,"origin":"Lindon, UT"},"AmWhiting":{"player_code_id":{"code":"AmWhiting","id":"Whiting, Amari"},"number":"1","pos":"G","height":"5-10","height_in":70,"year_class":"So.","gp":0,"origin":"Burley, ID"},"LaDavenport":{"player_code_id":{"code":"LaDavenport","id":"Davenport, Lauren"},"number":"30","pos":"G","height":"5-11","height_in":71,"year_class":"Sr.","gp":0,"origin":"Idaho Falls, ID"},"KyKrebs":{"player_code_id":{"code":"KyKrebs","id":"Krebs, Kylie"},"number":"2","pos":"G","height":"5-7","height_in":67,"year_class":"Sr.","gp":0,"origin":"Laie, HI"},"NaTanuvasa":{"player_code_id":{"code":"NaTanuvasa","id":"Tanuvasa, Naia"},"number":"0","pos":"G","height":"5-10","height_in":70,"year_class":"Fr.","gp":0,"origin":"Highland, UT"},"HaOgden":{"player_code_id":{"code":"HaOgden","id":"Ogden, Hattie"},"number":"33","pos":"F","height":"6-2","height_in":74,"year_class":"So.","gp":0,"origin":"Magrath, Canada"},"KeCongdon":{"player_code_id":{"code":"KeCongdon","id":"Congdon, Kemery"},"number":"15","pos":"G","height":"6-0","height_in":72,"year_class":"Sr.","gp":0,"origin":"Sandy, UT"}}
+{
+   "BrCannon": {
+      "player_code_id": {
+         "code": "BrCannon",
+         "id": "Cannon, Brinley"
+      },
+      "number": "24",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Shelley, ID"
+   },
+   "SaBartholome": {
+      "player_code_id": {
+         "code": "SaBartholome",
+         "id": "Bartholomew, Sarah"
+      },
+      "number": "45",
+      "pos": "C",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Highland, UT"
+   },
+   "ArMackey-wil": {
+      "player_code_id": {
+         "code": "ArMackey-wil",
+         "id": "Mackey-Williams, Arielle"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "5-9",
+      "height_in": 69,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Ngati Porou, New Zealand"
+   },
+   "EmCalvert": {
+      "player_code_id": {
+         "code": "EmCalvert",
+         "id": "Calvert, Emma"
+      },
+      "number": "25",
+      "pos": "F",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Farr West, UT"
+   },
+   "DeGibb": {
+      "player_code_id": {
+         "code": "DeGibb",
+         "id": "Gibb, Delaney"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Raymond, Canada"
+   },
+   "MaHudgins": {
+      "player_code_id": {
+         "code": "MaHudgins",
+         "id": "Hudgins, Marya"
+      },
+      "number": "23",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Aurora, CO"
+   },
+   "KaBarber": {
+      "player_code_id": {
+         "code": "KaBarber",
+         "id": "Barber, Kambree"
+      },
+      "number": "14",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Rigby, ID"
+   },
+   "KeGillispie": {
+      "player_code_id": {
+         "code": "KeGillispie",
+         "id": "Gillispie, Kendra"
+      },
+      "number": "35",
+      "pos": "F",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Oklahoma City, OK"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Amber Whiting"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "HeHamson": {
+      "player_code_id": {
+         "code": "HeHamson",
+         "id": "Hamson, Heather"
+      },
+      "number": "21",
+      "pos": "F",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Lindon, UT"
+   },
+   "AmWhiting": {
+      "player_code_id": {
+         "code": "AmWhiting",
+         "id": "Whiting, Amari"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Burley, ID"
+   },
+   "LaDavenport": {
+      "player_code_id": {
+         "code": "LaDavenport",
+         "id": "Davenport, Lauren"
+      },
+      "number": "30",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Idaho Falls, ID"
+   },
+   "KyKrebs": {
+      "player_code_id": {
+         "code": "KyKrebs",
+         "id": "Krebs, Kylie"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "5-7",
+      "height_in": 67,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Laie, HI"
+   },
+   "NaTanuvasa": {
+      "player_code_id": {
+         "code": "NaTanuvasa",
+         "id": "Tanuvasa, Naia"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Highland, UT"
+   },
+   "HaOgden": {
+      "player_code_id": {
+         "code": "HaOgden",
+         "id": "Ogden, Hattie"
+      },
+      "number": "33",
+      "pos": "F",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Magrath, Canada"
+   },
+   "KeCongdon": {
+      "player_code_id": {
+         "code": "KeCongdon",
+         "id": "Congdon, Kemery"
+      },
+      "number": "15",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Sandy, UT"
+   }
+}

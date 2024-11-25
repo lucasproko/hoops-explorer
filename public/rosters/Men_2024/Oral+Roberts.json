@@ -1,1 +1,247 @@
-{"JaMiller":{"player_code_id":{"code":"JaMiller","id":"Miller, Jalen"},"number":"12","pos":"G","height":"6-2","height_in":74,"year_class":"Sr.","gp":0,"origin":"Frederick, MD","role":"WG"},"PaNavarro":{"player_code_id":{"code":"PaNavarro","id":"Navarro, Pablo"},"number":"7","pos":"G","height":"6-6","height_in":78,"year_class":"So.","gp":0,"origin":"Valencia de Don Juan, Spain","role":"G?"},"SeKruse":{"player_code_id":{"code":"SeKruse","id":"Kruse, Seth"},"number":"33","pos":"G","height":"6-3","height_in":75,"year_class":"So.","gp":0,"origin":"Tulsa, OK"},"MaMajok":{"player_code_id":{"code":"MaMajok","id":"Majok, Mathok"},"number":"11","pos":"C","height":"7-3","height_in":87,"year_class":"So.","gp":0,"origin":"","role":"C"},"SiIsHerron":{"player_code_id":{"code":"SiIsHerron","id":"Issac Herron, Sir"},"number":"23","pos":"F","height":"6-9","height_in":81,"year_class":"Sr.","gp":0,"origin":"Houston, TX","role":"C"},"CaRosario":{"player_code_id":{"code":"CaRosario","id":"Rosario, Carlos"},"number":"13","pos":"F","height":"6-7","height_in":79,"year_class":"Jr.","gp":0,"origin":"Santo Domingo, Dominican Republic","role":"F/C?"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Russell Springmann"},"number":"","pos":"","height":"","year_class":"","gp":-1},"LuGray":{"player_code_id":{"code":"LuGray","id":"Gray, Luke"},"number":"25","pos":"F","height":"6-7","height_in":79,"year_class":"Fr.","gp":0,"origin":"Edmond, OK","role":"F/C?"},"NaIbroci":{"player_code_id":{"code":"NaIbroci","id":"Ibroci, Naim"},"number":"34","pos":"G","height":"6-2","height_in":74,"year_class":"Fr.","gp":0,"origin":"Staten Island, NY"},"IsMcbride":{"player_code_id":{"code":"IsMcbride","id":"McBride, Issac"},"number":"10","pos":"G","height":"6-0","height_in":72,"year_class":"Sr.","gp":0,"origin":"Little Rock, AR","role":"CG"},"NeIbroci":{"player_code_id":{"code":"NeIbroci","id":"Ibroci, Nevin"},"number":"35","pos":"G","height":"6-2","height_in":74,"year_class":"Fr.","gp":0,"origin":"Staten Island, NY"},"ChMartin":{"player_code_id":{"code":"ChMartin","id":"Martin, Chase"},"number":"2","pos":"G","height":"6-5","height_in":77,"year_class":"Jr.","gp":0,"origin":"Jenks, OK","role":"WG"},"BrMoore":{"player_code_id":{"code":"BrMoore","id":"Moore, Braeden"},"number":"1","pos":"F","height":"6-8","height_in":80,"year_class":"So.","gp":0,"origin":"Nashville, TN"},"JoJones":{"player_code_id":{"code":"JoJones","id":"Jones, Josh"},"number":"22","pos":"C","height":"6-10","height_in":82,"year_class":"So.","gp":0,"origin":"Austin, TX","role":"C"},"SaAlajiki":{"player_code_id":{"code":"SaAlajiki","id":"Alajiki, Sam"},"number":"64","pos":"F","height":"6-7","height_in":79,"year_class":"Sr.","gp":0,"origin":"Dundalk, Ireland","role":"S-PF"},"DaRobinson":{"player_code_id":{"code":"DaRobinson","id":"Robinson Jr., Darius"},"number":"5","pos":"G","height":"6-1","height_in":73,"year_class":"Jr.","gp":0,"origin":"Chicago, IL","role":"G?"},"JaSkipper":{"player_code_id":{"code":"JaSkipper","id":"Skipper, Jackson"},"number":"4","pos":"F","height":"6-7","height_in":79,"year_class":"So.","gp":0,"origin":"Tulsa, OK","role":"F/C?"},"JoMoore":{"player_code_id":{"code":"JoMoore","id":"Moore, JoJo"},"number":"0","pos":"G","height":"6-5","height_in":77,"year_class":"Fr.","gp":0,"origin":"Leander, TX","role":"G?"}}
+{
+   "JaMiller": {
+      "player_code_id": {
+         "code": "JaMiller",
+         "id": "Miller, Jalen"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Frederick, MD",
+      "role": "WG"
+   },
+   "PaNavarro": {
+      "player_code_id": {
+         "code": "PaNavarro",
+         "id": "Navarro, Pablo"
+      },
+      "number": "7",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Valencia de Don Juan, Spain",
+      "role": "G?"
+   },
+   "SeKruse": {
+      "player_code_id": {
+         "code": "SeKruse",
+         "id": "Kruse, Seth"
+      },
+      "number": "33",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Tulsa, OK"
+   },
+   "MaMajok": {
+      "player_code_id": {
+         "code": "MaMajok",
+         "id": "Majok, Mathok"
+      },
+      "number": "11",
+      "pos": "C",
+      "height": "7-3",
+      "height_in": 87,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "",
+      "role": "C"
+   },
+   "SiIsHerron": {
+      "player_code_id": {
+         "code": "SiIsHerron",
+         "id": "Issac Herron, Sir"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Houston, TX",
+      "role": "C"
+   },
+   "CaRosario": {
+      "player_code_id": {
+         "code": "CaRosario",
+         "id": "Rosario, Carlos"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Santo Domingo, Dominican Republic",
+      "role": "F/C?"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Russell Springmann"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "LuGray": {
+      "player_code_id": {
+         "code": "LuGray",
+         "id": "Gray, Luke"
+      },
+      "number": "25",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Edmond, OK",
+      "role": "F/C?"
+   },
+   "NaIbroci": {
+      "player_code_id": {
+         "code": "NaIbroci",
+         "id": "Ibroci, Naim"
+      },
+      "number": "34",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Staten Island, NY"
+   },
+   "IsMcbride": {
+      "player_code_id": {
+         "code": "IsMcbride",
+         "id": "McBride, Issac"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Little Rock, AR",
+      "role": "CG"
+   },
+   "NeIbroci": {
+      "player_code_id": {
+         "code": "NeIbroci",
+         "id": "Ibroci, Nevin"
+      },
+      "number": "35",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Staten Island, NY"
+   },
+   "ChMartin": {
+      "player_code_id": {
+         "code": "ChMartin",
+         "id": "Martin, Chase"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Jenks, OK",
+      "role": "WG"
+   },
+   "BrMoore": {
+      "player_code_id": {
+         "code": "BrMoore",
+         "id": "Moore, Braeden"
+      },
+      "number": "1",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Nashville, TN"
+   },
+   "JoJones": {
+      "player_code_id": {
+         "code": "JoJones",
+         "id": "Jones, Josh"
+      },
+      "number": "22",
+      "pos": "C",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Austin, TX",
+      "role": "C"
+   },
+   "SaAlajiki": {
+      "player_code_id": {
+         "code": "SaAlajiki",
+         "id": "Alajiki, Sam"
+      },
+      "number": "64",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Dundalk, Ireland",
+      "role": "S-PF"
+   },
+   "DaRobinson": {
+      "player_code_id": {
+         "code": "DaRobinson",
+         "id": "Robinson Jr., Darius"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Chicago, IL",
+      "role": "G?"
+   },
+   "JaSkipper": {
+      "player_code_id": {
+         "code": "JaSkipper",
+         "id": "Skipper, Jackson"
+      },
+      "number": "4",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Tulsa, OK",
+      "role": "F/C?"
+   },
+   "JoMoore": {
+      "player_code_id": {
+         "code": "JoMoore",
+         "id": "Moore, JoJo"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Leander, TX",
+      "role": "G?"
+   }
+}

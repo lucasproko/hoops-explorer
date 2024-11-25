@@ -1,1 +1,232 @@
-{"RoJohnson":{"player_code_id":{"code":"RoJohnson","id":"Johnson Jr., Rodney"},"number":"5","pos":"F","height":"6-5","height_in":77,"year_class":"Sr.","gp":0,"origin":"Bryan, TX","role":"S-PF"},"RySamons":{"player_code_id":{"code":"RySamons","id":"Samons, Rylee"},"number":"15","pos":"F","height":"6-7","height_in":79,"year_class":"So.","gp":0,"origin":"Pikeville, KY","role":"WF"},"MaSells":{"player_code_id":{"code":"MaSells","id":"Sells, Matthew"},"number":"12","pos":"G","height":"6-3","height_in":75,"year_class":"Sr.","gp":0,"origin":"Rickman, TN","role":"G?"},"JaNicholls":{"player_code_id":{"code":"JaNicholls","id":"Nicholls, JaJuan"},"number":"7","pos":"F","height":"6-8","height_in":80,"year_class":"So.","gp":0,"origin":"Scranton, PA"},"RaGlasgow":{"player_code_id":{"code":"RaGlasgow","id":"Glasgow, Ray"},"number":"4","pos":"G","height":"6-3","height_in":75,"year_class":"Jr.","gp":0,"origin":"Bronx, NY"},"DaEgbuniwe":{"player_code_id":{"code":"DaEgbuniwe","id":"Egbuniwe, Daniel"},"number":"0","pos":"F","height":"6-7","height_in":79,"year_class":"Jr.","gp":0,"origin":"Memphis, TN","role":"WF"},"MeCameron":{"player_code_id":{"code":"MeCameron","id":"Cameron, Mekhi"},"number":"1","pos":"G","height":"6-4","height_in":76,"year_class":"Sr.","gp":0,"origin":"Atlanta, GA","role":"G?"},"__coach__":{"player_code_id":{"code":"__coach__","id":"John Pelphrey"},"number":"","pos":"","height":"","year_class":"","gp":-1},"BoZimonjic":{"player_code_id":{"code":"BoZimonjic","id":"Zimonjic, Bogdan"},"number":"33","pos":"G","height":"6-5","height_in":77,"year_class":"Sr.","gp":0,"origin":"Belgrade, Serbia"},"GrStrong":{"player_code_id":{"code":"GrStrong","id":"Strong, Grant"},"number":"11","pos":"G","height":"6-6","height_in":78,"year_class":"So.","gp":0,"origin":"Celina, TN","role":"WG"},"DaCraig":{"player_code_id":{"code":"DaCraig","id":"Craig, David"},"number":"34","pos":"C","height":"7-2","height_in":86,"year_class":"Jr.","gp":0,"origin":"Johannesburg, South Africa","role":"C"},"GrSlatten":{"player_code_id":{"code":"GrSlatten","id":"Slatten, Grant"},"number":"10","pos":"G","height":"6-5","height_in":77,"year_class":"Jr.","gp":0,"origin":"Sparta, TN","role":"WG"},"OlAjiboye":{"player_code_id":{"code":"OlAjiboye","id":"Ajiboye, Ola"},"number":"8","pos":"F","height":"6-7","height_in":79,"year_class":"Jr.","gp":0,"origin":"Chicago, IL","role":"C"},"CoAyers":{"player_code_id":{"code":"CoAyers","id":"Ayers, Colin"},"number":"30","pos":"G","height":"6-0","height_in":72,"year_class":"Fr.","gp":0,"origin":"Cookeville, TN"},"JaJohnson":{"player_code_id":{"code":"JaJohnson","id":"Johnson, Jaylon"},"number":"3","pos":"G","height":"6-0","height_in":72,"year_class":"Jr.","gp":0,"origin":"Houston, TX","role":"G?"},"KyLayton":{"player_code_id":{"code":"KyLayton","id":"Layton, Kyle"},"number":"2","pos":"G","height":"6-3","height_in":75,"year_class":"So.","gp":0,"origin":"Mc Kinney, TX","role":"CG"},"JoHeard":{"player_code_id":{"code":"JoHeard","id":"Heard, Josh"},"number":"40","pos":"G","height":"6-5","height_in":77,"year_class":"Fr.","gp":0,"origin":"Cookeville, TN"}}
+{
+   "RoJohnson": {
+      "player_code_id": {
+         "code": "RoJohnson",
+         "id": "Johnson Jr., Rodney"
+      },
+      "number": "5",
+      "pos": "F",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Bryan, TX",
+      "role": "S-PF"
+   },
+   "RySamons": {
+      "player_code_id": {
+         "code": "RySamons",
+         "id": "Samons, Rylee"
+      },
+      "number": "15",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Pikeville, KY",
+      "role": "WF"
+   },
+   "MaSells": {
+      "player_code_id": {
+         "code": "MaSells",
+         "id": "Sells, Matthew"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Rickman, TN",
+      "role": "G?"
+   },
+   "JaNicholls": {
+      "player_code_id": {
+         "code": "JaNicholls",
+         "id": "Nicholls, JaJuan"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Scranton, PA"
+   },
+   "RaGlasgow": {
+      "player_code_id": {
+         "code": "RaGlasgow",
+         "id": "Glasgow, Ray"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Bronx, NY"
+   },
+   "DaEgbuniwe": {
+      "player_code_id": {
+         "code": "DaEgbuniwe",
+         "id": "Egbuniwe, Daniel"
+      },
+      "number": "0",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Memphis, TN",
+      "role": "WF"
+   },
+   "MeCameron": {
+      "player_code_id": {
+         "code": "MeCameron",
+         "id": "Cameron, Mekhi"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Atlanta, GA",
+      "role": "G?"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "John Pelphrey"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "BoZimonjic": {
+      "player_code_id": {
+         "code": "BoZimonjic",
+         "id": "Zimonjic, Bogdan"
+      },
+      "number": "33",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Belgrade, Serbia"
+   },
+   "GrStrong": {
+      "player_code_id": {
+         "code": "GrStrong",
+         "id": "Strong, Grant"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Celina, TN",
+      "role": "WG"
+   },
+   "DaCraig": {
+      "player_code_id": {
+         "code": "DaCraig",
+         "id": "Craig, David"
+      },
+      "number": "34",
+      "pos": "C",
+      "height": "7-2",
+      "height_in": 86,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Johannesburg, South Africa",
+      "role": "C"
+   },
+   "GrSlatten": {
+      "player_code_id": {
+         "code": "GrSlatten",
+         "id": "Slatten, Grant"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Sparta, TN",
+      "role": "WG"
+   },
+   "OlAjiboye": {
+      "player_code_id": {
+         "code": "OlAjiboye",
+         "id": "Ajiboye, Ola"
+      },
+      "number": "8",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Chicago, IL",
+      "role": "C"
+   },
+   "CoAyers": {
+      "player_code_id": {
+         "code": "CoAyers",
+         "id": "Ayers, Colin"
+      },
+      "number": "30",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Cookeville, TN"
+   },
+   "JaJohnson": {
+      "player_code_id": {
+         "code": "JaJohnson",
+         "id": "Johnson, Jaylon"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Houston, TX",
+      "role": "G?"
+   },
+   "KyLayton": {
+      "player_code_id": {
+         "code": "KyLayton",
+         "id": "Layton, Kyle"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Mc Kinney, TX",
+      "role": "CG"
+   },
+   "JoHeard": {
+      "player_code_id": {
+         "code": "JoHeard",
+         "id": "Heard, Josh"
+      },
+      "number": "40",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Cookeville, TN"
+   }
+}

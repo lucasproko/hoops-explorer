@@ -1,1 +1,230 @@
-{"MaPikaar":{"player_code_id":{"code":"MaPikaar","id":"Pikaar, Max"},"number":"35","pos":"F","height":"6-11","height_in":83,"year_class":"Fr.","gp":0,"origin":"Leiden, Netherlands"},"IsHolmes":{"player_code_id":{"code":"IsHolmes","id":"Holmes, Isaac"},"number":"12","pos":"G","height":"6-4","height_in":76,"year_class":"So.","gp":0,"origin":"Apex, NC"},"RoAvila":{"player_code_id":{"code":"RoAvila","id":"Avila, Robbie"},"number":"21","pos":"C","height":"6-10","height_in":82,"year_class":"So.","gp":0,"origin":"Oak Forest, IL","role":"PF/C"},"NiPatton":{"player_code_id":{"code":"NiPatton","id":"Patton, Nick"},"number":"22","pos":"G","height":"6-1","height_in":73,"year_class":"Fr.","gp":0,"origin":"Westerville, OH"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Josh Schertz"},"number":"","pos":"","height":"","year_class":"","gp":-1},"KeThames":{"player_code_id":{"code":"KeThames","id":"Thames, Kellen"},"number":"0","pos":"G","height":"6-6","height_in":78,"year_class":"So.","gp":0,"origin":"Saint Louis, MO","role":"WG"},"AmMccottry":{"player_code_id":{"code":"AmMccottry","id":"McCottry, Amari"},"number":"4","pos":"G","height":"6-6","height_in":78,"year_class":"Fr.","gp":0,"origin":"Milwaukee, WI"},"KaAnya":{"player_code_id":{"code":"KaAnya","id":"Anya, Kalu"},"number":"6","pos":"F","height":"6-8","height_in":80,"year_class":"Jr.","gp":0,"origin":"Worcester, MA","role":"WF"},"AjCasey":{"player_code_id":{"code":"AjCasey","id":"Casey, AJ"},"number":"23","pos":"F","height":"6-9","height_in":81,"year_class":"Jr.","gp":0,"origin":"Chicago, IL","role":"WF"},"IsSwope":{"player_code_id":{"code":"IsSwope","id":"Swope, Isaiah"},"number":"1","pos":"G","height":"5-10","height_in":70,"year_class":"Sr.","gp":0,"origin":"Newburgh, IN","role":"CG"},"KoJohnson":{"player_code_id":{"code":"KoJohnson","id":"Johnson, Kobe"},"number":"8","pos":"G","height":"6-4","height_in":76,"year_class":"Sr.","gp":0,"origin":"Canton, OH","role":"CG"},"LaHughes":{"player_code_id":{"code":"LaHughes","id":"Hughes II, Larry"},"number":"2","pos":"G","height":"6-4","height_in":76,"year_class":"Jr.","gp":0,"origin":"Saint Louis, MO","role":"CG"},"JoDotzler":{"player_code_id":{"code":"JoDotzler","id":"Dotzler, Josiah"},"number":"13","pos":"G","height":"6-3","height_in":75,"year_class":"So.","gp":0,"origin":"Omaha, NE","role":"G?"},"GiJimerson":{"player_code_id":{"code":"GiJimerson","id":"Jimerson, Gibson"},"number":"24","pos":"G","height":"6-5","height_in":77,"year_class":"Sr.","gp":0,"origin":"Richmond, VA","role":"CG"},"DyWarlick":{"player_code_id":{"code":"DyWarlick","id":"Warlick, Dylan"},"number":"33","pos":"F","height":"6-5","height_in":77,"year_class":"Fr.","gp":0,"origin":"Edmond, OK"},"KiBrockhoff":{"player_code_id":{"code":"KiBrockhoff","id":"Brockhoff, Kilian"},"number":"14","pos":"F","height":"6-9","height_in":81,"year_class":"So.","gp":0,"origin":"Cuxhaven, Germany"},"JaSchertz":{"player_code_id":{"code":"JaSchertz","id":"Schertz, Jaden"},"number":"5","pos":"G","height":"5-11","height_in":71,"year_class":"So.","gp":0,"origin":"Harrogate, TN"}}
+{
+   "MaPikaar": {
+      "player_code_id": {
+         "code": "MaPikaar",
+         "id": "Pikaar, Max"
+      },
+      "number": "35",
+      "pos": "F",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Leiden, Netherlands"
+   },
+   "IsHolmes": {
+      "player_code_id": {
+         "code": "IsHolmes",
+         "id": "Holmes, Isaac"
+      },
+      "number": "12",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Apex, NC"
+   },
+   "RoAvila": {
+      "player_code_id": {
+         "code": "RoAvila",
+         "id": "Avila, Robbie"
+      },
+      "number": "21",
+      "pos": "C",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Oak Forest, IL",
+      "role": "PF/C"
+   },
+   "NiPatton": {
+      "player_code_id": {
+         "code": "NiPatton",
+         "id": "Patton, Nick"
+      },
+      "number": "22",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Westerville, OH"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Josh Schertz"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "KeThames": {
+      "player_code_id": {
+         "code": "KeThames",
+         "id": "Thames, Kellen"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Saint Louis, MO",
+      "role": "WG"
+   },
+   "AmMccottry": {
+      "player_code_id": {
+         "code": "AmMccottry",
+         "id": "McCottry, Amari"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Milwaukee, WI"
+   },
+   "KaAnya": {
+      "player_code_id": {
+         "code": "KaAnya",
+         "id": "Anya, Kalu"
+      },
+      "number": "6",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Worcester, MA",
+      "role": "WF"
+   },
+   "AjCasey": {
+      "player_code_id": {
+         "code": "AjCasey",
+         "id": "Casey, AJ"
+      },
+      "number": "23",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Chicago, IL",
+      "role": "WF"
+   },
+   "IsSwope": {
+      "player_code_id": {
+         "code": "IsSwope",
+         "id": "Swope, Isaiah"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Newburgh, IN",
+      "role": "CG"
+   },
+   "KoJohnson": {
+      "player_code_id": {
+         "code": "KoJohnson",
+         "id": "Johnson, Kobe"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Canton, OH",
+      "role": "CG"
+   },
+   "LaHughes": {
+      "player_code_id": {
+         "code": "LaHughes",
+         "id": "Hughes II, Larry"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Saint Louis, MO",
+      "role": "CG"
+   },
+   "JoDotzler": {
+      "player_code_id": {
+         "code": "JoDotzler",
+         "id": "Dotzler, Josiah"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Omaha, NE",
+      "role": "G?"
+   },
+   "GiJimerson": {
+      "player_code_id": {
+         "code": "GiJimerson",
+         "id": "Jimerson, Gibson"
+      },
+      "number": "24",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Richmond, VA",
+      "role": "CG"
+   },
+   "DyWarlick": {
+      "player_code_id": {
+         "code": "DyWarlick",
+         "id": "Warlick, Dylan"
+      },
+      "number": "33",
+      "pos": "F",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Edmond, OK"
+   },
+   "KiBrockhoff": {
+      "player_code_id": {
+         "code": "KiBrockhoff",
+         "id": "Brockhoff, Kilian"
+      },
+      "number": "14",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Cuxhaven, Germany"
+   },
+   "JaSchertz": {
+      "player_code_id": {
+         "code": "JaSchertz",
+         "id": "Schertz, Jaden"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "5-11",
+      "height_in": 71,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Harrogate, TN"
+   }
+}

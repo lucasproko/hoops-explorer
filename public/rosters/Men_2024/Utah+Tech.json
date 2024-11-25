@@ -1,1 +1,234 @@
-{"SaHowlin":{"player_code_id":{"code":"SaHowlin","id":"Howlin, Sammy"},"number":"33","pos":"C","height":"6-11","height_in":83,"year_class":"Sr.","gp":0,"origin":"La Habra, CA","role":"C"},"DaGrant":{"player_code_id":{"code":"DaGrant","id":"Grant, Dallin"},"number":"5","pos":"F","height":"6-8","height_in":80,"year_class":"Fr.","gp":0,"origin":"Cedar City, UT","role":"F/C?"},"TeRainwater":{"player_code_id":{"code":"TeRainwater","id":"Rainwater, Tennessee"},"number":"10","pos":"G","height":"6-6","height_in":78,"year_class":"So.","gp":0,"origin":"Davenport, WA","role":"WG"},"HaByrd":{"player_code_id":{"code":"HaByrd","id":"Byrd, Hakim"},"number":"8","pos":"G","height":"5-10","height_in":70,"year_class":"Sr.","gp":0,"origin":"Philadelphia, PA","role":"G?"},"PrVandermyde":{"player_code_id":{"code":"PrVandermyde","id":"Vandermyde, Preston"},"number":"14","pos":"G","height":"6-5","height_in":77,"year_class":"Fr.","gp":0,"origin":"Saint George, UT"},"BrBerrett":{"player_code_id":{"code":"BrBerrett","id":"Berrett, Britton"},"number":"13","pos":"G","height":"6-5","height_in":77,"year_class":"Jr.","gp":0,"origin":"Rigby, ID","role":"G?"},"BeRiley":{"player_code_id":{"code":"BeRiley","id":"Riley, Beon"},"number":"0","pos":"G","height":"6-6","height_in":78,"year_class":"Sr.","gp":0,"origin":"Chula Vista, CA","role":"WG"},"BrBailey":{"player_code_id":{"code":"BrBailey","id":"Bailey, Bryson"},"number":"7","pos":"F","height":"6-9","height_in":81,"year_class":"Fr.","gp":0,"origin":"Lehi, UT"},"SaAriyibi":{"player_code_id":{"code":"SaAriyibi","id":"Ariyibi, Samuel"},"number":"19","pos":"F","height":"6-8","height_in":80,"year_class":"Jr.","gp":0,"origin":"Lagos, Nigeria","role":"F/C?"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Jon Judkins"},"number":"","pos":"","height":"","year_class":"","gp":-1},"MaOwona":{"player_code_id":{"code":"MaOwona","id":"Owona, Madiba"},"number":"4","pos":"G","height":"6-4","height_in":76,"year_class":"Fr.","gp":0,"origin":"Bordeaux, France"},"UnTuray":{"player_code_id":{"code":"UnTuray","id":"Turay, Unisa"},"number":"3","pos":"G","height":"5-10","height_in":70,"year_class":"Sr.","gp":0,"origin":"Phoenix, AZ","role":"PG"},"HuSchenck":{"player_code_id":{"code":"HuSchenck","id":"Schenck, Hunter"},"number":"1","pos":"G","height":"6-2","height_in":74,"year_class":"Fr.","gp":0,"origin":"Pleasant View, UT","role":"G?"},"NoGonsalves":{"player_code_id":{"code":"NoGonsalves","id":"Gonsalves, Noa"},"number":"11","pos":"G","height":"6-1","height_in":73,"year_class":"Sr.","gp":0,"origin":"Lehi, UT","role":"WG"},"PaMisic":{"player_code_id":{"code":"PaMisic","id":"Misic, Pavle"},"number":"54","pos":"C","height":"6-10","height_in":82,"year_class":"Fr.","gp":0,"origin":"Nis, Serbia","role":"C"},"JuBieker":{"player_code_id":{"code":"JuBieker","id":"Bieker, Justin"},"number":"6","pos":"G","height":"6-5","height_in":77,"year_class":"Sr.","gp":0,"origin":"Portland, OR","role":"G?"},"StHutchings":{"player_code_id":{"code":"StHutchings","id":"Hutchings, Stone"},"number":"23","pos":"G","height":"6-5","height_in":77,"year_class":"So.","gp":0,"origin":"West Jordan, UT","role":"G?"}}
+{
+   "SaHowlin": {
+      "player_code_id": {
+         "code": "SaHowlin",
+         "id": "Howlin, Sammy"
+      },
+      "number": "33",
+      "pos": "C",
+      "height": "6-11",
+      "height_in": 83,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "La Habra, CA",
+      "role": "C"
+   },
+   "DaGrant": {
+      "player_code_id": {
+         "code": "DaGrant",
+         "id": "Grant, Dallin"
+      },
+      "number": "5",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Cedar City, UT",
+      "role": "F/C?"
+   },
+   "TeRainwater": {
+      "player_code_id": {
+         "code": "TeRainwater",
+         "id": "Rainwater, Tennessee"
+      },
+      "number": "10",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Davenport, WA",
+      "role": "WG"
+   },
+   "HaByrd": {
+      "player_code_id": {
+         "code": "HaByrd",
+         "id": "Byrd, Hakim"
+      },
+      "number": "8",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Philadelphia, PA",
+      "role": "G?"
+   },
+   "PrVandermyde": {
+      "player_code_id": {
+         "code": "PrVandermyde",
+         "id": "Vandermyde, Preston"
+      },
+      "number": "14",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Saint George, UT"
+   },
+   "BrBerrett": {
+      "player_code_id": {
+         "code": "BrBerrett",
+         "id": "Berrett, Britton"
+      },
+      "number": "13",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Rigby, ID",
+      "role": "G?"
+   },
+   "BeRiley": {
+      "player_code_id": {
+         "code": "BeRiley",
+         "id": "Riley, Beon"
+      },
+      "number": "0",
+      "pos": "G",
+      "height": "6-6",
+      "height_in": 78,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Chula Vista, CA",
+      "role": "WG"
+   },
+   "BrBailey": {
+      "player_code_id": {
+         "code": "BrBailey",
+         "id": "Bailey, Bryson"
+      },
+      "number": "7",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Lehi, UT"
+   },
+   "SaAriyibi": {
+      "player_code_id": {
+         "code": "SaAriyibi",
+         "id": "Ariyibi, Samuel"
+      },
+      "number": "19",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Lagos, Nigeria",
+      "role": "F/C?"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Jon Judkins"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "MaOwona": {
+      "player_code_id": {
+         "code": "MaOwona",
+         "id": "Owona, Madiba"
+      },
+      "number": "4",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Bordeaux, France"
+   },
+   "UnTuray": {
+      "player_code_id": {
+         "code": "UnTuray",
+         "id": "Turay, Unisa"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "5-10",
+      "height_in": 70,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Phoenix, AZ",
+      "role": "PG"
+   },
+   "HuSchenck": {
+      "player_code_id": {
+         "code": "HuSchenck",
+         "id": "Schenck, Hunter"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Pleasant View, UT",
+      "role": "G?"
+   },
+   "NoGonsalves": {
+      "player_code_id": {
+         "code": "NoGonsalves",
+         "id": "Gonsalves, Noa"
+      },
+      "number": "11",
+      "pos": "G",
+      "height": "6-1",
+      "height_in": 73,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Lehi, UT",
+      "role": "WG"
+   },
+   "PaMisic": {
+      "player_code_id": {
+         "code": "PaMisic",
+         "id": "Misic, Pavle"
+      },
+      "number": "54",
+      "pos": "C",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Nis, Serbia",
+      "role": "C"
+   },
+   "JuBieker": {
+      "player_code_id": {
+         "code": "JuBieker",
+         "id": "Bieker, Justin"
+      },
+      "number": "6",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Portland, OR",
+      "role": "G?"
+   },
+   "StHutchings": {
+      "player_code_id": {
+         "code": "StHutchings",
+         "id": "Hutchings, Stone"
+      },
+      "number": "23",
+      "pos": "G",
+      "height": "6-5",
+      "height_in": 77,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "West Jordan, UT",
+      "role": "G?"
+   }
+}

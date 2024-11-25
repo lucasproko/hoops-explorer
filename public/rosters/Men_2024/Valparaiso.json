@@ -1,1 +1,247 @@
-{"JoVick":{"player_code_id":{"code":"JoVick","id":"Vick, Joe"},"number":"20","pos":"F","height":"6-3","height_in":75,"year_class":"Jr.","gp":0,"origin":"Kouts, IN"},"DeEllis":{"player_code_id":{"code":"DeEllis","id":"Ellis, Devon"},"number":"11","pos":"F","height":"6-7","height_in":79,"year_class":"Jr.","gp":0,"origin":"Chicago, IL","role":"WG"},"KaSepp":{"player_code_id":{"code":"KaSepp","id":"Sepp, Kaspar"},"number":"21","pos":"F","height":"6-7","height_in":79,"year_class":"So.","gp":0,"origin":"Tartu, Estonia","role":"WF"},"NiLombardi":{"player_code_id":{"code":"NiLombardi","id":"Lombardi, Nick"},"number":"32","pos":"G","height":"6-0","height_in":72,"year_class":"Fr.","gp":0,"origin":"Lisle, IL"},"JaWatson":{"player_code_id":{"code":"JaWatson","id":"Watson, Jayden"},"number":"12","pos":"F","height":"6-7","height_in":79,"year_class":"Fr.","gp":0,"origin":"Chicago Heights, IL"},"IsStafford":{"player_code_id":{"code":"IsStafford","id":"Stafford, Isaiah"},"number":"9","pos":"G","height":"6-2","height_in":74,"year_class":"Sr.","gp":0,"origin":"Bolingbrook, IL","role":"CG"},"JeCrMonegro":{"player_code_id":{"code":"JeCrMonegro","id":"De La Cruz Monegro, Jefferson"},"number":"2","pos":"G","height":"6-3","height_in":75,"year_class":"Jr.","gp":0,"origin":"La Salle, Canada","role":"CG"},"AlWright":{"player_code_id":{"code":"AlWright","id":"Wright, All"},"number":"3","pos":"G","height":"6-3","height_in":75,"year_class":"Fr.","gp":0,"origin":"Durango, Mexico","role":"G?"},"__coach__":{"player_code_id":{"code":"__coach__","id":"Roger Powell"},"number":"","pos":"","height":"","year_class":"","gp":-1},"IsShaw":{"player_code_id":{"code":"IsShaw","id":"Shaw, Isaiah"},"number":"24","pos":"G","height":"6-7","height_in":79,"year_class":"Fr.","gp":0,"origin":"Nashville, TN","role":"G?"},"TySchmidt":{"player_code_id":{"code":"TySchmidt","id":"Schmidt, Tyler"},"number":"23","pos":"G","height":"6-4","height_in":76,"year_class":"Sr.","gp":0,"origin":"Valparaiso, IN","role":"G?"},"CoSchwieger":{"player_code_id":{"code":"CoSchwieger","id":"Schwieger, Cooper"},"number":"13","pos":"F","height":"6-10","height_in":82,"year_class":"So.","gp":0,"origin":"Overland Park, KS","role":"S-PF"},"LoCoulibaly":{"player_code_id":{"code":"LoCoulibaly","id":"Coulibaly, Louth"},"number":"44","pos":"F","height":"6-9","height_in":81,"year_class":"Jr.","gp":0,"origin":"Ottawa, Canada","role":"F/C?"},"RaSalem":{"player_code_id":{"code":"RaSalem","id":"Salem, Ramzi"},"number":"5","pos":"G","height":"6-3","height_in":75,"year_class":"Fr.","gp":0,"origin":"Saint Louis, MO"},"LuScroggins":{"player_code_id":{"code":"LuScroggins","id":"Scroggins, Lucas"},"number":"10","pos":"F","height":"6-9","height_in":81,"year_class":"Fr.","gp":0,"origin":"Woodbridge, VA","role":"F/C?"},"JuMcnair":{"player_code_id":{"code":"JuMcnair","id":"McNair, Justus"},"number":"1","pos":"G","height":"6-3","height_in":75,"year_class":"Fr.","gp":0,"origin":"Joliet, IL","role":"G?"},"CaSchweiger":{"player_code_id":{"code":"CaSchweiger","id":"Schweiger, Carson"},"number":"22","pos":"F","height":"6-8","height_in":80,"year_class":"Fr.","gp":0,"origin":"Overland Park, KS","role":"F/C?"},"DaDeaveiro":{"player_code_id":{"code":"DaDeaveiro","id":"DeAveiro, Darius"},"number":"6","pos":"G","height":"6-0","height_in":72,"year_class":"Sr.","gp":0,"origin":"Kanata, Canada","role":"s-PG"}}
+{
+   "JoVick": {
+      "player_code_id": {
+         "code": "JoVick",
+         "id": "Vick, Joe"
+      },
+      "number": "20",
+      "pos": "F",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Kouts, IN"
+   },
+   "DeEllis": {
+      "player_code_id": {
+         "code": "DeEllis",
+         "id": "Ellis, Devon"
+      },
+      "number": "11",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Chicago, IL",
+      "role": "WG"
+   },
+   "KaSepp": {
+      "player_code_id": {
+         "code": "KaSepp",
+         "id": "Sepp, Kaspar"
+      },
+      "number": "21",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Tartu, Estonia",
+      "role": "WF"
+   },
+   "NiLombardi": {
+      "player_code_id": {
+         "code": "NiLombardi",
+         "id": "Lombardi, Nick"
+      },
+      "number": "32",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Lisle, IL"
+   },
+   "JaWatson": {
+      "player_code_id": {
+         "code": "JaWatson",
+         "id": "Watson, Jayden"
+      },
+      "number": "12",
+      "pos": "F",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Chicago Heights, IL"
+   },
+   "IsStafford": {
+      "player_code_id": {
+         "code": "IsStafford",
+         "id": "Stafford, Isaiah"
+      },
+      "number": "9",
+      "pos": "G",
+      "height": "6-2",
+      "height_in": 74,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Bolingbrook, IL",
+      "role": "CG"
+   },
+   "JeCrMonegro": {
+      "player_code_id": {
+         "code": "JeCrMonegro",
+         "id": "De La Cruz Monegro, Jefferson"
+      },
+      "number": "2",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "La Salle, Canada",
+      "role": "CG"
+   },
+   "AlWright": {
+      "player_code_id": {
+         "code": "AlWright",
+         "id": "Wright, All"
+      },
+      "number": "3",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Durango, Mexico",
+      "role": "G?"
+   },
+   "__coach__": {
+      "player_code_id": {
+         "code": "__coach__",
+         "id": "Roger Powell"
+      },
+      "number": "",
+      "pos": "",
+      "height": "",
+      "year_class": "",
+      "gp": -1
+   },
+   "IsShaw": {
+      "player_code_id": {
+         "code": "IsShaw",
+         "id": "Shaw, Isaiah"
+      },
+      "number": "24",
+      "pos": "G",
+      "height": "6-7",
+      "height_in": 79,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Nashville, TN",
+      "role": "G?"
+   },
+   "TySchmidt": {
+      "player_code_id": {
+         "code": "TySchmidt",
+         "id": "Schmidt, Tyler"
+      },
+      "number": "23",
+      "pos": "G",
+      "height": "6-4",
+      "height_in": 76,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Valparaiso, IN",
+      "role": "G?"
+   },
+   "CoSchwieger": {
+      "player_code_id": {
+         "code": "CoSchwieger",
+         "id": "Schwieger, Cooper"
+      },
+      "number": "13",
+      "pos": "F",
+      "height": "6-10",
+      "height_in": 82,
+      "year_class": "So",
+      "gp": 0,
+      "origin": "Overland Park, KS",
+      "role": "S-PF"
+   },
+   "LoCoulibaly": {
+      "player_code_id": {
+         "code": "LoCoulibaly",
+         "id": "Coulibaly, Louth"
+      },
+      "number": "44",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Jr",
+      "gp": 0,
+      "origin": "Ottawa, Canada",
+      "role": "F/C?"
+   },
+   "RaSalem": {
+      "player_code_id": {
+         "code": "RaSalem",
+         "id": "Salem, Ramzi"
+      },
+      "number": "5",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Saint Louis, MO"
+   },
+   "LuScroggins": {
+      "player_code_id": {
+         "code": "LuScroggins",
+         "id": "Scroggins, Lucas"
+      },
+      "number": "10",
+      "pos": "F",
+      "height": "6-9",
+      "height_in": 81,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Woodbridge, VA",
+      "role": "F/C?"
+   },
+   "JuMcnair": {
+      "player_code_id": {
+         "code": "JuMcnair",
+         "id": "McNair, Justus"
+      },
+      "number": "1",
+      "pos": "G",
+      "height": "6-3",
+      "height_in": 75,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Joliet, IL",
+      "role": "G?"
+   },
+   "CaSchweiger": {
+      "player_code_id": {
+         "code": "CaSchweiger",
+         "id": "Schweiger, Carson"
+      },
+      "number": "22",
+      "pos": "F",
+      "height": "6-8",
+      "height_in": 80,
+      "year_class": "Fr",
+      "gp": 0,
+      "origin": "Overland Park, KS",
+      "role": "F/C?"
+   },
+   "DaDeaveiro": {
+      "player_code_id": {
+         "code": "DaDeaveiro",
+         "id": "DeAveiro, Darius"
+      },
+      "number": "6",
+      "pos": "G",
+      "height": "6-0",
+      "height_in": 72,
+      "year_class": "Sr",
+      "gp": 0,
+      "origin": "Kanata, Canada",
+      "role": "s-PG"
+   }
+}
