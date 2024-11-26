@@ -1227,7 +1227,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
                 <div className="flex-fill">
                   <TeamFilterAutoSuggestText
                     readOnly={false}
-                    placeholder={";-separated list of teams/BREAK"}
+                    placeholder={`;-separated list of teams, or "BREAK;"`}
                     autocomplete={teamList
                       .concat([separatorKeyword])
                       .map((s) => s + ";")}

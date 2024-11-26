@@ -57,6 +57,7 @@ import { DateUtils } from "../utils/DateUtils";
 import ConferenceSelector, {
   ConfSelectorConstants,
 } from "./shared/ConferenceSelector";
+import TeamFilterAutoSuggestText from "./shared/TeamFilterAutoSuggestText";
 
 export type TeamLeaderboardStatsModel = {
   year?: string;
@@ -103,6 +104,9 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
   const hasCustomFilter =
     confs.indexOf(ConfSelectorConstants.queryFiltersName) >= 0;
   const [queryFilters, setQueryFilters] = useState(
+    startingState.queryFilters || ""
+  );
+  const [tmpQueryFilters, setTmpQueryFilters] = useState(
     startingState.queryFilters || ""
   );
 
@@ -1647,18 +1651,23 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
               <InputGroup.Prepend>
                 <InputGroup.Text id="filter">Filter:</InputGroup.Text>
               </InputGroup.Prepend>
-              <AsyncFormControl
-                startingVal={queryFilters}
-                onChange={(t: string) => {
-                  const newStr = t.endsWith(";") ? t : t + ";";
-                  friendlyChange(
-                    () => setQueryFilters(newStr),
-                    newStr != queryFilters
-                  );
-                }}
-                timeout={500}
-                placeholder=";-separated list of teams"
-              />
+              <div className="flex-fill">
+                <TeamFilterAutoSuggestText
+                  readOnly={false}
+                  placeholder={`;-separated list of teams`}
+                  autocomplete={(dataEvent?.teams || []).map(
+                    (s) => s.team_name + ";"
+                  )}
+                  value={tmpQueryFilters}
+                  onChange={(ev: any) => setTmpQueryFilters(ev.target.value)}
+                  onSelectionChanged={(newStr: string) =>
+                    friendlyChange(() => {
+                      setQueryFilters(newStr);
+                    }, newStr != queryFilters)
+                  }
+                  onKeyUp={(ev: any) => setTmpQueryFilters(ev.target.value)}
+                />
+              </div>
             </InputGroup>
           </Col>
         </Form.Group>
