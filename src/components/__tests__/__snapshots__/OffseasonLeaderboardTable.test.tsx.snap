@@ -395,7 +395,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - queryFilters + ov
             onChange={[Function]}
             onKeyUp={[Function]}
             onSelectionChanged={[Function]}
-            placeholder=";-separated list of teams/BREAK"
+            placeholder=";-separated list of teams, or \\"BREAK;\\""
             readOnly={false}
             value="Maryland;BREAK;Clemson;"
           />
@@ -49005,7 +49005,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - transfer in+out +
             onChange={[Function]}
             onKeyUp={[Function]}
             onSelectionChanged={[Function]}
-            placeholder=";-separated list of teams/BREAK"
+            placeholder=";-separated list of teams, or \\"BREAK;\\""
             readOnly={false}
             value="Maryland;"
           />
