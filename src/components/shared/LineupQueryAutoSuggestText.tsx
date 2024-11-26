@@ -111,8 +111,6 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
 
   /** Makes an API call to elasticsearch to get the roster */
   const fetchRoster = () => {
-    /**/
-    console.log("HERE1");
     if (gender && year && team) {
       const genderYear = `${gender}_${year}`;
       const currentJsonEpoch = dataLastUpdated[genderYear] || -1;
@@ -218,10 +216,10 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
       }
       onRequestOptions={fetchRoster}
       trigger=""
-      regex='^[A-Za-z0-9\\-_"]+$'
+      regex='^[A-Za-z0-9\\_.,":-]+$'
       matchAny={true}
       maxOptions={18}
-      spaceRemovers={[";", ")", ":", "]", " "]}
+      spaceRemovers={[";", ")", "]", " ", "}"]}
       passThroughEnter={true}
       passThroughTab={false}
       onChange={

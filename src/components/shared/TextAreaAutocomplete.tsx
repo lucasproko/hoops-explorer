@@ -195,8 +195,9 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
           return false;
         };
         for (let i = caret - 1; i >= 0; --i) {
-          if (endOfStream(i + 1)) break;
-
+          if (i < caret - 1 && endOfStream(i + 1)) {
+            break;
+          }
           const substr = str.substring(i, caret);
           const match = substr.match(re);
           let matchStart = -1;
@@ -228,7 +229,6 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
               break;
             }
           }
-
           if (matchStart >= 0) {
             const triggerOptions = providedOptionsObject[triggerStr];
             if (!triggerOptions) {
@@ -292,8 +292,6 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
           /* Ensure minimal width inside viewport */
           window.innerWidth - OPTION_LIST_MIN_WIDTH
         );
-        /**/
-        console.log(`ml[${slug.matchLength}] len[${slug.options.length}]`);
 
         if (
           slug.matchLength >= minChars &&
@@ -431,13 +429,40 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
     const handleSelection = (idx: number) => {
       const slug = stateOptions[idx];
       const value = recentValue.current!;
+
+      var varActualMatchStart = matchStart;
+      var varActualMatchLength = matchLength;
+
+      // Special case for when we couldn't match on the entire slug because it traversed a delimiter
+      const slugMatchIdx = slug
+        .toLowerCase()
+        .indexOf(
+          value.substring(matchStart, matchStart + matchLength).toLowerCase()
+        );
+      if (
+        slugMatchIdx > 0 &&
+        slug.substring(0, slugMatchIdx) ==
+          value.substring(Math.max(0, matchStart - slugMatchIdx), matchStart)
+      ) {
+        varActualMatchStart = Math.max(0, matchStart - slugMatchIdx);
+        varActualMatchLength = matchLength + (matchStart - varActualMatchStart);
+      }
+      // In the other direction, we remove everything matching the regex before injecting the slug
+      const re = new RegExp(regex.replace("^", "").replace("$", ""));
+      const fwdMatch = value
+        .substring(varActualMatchStart + varActualMatchLength)
+        .match(re);
+      if (fwdMatch) {
+        varActualMatchLength += fwdMatch[0].length;
+      }
+
       const part1 =
         //(new trigger.length > 0 because I use zero triggers, and that now requires slightly different logic
         // so gating it on that)
         stateTrigger?.length === 0 && trigger.length > 0
           ? ""
-          : value.substring(0, matchStart - trigger.length);
-      const part2 = value.substring(matchStart + matchLength);
+          : value.substring(0, varActualMatchStart - trigger.length);
+      const part2 = value.substring(varActualMatchStart + varActualMatchLength);
 
       const event = { target: refInput.current! };
       const changedStr = changeOnSelect(stateTrigger!, slug);

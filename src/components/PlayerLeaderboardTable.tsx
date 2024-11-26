@@ -30,9 +30,7 @@ import GenericTogglingMenu from "./shared/GenericTogglingMenu";
 import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import AsyncFormControl from "./shared/AsyncFormControl";
-import AdvancedFilterAutoSuggestText, {
-  notFromFilterAutoSuggest,
-} from "./shared/AdvancedFilterAutoSuggestText";
+import { notFromFilterAutoSuggest } from "./shared/AdvancedFilterAutoSuggestText";
 
 // Table building
 import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
