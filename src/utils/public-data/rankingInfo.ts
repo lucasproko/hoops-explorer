@@ -268,7 +268,7 @@ const apPollMen_2024_25: () => Record<string, number> = () =>
     })
     .fromPairs()
     .assign({
-      __week__: 3,
+      __week__: 4,
     })
     .value();
 
@@ -451,7 +451,7 @@ const apPollWomen_2024_25: () => Record<string, number> = () =>
     })
     .fromPairs()
     .assign({
-      __week__: 3,
+      __week__: 4,
     })
     .value();
 
