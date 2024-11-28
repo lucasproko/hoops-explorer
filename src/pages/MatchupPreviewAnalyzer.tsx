@@ -201,6 +201,10 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
   );
   const breakdownViewArr = breakdownView.split(";");
 
+  const showShotCharts =
+    !matchupFilterParams.year ||
+    matchupFilterParams.year >= DateUtils.firstYearWithShotChartData;
+
   const [shotChartsShowZones, setShotChartsShowZones] = useState(
     _.isNil(startingMatchupFilterParams.shotChartsShowZones)
       ? ParamDefaults.defaultShotChartShowZones
@@ -519,6 +523,12 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
     );
   }, [dataEvent, divisionStatsCache, allPlayerStatsCache, breakdownView]);
 
+  // Quick navigation to the different sections
+  const topRef = useRef<HTMLDivElement>(null);
+  const playTypesRef = useRef<HTMLDivElement>(null);
+  const playerImpactRef = useRef<HTMLDivElement>(null);
+  const shotChartsRef = useRef<HTMLDivElement>(null);
+
   /** Only rebuild the chart if the data changes, or if one of the filter params changes */
   const shotChart = React.useMemo(() => {
     return (
@@ -659,7 +669,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
 
   return (
     <Container>
-      <Row>
+      <Row ref={topRef}>
         <Col xs={12} className="text-center">
           <h3>
             CBB Match-up Preview Tool{" "}
@@ -687,12 +697,58 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
           />
         </GenericCollapsibleCard>
       </Row>
-      <Row>{playStyleChart}</Row>
-      <Row>{chart}</Row>
-      {!matchupFilterParams.year ||
-      matchupFilterParams.year >= DateUtils.firstYearWithShotChartData ? (
-        <Row>{shotChart}</Row>
-      ) : undefined}
+      <Row
+        className="mt-2 sticky-top small"
+        style={{ backgroundColor: "white", opacity: "85%", zIndex: 1 }}
+      >
+        <Col xs={12} className="text-center">
+          Jump to:{" "}
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              topRef?.current?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            Top
+          </a>
+          {" | "}
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              playTypesRef?.current?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            Play Types
+          </a>
+          {" | "}
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              playerImpactRef?.current?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            Player Impact
+          </a>
+          {showShotCharts ? " | " : ""}
+          {showShotCharts ? (
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                shotChartsRef?.current?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
+              Shot Charts
+            </a>
+          ) : undefined}
+        </Col>
+      </Row>
+      <Row ref={playTypesRef}>{playStyleChart}</Row>
+      <Row ref={playerImpactRef}>{chart}</Row>
+      {showShotCharts ? <Row ref={shotChartsRef}>{shotChart}</Row> : undefined}
       <Footer
         year={matchupFilterParams.year}
         gender={matchupFilterParams.gender}

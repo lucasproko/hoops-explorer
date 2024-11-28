@@ -20,8 +20,6 @@ import Col from "react-bootstrap/Col";
 // App components:
 import {
   ParamPrefixes,
-  GameFilterParams,
-  LineupFilterParams,
   MatchupFilterParams,
   ParamDefaults,
 } from "../utils/FilterModels";
@@ -40,10 +38,8 @@ import { ClientRequestCache } from "../utils/ClientRequestCache";
 import MatchupFilter from "../components/MatchupFilter";
 import PlayerImpactChart from "../components/PlayerImpactChart";
 import { buildOppoFilter } from "../components/MatchupFilter";
-import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import LineupStintsChart from "../components/LineupStintsChart";
 import { LineupStintInfo } from "../utils/StatModels";
-import { PlayTypeUtils } from "../utils/stats/PlayTypeUtils";
 import {
   DivisionStatsCache,
   GradeTableUtils,
@@ -154,21 +150,8 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
   function getRootUrl(params: MatchupFilterParams) {
     return UrlRouting.getMatchupUrl(params);
   }
-  const [shouldForceReload, setShouldForceReload] = useState(0 as number);
 
   const onMatchupFilterParamsChange = (rawParams: MatchupFilterParams) => {
-    /** We're going to want to remove the manual options if the year changes */
-    const yearTeamGenderChange = (
-      rawParams: MatchupFilterParams,
-      currParams: MatchupFilterParams
-    ) => {
-      return (
-        rawParams.year != currParams.year ||
-        rawParams.gender != currParams.gender ||
-        rawParams.team != currParams.team
-      );
-    };
-
     // Omit all the defaults
     const params = _.omit(
       rawParams,
