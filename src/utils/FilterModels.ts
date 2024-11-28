@@ -107,6 +107,7 @@ export type MatchupFilterParams = {
   factorMins?: boolean; //impact vs /100 (defaults to true)
   lockAspect?: boolean; //(force x to be correct proportions to y)
   breakdownConfig?: string; //(currently: [off|def];[off|def])
+  shotChartsShowZones?: boolean;
 };
 
 /** Combined params for game filtering */

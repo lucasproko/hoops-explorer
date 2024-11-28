@@ -927,13 +927,16 @@ export type UserChartOpts = {
 };
 
 type Props = {
-  title: string;
+  title?: string;
   gender: "Men" | "Women";
   off: ShotStats;
   def: ShotStats;
   quickSwitchOptions?: Props[];
   onChangeChartOpts?: (opts: UserChartOpts) => void; //(needs to be optional for quick switch options)
   chartOpts?: UserChartOpts;
+  labelOverrides?: [string, string];
+  offDefOverrides?: [boolean, boolean];
+  invertLeftRight?: boolean;
 };
 
 const ShotChartDiagView: React.FunctionComponent<Props> = ({
@@ -944,6 +947,9 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
   quickSwitchOptions,
   chartOpts,
   onChangeChartOpts,
+  labelOverrides,
+  offDefOverrides,
+  invertLeftRight,
 }) => {
   const [quickSwitch, setQuickSwitch] = useState<string | undefined>(
     chartOpts?.quickSwitch
@@ -956,6 +962,15 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
       ? ParamDefaults.defaultShotChartShowZones
       : chartOpts.buildZones
   );
+  useEffect(() => {
+    if (chartOpts) {
+      setBuildZones(
+        _.isNil(chartOpts?.buildZones)
+          ? ParamDefaults.defaultShotChartShowZones
+          : chartOpts.buildZones
+      );
+    }
+  }, [chartOpts]); //(handle external changes to zone)
 
   const diffDataSet =
     gender == "Men" ? ShotChartAvgs_Men_2024 : ShotChartAvgs_Women_2024;
@@ -985,47 +1000,57 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
     diffDataSet
   );
 
+  const leftIndex = invertLeftRight ? 1 : 0;
+  const rightIndex = invertLeftRight ? 0 : 1;
+
   return off?.doc_count || def?.doc_count ? (
     <Container>
-      <Row className="pt-2 pb-2">
-        <Col xs={12}>
-          {buildQuickSwitchOptions(
-            title,
-            quickSwitch,
-            quickSwitchOptions?.filter(
-              //(remove any options that don't have data)
-              (opt) => opt.off?.doc_count || opt.def?.doc_count
-            ),
-            (newSetting, fromTimer) => {
-              if (fromTimer) {
-                setQuickSwitch((curr) => (curr ? undefined : newSetting));
-              } else {
-                onChangeChartOpts?.({
-                  buildZones: !buildZones,
-                  quickSwitch: quickSwitch,
-                });
-                setQuickSwitch(newSetting);
-              }
-            },
-            quickSwitchTimer,
-            setQuickSwitchTimer
-          )}
-        </Col>
-      </Row>
+      {title ? (
+        <Row className="pt-2 pb-2">
+          <Col xs={12}>
+            {buildQuickSwitchOptions(
+              title,
+              quickSwitch,
+              quickSwitchOptions?.filter(
+                //(remove any options that don't have data)
+                (opt) => opt.off?.doc_count || opt.def?.doc_count
+              ),
+              (newSetting, fromTimer) => {
+                if (fromTimer) {
+                  setQuickSwitch((curr) => (curr ? undefined : newSetting));
+                } else {
+                  onChangeChartOpts?.({
+                    buildZones: !buildZones,
+                    quickSwitch: quickSwitch,
+                  });
+                  setQuickSwitch(newSetting);
+                }
+              },
+              quickSwitchTimer,
+              setQuickSwitchTimer
+            )}
+          </Col>
+        </Row>
+      ) : undefined}
       <Row>
         <Col xs={6} className="text-center" style={{ minWidth: HEX_WIDTH }}>
           <Container>
             <Row>
               <Col xs={12} className="text-center">
-                <b>Offense:</b>
+                {labelOverrides ? (
+                  <b>{labelOverrides[leftIndex]}</b>
+                ) : (
+                  <b>Offense:</b>
+                )}
               </Col>
             </Row>
             <Row>
               <Col xs={12}>
                 <HexMap
-                  data={offData}
-                  zones={offZones}
+                  data={invertLeftRight ? defData : offData}
+                  zones={invertLeftRight ? defZones : offZones}
                   d1Zones={d1Zones}
+                  isDef={offDefOverrides ? offDefOverrides[leftIndex] : false}
                   diffDataSet={diffDataSet}
                   width={HEX_WIDTH}
                   height={HEX_HEIGHT}
@@ -1039,16 +1064,24 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
           <Container>
             <Row>
               <Col xs={12} className="text-center">
-                <b>Defense:</b>
+                {labelOverrides ? (
+                  <b>{labelOverrides[rightIndex]}</b>
+                ) : (
+                  <b>Defense:</b>
+                )}
               </Col>
             </Row>
             <Row>
               <Col xs={12}>
                 <HexMap
-                  data={defData}
-                  zones={defZones}
+                  data={invertLeftRight ? offData : defData}
+                  zones={invertLeftRight ? offZones : defZones}
                   d1Zones={d1Zones}
-                  isDef={true}
+                  isDef={
+                    offDefOverrides
+                      ? offDefOverrides[rightIndex]
+                      : invertLeftRight != true
+                  }
                   diffDataSet={diffDataSet}
                   width={HEX_WIDTH}
                   height={HEX_HEIGHT}
@@ -1077,38 +1110,40 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
           )}
         </Col>
       </Row>
-      <Row>
-        <Col xs={6} md={6} lg={6} xl={12} className="text-center pt-2">
-          <ToggleButtonGroup
-            items={[
-              {
-                label: "Zones",
-                tooltip: "Show the shots grouped into large court zones",
-                toggled: buildZones,
-                onClick: () => {
-                  onChangeChartOpts?.({
-                    buildZones: !buildZones,
-                    quickSwitch: quickSwitch,
-                  });
-                  setBuildZones(!buildZones);
+      {onChangeChartOpts ? ( //(don't show the controls if we don't handle the change)
+        <Row>
+          <Col xs={6} md={6} lg={6} xl={12} className="text-center pt-2">
+            <ToggleButtonGroup
+              items={[
+                {
+                  label: "Zones",
+                  tooltip: "Show the shots grouped into large court zones",
+                  toggled: buildZones,
+                  onClick: () => {
+                    onChangeChartOpts?.({
+                      buildZones: !buildZones,
+                      quickSwitch: quickSwitch,
+                    });
+                    setBuildZones(!buildZones);
+                  },
                 },
-              },
-              {
-                label: "Clusters",
-                tooltip: "Show the shots grouped into small clusters",
-                toggled: !buildZones,
-                onClick: () => {
-                  onChangeChartOpts?.({
-                    buildZones: !buildZones,
-                    quickSwitch: quickSwitch,
-                  });
-                  setBuildZones(!buildZones);
+                {
+                  label: "Clusters",
+                  tooltip: "Show the shots grouped into small clusters",
+                  toggled: !buildZones,
+                  onClick: () => {
+                    onChangeChartOpts?.({
+                      buildZones: !buildZones,
+                      quickSwitch: quickSwitch,
+                    });
+                    setBuildZones(!buildZones);
+                  },
                 },
-              },
-            ]}
-          />
-        </Col>
-      </Row>
+              ]}
+            />
+          </Col>
+        </Row>
+      ) : undefined}
     </Container>
   ) : (
     <span>Loading Data...</span>

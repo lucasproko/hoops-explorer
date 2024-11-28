@@ -52,11 +52,9 @@ import { PlayTypeDiagUtils } from "../utils/tables/PlayTypeDiagUtils";
 import { AvailableTeams } from "../utils/internal-data/AvailableTeams";
 import { LeaderboardUtils } from "../utils/LeaderboardUtils";
 import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
-import { stringify } from "query-string";
 import { efficiencyAverages } from "../utils/public-data/efficiencyAverages";
 import ShotChartDiagView from "../components/diags/ShotChartDiagView";
 import { DateUtils } from "../utils/DateUtils";
-import { FeatureFlags } from "../utils/stats/FeatureFlags";
 
 const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
   useEffect(() => {
@@ -203,6 +201,12 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
   );
   const breakdownViewArr = breakdownView.split(";");
 
+  const [shotChartsShowZones, setShotChartsShowZones] = useState(
+    _.isNil(startingMatchupFilterParams.shotChartsShowZones)
+      ? ParamDefaults.defaultShotChartShowZones
+      : startingMatchupFilterParams.shotChartsShowZones
+  );
+
   function getRootUrl(params: MatchupFilterParams) {
     return UrlRouting.getMatchupPreviewUrl(params);
   }
@@ -231,6 +235,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
         ParamDefaults.defaultMatchupAnalysisBreakdownConfig
           ? ["breakdownConfig"]
           : [],
+        rawParams.shotChartsShowZones ? ["shotChartsShowZones"] : [],
       ])
     );
     if (!_.isEqual(params, matchupFilterParamsRef.current)) {
@@ -253,8 +258,9 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
     onMatchupFilterParamsChange({
       ...matchupFilterParamsRef.current,
       breakdownConfig: breakdownView,
+      shotChartsShowZones: shotChartsShowZones,
     });
-  }, [breakdownView]);
+  }, [breakdownView, shotChartsShowZones]);
 
   // Load team grades, needed for play recap view
 
@@ -518,11 +524,10 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
     return (
       <GenericCollapsibleCard
         minimizeMargin={true}
-        title="Team Short Charts"
+        title="Team Shot Charts"
         helpLink={maybeShowDocs()}
       >
-        {matchupFilterParams.oppoTeam != AvailableTeams.noOpponent &&
-        FeatureFlags.isActiveWindow(FeatureFlags.shotCharts) ? (
+        {matchupFilterParams.oppoTeam != AvailableTeams.noOpponent ? (
           <Container>
             <Row>
               <Col xs={12} className="text-center small">
@@ -563,15 +568,39 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
             <Row>
               <Col xs={12} className="text-center small">
                 <ShotChartDiagView
-                  title={`${matchupFilterParams.team} Shot Charts`}
-                  off={dataEvent.shotChartInfoA.off}
-                  def={dataEvent.shotChartInfoA.def}
+                  off={
+                    breakdownViewArr?.[0] == "off"
+                      ? dataEvent.shotChartInfoA.off
+                      : dataEvent.shotChartInfoA.def
+                  }
+                  def={
+                    matchupFilterParams.oppoTeam == AvailableTeams.noOpponent
+                      ? dataEvent.shotChartInfoA.def
+                      : breakdownViewArr?.[1] == "off"
+                      ? dataEvent.shotChartInfoB.off
+                      : dataEvent.shotChartInfoB.def
+                  }
                   gender={matchupFilterParams.gender as "Men" | "Women"}
                   quickSwitchOptions={[]}
-                  chartOpts={undefined}
+                  chartOpts={{ buildZones: shotChartsShowZones }}
                   onChangeChartOpts={(newOpts) => {
-                    //TOOD
+                    setShotChartsShowZones(newOpts.buildZones || false);
                   }}
+                  labelOverrides={[
+                    breakdownViewArr?.[0] == "off"
+                      ? `${matchupFilterParams.team} Offense:`
+                      : `${matchupFilterParams.team} Defense:`,
+                    matchupFilterParams.oppoTeam == AvailableTeams.noOpponent
+                      ? `${matchupFilterParams.team} Defense:`
+                      : breakdownViewArr?.[1] == "off"
+                      ? `${matchupFilterParams.oppoTeam} Offense:`
+                      : `${matchupFilterParams.oppoTeam} Defense:`,
+                  ]}
+                  offDefOverrides={[
+                    breakdownViewArr?.[0] != "off",
+                    matchupFilterParams.oppoTeam == AvailableTeams.noOpponent ||
+                      breakdownViewArr?.[1] != "off",
+                  ]}
                 />
               </Col>
             </Row>
@@ -579,15 +608,35 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
               <Row>
                 <Col xs={12} className="text-center small">
                   <ShotChartDiagView
-                    title={`${matchupFilterParams.oppoTeam} Shot Charts`}
-                    off={dataEvent.shotChartInfoB.off}
-                    def={dataEvent.shotChartInfoB.def}
+                    off={
+                      breakdownViewArr?.[0] == "off"
+                        ? dataEvent.shotChartInfoA.def
+                        : dataEvent.shotChartInfoA.off
+                    }
+                    def={
+                      breakdownViewArr?.[1] == "off"
+                        ? dataEvent.shotChartInfoB.def
+                        : dataEvent.shotChartInfoB.off
+                    }
                     gender={matchupFilterParams.gender as "Men" | "Women"}
                     quickSwitchOptions={[]}
-                    chartOpts={undefined}
-                    onChangeChartOpts={(newOpts) => {
-                      //TOOD
-                    }}
+                    chartOpts={{ buildZones: shotChartsShowZones }}
+                    onChangeChartOpts={undefined}
+                    labelOverrides={[
+                      breakdownViewArr?.[0] == "off"
+                        ? `${matchupFilterParams.team} Defense:`
+                        : `${matchupFilterParams.team} Offense:`,
+                      breakdownViewArr?.[1] == "off"
+                        ? `${matchupFilterParams.oppoTeam} Defense:`
+                        : `${matchupFilterParams.oppoTeam} Offense:`,
+                    ]}
+                    offDefOverrides={[
+                      breakdownViewArr?.[0] == "off",
+                      breakdownViewArr?.[1] == "off",
+                    ]}
+                    invertLeftRight={
+                      breakdownViewArr?.[0] != breakdownViewArr?.[1]
+                    }
                   />
                 </Col>
               </Row>
@@ -606,7 +655,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
         )}
       </GenericCollapsibleCard>
     );
-  }, [dataEvent, breakdownView]);
+  }, [dataEvent, breakdownView, shotChartsShowZones]);
 
   return (
     <Container>
