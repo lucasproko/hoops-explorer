@@ -37,6 +37,7 @@ import {
   LineupStintInfo,
   IndivStatSet,
   TeamStatSet,
+  ShotStats,
 } from "../utils/StatModels";
 import { QueryUtils } from "../utils/QueryUtils";
 import { UrlRouting } from "../utils/UrlRouting";
@@ -54,6 +55,14 @@ type Props = {
     rosterStatsB: RosterStatsModel,
     lineupStintsA: LineupStintInfo[],
     lineupStintsB: LineupStintInfo[],
+    shotChartInfoA: {
+      off: ShotStats;
+      def: ShotStats;
+    },
+    shotChartInfoB: {
+      off: ShotStats;
+      def: ShotStats;
+    },
     defensiveInfoA?: Record<
       string,
       { teamStats: TeamStatSet; playerStats: Array<IndivStatSet> }
@@ -174,6 +183,10 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
         paramsObj: secondaryRequestA,
         includeRoster: noExtraFullSeasonRequests,
       },
+      {
+        context: ParamPrefixes.shots as ParamPrefixesType,
+        paramsObj: primaryRequestA,
+      },
     ];
     const secondaryRequests: FilterRequestInfo[] = [
       {
@@ -188,6 +201,10 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
         context: ParamPrefixes.player as ParamPrefixesType,
         paramsObj: secondaryRequestB,
         includeRoster: noExtraFullSeasonRequests,
+      },
+      {
+        context: ParamPrefixes.shots as ParamPrefixesType,
+        paramsObj: primaryRequestB,
       },
     ];
     const defensiveRequests: FilterRequestInfo[] = includeDefense
@@ -271,8 +288,15 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
     const rosterInfoA = jsonResps?.[2 + extraFullSeasonRequests]?.roster;
     globalTeamA.roster = rosterInfoA;
 
+    const shotChartInfoA = {
+      off: jsonResps?.[3 + extraFullSeasonRequests]?.responses?.[0]
+        ?.aggregations?.tri_filter?.buckets?.baseline?.off_def?.buckets?.off,
+      def: jsonResps?.[3 + extraFullSeasonRequests]?.responses?.[0]
+        ?.aggregations?.tri_filter?.buckets?.baseline?.off_def?.buckets?.def,
+    };
+
     const noOpponentCase =
-      jsonResps.length < extraFullSeasonRequests + (includeDefense ? 7 : 5);
+      jsonResps.length < extraFullSeasonRequests + (includeDefense ? 8 : 6);
 
     const buildDefensiveInfo = (jsonResp: any[]) => {
       const teamsStatsByTeam: Record<string, TeamStatSet> = _.chain(
@@ -318,7 +342,8 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
     const [defensiveStatsA, defensiveStatsB] = _.thru(includeDefense, (__) => {
       const startingIndex =
         extraFullSeasonRequests +
-        (noOpponentCase ? 3 : 6 + extraFullSeasonRequests);
+        (noOpponentCase ? 4 : 8 + extraFullSeasonRequests);
+
       if (includeDefense) {
         return [
           buildDefensiveInfo(jsonResps?.[startingIndex]?.responses || []),
@@ -340,24 +365,35 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
         fromRoster({}, {}),
         [],
         [],
+        shotChartInfoA,
+        { off: {}, def: {} },
         defensiveStatsA,
         defensiveStatsB
       );
     } else {
-      const lineupJsonB =
-        jsonResps?.[3 + extraFullSeasonRequests]?.responses?.[0] || {};
-      const teamJsonB =
-        jsonResps?.[4 + extraFullSeasonRequests]?.responses?.[0] || {};
+      const startIndexB = 4 + extraFullSeasonRequests;
+      const lineupJsonB = jsonResps?.[startIndexB]?.responses?.[0] || {};
+      const teamJsonB = jsonResps?.[1 + startIndexB]?.responses?.[0] || {};
       const rosterStatsJsonB =
-        jsonResps?.[5 + extraFullSeasonRequests]?.responses?.[0] || {};
+        jsonResps?.[2 + startIndexB]?.responses?.[0] || {};
       const globalRosterStatsJsonB =
-        jsonResps?.[5 + 2 * extraFullSeasonRequests]?.responses?.[0] ||
-        rosterStatsJsonB;
+        jsonResps?.[extraFullSeasonRequests + 2 + startIndexB]
+          ?.responses?.[0] || rosterStatsJsonB;
       const globalTeamB =
         teamJsonB?.aggregations?.global?.only?.buckets?.team ||
         StatModels.emptyTeam();
-      const rosterInfoB = jsonResps?.[5 + 2 * extraFullSeasonRequests]?.roster;
+      const rosterInfoB =
+        jsonResps?.[extraFullSeasonRequests + 2 + startIndexB]?.roster;
       globalTeamB.roster = rosterInfoB;
+
+      const shotChartInfoB = {
+        off: jsonResps?.[extraFullSeasonRequests + 3 + startIndexB]
+          ?.responses?.[0]?.aggregations?.tri_filter?.buckets?.baseline?.off_def
+          ?.buckets?.off,
+        def: jsonResps?.[extraFullSeasonRequests + 3 + startIndexB]
+          ?.responses?.[0]?.aggregations?.tri_filter?.buckets?.baseline?.off_def
+          ?.buckets?.def,
+      };
 
       onStats(
         fromLineups(lineupJsonA),
@@ -368,6 +404,8 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
         fromRoster(rosterStatsJsonB, globalRosterStatsJsonB),
         [],
         [],
+        shotChartInfoA,
+        shotChartInfoB,
         defensiveStatsA,
         defensiveStatsB
       );
@@ -407,6 +445,7 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
     calcRapm: true,
     rapmRegressMode: "0.8",
     showExpanded: true,
+    teamShotCharts: true,
   });
   const lineupParams = (
     params: MatchupFilterParams,

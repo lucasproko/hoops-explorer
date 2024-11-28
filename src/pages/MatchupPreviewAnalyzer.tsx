@@ -32,7 +32,12 @@ import HeaderBar from "../components/shared/HeaderBar";
 import ToggleButtonGroup from "../components/shared/ToggleButtonGroup";
 
 // Utils:
-import { IndivStatSet, StatModels, TeamStatSet } from "../utils/StatModels";
+import {
+  IndivStatSet,
+  ShotStats,
+  StatModels,
+  TeamStatSet,
+} from "../utils/StatModels";
 import { UrlRouting } from "../utils/UrlRouting";
 import { HistoryManager } from "../utils/HistoryManager";
 import { ClientRequestCache } from "../utils/ClientRequestCache";
@@ -49,6 +54,9 @@ import { LeaderboardUtils } from "../utils/LeaderboardUtils";
 import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 import { stringify } from "query-string";
 import { efficiencyAverages } from "../utils/public-data/efficiencyAverages";
+import ShotChartDiagView from "../components/diags/ShotChartDiagView";
+import { DateUtils } from "../utils/DateUtils";
+import { FeatureFlags } from "../utils/stats/FeatureFlags";
 
 const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
   useEffect(() => {
@@ -95,6 +103,14 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
     lineupStatsB: { lineups: [] } as LineupStatsModel,
     lineupStintsA: [] as LineupStintInfo[],
     lineupStintsB: [] as LineupStintInfo[],
+    shotChartInfoA: {
+      off: {} as ShotStats,
+      def: {} as ShotStats,
+    },
+    shotChartInfoB: {
+      off: {} as ShotStats,
+      def: {} as ShotStats,
+    },
     defensiveInfoA: {} as Record<
       string,
       { teamStats: TeamStatSet; playerStats: Array<IndivStatSet> }
@@ -114,6 +130,14 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
     rosterStatsB: RosterStatsModel,
     lineupStintsA: LineupStintInfo[],
     lineupStintsB: LineupStintInfo[],
+    shotChartInfoA: {
+      off: ShotStats;
+      def: ShotStats;
+    },
+    shotChartInfoB: {
+      off: ShotStats;
+      def: ShotStats;
+    },
     defensiveInfoA?: Record<
       string,
       { teamStats: TeamStatSet; playerStats: Array<IndivStatSet> }
@@ -132,6 +156,8 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
       lineupStatsB,
       lineupStintsA,
       lineupStintsB,
+      shotChartInfoA,
+      shotChartInfoB,
       defensiveInfoA: defensiveInfoA || {},
       defensiveInfoB: defensiveInfoB || {},
     });
@@ -475,7 +501,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
         ) : (
           <Container>
             <Row>
-              <Col xs={12} className="text-center">
+              <Col xs={12} className="text-center pt-2">
                 <span>
                   <i>(No Data)</i>
                 </span>
@@ -486,6 +512,101 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
       </GenericCollapsibleCard>
     );
   }, [dataEvent, divisionStatsCache, allPlayerStatsCache, breakdownView]);
+
+  /** Only rebuild the chart if the data changes, or if one of the filter params changes */
+  const shotChart = React.useMemo(() => {
+    return (
+      <GenericCollapsibleCard
+        minimizeMargin={true}
+        title="Team Short Charts"
+        helpLink={maybeShowDocs()}
+      >
+        {matchupFilterParams.oppoTeam != AvailableTeams.noOpponent &&
+        FeatureFlags.isActiveWindow(FeatureFlags.shotCharts) ? (
+          <Container>
+            <Row>
+              <Col xs={12} className="text-center small">
+                <ToggleButtonGroup
+                  items={[
+                    {
+                      label: "Off v Def",
+                      tooltip: "Show Top Team Offense vs Bottom Team Defense",
+                      toggled: breakdownView == "off;def",
+                      onClick: () => setBreakdownView("off;def"),
+                    },
+                    {
+                      label: "Def v Off",
+                      tooltip: "Show Top Team Defense vs Bottom Team Offense",
+                      toggled: breakdownView == "def;off",
+                      onClick: () => setBreakdownView("def;off"),
+                    },
+                    {
+                      label: "Off v Off",
+                      tooltip: "Show Top Team Offense vs Bottom Team Offense",
+                      toggled: breakdownView == "off;off",
+                      onClick: () => setBreakdownView("off;off"),
+                    },
+                    {
+                      label: "Def v Def",
+                      tooltip: "Show Top Team Defense vs Bottom Team Defense",
+                      toggled: breakdownView == "def;def",
+                      onClick: () => setBreakdownView("def;def"),
+                    },
+                  ]}
+                />
+              </Col>
+            </Row>
+          </Container>
+        ) : null}
+        {dataEvent.teamStatsA.baseline.off_poss?.value ? (
+          <Container>
+            <Row>
+              <Col xs={12} className="text-center small">
+                <ShotChartDiagView
+                  title={`${matchupFilterParams.team} Shot Charts`}
+                  off={dataEvent.shotChartInfoA.off}
+                  def={dataEvent.shotChartInfoA.def}
+                  gender={matchupFilterParams.gender as "Men" | "Women"}
+                  quickSwitchOptions={[]}
+                  chartOpts={undefined}
+                  onChangeChartOpts={(newOpts) => {
+                    //TOOD
+                  }}
+                />
+              </Col>
+            </Row>
+            {matchupFilterParams.oppoTeam != AvailableTeams.noOpponent ? (
+              <Row>
+                <Col xs={12} className="text-center small">
+                  <ShotChartDiagView
+                    title={`${matchupFilterParams.oppoTeam} Shot Charts`}
+                    off={dataEvent.shotChartInfoB.off}
+                    def={dataEvent.shotChartInfoB.def}
+                    gender={matchupFilterParams.gender as "Men" | "Women"}
+                    quickSwitchOptions={[]}
+                    chartOpts={undefined}
+                    onChangeChartOpts={(newOpts) => {
+                      //TOOD
+                    }}
+                  />
+                </Col>
+              </Row>
+            ) : undefined}
+          </Container>
+        ) : (
+          <Container>
+            <Row>
+              <Col xs={12} className="text-center pt-2">
+                <span>
+                  <i>(No Data)</i>
+                </span>
+              </Col>
+            </Row>
+          </Container>
+        )}
+      </GenericCollapsibleCard>
+    );
+  }, [dataEvent, breakdownView]);
 
   return (
     <Container>
@@ -519,6 +640,10 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
       </Row>
       <Row>{playStyleChart}</Row>
       <Row>{chart}</Row>
+      {!matchupFilterParams.year ||
+      matchupFilterParams.year >= DateUtils.firstYearWithShotChartData ? (
+        <Row>{shotChart}</Row>
+      ) : undefined}
       <Footer
         year={matchupFilterParams.year}
         gender={matchupFilterParams.gender}
