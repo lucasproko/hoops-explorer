@@ -56,7 +56,36 @@ const homeOrAwayFilter = (homeOrAway: "Home" | "Away" | "Not-Home") => {
       ];
 };
 
-const goodOffOrDfense = (
+const timeOnClock = (clock: "1st-Half" | "2nd-Half" | "Stretch") => {
+  switch (clock) {
+    case "1st-Half":
+      return [
+        {
+          query_string: {
+            query: `end_min:<20`,
+          },
+        },
+      ];
+    case "2nd-Half":
+      return [
+        {
+          query_string: {
+            query: `end_min:>=20`,
+          },
+        },
+      ];
+    case "Stretch":
+      return [
+        {
+          query_string: {
+            query: `end_min:>=32`,
+          },
+        },
+      ];
+  }
+};
+
+const goodOffOrDefense = (
   offOrDef: "Good-Off" | "Good-Def",
   avgEff: number,
   deltaEff: number
@@ -143,9 +172,17 @@ export const buildQueryFiltersBoolArray = (
     ),
     _.flatMap(["Good-Off", "Good-Def"], (offOrDef: "Good-Off" | "Good-Def") => {
       return QueryUtils.filterHas(queryFilters, offOrDef)
-        ? goodOffOrDfense(offOrDef, avgEff, deltaEff)
+        ? goodOffOrDefense(offOrDef, avgEff, deltaEff)
         : [];
     }),
+    _.flatMap(
+      ["1st-Half", "2nd-Half", "Stretch"],
+      (clock: "1st-Half" | "2nd-Half" | "Stretch") => {
+        return QueryUtils.filterHas(queryFilters, clock)
+          ? timeOnClock(clock)
+          : [];
+      }
+    ),
     QueryUtils.filterHas(queryFilters, "Vs-Good")
       ? [
           {

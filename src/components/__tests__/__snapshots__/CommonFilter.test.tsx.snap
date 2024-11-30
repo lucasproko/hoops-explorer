@@ -2932,7 +2932,8 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
                     <b>
                       location_type:Home
                     </b>
-                     or 
+                     or
+                     
                     <b>
                       opponent.Home:*
                     </b>
@@ -2962,7 +2963,8 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
                     <b>
                       location_type:Away
                     </b>
-                     or 
+                     or
+                     
                     <b>
                       opponent.Away:*
                     </b>

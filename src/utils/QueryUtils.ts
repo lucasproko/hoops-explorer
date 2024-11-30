@@ -17,6 +17,9 @@ export type CommonFilterTypeSimple =
   | "Home"
   | "Away"
   | "Not-Home"
+  | "1st-Half"
+  | "2nd-Half"
+  | "Stretch"
   | "Good-Off"
   | "Good-Def"
   | "Vs-Good"
@@ -282,6 +285,13 @@ export class QueryUtils {
           return [typed("Home"), typed("Not-Home")];
         case "Not-Home":
           return [typed("Home"), typed("Away")];
+
+        case "1st-Half":
+          return [typed("2nd-Half"), typed("Stretch")];
+        case "2nd-Half":
+          return [typed("1st-Half"), typed("Stretch")];
+        case "Stretch":
+          return [typed("1st-Half"), typed("2nd-Half")];
 
         case "Vs-Good":
           return [typed("Good-Off"), typed("Good-Def")];
