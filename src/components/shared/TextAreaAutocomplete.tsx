@@ -110,6 +110,8 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
     const refCurrent = useRef<HTMLLIElement>(null);
     const refParent = useRef<HTMLUListElement>(null);
 
+    const [isEditing, setIsEditing] = useState<boolean>(false);
+
     const handleResize = () => {
       setHelperVisible(false);
     };
@@ -422,6 +424,7 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
     };
 
     const handleBlur = (e: KeyboardEvent) => {
+      setIsEditing(false);
       resetHelper();
       onBlur?.(e);
     };
@@ -614,17 +617,53 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
         ? stateValue
         : defaultValue;
 
+    //TODO: WIP for rich text mode
+    //TODO: I think the last 2 things to do are: placeholder and rendering text in badges
+    const richTextMode = false;
+    const refRenderedInput = useRef<HTMLDivElement>(null);
+
     return (
       <>
-        <Component
-          disabled={disabled}
-          onBlur={handleBlur}
-          onChange={handleChange}
-          onKeyDown={handleKeyDown}
-          ref={refInput}
-          value={val}
-          {...rest}
-        />
+        {!richTextMode || isEditing ? (
+          <Component
+            disabled={disabled}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+            ref={refInput}
+            value={val}
+            {...rest}
+            style={{
+              ...((rest.style as Record<string, string>) || {}),
+              height: refRenderedInput.current?.scrollHeight,
+            }}
+          />
+        ) : (
+          <div
+            ref={refRenderedInput}
+            onClick={(e) => {
+              if (!(disabled || rest.readOnly)) setIsEditing(true);
+              setTimeout(() => {
+                refInput.current?.focus();
+              }, 0);
+            }}
+            {...rest}
+            style={{
+              ...((rest.style as Record<string, string>) || {}),
+              resize: "vertical",
+              backgroundColor:
+                disabled || rest.readOnly ? "rgb(233, 236, 239)" : "white",
+              overflow: "hidden",
+              padding: ".375rem .75rem",
+              border: "1px solid #ccc",
+              height: refInput.current?.scrollHeight,
+              borderRadius: ".25rem",
+              cursor: "text",
+            }}
+          >
+            <b>{val}</b>
+          </div>
+        )}
         {renderAutocompleteList()}
       </>
     );
