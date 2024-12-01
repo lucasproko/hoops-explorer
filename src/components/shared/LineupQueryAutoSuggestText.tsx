@@ -25,6 +25,7 @@ import {
 import { dataLastUpdated } from "../../utils/internal-data/dataLastUpdated";
 import { ClientRequestCache } from "../../utils/ClientRequestCache";
 import { QueryUtils } from "../../utils/QueryUtils";
+import { FeatureFlags } from "../../utils/stats/FeatureFlags";
 
 /** The keydown event does not come from AutoSuggestText element */
 export const notFromAutoSuggest = (event: any) => {
@@ -213,6 +214,15 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
         //  Used to be predicated on [] but now we always support the advanced options
         //(initValue && ('[' == initValue[0])) ? advOptions : basicOptions
         advOptions
+      }
+      richTextReplacements={
+        FeatureFlags.isActiveWindow(FeatureFlags.richTextInput)
+          ? {
+              OR: { renderTo: <b>OR</b> },
+              AND: { renderTo: <b>AND</b> },
+              NOT: { renderTo: <b>NOT</b> },
+            }
+          : undefined
       }
       onRequestOptions={fetchRoster}
       trigger=""

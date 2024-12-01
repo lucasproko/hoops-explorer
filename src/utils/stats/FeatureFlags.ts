@@ -25,6 +25,9 @@ export class FeatureFlags {
   /** For player editor in roster table - allows messing with shot selection metrics */
   static readonly advancedPlayerEditor = true;
 
-  /** For work in process on short charts */
+  /** For work in progress on short charts */
   static readonly shotCharts = true;
+
+  /** For work in progress on rich text input */
+  static readonly richTextInput = true;
 }

@@ -13,7 +13,7 @@ import type {
   ReactNode,
   RefObject,
 } from "react";
-import { forwardRef, useCallback, useEffect, useRef, useState } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 //@ts-ignore
 import getCaretCoordinates from "textarea-caret";
 //@ts-ignore
@@ -45,6 +45,7 @@ export type Props<C extends string | ForwardRefExoticComponent<any>> = {
   onSelect?: (...args: any[]) => void;
   changeOnSelect?: (trigger: string | string[], slug: string) => string;
   options?: Record<string, string[]> | string[];
+  richTextReplacements?: Record<string, { renderTo: ReactNode }>;
   regex?: string;
   matchAny?: boolean;
   minChars?: number;
@@ -75,6 +76,7 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
       onSelect,
       changeOnSelect = (trigger, slug) => trigger + slug,
       options = [],
+      richTextReplacements,
       regex = "^[A-Za-z0-9\\-_.!]+$",
       matchAny,
       minChars = 0,
@@ -110,7 +112,9 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
     const refCurrent = useRef<HTMLLIElement>(null);
     const refParent = useRef<HTMLUListElement>(null);
 
+    // Rich text rendering logic
     const [isEditing, setIsEditing] = useState<boolean>(false);
+    const refRenderedInput = useRef<HTMLDivElement>(null);
 
     const handleResize = () => {
       setHelperVisible(false);
@@ -617,14 +621,70 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
         ? stateValue
         : defaultValue;
 
-    //TODO: WIP for rich text mode
-    //TODO: I think the last 2 things to do are: placeholder and rendering text in badges
-    const richTextMode = false;
-    const refRenderedInput = useRef<HTMLDivElement>(null);
+    //TODO: maybe only render nicely 100ms after the last change in value?
+    // In on/off mode, as we type in the "on" window, the "off" is getting re-rendered on every keypress
+
+    /** Replace the raw text with optional rendered text */
+    const renderRichText = (rawText: string) => {
+      // Step 1: build an efficient lookup table:
+      const lookupTable = _.transform(
+        richTextReplacements || {},
+        (acc, value, key) => {
+          const keyLen = key.length;
+          if (!acc[keyLen]) {
+            acc[keyLen] = {};
+          }
+          acc[keyLen][key] = value;
+        },
+        {} as Record<string, Record<string, ReactNode>>
+      );
+
+      // Step 2: define the replacement logic at each candidate point
+      const lookForReplacementAt = (text: string, idx: number) => {
+        return _.chain(lookupTable)
+          .map(
+            (candidateMatches: Record<string, ReactNode>, keyLen: string) => {
+              const key = text.substring(idx, idx + Number(keyLen));
+              if (candidateMatches[key]) {
+                return key;
+              } else {
+                return undefined;
+              }
+            }
+          )
+          .find((key) => key != undefined)
+          .value();
+      };
+
+      // Step 3: loop through the text and replace as needed
+      var accRenderedText: ReactNode[] = [];
+      var lastPushedIdx = 0;
+      for (let idx = 0; idx < rawText.length - 1; idx++) {
+        if (idx == 0 || !rawText.charAt(idx).match(regex)) {
+          const candidate = lookForReplacementAt(
+            rawText,
+            idx == 0 ? idx : idx + 1
+          );
+          if (candidate) {
+            if (lastPushedIdx <= idx && idx > 0) {
+              accRenderedText.push(rawText.substring(lastPushedIdx, idx + 1)); //(ie up to + including idx)
+            }
+            accRenderedText.push(richTextReplacements?.[candidate]?.renderTo);
+            if (idx == 0) {
+              accRenderedText.push(" ");
+            }
+            idx += candidate.length;
+            lastPushedIdx = idx + 1;
+          }
+        }
+      }
+      accRenderedText.push(rawText.substring(lastPushedIdx));
+      return accRenderedText;
+    };
 
     return (
       <>
-        {!richTextMode || isEditing ? (
+        {!richTextReplacements || isEditing ? (
           <Component
             disabled={disabled}
             onBlur={handleBlur}
@@ -645,6 +705,8 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
               if (!(disabled || rest.readOnly)) setIsEditing(true);
               setTimeout(() => {
                 refInput.current?.focus();
+                if (refInput.current)
+                  refInput.current.selectionStart = (val || "").length;
               }, 0);
             }}
             {...rest}
@@ -661,7 +723,11 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
               cursor: "text",
             }}
           >
-            <b>{val}</b>
+            {val ? (
+              renderRichText(val)
+            ) : (
+              <div style={{ color: "darkgray" }}>{rest.placeholder || ""}</div>
+            )}
           </div>
         )}
         {renderAutocompleteList()}
