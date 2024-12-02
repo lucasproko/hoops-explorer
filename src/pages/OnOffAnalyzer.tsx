@@ -4,7 +4,6 @@ import { initGA, logPageView } from "../utils/GoogleAnalytics";
 // React imports:
 import React, { useState, useEffect, useRef } from "react";
 import Router, { useRouter } from "next/router";
-import Link from "next/link";
 
 // Next imports:
 import { NextPage } from "next";
@@ -23,7 +22,6 @@ import {
   ParamDefaults,
   ParamPrefixes,
   GameFilterParams,
-  LineupFilterParams,
 } from "../utils/FilterModels";
 import TeamStatsTable, { TeamStatsModel } from "../components/TeamStatsTable";
 import RosterStatsTable, {
@@ -38,21 +36,11 @@ import Footer from "../components/shared/Footer";
 import HeaderBar from "../components/shared/HeaderBar";
 
 // Utils:
-import {
-  StatModels,
-  OnOffBaselineEnum,
-  OnOffBaselineGlobalEnum,
-  PlayerCode,
-  PlayerId,
-  Statistic,
-  IndivStatSet,
-  TeamStatSet,
-  LineupStatSet,
-  ShotStatsModel,
-} from "../utils/StatModels";
+import { StatModels, ShotStatsModel } from "../utils/StatModels";
 import { UrlRouting } from "../utils/UrlRouting";
 import { HistoryManager } from "../utils/HistoryManager";
 import { ClientRequestCache } from "../utils/ClientRequestCache";
+import InternalNavBarInRow from "../components/shared/InternalNavBarInRow";
 
 const OnOffAnalyzerPage: NextPage<{}> = () => {
   useEffect(() => {
@@ -65,6 +53,18 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       logPageView();
     }
   }); //(on any change to the DOM)
+
+  // Quick navigation to the different sections
+  const topRef = useRef<HTMLDivElement>(null);
+  const teamAnalysisRef = useRef<HTMLDivElement>(null);
+  const indivAnalysisRef = useRef<HTMLDivElement>(null);
+  const lineupComparisonRef = useRef<HTMLDivElement>(null);
+  const navigationRefs = {
+    Top: topRef,
+    "Team Analysis": teamAnalysisRef,
+    "Player Analysis": indivAnalysisRef,
+    "Compare Lineups": lineupComparisonRef,
+  };
 
   // Team Stats interface
 
@@ -313,7 +313,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
 
   return (
     <Container>
-      <Row>
+      <Row ref={topRef}>
         <Col xs={12} className="text-center">
           <h3>
             CBB On/Off Analysis Tool{" "}
@@ -338,9 +338,10 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
           />
         </GenericCollapsibleCard>
       </Row>
-      <Row>{teamStatsTable}</Row>
-      <Row>{rosterStatsTable}</Row>
-      <Row>
+      <InternalNavBarInRow refs={navigationRefs} />
+      <Row ref={teamAnalysisRef}>{teamStatsTable}</Row>
+      <Row ref={indivAnalysisRef}>{rosterStatsTable}</Row>
+      <Row ref={lineupComparisonRef}>
         <GenericCollapsibleCard
           minimizeMargin={false}
           title="Lineup Comparison"

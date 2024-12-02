@@ -55,6 +55,7 @@ import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 import { efficiencyAverages } from "../utils/public-data/efficiencyAverages";
 import ShotChartDiagView from "../components/diags/ShotChartDiagView";
 import { DateUtils } from "../utils/DateUtils";
+import InternalNavBarInRow from "../components/shared/InternalNavBarInRow";
 
 const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
   useEffect(() => {
@@ -528,6 +529,12 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
   const playTypesRef = useRef<HTMLDivElement>(null);
   const playerImpactRef = useRef<HTMLDivElement>(null);
   const shotChartsRef = useRef<HTMLDivElement>(null);
+  const navigationRefs = {
+    Top: topRef,
+    "Play Types": playTypesRef,
+    "Player Impact": playerImpactRef,
+    "Shot Charts": showShotCharts ? shotChartsRef : undefined,
+  };
 
   /** Only rebuild the chart if the data changes, or if one of the filter params changes */
   const shotChart = React.useMemo(() => {
@@ -697,55 +704,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
           />
         </GenericCollapsibleCard>
       </Row>
-      <Row
-        className="mt-2 sticky-top small"
-        style={{ backgroundColor: "white", opacity: "85%", zIndex: 1 }}
-      >
-        <Col xs={12} className="text-center">
-          Jump to:{" "}
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              topRef?.current?.scrollIntoView({ behavior: "smooth" });
-            }}
-          >
-            Top
-          </a>
-          {" | "}
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              playTypesRef?.current?.scrollIntoView({ behavior: "smooth" });
-            }}
-          >
-            Play Types
-          </a>
-          {" | "}
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              playerImpactRef?.current?.scrollIntoView({ behavior: "smooth" });
-            }}
-          >
-            Player Impact
-          </a>
-          {showShotCharts ? " | " : ""}
-          {showShotCharts ? (
-            <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                shotChartsRef?.current?.scrollIntoView({ behavior: "smooth" });
-              }}
-            >
-              Shot Charts
-            </a>
-          ) : undefined}
-        </Col>
-      </Row>
+      <InternalNavBarInRow refs={navigationRefs} />
       <Row ref={playTypesRef}>{playStyleChart}</Row>
       <Row ref={playerImpactRef}>{chart}</Row>
       {showShotCharts ? <Row ref={shotChartsRef}>{shotChart}</Row> : undefined}

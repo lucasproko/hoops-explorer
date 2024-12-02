@@ -46,6 +46,7 @@ import {
 } from "../utils/tables/GradeTableUtils";
 import { PlayTypeDiagUtils } from "../utils/tables/PlayTypeDiagUtils";
 import { efficiencyAverages } from "../utils/public-data/efficiencyAverages";
+import InternalNavBarInRow from "../components/shared/InternalNavBarInRow";
 
 const MatchupAnalyzerPage: NextPage<{}> = () => {
   useEffect(() => {
@@ -236,6 +237,18 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
     }
   }
 
+  // Quick navigation to the different sections
+  const topRef = useRef<HTMLDivElement>(null);
+  const playTypesRef = useRef<HTMLDivElement>(null);
+  const playerImpactRef = useRef<HTMLDivElement>(null);
+  const timelineViewRef = useRef<HTMLDivElement>(null);
+  const navigationRefs = {
+    Top: topRef,
+    "Player Impact": playerImpactRef,
+    Timeline: timelineViewRef,
+    "Play Types": playTypesRef,
+  };
+
   /** Only rebuild the chart if the data changes, or if one of the filter params changes */
 
   /** Only rebuild the table if the data changes */
@@ -266,7 +279,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
     return (
       <GenericCollapsibleCard
         minimizeMargin={true}
-        title="Lineup Stints"
+        title="Timeline View"
         helpLink={maybeShowDocs()}
       >
         {dataEvent.teamStatsA.baseline.off_poss?.value ? (
@@ -375,7 +388,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
 
   return (
     <Container>
-      <Row>
+      <Row ref={topRef}>
         <Col xs={12} className="text-center">
           <h3>
             CBB Match-up Analysis Tool{" "}
@@ -402,9 +415,10 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
           />
         </GenericCollapsibleCard>
       </Row>
-      <Row>{chart}</Row>
-      <Row>{lineupStintTable}</Row>
-      <Row>{playStyleChart}</Row>
+      <InternalNavBarInRow refs={navigationRefs} />
+      <Row ref={playerImpactRef}>{chart}</Row>
+      <Row ref={timelineViewRef}>{lineupStintTable}</Row>
+      <Row ref={playTypesRef}>{playStyleChart}</Row>
       <Footer
         year={matchupFilterParams.year}
         gender={matchupFilterParams.gender}

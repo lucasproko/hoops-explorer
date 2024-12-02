@@ -46,6 +46,24 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
       />
     </GenericCollapsibleCard>
   </Row>
+  <InternalNavBarInRow
+    refs={
+      Object {
+        "Compare Lineups": Object {
+          "current": null,
+        },
+        "Player Analysis": Object {
+          "current": null,
+        },
+        "Team Analysis": Object {
+          "current": null,
+        },
+        "Top": Object {
+          "current": null,
+        },
+      }
+    }
+  />
   <Row
     noGutters={false}
   >

@@ -27,7 +27,4 @@ export class FeatureFlags {
 
   /** For work in progress on short charts */
   static readonly shotCharts = true;
-
-  /** For work in progress on rich text input */
-  static readonly richTextInput = true;
 }

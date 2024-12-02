@@ -232,8 +232,8 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
     if (!oppoQueryInfo) {
       return [{}, []];
     }
-    const baseQueryA = `opponent.team:"${oppoQueryInfo.team}" AND date:${oppoQueryInfo.dateStr}`;
-    const baseQueryB = `opponent.team:"${team}" AND date:${oppoQueryInfo.dateStr}`;
+    const baseQueryA = `opponent.team:"${oppoQueryInfo.team}" AND date:(${oppoQueryInfo.dateStr})`;
+    const baseQueryB = `opponent.team:"${team}" AND date:(${oppoQueryInfo.dateStr})`;
 
     const primaryRequestA: MatchupFilterParams = {
       ...commonParams,
@@ -505,6 +505,7 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
     showTeamPlayTypes: true,
     rapmRegressMode: "0.8",
     showExpanded: true,
+    teamShotCharts: true,
   });
   const lineupParams = (
     params: MatchupFilterParams,

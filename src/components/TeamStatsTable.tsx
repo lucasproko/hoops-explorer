@@ -308,7 +308,16 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
           luck={luckConfig}
           showHelp={showHelp}
         />
-        <Form.Row>
+        <Form.Row
+          className="sticky-top pt-1"
+          style={{
+            position: "sticky",
+            top: "1em",
+            backgroundColor: "white",
+            opacity: "85%",
+            zIndex: 2,
+          }}
+        >
           <Col sm="11">
             <Form.Row>
               <Col>

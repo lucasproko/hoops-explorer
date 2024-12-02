@@ -7,7 +7,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
   >
     <div>
       <div
-        class="form-row"
+        class="sticky-top pt-1 form-row"
+        style="position: sticky; top: 1em; background-color: white; z-index: 2;"
       >
         <div
           class="col-sm-11"
@@ -2111,7 +2112,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
   >
     <div>
       <div
-        class="form-row"
+        class="sticky-top pt-1 form-row"
+        style="position: sticky; top: 1em; background-color: white; z-index: 2;"
       >
         <div
           class="col-sm-11"
@@ -9906,7 +9908,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
   >
     <div>
       <div
-        class="form-row"
+        class="sticky-top pt-1 form-row"
+        style="position: sticky; top: 1em; background-color: white; z-index: 2;"
       >
         <div
           class="col-sm-11"

@@ -219,47 +219,43 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
         //(initValue && ('[' == initValue[0])) ? advOptions : basicOptions
         advOptions
       }
-      richTextReplacements={
-        FeatureFlags.isActiveWindow(FeatureFlags.richTextInput)
-          ? {
-              ..._.chain(basicOptions)
-                .map((s) => [
-                  s,
-                  {
-                    renderTo: (
-                      <Badge variant="info">
-                        <div style={{ fontSize: "0.95rem" }}>{s}</div>
-                      </Badge>
-                    ),
-                  },
-                ])
-                .fromPairs()
-                .value(),
-              ..._.chain(advancedFields)
-                .map((s) => [
-                  s,
-                  {
-                    renderTo: (
-                      <Badge variant="secondary">
-                        <div style={{ fontSize: "0.85rem" }}>{s}</div>
-                      </Badge>
-                    ),
-                  },
-                ])
-                .fromPairs()
-                .value(),
-              OR: {
-                renderTo: (
-                  <Badge pill variant="primary">
-                    OR
-                  </Badge>
-                ),
-              },
-              AND: { renderTo: <Badge variant="primary">AND</Badge> },
-              NOT: { renderTo: <Badge variant="danger">NOT</Badge> },
-            }
-          : undefined
-      }
+      richTextReplacements={{
+        ..._.chain(basicOptions)
+          .map((s) => [
+            s,
+            {
+              renderTo: (
+                <Badge variant="info">
+                  <div style={{ fontSize: "0.95rem" }}>{s}</div>
+                </Badge>
+              ),
+            },
+          ])
+          .fromPairs()
+          .value(),
+        ..._.chain(advancedFields)
+          .map((s) => [
+            s,
+            {
+              renderTo: (
+                <Badge variant="secondary">
+                  <div style={{ fontSize: "0.85rem" }}>{s}</div>
+                </Badge>
+              ),
+            },
+          ])
+          .fromPairs()
+          .value(),
+        OR: {
+          renderTo: (
+            <Badge pill variant="primary">
+              OR
+            </Badge>
+          ),
+        },
+        AND: { renderTo: <Badge variant="primary">AND</Badge> },
+        NOT: { renderTo: <Badge variant="danger">NOT</Badge> },
+      }}
       onRequestOptions={fetchRoster}
       trigger=""
       regex='^[A-Za-z0-9\\_.,":-]+$'
