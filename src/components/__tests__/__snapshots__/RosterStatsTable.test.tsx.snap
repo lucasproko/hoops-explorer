@@ -5879,86 +5879,6 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
           />
         </InputGroup>
       </FormGroup>
-    </FormRow>
-    <FormRow
-      className="sticky-top pt-1"
-      style={
-        Object {
-          "backgroundColor": "white",
-          "opacity": "85%",
-          "position": "sticky",
-          "top": "1em",
-          "zIndex": 2,
-        }
-      }
-    >
-      <Col
-        sm="11"
-      >
-        <ToggleButtonGroup
-          items={
-            Array [
-              Object {
-                "label": "Expanded",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show expanded player stats",
-              },
-              Object {
-                "label": "Poss%",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Show possessions as count",
-              },
-              Object {
-                "label": "* Mins%",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
-              },
-              Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show player ranks/percentiles",
-              },
-              Object {
-                "label": "RAPM",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
-              },
-              Object {
-                "label": "Luck",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Adjust statistics for luck",
-              },
-              Object {
-                "label": <span>
-                  Edit...
-                  
-                </span>,
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Launch player stats manual editor",
-              },
-              Object {
-                "label": "Style",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show play style breakdowns",
-              },
-              Object {
-                "label": "+ Info",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show extra info sub-header (not currently saved like other options)",
-              },
-            ]
-          }
-        />
-      </Col>
       <FormGroup
         as={
           Object {
@@ -6137,6 +6057,157 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
           />
         </GenericTogglingMenu>
       </FormGroup>
+    </FormRow>
+    <FormRow
+      className="sticky-top pt-1 d-none d-md-flex"
+      style={
+        Object {
+          "backgroundColor": "white",
+          "opacity": "85%",
+          "position": "sticky",
+          "top": "1em",
+          "zIndex": 2,
+        }
+      }
+    >
+      <Col
+        sm="11"
+      >
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show expanded player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "* Mins%",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show player ranks/percentiles",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+              Object {
+                "label": <span>
+                  Edit...
+                  
+                </span>,
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+              Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
+            ]
+          }
+        />
+      </Col>
+    </FormRow>
+    <FormRow
+      className="pt-1 d-md-none"
+    >
+      <Col
+        sm="11"
+      >
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show expanded player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "* Mins%",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show player ranks/percentiles",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+              Object {
+                "label": <span>
+                  Edit...
+                  
+                </span>,
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+              Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
+            ]
+          }
+        />
+      </Col>
     </FormRow>
     <Row
       className="mt-2"
@@ -9945,86 +10016,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
           />
         </InputGroup>
       </FormGroup>
-    </FormRow>
-    <FormRow
-      className="sticky-top pt-1"
-      style={
-        Object {
-          "backgroundColor": "white",
-          "opacity": "85%",
-          "position": "sticky",
-          "top": "1em",
-          "zIndex": 2,
-        }
-      }
-    >
-      <Col
-        sm="11"
-      >
-        <ToggleButtonGroup
-          items={
-            Array [
-              Object {
-                "label": "Expanded",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show expanded player stats",
-              },
-              Object {
-                "label": "Poss%",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Show possessions as count",
-              },
-              Object {
-                "label": "* Mins%",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
-              },
-              Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show player ranks/percentiles",
-              },
-              Object {
-                "label": "RAPM",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
-              },
-              Object {
-                "label": "Luck",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Adjust statistics for luck",
-              },
-              Object {
-                "label": <span>
-                  Edit...
-                  
-                </span>,
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Launch player stats manual editor",
-              },
-              Object {
-                "label": "Style",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show play style breakdowns",
-              },
-              Object {
-                "label": "+ Info",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show extra info sub-header (not currently saved like other options)",
-              },
-            ]
-          }
-        />
-      </Col>
       <FormGroup
         as={
           Object {
@@ -10203,6 +10194,157 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
           />
         </GenericTogglingMenu>
       </FormGroup>
+    </FormRow>
+    <FormRow
+      className="sticky-top pt-1 d-none d-md-flex"
+      style={
+        Object {
+          "backgroundColor": "white",
+          "opacity": "85%",
+          "position": "sticky",
+          "top": "1em",
+          "zIndex": 2,
+        }
+      }
+    >
+      <Col
+        sm="11"
+      >
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show expanded player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "* Mins%",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show player ranks/percentiles",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+              Object {
+                "label": <span>
+                  Edit...
+                  
+                </span>,
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+              Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
+            ]
+          }
+        />
+      </Col>
+    </FormRow>
+    <FormRow
+      className="pt-1 d-md-none"
+    >
+      <Col
+        sm="11"
+      >
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show expanded player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "* Mins%",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show player ranks/percentiles",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+              Object {
+                "label": <span>
+                  Edit...
+                  
+                </span>,
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+              Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
+            ]
+          }
+        />
+      </Col>
     </FormRow>
     <Row
       className="mt-2"
@@ -13012,86 +13154,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
           />
         </InputGroup>
       </FormGroup>
-    </FormRow>
-    <FormRow
-      className="sticky-top pt-1"
-      style={
-        Object {
-          "backgroundColor": "white",
-          "opacity": "85%",
-          "position": "sticky",
-          "top": "1em",
-          "zIndex": 2,
-        }
-      }
-    >
-      <Col
-        sm="11"
-      >
-        <ToggleButtonGroup
-          items={
-            Array [
-              Object {
-                "label": "Expanded",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Show single row of player stats",
-              },
-              Object {
-                "label": "Poss%",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Show possessions as count",
-              },
-              Object {
-                "label": "* Mins%",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
-              },
-              Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show player ranks/percentiles",
-              },
-              Object {
-                "label": "RAPM",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
-              },
-              Object {
-                "label": "Luck",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Adjust statistics for luck",
-              },
-              Object {
-                "label": <span>
-                  Edit...
-                  
-                </span>,
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Launch player stats manual editor",
-              },
-              Object {
-                "label": "Style",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show play style breakdowns",
-              },
-              Object {
-                "label": "+ Info",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show extra info sub-header (not currently saved like other options)",
-              },
-            ]
-          }
-        />
-      </Col>
       <FormGroup
         as={
           Object {
@@ -13270,6 +13332,157 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
           />
         </GenericTogglingMenu>
       </FormGroup>
+    </FormRow>
+    <FormRow
+      className="sticky-top pt-1 d-none d-md-flex"
+      style={
+        Object {
+          "backgroundColor": "white",
+          "opacity": "85%",
+          "position": "sticky",
+          "top": "1em",
+          "zIndex": 2,
+        }
+      }
+    >
+      <Col
+        sm="11"
+      >
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show single row of player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "* Mins%",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show player ranks/percentiles",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+              Object {
+                "label": <span>
+                  Edit...
+                  
+                </span>,
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+              Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
+            ]
+          }
+        />
+      </Col>
+    </FormRow>
+    <FormRow
+      className="pt-1 d-md-none"
+    >
+      <Col
+        sm="11"
+      >
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show single row of player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "* Mins%",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show player ranks/percentiles",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+              Object {
+                "label": <span>
+                  Edit...
+                  
+                </span>,
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+              Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
+            ]
+          }
+        />
+      </Col>
     </FormRow>
     <Row
       className="mt-2"
@@ -18951,86 +19164,6 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
           />
         </InputGroup>
       </FormGroup>
-    </FormRow>
-    <FormRow
-      className="sticky-top pt-1"
-      style={
-        Object {
-          "backgroundColor": "white",
-          "opacity": "85%",
-          "position": "sticky",
-          "top": "1em",
-          "zIndex": 2,
-        }
-      }
-    >
-      <Col
-        sm="11"
-      >
-        <ToggleButtonGroup
-          items={
-            Array [
-              Object {
-                "label": "Expanded",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Show single row of player stats",
-              },
-              Object {
-                "label": "Poss%",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Show possessions as count",
-              },
-              Object {
-                "label": "* Mins%",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
-              },
-              Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show player ranks/percentiles",
-              },
-              Object {
-                "label": "RAPM",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
-              },
-              Object {
-                "label": "Luck",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Adjust statistics for luck",
-              },
-              Object {
-                "label": <span>
-                  Edit...
-                  
-                </span>,
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Launch player stats manual editor",
-              },
-              Object {
-                "label": "Style",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show play style breakdowns",
-              },
-              Object {
-                "label": "+ Info",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show extra info sub-header (not currently saved like other options)",
-              },
-            ]
-          }
-        />
-      </Col>
       <FormGroup
         as={
           Object {
@@ -19209,6 +19342,157 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
           />
         </GenericTogglingMenu>
       </FormGroup>
+    </FormRow>
+    <FormRow
+      className="sticky-top pt-1 d-none d-md-flex"
+      style={
+        Object {
+          "backgroundColor": "white",
+          "opacity": "85%",
+          "position": "sticky",
+          "top": "1em",
+          "zIndex": 2,
+        }
+      }
+    >
+      <Col
+        sm="11"
+      >
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show single row of player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "* Mins%",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show player ranks/percentiles",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+              Object {
+                "label": <span>
+                  Edit...
+                  
+                </span>,
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+              Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
+            ]
+          }
+        />
+      </Col>
+    </FormRow>
+    <FormRow
+      className="pt-1 d-md-none"
+    >
+      <Col
+        sm="11"
+      >
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show single row of player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "* Mins%",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show player ranks/percentiles",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+              Object {
+                "label": <span>
+                  Edit...
+                  
+                </span>,
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+              Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
+            ]
+          }
+        />
+      </Col>
     </FormRow>
     <Row
       className="mt-2"
@@ -26873,86 +27157,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
           />
         </InputGroup>
       </FormGroup>
-    </FormRow>
-    <FormRow
-      className="sticky-top pt-1"
-      style={
-        Object {
-          "backgroundColor": "white",
-          "opacity": "85%",
-          "position": "sticky",
-          "top": "1em",
-          "zIndex": 2,
-        }
-      }
-    >
-      <Col
-        sm="11"
-      >
-        <ToggleButtonGroup
-          items={
-            Array [
-              Object {
-                "label": "Expanded",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show expanded player stats",
-              },
-              Object {
-                "label": "Poss%",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Show possessions as count",
-              },
-              Object {
-                "label": "* Mins%",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
-              },
-              Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Hide player ranks/percentiles",
-              },
-              Object {
-                "label": "RAPM",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
-              },
-              Object {
-                "label": "Luck",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Adjust statistics for luck",
-              },
-              Object {
-                "label": <span>
-                  Edit...
-                  
-                </span>,
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Launch player stats manual editor",
-              },
-              Object {
-                "label": "Style",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show play style breakdowns",
-              },
-              Object {
-                "label": "+ Info",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show extra info sub-header (not currently saved like other options)",
-              },
-            ]
-          }
-        />
-      </Col>
       <FormGroup
         as={
           Object {
@@ -27131,6 +27335,157 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
           />
         </GenericTogglingMenu>
       </FormGroup>
+    </FormRow>
+    <FormRow
+      className="sticky-top pt-1 d-none d-md-flex"
+      style={
+        Object {
+          "backgroundColor": "white",
+          "opacity": "85%",
+          "position": "sticky",
+          "top": "1em",
+          "zIndex": 2,
+        }
+      }
+    >
+      <Col
+        sm="11"
+      >
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show expanded player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "* Mins%",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Hide player ranks/percentiles",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+              Object {
+                "label": <span>
+                  Edit...
+                  
+                </span>,
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+              Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
+            ]
+          }
+        />
+      </Col>
+    </FormRow>
+    <FormRow
+      className="pt-1 d-md-none"
+    >
+      <Col
+        sm="11"
+      >
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show expanded player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "* Mins%",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Hide player ranks/percentiles",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+              Object {
+                "label": <span>
+                  Edit...
+                  
+                </span>,
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+              Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
+            ]
+          }
+        />
+      </Col>
     </FormRow>
     <Row
       className="mt-2"
@@ -35169,86 +35524,6 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
           />
         </InputGroup>
       </FormGroup>
-    </FormRow>
-    <FormRow
-      className="sticky-top pt-1"
-      style={
-        Object {
-          "backgroundColor": "white",
-          "opacity": "85%",
-          "position": "sticky",
-          "top": "1em",
-          "zIndex": 2,
-        }
-      }
-    >
-      <Col
-        sm="11"
-      >
-        <ToggleButtonGroup
-          items={
-            Array [
-              Object {
-                "label": "Expanded",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Show single row of player stats",
-              },
-              Object {
-                "label": "Poss%",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Show possessions as count",
-              },
-              Object {
-                "label": "* Mins%",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
-              },
-              Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Hide player ranks/percentiles",
-              },
-              Object {
-                "label": "RAPM",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
-              },
-              Object {
-                "label": "Luck",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Adjust statistics for luck",
-              },
-              Object {
-                "label": <span>
-                  Edit...
-                  
-                </span>,
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Launch player stats manual editor",
-              },
-              Object {
-                "label": "Style",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show play style breakdowns",
-              },
-              Object {
-                "label": "+ Info",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show extra info sub-header (not currently saved like other options)",
-              },
-            ]
-          }
-        />
-      </Col>
       <FormGroup
         as={
           Object {
@@ -35427,6 +35702,157 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
           />
         </GenericTogglingMenu>
       </FormGroup>
+    </FormRow>
+    <FormRow
+      className="sticky-top pt-1 d-none d-md-flex"
+      style={
+        Object {
+          "backgroundColor": "white",
+          "opacity": "85%",
+          "position": "sticky",
+          "top": "1em",
+          "zIndex": 2,
+        }
+      }
+    >
+      <Col
+        sm="11"
+      >
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show single row of player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "* Mins%",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Hide player ranks/percentiles",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+              Object {
+                "label": <span>
+                  Edit...
+                  
+                </span>,
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+              Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
+            ]
+          }
+        />
+      </Col>
+    </FormRow>
+    <FormRow
+      className="pt-1 d-md-none"
+    >
+      <Col
+        sm="11"
+      >
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show single row of player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "* Mins%",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Hide player ranks/percentiles",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+              Object {
+                "label": <span>
+                  Edit...
+                  
+                </span>,
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+              Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
+            ]
+          }
+        />
+      </Col>
     </FormRow>
     <Row
       className="mt-2"
@@ -46913,86 +47339,6 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
           />
         </InputGroup>
       </FormGroup>
-    </FormRow>
-    <FormRow
-      className="sticky-top pt-1"
-      style={
-        Object {
-          "backgroundColor": "white",
-          "opacity": "85%",
-          "position": "sticky",
-          "top": "1em",
-          "zIndex": 2,
-        }
-      }
-    >
-      <Col
-        sm="11"
-      >
-        <ToggleButtonGroup
-          items={
-            Array [
-              Object {
-                "label": "Expanded",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show expanded player stats",
-              },
-              Object {
-                "label": "Poss%",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Show possessions as count",
-              },
-              Object {
-                "label": "* Mins%",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
-              },
-              Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show player ranks/percentiles",
-              },
-              Object {
-                "label": "RAPM",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values). Note luck is applied more aggressively here than in the leaderboard/team report pages",
-              },
-              Object {
-                "label": "Luck",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Remove luck adjustments",
-              },
-              Object {
-                "label": <span>
-                  Edit...
-                  
-                </span>,
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Launch player stats manual editor",
-              },
-              Object {
-                "label": "Style",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show play style breakdowns",
-              },
-              Object {
-                "label": "+ Info",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show extra info sub-header (not currently saved like other options)",
-              },
-            ]
-          }
-        />
-      </Col>
       <FormGroup
         as={
           Object {
@@ -47171,6 +47517,157 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
           />
         </GenericTogglingMenu>
       </FormGroup>
+    </FormRow>
+    <FormRow
+      className="sticky-top pt-1 d-none d-md-flex"
+      style={
+        Object {
+          "backgroundColor": "white",
+          "opacity": "85%",
+          "position": "sticky",
+          "top": "1em",
+          "zIndex": 2,
+        }
+      }
+    >
+      <Col
+        sm="11"
+      >
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show expanded player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "* Mins%",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show player ranks/percentiles",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values). Note luck is applied more aggressively here than in the leaderboard/team report pages",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Remove luck adjustments",
+              },
+              Object {
+                "label": <span>
+                  Edit...
+                  
+                </span>,
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+              Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
+            ]
+          }
+        />
+      </Col>
+    </FormRow>
+    <FormRow
+      className="pt-1 d-md-none"
+    >
+      <Col
+        sm="11"
+      >
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show expanded player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "* Mins%",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show player ranks/percentiles",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values). Note luck is applied more aggressively here than in the leaderboard/team report pages",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Remove luck adjustments",
+              },
+              Object {
+                "label": <span>
+                  Edit...
+                  
+                </span>,
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+              Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
+            ]
+          }
+        />
+      </Col>
     </FormRow>
     <Row
       className="mt-2"
@@ -55858,94 +56355,6 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
           />
         </InputGroup>
       </FormGroup>
-    </FormRow>
-    <FormRow
-      className="sticky-top pt-1"
-      style={
-        Object {
-          "backgroundColor": "white",
-          "opacity": "85%",
-          "position": "sticky",
-          "top": "1em",
-          "zIndex": 2,
-        }
-      }
-    >
-      <Col
-        sm="11"
-      >
-        <ToggleButtonGroup
-          items={
-            Array [
-              Object {
-                "label": "Expanded",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show expanded player stats",
-              },
-              Object {
-                "label": "Poss%",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Show possessions as count",
-              },
-              Object {
-                "label": "* Mins%",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
-              },
-              Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show player ranks/percentiles",
-              },
-              Object {
-                "label": "RAPM",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values). Note luck is applied more aggressively here than in the leaderboard/team report pages",
-              },
-              Object {
-                "label": "Luck",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Remove luck adjustments",
-              },
-              Object {
-                "label": <span>
-                  Edit...
-                   
-                  <small>
-                    <Badge
-                      pill={false}
-                      variant="dark"
-                    >
-                      4
-                    </Badge>
-                  </small>
-                </span>,
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Launch player stats manual editor",
-              },
-              Object {
-                "label": "Style",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Hide play style breakdowns",
-              },
-              Object {
-                "label": "+ Info",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show extra info sub-header (not currently saved like other options)",
-              },
-            ]
-          }
-        />
-      </Col>
       <FormGroup
         as={
           Object {
@@ -56124,6 +56533,173 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
           />
         </GenericTogglingMenu>
       </FormGroup>
+    </FormRow>
+    <FormRow
+      className="sticky-top pt-1 d-none d-md-flex"
+      style={
+        Object {
+          "backgroundColor": "white",
+          "opacity": "85%",
+          "position": "sticky",
+          "top": "1em",
+          "zIndex": 2,
+        }
+      }
+    >
+      <Col
+        sm="11"
+      >
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show expanded player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "* Mins%",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show player ranks/percentiles",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values). Note luck is applied more aggressively here than in the leaderboard/team report pages",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Remove luck adjustments",
+              },
+              Object {
+                "label": <span>
+                  Edit...
+                   
+                  <small>
+                    <Badge
+                      pill={false}
+                      variant="dark"
+                    >
+                      4
+                    </Badge>
+                  </small>
+                </span>,
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+              Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Hide play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
+            ]
+          }
+        />
+      </Col>
+    </FormRow>
+    <FormRow
+      className="pt-1 d-md-none"
+    >
+      <Col
+        sm="11"
+      >
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show expanded player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "* Mins%",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show player ranks/percentiles",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values). Note luck is applied more aggressively here than in the leaderboard/team report pages",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Remove luck adjustments",
+              },
+              Object {
+                "label": <span>
+                  Edit...
+                   
+                  <small>
+                    <Badge
+                      pill={false}
+                      variant="dark"
+                    >
+                      4
+                    </Badge>
+                  </small>
+                </span>,
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+              Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Hide play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
+            ]
+          }
+        />
+      </Col>
     </FormRow>
     <Row
       className="mt-2"
@@ -67851,94 +68427,6 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
           />
         </InputGroup>
       </FormGroup>
-    </FormRow>
-    <FormRow
-      className="sticky-top pt-1"
-      style={
-        Object {
-          "backgroundColor": "white",
-          "opacity": "85%",
-          "position": "sticky",
-          "top": "1em",
-          "zIndex": 2,
-        }
-      }
-    >
-      <Col
-        sm="11"
-      >
-        <ToggleButtonGroup
-          items={
-            Array [
-              Object {
-                "label": "Expanded",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show expanded player stats",
-              },
-              Object {
-                "label": "Poss%",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Show possessions as count",
-              },
-              Object {
-                "label": "* Mins%",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
-              },
-              Object {
-                "label": "Grades",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show player ranks/percentiles",
-              },
-              Object {
-                "label": "RAPM",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
-              },
-              Object {
-                "label": "Luck",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Adjust statistics for luck",
-              },
-              Object {
-                "label": <span>
-                  Edit...
-                   
-                  <small>
-                    <Badge
-                      pill={false}
-                      variant="dark"
-                    >
-                      1
-                    </Badge>
-                  </small>
-                </span>,
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Launch player stats manual editor",
-              },
-              Object {
-                "label": "Style",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show play style breakdowns",
-              },
-              Object {
-                "label": "+ Info",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show extra info sub-header (not currently saved like other options)",
-              },
-            ]
-          }
-        />
-      </Col>
       <FormGroup
         as={
           Object {
@@ -68117,6 +68605,173 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
           />
         </GenericTogglingMenu>
       </FormGroup>
+    </FormRow>
+    <FormRow
+      className="sticky-top pt-1 d-none d-md-flex"
+      style={
+        Object {
+          "backgroundColor": "white",
+          "opacity": "85%",
+          "position": "sticky",
+          "top": "1em",
+          "zIndex": 2,
+        }
+      }
+    >
+      <Col
+        sm="11"
+      >
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show expanded player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "* Mins%",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show player ranks/percentiles",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+              Object {
+                "label": <span>
+                  Edit...
+                   
+                  <small>
+                    <Badge
+                      pill={false}
+                      variant="dark"
+                    >
+                      1
+                    </Badge>
+                  </small>
+                </span>,
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+              Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
+            ]
+          }
+        />
+      </Col>
+    </FormRow>
+    <FormRow
+      className="pt-1 d-md-none"
+    >
+      <Col
+        sm="11"
+      >
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show expanded player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "* Mins%",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "Grades",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show player ranks/percentiles",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+              Object {
+                "label": <span>
+                  Edit...
+                   
+                  <small>
+                    <Badge
+                      pill={false}
+                      variant="dark"
+                    >
+                      1
+                    </Badge>
+                  </small>
+                </span>,
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+              Object {
+                "label": "Style",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
+            ]
+          }
+        />
+      </Col>
     </FormRow>
     <Row
       className="mt-2"

@@ -291,6 +291,145 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
 
   // 4] View
 
+  const quickToggleBar = (
+    <ToggleButtonGroup
+      items={[
+        {
+          label: "Luck",
+          tooltip: adjustForLuck
+            ? "Remove luck adjustments"
+            : "Adjust statistics for luck",
+          toggled: adjustForLuck,
+          onClick: () => setAdjustForLuck(!adjustForLuck),
+        },
+        {
+          label: "Diffs",
+          tooltip: "Show hide diffs between A/B/Baseline stats",
+          toggled: showDiffs,
+          onClick: () => setShowDiffs(!showDiffs),
+        },
+        {
+          label: "Extra",
+          tooltip: showExtraInfo
+            ? "Hide extra stats info"
+            : "Show extra stats info",
+          toggled: showExtraInfo,
+          onClick: () => setShowExtraInfo(!showExtraInfo),
+        },
+        {
+          label: "Grades",
+          tooltip: showGrades
+            ? "Hide team ranks/percentiles"
+            : "Show team ranks/percentiles",
+          toggled: showGrades != "",
+          onClick: () =>
+            setShowGrades(showGrades ? "" : ParamDefaults.defaultEnabledGrade),
+        },
+        {
+          label: "Style",
+          tooltip: showPlayTypes
+            ? "Hide play style breakdowns"
+            : "Show play style breakdowns",
+          toggled: showPlayTypes,
+          onClick: () => setShowPlayTypes(!showPlayTypes),
+        },
+        {
+          label: "Roster",
+          tooltip: showRoster
+            ? "Hide roster/positional information"
+            : "Show roster/positional information",
+          toggled: showRoster,
+          onClick: () => setShowRoster(!showRoster),
+        },
+        {
+          label: "Games",
+          tooltip: showGameInfo
+            ? "Hide per-game graphs"
+            : "Show per-game graphs",
+          toggled: showGameInfo,
+          onClick: () => setShowGameInfo(!showGameInfo),
+        },
+      ].concat(
+        gameFilterParams.year ||
+          DateUtils.mostRecentYearWithData >=
+            DateUtils.firstYearWithShotChartData
+          ? [
+              {
+                label: "Shots",
+                tooltip: showGameInfo ? "Hide shot chart" : "Show shot charts",
+                toggled: showShotCharts,
+                onClick: () => setShowShotCharts(!showShotCharts),
+              },
+            ]
+          : []
+      )}
+    />
+  );
+
+  const fullHelpDropdown = (
+    <GenericTogglingMenu>
+      <GenericTogglingMenuItem
+        text="Adjust for Luck"
+        truthVal={adjustForLuck}
+        onSelect={() => setAdjustForLuck(!adjustForLuck)}
+        helpLink={
+          showHelp
+            ? "https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
+            : undefined
+        }
+      />
+      <GenericTogglingMenuItem
+        text="Show Stat Differences"
+        truthVal={showDiffs}
+        onSelect={() => setShowDiffs(!showDiffs)}
+      />
+      <GenericTogglingMenuItem
+        text="Show Extra Team Information"
+        truthVal={showExtraInfo}
+        onSelect={() => setShowExtraInfo(!showExtraInfo)}
+      />
+      <GenericTogglingMenuItem
+        text="Show Team Ranks/Percentiles"
+        truthVal={showGrades != ""}
+        onSelect={() =>
+          setShowGrades(showGrades ? "" : ParamDefaults.defaultEnabledGrade)
+        }
+      />
+      <GenericTogglingMenuItem
+        text="Show Play Style Breakdowns"
+        truthVal={showPlayTypes}
+        onSelect={() => setShowPlayTypes(!showPlayTypes)}
+      />
+      <GenericTogglingMenuItem
+        text="Show Roster Information"
+        truthVal={showRoster}
+        onSelect={() => setShowRoster(!showRoster)}
+      />
+      <GenericTogglingMenuItem
+        text="Show Game Information"
+        truthVal={showGameInfo}
+        onSelect={() => setShowGameInfo(!showGameInfo)}
+      />
+      <GenericTogglingMenuItem
+        text="Show Shot Charts"
+        truthVal={showShotCharts}
+        onSelect={() => setShowShotCharts(!showShotCharts)}
+      />
+      <Dropdown.Divider />
+      <GenericTogglingMenuItem
+        text="Configure Luck Adjustments..."
+        truthVal={false}
+        onSelect={() => setShowLuckConfig(true)}
+      />
+      <Dropdown.Divider />
+      <GenericTogglingMenuItem
+        text="Show Luck Adjustment diagnostics"
+        truthVal={showLuckAdjDiags}
+        onSelect={() => setShowLuckAdjDiags(!showLuckAdjDiags)}
+      />
+    </GenericTogglingMenu>
+  );
+
   return (
     <Container>
       <LoadingOverlay
@@ -308,8 +447,9 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
           luck={luckConfig}
           showHelp={showHelp}
         />
+        {/* Next 2 rows are duplicate, top one (sticky) shows on Medium+ screens, bottom one on Small- screens*/}
         <Form.Row
-          className="sticky-top pt-1"
+          className="sticky-top pt-1 d-none d-md-flex"
           style={{
             position: "sticky",
             top: "1em",
@@ -320,150 +460,21 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
         >
           <Col sm="11">
             <Form.Row>
-              <Col>
-                <ToggleButtonGroup
-                  items={[
-                    {
-                      label: "Luck",
-                      tooltip: adjustForLuck
-                        ? "Remove luck adjustments"
-                        : "Adjust statistics for luck",
-                      toggled: adjustForLuck,
-                      onClick: () => setAdjustForLuck(!adjustForLuck),
-                    },
-                    {
-                      label: "Diffs",
-                      tooltip: "Show hide diffs between A/B/Baseline stats",
-                      toggled: showDiffs,
-                      onClick: () => setShowDiffs(!showDiffs),
-                    },
-                    {
-                      label: "Extra",
-                      tooltip: showExtraInfo
-                        ? "Hide extra stats info"
-                        : "Show extra stats info",
-                      toggled: showExtraInfo,
-                      onClick: () => setShowExtraInfo(!showExtraInfo),
-                    },
-                    {
-                      label: "Grades",
-                      tooltip: showGrades
-                        ? "Hide team ranks/percentiles"
-                        : "Show team ranks/percentiles",
-                      toggled: showGrades != "",
-                      onClick: () =>
-                        setShowGrades(
-                          showGrades ? "" : ParamDefaults.defaultEnabledGrade
-                        ),
-                    },
-                    {
-                      label: "Style",
-                      tooltip: showPlayTypes
-                        ? "Hide play style breakdowns"
-                        : "Show play style breakdowns",
-                      toggled: showPlayTypes,
-                      onClick: () => setShowPlayTypes(!showPlayTypes),
-                    },
-                    {
-                      label: "Roster",
-                      tooltip: showRoster
-                        ? "Hide roster/positional information"
-                        : "Show roster/positional information",
-                      toggled: showRoster,
-                      onClick: () => setShowRoster(!showRoster),
-                    },
-                    {
-                      label: "Games",
-                      tooltip: showGameInfo
-                        ? "Hide per-game graphs"
-                        : "Show per-game graphs",
-                      toggled: showGameInfo,
-                      onClick: () => setShowGameInfo(!showGameInfo),
-                    },
-                  ].concat(
-                    gameFilterParams.year ||
-                      DateUtils.mostRecentYearWithData >=
-                        DateUtils.firstYearWithShotChartData
-                      ? [
-                          {
-                            label: "Shots",
-                            tooltip: showGameInfo
-                              ? "Hide shot chart"
-                              : "Show shot charts",
-                            toggled: showShotCharts,
-                            onClick: () => setShowShotCharts(!showShotCharts),
-                          },
-                        ]
-                      : []
-                  )}
-                />
-              </Col>
+              <Col>{quickToggleBar}</Col>
             </Form.Row>
           </Col>
           <Form.Group as={Col} sm="1">
-            <GenericTogglingMenu>
-              <GenericTogglingMenuItem
-                text="Adjust for Luck"
-                truthVal={adjustForLuck}
-                onSelect={() => setAdjustForLuck(!adjustForLuck)}
-                helpLink={
-                  showHelp
-                    ? "https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
-                    : undefined
-                }
-              />
-              <GenericTogglingMenuItem
-                text="Show Stat Differences"
-                truthVal={showDiffs}
-                onSelect={() => setShowDiffs(!showDiffs)}
-              />
-              <GenericTogglingMenuItem
-                text="Show Extra Team Information"
-                truthVal={showExtraInfo}
-                onSelect={() => setShowExtraInfo(!showExtraInfo)}
-              />
-              <GenericTogglingMenuItem
-                text="Show Team Ranks/Percentiles"
-                truthVal={showGrades != ""}
-                onSelect={() =>
-                  setShowGrades(
-                    showGrades ? "" : ParamDefaults.defaultEnabledGrade
-                  )
-                }
-              />
-              <GenericTogglingMenuItem
-                text="Show Play Style Breakdowns"
-                truthVal={showPlayTypes}
-                onSelect={() => setShowPlayTypes(!showPlayTypes)}
-              />
-              <GenericTogglingMenuItem
-                text="Show Roster Information"
-                truthVal={showRoster}
-                onSelect={() => setShowRoster(!showRoster)}
-              />
-              <GenericTogglingMenuItem
-                text="Show Game Information"
-                truthVal={showGameInfo}
-                onSelect={() => setShowGameInfo(!showGameInfo)}
-              />
-              <GenericTogglingMenuItem
-                text="Show Shot Charts"
-                truthVal={showShotCharts}
-                onSelect={() => setShowShotCharts(!showShotCharts)}
-              />
-              <Dropdown.Divider />
-              <GenericTogglingMenuItem
-                text="Configure Luck Adjustments..."
-                truthVal={false}
-                onSelect={() => setShowLuckConfig(true)}
-              />
-              <Dropdown.Divider />
-              <GenericTogglingMenuItem
-                text="Show Luck Adjustment diagnostics"
-                truthVal={showLuckAdjDiags}
-                onSelect={() => setShowLuckAdjDiags(!showLuckAdjDiags)}
-              />
-            </GenericTogglingMenu>
+            {fullHelpDropdown}
+          </Form.Group>
+        </Form.Row>
+        <Form.Row className="pt-1 d-md-none">
+          <Col sm="11">
+            <Form.Row>
+              <Col>{quickToggleBar}</Col>
+            </Form.Row>
+          </Col>
+          <Form.Group as={Col} sm="1">
+            {fullHelpDropdown}
           </Form.Group>
         </Form.Row>
         <Row className="mt-2">

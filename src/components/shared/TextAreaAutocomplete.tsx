@@ -681,14 +681,6 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
       for (let idx = 0; idx < rawText.length - 1; idx++) {
         const charIsDelimiter = !rawText.charAt(idx).match(regex);
         if (idx == 0 || charIsDelimiter) {
-          /**/
-          console.log(
-            `[${rawText}]: [${rawText.charAt(idx)}]/[${rawText
-              .charAt(idx)
-              .match(regex)}][${idx}]` +
-              `${lookForReplacementAt(rawText, idx == 0 ? idx : idx + 1)}`
-          );
-
           const candidate = lookForReplacementAt(
             rawText,
             charIsDelimiter ? idx + 1 : idx
@@ -727,8 +719,8 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
             value={val}
             {...rest}
             style={{
+              height: "auto",
               ...((rest.style as Record<string, string>) || {}),
-              height: refRenderedInput.current?.scrollHeight,
             }}
           />
         ) : (
@@ -744,6 +736,7 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
             }}
             {...rest}
             style={{
+              height: "auto",
               ...((rest.style as Record<string, string>) || {}),
               resize: "vertical",
               backgroundColor:
@@ -751,7 +744,6 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
               overflow: "hidden",
               padding: ".375rem .75rem",
               border: "1px solid #ccc",
-              height: refInput.current?.scrollHeight,
               borderRadius: ".25rem",
               cursor: "text",
               width: refInput.current?.scrollWidth,

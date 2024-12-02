@@ -1538,6 +1538,94 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
   // 4] View
 
+  const quickToggleBar = (
+    <ToggleButtonGroup
+      items={[
+        {
+          label: "Expanded",
+          tooltip: expandedView
+            ? "Show single row of player stats"
+            : "Show expanded player stats",
+          toggled: expandedView,
+          onClick: () => setExpandedView(!expandedView),
+        },
+        {
+          label: "Poss%",
+          tooltip: possAsPct
+            ? "Show possessions as count"
+            : "Show possessions as percentage",
+          toggled: possAsPct,
+          onClick: () => setPossAsPct(!possAsPct),
+        },
+        {
+          label: "* Mins%",
+          tooltip:
+            "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+          toggled: factorMins,
+          onClick: () => toggleFactorMins(),
+        },
+        {
+          label: "Grades",
+          tooltip: showGrades
+            ? "Hide player ranks/percentiles"
+            : "Show player ranks/percentiles",
+          toggled: showGrades != "",
+          onClick: () =>
+            setShowGrades(showGrades ? "" : ParamDefaults.defaultEnabledGrade),
+        },
+        {
+          label: "RAPM",
+          tooltip:
+            "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)" +
+            (adjustForLuck
+              ? ". Note luck is applied more aggressively here than in the leaderboard/team report pages"
+              : ""),
+          toggled: calcRapm,
+          onClick: () => setCalcRapm(!calcRapm),
+        },
+        {
+          label: "Luck",
+          tooltip: adjustForLuck
+            ? "Remove luck adjustments"
+            : "Adjust statistics for luck",
+          toggled: adjustForLuck,
+          onClick: () => setAdjustForLuck(!adjustForLuck),
+        },
+        {
+          label: (
+            <span>
+              Edit...{!_.isEmpty(manualOverrides) ? " " : ""}
+              {!_.isEmpty(manualOverrides) ? (
+                <small>
+                  <Badge variant="dark">{(manualOverrides || []).length}</Badge>
+                </small>
+              ) : null}
+            </span>
+          ),
+          tooltip: "Launch player stats manual editor",
+          toggled: false,
+          onClick: () => setShowManualOverrides(true),
+        },
+        {
+          label: "Style",
+          tooltip: showPlayTypes
+            ? "Hide play style breakdowns"
+            : "Show play style breakdowns",
+          toggled: showPlayTypes,
+          onClick: () => setShowPlayTypes(!showPlayTypes),
+        },
+        {
+          label: "+ Info",
+          tooltip: showInfoSubHeader
+            ? "Hide extra info sub-header"
+            : "Show extra info sub-header (not currently saved like other options)",
+          toggled: showInfoSubHeader,
+          onClick: () => setShowInfoSubHeader(!showInfoSubHeader),
+        },
+      ]}
+    />
+  );
+
   /** The sub-header builder - Can show some handy context in between the header and data rows: */
   const maybeSubheaderRow = showInfoSubHeader
     ? RosterTableUtils.buildInformationalSubheader(calcRapm, expandedView)
@@ -1644,108 +1732,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               />
             </InputGroup>
           </Form.Group>
-        </Form.Row>
-        <Form.Row
-          className="sticky-top pt-1"
-          style={{
-            position: "sticky",
-            top: "1em",
-            backgroundColor: "white",
-            opacity: "85%",
-            zIndex: 2,
-          }}
-        >
-          <Col sm="11">
-            <ToggleButtonGroup
-              items={[
-                {
-                  label: "Expanded",
-                  tooltip: expandedView
-                    ? "Show single row of player stats"
-                    : "Show expanded player stats",
-                  toggled: expandedView,
-                  onClick: () => setExpandedView(!expandedView),
-                },
-                {
-                  label: "Poss%",
-                  tooltip: possAsPct
-                    ? "Show possessions as count"
-                    : "Show possessions as percentage",
-                  toggled: possAsPct,
-                  onClick: () => setPossAsPct(!possAsPct),
-                },
-                {
-                  label: "* Mins%",
-                  tooltip:
-                    "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
-                  toggled: factorMins,
-                  onClick: () => toggleFactorMins(),
-                },
-                {
-                  label: "Grades",
-                  tooltip: showGrades
-                    ? "Hide player ranks/percentiles"
-                    : "Show player ranks/percentiles",
-                  toggled: showGrades != "",
-                  onClick: () =>
-                    setShowGrades(
-                      showGrades ? "" : ParamDefaults.defaultEnabledGrade
-                    ),
-                },
-                {
-                  label: "RAPM",
-                  tooltip:
-                    "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)" +
-                    (adjustForLuck
-                      ? ". Note luck is applied more aggressively here than in the leaderboard/team report pages"
-                      : ""),
-                  toggled: calcRapm,
-                  onClick: () => setCalcRapm(!calcRapm),
-                },
-                {
-                  label: "Luck",
-                  tooltip: adjustForLuck
-                    ? "Remove luck adjustments"
-                    : "Adjust statistics for luck",
-                  toggled: adjustForLuck,
-                  onClick: () => setAdjustForLuck(!adjustForLuck),
-                },
-                {
-                  label: (
-                    <span>
-                      Edit...{!_.isEmpty(manualOverrides) ? " " : ""}
-                      {!_.isEmpty(manualOverrides) ? (
-                        <small>
-                          <Badge variant="dark">
-                            {(manualOverrides || []).length}
-                          </Badge>
-                        </small>
-                      ) : null}
-                    </span>
-                  ),
-                  tooltip: "Launch player stats manual editor",
-                  toggled: false,
-                  onClick: () => setShowManualOverrides(true),
-                },
-                {
-                  label: "Style",
-                  tooltip: showPlayTypes
-                    ? "Hide play style breakdowns"
-                    : "Show play style breakdowns",
-                  toggled: showPlayTypes,
-                  onClick: () => setShowPlayTypes(!showPlayTypes),
-                },
-                {
-                  label: "+ Info",
-                  tooltip: showInfoSubHeader
-                    ? "Hide extra info sub-header"
-                    : "Show extra info sub-header (not currently saved like other options)",
-                  toggled: showInfoSubHeader,
-                  onClick: () => setShowInfoSubHeader(!showInfoSubHeader),
-                },
-              ]}
-            />
-          </Col>
           <Form.Group as={Col} sm="1">
             <GenericTogglingMenu>
               <GenericTogglingMenuItem
@@ -1910,6 +1896,22 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               />
             </GenericTogglingMenu>
           </Form.Group>
+        </Form.Row>
+        {/* Next 2 rows are duplicate, top one (sticky) shows on Medium+ screens, bottom one on Small- screens*/}
+        <Form.Row
+          className="sticky-top pt-1 d-none d-md-flex"
+          style={{
+            position: "sticky",
+            top: "1em",
+            backgroundColor: "white",
+            opacity: "85%",
+            zIndex: 2,
+          }}
+        >
+          <Col sm="11">{quickToggleBar}</Col>
+        </Form.Row>
+        <Form.Row className="pt-1 d-md-none">
+          <Col sm="11">{quickToggleBar}</Col>
         </Form.Row>
         <Row className="mt-2">
           <Col style={{ paddingLeft: "5px", paddingRight: "5px" }}>

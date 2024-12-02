@@ -205,10 +205,13 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
     <TextAreaAutocomplete
       ref={textRef}
       Component={"textarea"}
-      style={{
-        minHeight: "2.4rem",
-        height: "2.4rem",
-      }}
+      style={_.omit(
+        {
+          minHeight: "2.4rem",
+          height: "2.4rem", //(if textbox is read-only then don't allow it to grow)
+        },
+        readOnly ? [] : ["height"]
+      )}
       defaultValue={initValue}
       readOnly={readOnly}
       className="form-control auto-suggest"
