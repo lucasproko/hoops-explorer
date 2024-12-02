@@ -962,6 +962,7 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
       ? ParamDefaults.defaultShotChartShowZones
       : chartOpts.buildZones
   );
+
   useEffect(() => {
     if (chartOpts) {
       setBuildZones(
@@ -1020,7 +1021,7 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
                   setQuickSwitch((curr) => (curr ? undefined : newSetting));
                 } else {
                   onChangeChartOpts?.({
-                    buildZones: !buildZones,
+                    buildZones: buildZones,
                     quickSwitch: quickSwitch,
                   });
                   setQuickSwitch(newSetting);
