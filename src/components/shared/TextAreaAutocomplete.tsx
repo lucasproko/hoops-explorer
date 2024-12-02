@@ -468,7 +468,7 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
         varActualMatchLength = matchLength + (matchStart - varActualMatchStart);
       }
       // In the other direction, we remove everything matching the regex before injecting the slug
-      const re = new RegExp(regex.replace("^", "").replace("$", ""));
+      const re = new RegExp(regex.replace("$", "")); //(still anchor at the start because we are using substring(startIndex))
       const fwdMatch = value
         .substring(varActualMatchStart + varActualMatchLength)
         .match(re);
@@ -487,7 +487,13 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
       const event = { target: refInput.current! };
       const changedStr = changeOnSelect(stateTrigger!, slug);
 
-      event.target.value = `${part1}${changedStr}${spacer}${part2}`;
+      const spacerToUse =
+        part2.startsWith(spacer) ||
+        _.find(spaceRemovers, (s) => part2.startsWith(s))
+          ? ""
+          : spacer;
+
+      event.target.value = `${part1}${changedStr}${spacerToUse}${part2}`;
 
       handleChange(event as any);
       onSelect?.(event.target.value);
@@ -673,20 +679,34 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
       var accRenderedText: ReactNode[] = [];
       var lastPushedIdx = 0;
       for (let idx = 0; idx < rawText.length - 1; idx++) {
-        if (idx == 0 || !rawText.charAt(idx).match(regex)) {
+        const charIsDelimiter = !rawText.charAt(idx).match(regex);
+        if (idx == 0 || charIsDelimiter) {
+          /**/
+          console.log(
+            `[${rawText}]: [${rawText.charAt(idx)}]/[${rawText
+              .charAt(idx)
+              .match(regex)}][${idx}]` +
+              `${lookForReplacementAt(rawText, idx == 0 ? idx : idx + 1)}`
+          );
+
           const candidate = lookForReplacementAt(
             rawText,
-            idx == 0 ? idx : idx + 1
+            charIsDelimiter ? idx + 1 : idx
           );
           if (candidate) {
-            if (lastPushedIdx <= idx && idx > 0) {
+            if (lastPushedIdx <= idx && charIsDelimiter) {
               accRenderedText.push(rawText.substring(lastPushedIdx, idx + 1)); //(ie up to + including idx)
             }
             accRenderedText.push(richTextReplacements?.[candidate]?.renderTo);
-            if (idx == 0) {
+            if (
+              !charIsDelimiter &&
+              rawText[idx + 1] != spacer &&
+              !_.find(spaceRemovers, (s) => s == rawText[idx + 1])
+            ) {
+              //(add a delimiter if needed)
               accRenderedText.push(" ");
             }
-            idx += candidate.length;
+            idx += candidate.length - (!charIsDelimiter ? 1 : 0); //(replacing from 0 not +1 in the idx==0/!delimiter case)
             lastPushedIdx = idx + 1;
           }
         }
