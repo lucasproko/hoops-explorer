@@ -838,24 +838,26 @@ const CommonFilter: CommonFilterI = ({
               <Container>
                 <Row>
                   <InputGroup>
-                    <div className="flex-fill">
-                      <LineupQueryAutoSuggestText
-                        readOnly={false}
-                        placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
-                        initValue={baseQuery}
-                        year={year}
-                        gender={gender}
-                        team={team}
-                        onChange={(ev: any) => setBaseQuery(ev.target.value)}
-                        onKeyUp={(ev: any) => setBaseQuery(ev.target.value)}
-                        onKeyDown={submitListenerFactory(true)}
-                      />
-                    </div>
-                    <QueryFilterDropdown
-                      queryFilters={queryFilters}
-                      setQueryFilters={setQueryFilters}
-                      showCustomRangeFilter={() => setShowDateRangeModal(true)}
+                    <LineupQueryAutoSuggestText
+                      readOnly={false}
+                      placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
+                      initValue={baseQuery}
+                      year={year}
+                      gender={gender}
+                      team={team}
+                      onChange={(ev: any) => setBaseQuery(ev.target.value)}
+                      onKeyUp={(ev: any) => setBaseQuery(ev.target.value)}
+                      onKeyDown={submitListenerFactory(true)}
                     />
+                    <InputGroup.Append>
+                      <QueryFilterDropdown
+                        queryFilters={queryFilters}
+                        setQueryFilters={setQueryFilters}
+                        showCustomRangeFilter={() =>
+                          setShowDateRangeModal(true)
+                        }
+                      />
+                    </InputGroup.Append>
                   </InputGroup>
                 </Row>
                 {queryFilters.length > 0 ? (

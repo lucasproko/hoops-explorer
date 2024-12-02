@@ -726,26 +726,26 @@ const GameFilter: React.FunctionComponent<Props> = ({
                 <Container>
                   <Row>
                     <InputGroup>
-                      <div className="flex-fill">
-                        <LineupQueryAutoSuggestText
-                          readOnly={false}
-                          placeholder="eg 'Player1 AND (Player2 OR Player3)'"
-                          initValue={onQuery}
-                          year={commonParams.year}
-                          gender={commonParams.gender}
-                          team={commonParams.team}
-                          onKeyUp={handleOnQueryChange}
-                          onChange={handleOnQueryChange}
-                          onKeyDown={globalKeypressHandler}
-                        />
-                      </div>
-                      <QueryFilterDropdown
-                        queryFilters={onQueryFilters}
-                        setQueryFilters={setOnQueryFilters}
-                        showCustomRangeFilter={() =>
-                          setOnShowDateRangeModal(true)
-                        }
+                      <LineupQueryAutoSuggestText
+                        readOnly={false}
+                        placeholder="eg 'Player1 AND (Player2 OR Player3)'"
+                        initValue={onQuery}
+                        year={commonParams.year}
+                        gender={commonParams.gender}
+                        team={commonParams.team}
+                        onKeyUp={handleOnQueryChange}
+                        onChange={handleOnQueryChange}
+                        onKeyDown={globalKeypressHandler}
                       />
+                      <InputGroup.Append>
+                        <QueryFilterDropdown
+                          queryFilters={onQueryFilters}
+                          setQueryFilters={setOnQueryFilters}
+                          showCustomRangeFilter={() =>
+                            setOnShowDateRangeModal(true)
+                          }
+                        />
+                      </InputGroup.Append>
                     </InputGroup>
                   </Row>
                   {onQueryFilters.length > 0 ? (
@@ -777,31 +777,27 @@ const GameFilter: React.FunctionComponent<Props> = ({
                     <Container>
                       <Row>
                         <InputGroup>
-                          <div className="flex-fill">
-                            <LineupQueryAutoSuggestText
-                              readOnly={autoOffQuery}
-                              placeholder="eg 'NOT (Player1 AND (Player2 OR Player3))'"
-                              initValue={offQuery}
-                              year={commonParams.year}
-                              gender={commonParams.gender}
-                              team={commonParams.team}
-                              onKeyUp={(ev: any) =>
-                                setOffQuery(ev.target.value)
-                              }
-                              onChange={(ev: any) =>
-                                setOffQuery(ev.target.value)
-                              }
-                              onKeyDown={globalKeypressHandler}
-                            />
-                          </div>
+                          <LineupQueryAutoSuggestText
+                            readOnly={autoOffQuery}
+                            placeholder="eg 'NOT (Player1 AND (Player2 OR Player3))'"
+                            initValue={offQuery}
+                            year={commonParams.year}
+                            gender={commonParams.gender}
+                            team={commonParams.team}
+                            onKeyUp={(ev: any) => setOffQuery(ev.target.value)}
+                            onChange={(ev: any) => setOffQuery(ev.target.value)}
+                            onKeyDown={globalKeypressHandler}
+                          />
                           {autoOffQuery ? null : (
-                            <QueryFilterDropdown
-                              queryFilters={offQueryFilters}
-                              setQueryFilters={setOffQueryFilters}
-                              showCustomRangeFilter={() =>
-                                setOffShowDateRangeModal(true)
-                              }
-                            />
+                            <InputGroup.Append>
+                              <QueryFilterDropdown
+                                queryFilters={offQueryFilters}
+                                setQueryFilters={setOffQueryFilters}
+                                showCustomRangeFilter={() =>
+                                  setOffShowDateRangeModal(true)
+                                }
+                              />
+                            </InputGroup.Append>
                           )}
                         </InputGroup>
                       </Row>

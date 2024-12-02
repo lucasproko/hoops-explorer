@@ -115,6 +115,19 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
     // Rich text rendering logic
     const [isEditing, setIsEditing] = useState<boolean>(false);
     const refRenderedInput = useRef<HTMLDivElement>(null);
+    const [richRenderTimeoutId, setRichRenderTimeoutId] = useState(-1);
+    /** Gets called whenever the value is changed externally, just reduces the rate at which we call the quite
+     * expective rich text rendering logic */
+    if (richTextReplacements)
+      useEffect(() => {
+        if (richRenderTimeoutId == -1) {
+          setRichRenderTimeoutId(
+            window.setTimeout(() => {
+              setRichRenderTimeoutId(-1);
+            }, 100) //(arbitrary 100ms max render rate)
+          );
+        }
+      }, [value, defaultValue]);
 
     const handleResize = () => {
       setHelperVisible(false);
@@ -684,7 +697,7 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
 
     return (
       <>
-        {!richTextReplacements || isEditing ? (
+        {!richTextReplacements || isEditing || richRenderTimeoutId != -1 ? (
           <Component
             disabled={disabled}
             onBlur={handleBlur}
@@ -721,10 +734,15 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
               height: refInput.current?.scrollHeight,
               borderRadius: ".25rem",
               cursor: "text",
+              width: refInput.current?.scrollWidth,
             }}
           >
             {val ? (
-              renderRichText(val)
+              richRenderTimeoutId == -1 ? (
+                renderRichText(val)
+              ) : (
+                val //(in practice not called because we render as a textarea instead, which helps with the width/height calcs)
+              )
             ) : (
               <div style={{ color: "darkgray" }}>{rest.placeholder || ""}</div>
             )}

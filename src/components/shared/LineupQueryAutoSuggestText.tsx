@@ -5,13 +5,13 @@ import React, {
   createRef,
   ChangeEventHandler,
 } from "react";
-import Router from "next/router";
 
 // Lodash
 import _ from "lodash";
 
 // Library imports:
 import fetch from "isomorphic-unfetch";
+import Badge from "react-bootstrap/Badge";
 
 // Additional components:
 import TextAreaAutocomplete from "./TextAreaAutocomplete";
@@ -107,6 +107,7 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
       setSavedParams(params);
       setBasicOptions([]);
       setAdvOptions([]);
+      fetchRoster();
     }
   });
 
@@ -132,7 +133,7 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
         paramStr,
         ParamPrefixes.roster,
         currentJsonEpoch,
-        isDebug
+        false /* This gets called every keypress, so even in debug mode it's a huge pain */
       );
       if (cachedJson && !_.isEmpty(cachedJson)) {
         //(ignore placeholders here)
@@ -204,7 +205,10 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
     <TextAreaAutocomplete
       ref={textRef}
       Component={"textarea"}
-      style={{ minHeight: "2.4rem", height: "2.4rem" }}
+      style={{
+        minHeight: "2.4rem",
+        height: "2.4rem",
+      }}
       defaultValue={initValue}
       readOnly={readOnly}
       className="form-control auto-suggest"
@@ -218,9 +222,41 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
       richTextReplacements={
         FeatureFlags.isActiveWindow(FeatureFlags.richTextInput)
           ? {
-              OR: { renderTo: <b>OR</b> },
-              AND: { renderTo: <b>AND</b> },
-              NOT: { renderTo: <b>NOT</b> },
+              ..._.chain(basicOptions)
+                .map((s) => [
+                  s,
+                  {
+                    renderTo: (
+                      <Badge variant="info">
+                        <div style={{ fontSize: "0.95rem" }}>{s}</div>
+                      </Badge>
+                    ),
+                  },
+                ])
+                .fromPairs()
+                .value(),
+              ..._.chain(advancedFields)
+                .map((s) => [
+                  s,
+                  {
+                    renderTo: (
+                      <Badge variant="secondary">
+                        <div style={{ fontSize: "0.85rem" }}>{s}</div>
+                      </Badge>
+                    ),
+                  },
+                ])
+                .fromPairs()
+                .value(),
+              OR: {
+                renderTo: (
+                  <Badge pill variant="primary">
+                    OR
+                  </Badge>
+                ),
+              },
+              AND: { renderTo: <Badge variant="primary">AND</Badge> },
+              NOT: { renderTo: <Badge variant="danger">NOT</Badge> },
             }
           : undefined
       }

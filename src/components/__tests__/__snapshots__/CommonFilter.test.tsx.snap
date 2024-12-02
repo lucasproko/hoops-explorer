@@ -1867,26 +1867,24 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
             noGutters={false}
           >
             <InputGroup>
-              <div
-                className="flex-fill"
-              >
-                <LineupQueryAutoSuggestText
-                  gender="Men"
-                  initValue=""
-                  onChange={[Function]}
-                  onKeyDown={[Function]}
-                  onKeyUp={[Function]}
-                  placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
-                  readOnly={false}
-                  team=""
-                  year="2024/25"
-                />
-              </div>
-              <QueryFilterDropdown
-                queryFilters={Array []}
-                setQueryFilters={[Function]}
-                showCustomRangeFilter={[Function]}
+              <LineupQueryAutoSuggestText
+                gender="Men"
+                initValue=""
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
+                readOnly={false}
+                team=""
+                year="2024/25"
               />
+              <InputGroupAppend>
+                <QueryFilterDropdown
+                  queryFilters={Array []}
+                  setQueryFilters={[Function]}
+                  showCustomRangeFilter={[Function]}
+                />
+              </InputGroupAppend>
             </InputGroup>
           </Row>
         </Container>
@@ -2885,31 +2883,29 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
             noGutters={false}
           >
             <InputGroup>
-              <div
-                className="flex-fill"
-              >
-                <LineupQueryAutoSuggestText
-                  gender="Men"
-                  initValue=""
-                  onChange={[Function]}
-                  onKeyDown={[Function]}
-                  onKeyUp={[Function]}
-                  placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
-                  readOnly={false}
-                  team="Maryland"
-                  year="2018/9"
-                />
-              </div>
-              <QueryFilterDropdown
-                queryFilters={
-                  Array [
-                    "Home",
-                    "Away",
-                  ]
-                }
-                setQueryFilters={[Function]}
-                showCustomRangeFilter={[Function]}
+              <LineupQueryAutoSuggestText
+                gender="Men"
+                initValue=""
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
+                readOnly={false}
+                team="Maryland"
+                year="2018/9"
               />
+              <InputGroupAppend>
+                <QueryFilterDropdown
+                  queryFilters={
+                    Array [
+                      "Home",
+                      "Away",
+                    ]
+                  }
+                  setQueryFilters={[Function]}
+                  showCustomRangeFilter={[Function]}
+                />
+              </InputGroupAppend>
             </InputGroup>
           </Row>
           <Row
@@ -4018,26 +4014,24 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
             noGutters={false}
           >
             <InputGroup>
-              <div
-                className="flex-fill"
-              >
-                <LineupQueryAutoSuggestText
-                  gender="Men"
-                  initValue=""
-                  onChange={[Function]}
-                  onKeyDown={[Function]}
-                  onKeyUp={[Function]}
-                  placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
-                  readOnly={false}
-                  team="Maryland"
-                  year="2018/9"
-                />
-              </div>
-              <QueryFilterDropdown
-                queryFilters={Array []}
-                setQueryFilters={[Function]}
-                showCustomRangeFilter={[Function]}
+              <LineupQueryAutoSuggestText
+                gender="Men"
+                initValue=""
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
+                readOnly={false}
+                team="Maryland"
+                year="2018/9"
               />
+              <InputGroupAppend>
+                <QueryFilterDropdown
+                  queryFilters={Array []}
+                  setQueryFilters={[Function]}
+                  showCustomRangeFilter={[Function]}
+                />
+              </InputGroupAppend>
             </InputGroup>
           </Row>
         </Container>
@@ -5076,30 +5070,28 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
             noGutters={false}
           >
             <InputGroup>
-              <div
-                className="flex-fill"
-              >
-                <LineupQueryAutoSuggestText
-                  gender="Men"
-                  initValue=""
-                  onChange={[Function]}
-                  onKeyDown={[Function]}
-                  onKeyUp={[Function]}
-                  placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
-                  readOnly={false}
-                  team="Maryland"
-                  year="2018/9"
-                />
-              </div>
-              <QueryFilterDropdown
-                queryFilters={
-                  Array [
-                    "Conf",
-                  ]
-                }
-                setQueryFilters={[Function]}
-                showCustomRangeFilter={[Function]}
+              <LineupQueryAutoSuggestText
+                gender="Men"
+                initValue=""
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
+                readOnly={false}
+                team="Maryland"
+                year="2018/9"
               />
+              <InputGroupAppend>
+                <QueryFilterDropdown
+                  queryFilters={
+                    Array [
+                      "Conf",
+                    ]
+                  }
+                  setQueryFilters={[Function]}
+                  showCustomRangeFilter={[Function]}
+                />
+              </InputGroupAppend>
             </InputGroup>
           </Row>
           <Row
