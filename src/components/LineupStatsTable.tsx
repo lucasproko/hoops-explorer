@@ -65,6 +65,7 @@ import {
   LineupFilterParams,
   ParamDefaults,
   LuckParams,
+  getCommonFilterParams,
 } from "../utils/FilterModels";
 
 export type LineupStatsModel = {
@@ -390,7 +391,8 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
               perLineupBaselinePlayerMap,
               positionFromPlayerKey,
               "off_adj_rtg",
-              decorateLineups
+              decorateLineups,
+              getCommonFilterParams(startingState)
             );
           }
         });
@@ -606,7 +608,8 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
             perLineupBaselinePlayerMap,
             positionFromPlayerKey,
             "off_adj_rtg",
-            decorateLineups
+            decorateLineups,
+            getCommonFilterParams(startingState)
           );
 
           const maybeLineBreak = aggregateByPos.length > 2 ? <br /> : null;

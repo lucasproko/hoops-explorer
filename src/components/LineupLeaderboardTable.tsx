@@ -421,7 +421,14 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
             perLineupBaselinePlayerMap,
             positionFromPlayerKey,
             "off_adj_rtg",
-            true
+            true,
+            {
+              team: lineup.team,
+              year: lineup.year,
+              gender,
+              queryFilters: isConfOnly ? "Conf" : undefined,
+              maxRank: isT100 ? "100" : "400",
+            }
           )
         : "Weighted Total";
 

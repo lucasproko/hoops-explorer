@@ -80,6 +80,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                             ORB 1%, DRB 9%
                             <br />
                           </span>
+                          
                         </Tooltip>
                       }
                       placement="auto"
@@ -197,6 +198,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                             ORB 0%, DRB 0%
                             <br />
                           </span>
+                          
                         </Tooltip>
                       }
                       placement="auto"
@@ -301,6 +303,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                             ORB 4%, DRB 15%
                             <br />
                           </span>
+                          
                         </Tooltip>
                       }
                       placement="auto"
@@ -412,6 +415,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                             ORB 0%, DRB 0%
                             <br />
                           </span>
+                          
                         </Tooltip>
                       }
                       placement="auto"
@@ -516,6 +520,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                             ORB 0%, DRB 0%
                             <br />
                           </span>
+                          
                         </Tooltip>
                       }
                       placement="auto"
@@ -630,6 +635,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                             ORB 0%, DRB 0%
                             <br />
                           </span>
+                          
                         </Tooltip>
                       }
                       placement="auto"
@@ -736,6 +742,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                             ORB 0%, DRB 0%
                             <br />
                           </span>
+                          
                         </Tooltip>
                       }
                       placement="auto"
@@ -952,6 +959,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                             ORB 1%, DRB 9%
                             <br />
                           </span>
+                          
                         </Tooltip>
                       }
                       placement="auto"
@@ -1069,6 +1077,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                             ORB 0%, DRB 0%
                             <br />
                           </span>
+                          
                         </Tooltip>
                       }
                       placement="auto"
@@ -1173,6 +1182,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                             ORB 4%, DRB 15%
                             <br />
                           </span>
+                          
                         </Tooltip>
                       }
                       placement="auto"
@@ -1284,6 +1294,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                             ORB 0%, DRB 0%
                             <br />
                           </span>
+                          
                         </Tooltip>
                       }
                       placement="auto"
@@ -1388,6 +1399,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                             ORB 0%, DRB 0%
                             <br />
                           </span>
+                          
                         </Tooltip>
                       }
                       placement="auto"
@@ -1604,6 +1616,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                             ORB 1%, DRB 9%
                             <br />
                           </span>
+                          
                         </Tooltip>
                       }
                       placement="auto"
@@ -1721,6 +1734,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                             ORB 0%, DRB 0%
                             <br />
                           </span>
+                          
                         </Tooltip>
                       }
                       placement="auto"
@@ -1825,6 +1839,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                             ORB 4%, DRB 15%
                             <br />
                           </span>
+                          
                         </Tooltip>
                       }
                       placement="auto"
@@ -1936,6 +1951,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                             ORB 0%, DRB 0%
                             <br />
                           </span>
+                          
                         </Tooltip>
                       }
                       placement="auto"
@@ -2040,6 +2056,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                             ORB 0%, DRB 0%
                             <br />
                           </span>
+                          
                         </Tooltip>
                       }
                       placement="auto"
@@ -2154,6 +2171,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                             ORB 0%, DRB 0%
                             <br />
                           </span>
+                          
                         </Tooltip>
                       }
                       placement="auto"
@@ -2260,6 +2278,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                             ORB 0%, DRB 0%
                             <br />
                           </span>
+                          
                         </Tooltip>
                       }
                       placement="auto"

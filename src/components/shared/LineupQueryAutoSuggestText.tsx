@@ -65,6 +65,7 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
   const basicOperators = ["AND", "OR", "NOT"];
   const advancedFields = basicOperators.concat([
     "players.id:",
+    "players.code:",
     "opponent.team:",
     "opponent.Home:",
     "opponent.Away:",

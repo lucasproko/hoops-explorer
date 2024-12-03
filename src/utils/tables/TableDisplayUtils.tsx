@@ -24,9 +24,10 @@ import {
   OnOffBaselineEnum,
 } from "../StatModels";
 import { DerivedStatsUtils } from "../stats/DerivedStatsUtils";
-import { GameFilterParams } from "../FilterModels";
+import { CommonFilterParams, GameFilterParams } from "../FilterModels";
 import { QueryUtils } from "../QueryUtils";
 import { LineupUtils } from "../stats/LineupUtils";
+import { UrlRouting } from "../UrlRouting";
 
 /** Encapsulates some of the logic used to build decorated lineups in LineupStatsTable */
 export class TableDisplayUtils {
@@ -96,6 +97,7 @@ export class TableDisplayUtils {
     positionFromPlayerKey: Record<string, { posClass: string }>,
     colorField: string,
     decorateLineup: boolean,
+    params: CommonFilterParams,
     extendedTooltipView: boolean = false
   ) {
     const tooltipBuilder = (pid: number) =>
@@ -106,33 +108,64 @@ export class TableDisplayUtils {
         positionFromPlayerKey,
         extendedTooltipView
       );
+
+    const link = UrlRouting.getGameUrl(
+      {
+        ...params,
+        onQuery: `{${sortedLineup.map((p) => `"${p.id}"`).join(";")}}~${
+          sortedLineup.length
+        }`,
+        offQuery: "",
+        autoOffQuery: false,
+        showExtraInfo: true,
+        teamShotCharts: true,
+        showTeamPlayTypes: true,
+        calcRapm: true,
+        possAsPct: false,
+        filter: `${sortedLineup.map((p) => `${p.code}`).join(",")}`,
+        showExpanded: true,
+      },
+      {}
+    );
+
     if (decorateLineup) {
       const max = (sortedLineup?.length || 0) - 1;
+      const lineupElement = sortedLineup.map(
+        (cid: { code: string; id: string }, pid: number) => {
+          return TableDisplayUtils.buildDecoratedPlayer(
+            cid,
+            perLineupPlayerMap,
+            colorField,
+            pid == max
+          );
+        }
+      );
       return (
         <OverlayTrigger placement="auto" overlay={tooltipBuilder(0)}>
-          <div>
-            {sortedLineup.map(
-              (cid: { code: string; id: string }, pid: number) => {
-                return TableDisplayUtils.buildDecoratedPlayer(
-                  cid,
-                  perLineupPlayerMap,
-                  colorField,
-                  pid == max
-                );
-              }
-            )}
-          </div>
+          {extendedTooltipView ? (
+            <div>{lineupElement}</div>
+          ) : (
+            <a
+              href={link}
+              target="_blank"
+              style={{ color: "inherit", textDecoration: "inherit" }}
+            >
+              {lineupElement}
+            </a>
+          )}
         </OverlayTrigger>
       );
     } else {
       return (
         <OverlayTrigger placement="auto" overlay={tooltipBuilder(0)}>
           <span>
-            <b>
-              {sortedLineup
-                .map((cid: { code: string; id: string }) => cid.code)
-                .join(" / ")}
-            </b>
+            <a href="#" style={{ color: "inherit", textDecoration: "inherit" }}>
+              <b>
+                {sortedLineup
+                  .map((cid: { code: string; id: string }) => cid.code)
+                  .join(" / ")}
+              </b>
+            </a>
           </span>
         </OverlayTrigger>
       );
@@ -166,6 +199,11 @@ export class TableDisplayUtils {
             <br />
           </span>
         ))}
+        {extendedView
+          ? ""
+          : `Click to open a more detailed analysis page for this lineup ${
+              sortedLineup.length < 5 ? " family" : ""
+            }`}
       </Tooltip>
     );
 

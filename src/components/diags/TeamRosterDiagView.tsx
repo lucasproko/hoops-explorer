@@ -117,6 +117,7 @@ const TeamRosterDiagView: React.FunctionComponent<Props> = ({
             positionFromPlayerId,
             "off_adj_rtg",
             true,
+            {},
             true
           );
           const playerNum =

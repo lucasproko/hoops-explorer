@@ -1001,11 +1001,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
-                                    <div>
+                                    <a
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AaWiggins%2CDaMorsell%2CJaSmith%2CErAyala%2CAnCowan&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%3B%22Morsell%2C%20Darryl%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Cowan%2C%20Anthony%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      style={
+                                        Object {
+                                          "color": "inherit",
+                                          "textDecoration": "inherit",
+                                        }
+                                      }
+                                      target="_blank"
+                                    >
                                       <span>
                                         <span
                                           style={
@@ -1207,7 +1217,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                           />
                                         </span>
                                       </span>
-                                    </div>
+                                    </a>
                                   </OverlayTrigger>},
                 "kind": "data-row",
                 "prefixFn": [Function],
@@ -1463,11 +1473,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
-                                    <div>
+                                    <a
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AaWiggins%2CDaMorsell%2CJaSmith%2CErAyala%2CAnCowan&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%3B%22Morsell%2C%20Darryl%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Cowan%2C%20Anthony%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      style={
+                                        Object {
+                                          "color": "inherit",
+                                          "textDecoration": "inherit",
+                                        }
+                                      }
+                                      target="_blank"
+                                    >
                                       <span>
                                         <span
                                           style={
@@ -1669,7 +1689,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                           />
                                         </span>
                                       </span>
-                                    </div>
+                                    </a>
                                   </OverlayTrigger>},
                 "kind": "data-row",
                 "prefixFn": [Function],
@@ -1928,11 +1948,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
-                                    <div>
+                                    <a
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AaWiggins%2CDaMorsell%2CJaSmith%2CDoScott%2CAnCowan&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%3B%22Morsell%2C%20Darryl%22%3B%22Smith%2C%20Jalen%22%3B%22Scott%2C%20Donta%22%3B%22Cowan%2C%20Anthony%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      style={
+                                        Object {
+                                          "color": "inherit",
+                                          "textDecoration": "inherit",
+                                        }
+                                      }
+                                      target="_blank"
+                                    >
                                       <span>
                                         <span
                                           style={
@@ -2134,7 +2164,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                           />
                                         </span>
                                       </span>
-                                    </div>
+                                    </a>
                                   </OverlayTrigger>},
                 "kind": "data-row",
                 "prefixFn": [Function],
@@ -2390,11 +2420,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
-                                    <div>
+                                    <a
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AaWiggins%2CDaMorsell%2CJaSmith%2CDoScott%2CAnCowan&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%3B%22Morsell%2C%20Darryl%22%3B%22Smith%2C%20Jalen%22%3B%22Scott%2C%20Donta%22%3B%22Cowan%2C%20Anthony%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      style={
+                                        Object {
+                                          "color": "inherit",
+                                          "textDecoration": "inherit",
+                                        }
+                                      }
+                                      target="_blank"
+                                    >
                                       <span>
                                         <span
                                           style={
@@ -2596,7 +2636,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                           />
                                         </span>
                                       </span>
-                                    </div>
+                                    </a>
                                   </OverlayTrigger>},
                 "kind": "data-row",
                 "prefixFn": [Function],
@@ -2855,11 +2895,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
-                                    <div>
+                                    <a
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AaWiggins%2CDoScott%2CJaSmith%2CErAyala%2CAnCowan&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%3B%22Scott%2C%20Donta%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Cowan%2C%20Anthony%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      style={
+                                        Object {
+                                          "color": "inherit",
+                                          "textDecoration": "inherit",
+                                        }
+                                      }
+                                      target="_blank"
+                                    >
                                       <span>
                                         <span
                                           style={
@@ -3061,7 +3111,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                           />
                                         </span>
                                       </span>
-                                    </div>
+                                    </a>
                                   </OverlayTrigger>},
                 "kind": "data-row",
                 "prefixFn": [Function],
@@ -3317,11 +3367,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
-                                    <div>
+                                    <a
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AaWiggins%2CDoScott%2CJaSmith%2CErAyala%2CAnCowan&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%3B%22Scott%2C%20Donta%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Cowan%2C%20Anthony%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      style={
+                                        Object {
+                                          "color": "inherit",
+                                          "textDecoration": "inherit",
+                                        }
+                                      }
+                                      target="_blank"
+                                    >
                                       <span>
                                         <span
                                           style={
@@ -3523,7 +3583,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                           />
                                         </span>
                                       </span>
-                                    </div>
+                                    </a>
                                   </OverlayTrigger>},
                 "kind": "data-row",
                 "prefixFn": [Function],
@@ -5249,11 +5309,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
-                                    <div>
+                                    <a
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AaWiggins%2CDaMorsell%2CJaSmith%2CErAyala%2CAnCowan&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%3B%22Morsell%2C%20Darryl%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Cowan%2C%20Anthony%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      style={
+                                        Object {
+                                          "color": "inherit",
+                                          "textDecoration": "inherit",
+                                        }
+                                      }
+                                      target="_blank"
+                                    >
                                       <span>
                                         <span
                                           style={
@@ -5455,7 +5525,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                           />
                                         </span>
                                       </span>
-                                    </div>
+                                    </a>
                                   </OverlayTrigger>},
                 "kind": "data-row",
                 "prefixFn": [Function],
@@ -5711,11 +5781,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
-                                    <div>
+                                    <a
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AaWiggins%2CDaMorsell%2CJaSmith%2CErAyala%2CAnCowan&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%3B%22Morsell%2C%20Darryl%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Cowan%2C%20Anthony%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      style={
+                                        Object {
+                                          "color": "inherit",
+                                          "textDecoration": "inherit",
+                                        }
+                                      }
+                                      target="_blank"
+                                    >
                                       <span>
                                         <span
                                           style={
@@ -5917,7 +5997,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                           />
                                         </span>
                                       </span>
-                                    </div>
+                                    </a>
                                   </OverlayTrigger>},
                 "kind": "data-row",
                 "prefixFn": [Function],
@@ -6176,11 +6256,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
-                                    <div>
+                                    <a
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AaWiggins%2CDaMorsell%2CJaSmith%2CDoScott%2CAnCowan&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%3B%22Morsell%2C%20Darryl%22%3B%22Smith%2C%20Jalen%22%3B%22Scott%2C%20Donta%22%3B%22Cowan%2C%20Anthony%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      style={
+                                        Object {
+                                          "color": "inherit",
+                                          "textDecoration": "inherit",
+                                        }
+                                      }
+                                      target="_blank"
+                                    >
                                       <span>
                                         <span
                                           style={
@@ -6382,7 +6472,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                           />
                                         </span>
                                       </span>
-                                    </div>
+                                    </a>
                                   </OverlayTrigger>},
                 "kind": "data-row",
                 "prefixFn": [Function],
@@ -6638,11 +6728,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
-                                    <div>
+                                    <a
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AaWiggins%2CDaMorsell%2CJaSmith%2CDoScott%2CAnCowan&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%3B%22Morsell%2C%20Darryl%22%3B%22Smith%2C%20Jalen%22%3B%22Scott%2C%20Donta%22%3B%22Cowan%2C%20Anthony%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      style={
+                                        Object {
+                                          "color": "inherit",
+                                          "textDecoration": "inherit",
+                                        }
+                                      }
+                                      target="_blank"
+                                    >
                                       <span>
                                         <span
                                           style={
@@ -6844,7 +6944,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                           />
                                         </span>
                                       </span>
-                                    </div>
+                                    </a>
                                   </OverlayTrigger>},
                 "kind": "data-row",
                 "prefixFn": [Function],
@@ -8197,14 +8297,25 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
                                     <span>
-                                      <b>
-                                        AnCowan / AaWiggins / JaSmith / ErAyala / DaMorsell
-                                      </b>
+                                      <a
+                                        href="#"
+                                        style={
+                                          Object {
+                                            "color": "inherit",
+                                            "textDecoration": "inherit",
+                                          }
+                                        }
+                                      >
+                                        <b>
+                                          AnCowan / AaWiggins / JaSmith / ErAyala / DaMorsell
+                                        </b>
+                                      </a>
                                     </span>
                                   </OverlayTrigger>},
                 "kind": "data-row",
@@ -8527,14 +8638,25 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
                                     <span>
-                                      <b>
-                                        AnCowan / AaWiggins / JaSmith / ErAyala / DaMorsell
-                                      </b>
+                                      <a
+                                        href="#"
+                                        style={
+                                          Object {
+                                            "color": "inherit",
+                                            "textDecoration": "inherit",
+                                          }
+                                        }
+                                      >
+                                        <b>
+                                          AnCowan / AaWiggins / JaSmith / ErAyala / DaMorsell
+                                        </b>
+                                      </a>
                                     </span>
                                   </OverlayTrigger>},
                 "kind": "data-row",
@@ -8860,14 +8982,25 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
                                     <span>
-                                      <b>
-                                        AnCowan / AaWiggins / JaSmith / DoScott / DaMorsell
-                                      </b>
+                                      <a
+                                        href="#"
+                                        style={
+                                          Object {
+                                            "color": "inherit",
+                                            "textDecoration": "inherit",
+                                          }
+                                        }
+                                      >
+                                        <b>
+                                          AnCowan / AaWiggins / JaSmith / DoScott / DaMorsell
+                                        </b>
+                                      </a>
                                     </span>
                                   </OverlayTrigger>},
                 "kind": "data-row",
@@ -9190,14 +9323,25 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
                                     <span>
-                                      <b>
-                                        AnCowan / AaWiggins / JaSmith / DoScott / DaMorsell
-                                      </b>
+                                      <a
+                                        href="#"
+                                        style={
+                                          Object {
+                                            "color": "inherit",
+                                            "textDecoration": "inherit",
+                                          }
+                                        }
+                                      >
+                                        <b>
+                                          AnCowan / AaWiggins / JaSmith / DoScott / DaMorsell
+                                        </b>
+                                      </a>
                                     </span>
                                   </OverlayTrigger>},
                 "kind": "data-row",
@@ -9523,14 +9667,25 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
                                     <span>
-                                      <b>
-                                        AnCowan / AaWiggins / JaSmith / ErAyala / DoScott
-                                      </b>
+                                      <a
+                                        href="#"
+                                        style={
+                                          Object {
+                                            "color": "inherit",
+                                            "textDecoration": "inherit",
+                                          }
+                                        }
+                                      >
+                                        <b>
+                                          AnCowan / AaWiggins / JaSmith / ErAyala / DoScott
+                                        </b>
+                                      </a>
                                     </span>
                                   </OverlayTrigger>},
                 "kind": "data-row",
@@ -9853,14 +10008,25 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
                                     <span>
-                                      <b>
-                                        AnCowan / AaWiggins / JaSmith / ErAyala / DoScott
-                                      </b>
+                                      <a
+                                        href="#"
+                                        style={
+                                          Object {
+                                            "color": "inherit",
+                                            "textDecoration": "inherit",
+                                          }
+                                        }
+                                      >
+                                        <b>
+                                          AnCowan / AaWiggins / JaSmith / ErAyala / DoScott
+                                        </b>
+                                      </a>
                                     </span>
                                   </OverlayTrigger>},
                 "kind": "data-row",
@@ -11202,14 +11368,25 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
                                     <span>
-                                      <b>
-                                        AnCowan / AaWiggins / JaSmith / ErAyala / DaMorsell
-                                      </b>
+                                      <a
+                                        href="#"
+                                        style={
+                                          Object {
+                                            "color": "inherit",
+                                            "textDecoration": "inherit",
+                                          }
+                                        }
+                                      >
+                                        <b>
+                                          AnCowan / AaWiggins / JaSmith / ErAyala / DaMorsell
+                                        </b>
+                                      </a>
                                     </span>
                                   </OverlayTrigger>},
                 "kind": "data-row",
@@ -11520,14 +11697,25 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
                                     <span>
-                                      <b>
-                                        AnCowan / AaWiggins / JaSmith / ErAyala / DaMorsell
-                                      </b>
+                                      <a
+                                        href="#"
+                                        style={
+                                          Object {
+                                            "color": "inherit",
+                                            "textDecoration": "inherit",
+                                          }
+                                        }
+                                      >
+                                        <b>
+                                          AnCowan / AaWiggins / JaSmith / ErAyala / DaMorsell
+                                        </b>
+                                      </a>
                                     </span>
                                   </OverlayTrigger>},
                 "kind": "data-row",
@@ -11876,14 +12064,25 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
                                     <span>
-                                      <b>
-                                        AnCowan / AaWiggins / JaSmith / DoScott / DaMorsell
-                                      </b>
+                                      <a
+                                        href="#"
+                                        style={
+                                          Object {
+                                            "color": "inherit",
+                                            "textDecoration": "inherit",
+                                          }
+                                        }
+                                      >
+                                        <b>
+                                          AnCowan / AaWiggins / JaSmith / DoScott / DaMorsell
+                                        </b>
+                                      </a>
                                     </span>
                                   </OverlayTrigger>},
                 "kind": "data-row",
@@ -12194,14 +12393,25 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
                                     <span>
-                                      <b>
-                                        AnCowan / AaWiggins / JaSmith / DoScott / DaMorsell
-                                      </b>
+                                      <a
+                                        href="#"
+                                        style={
+                                          Object {
+                                            "color": "inherit",
+                                            "textDecoration": "inherit",
+                                          }
+                                        }
+                                      >
+                                        <b>
+                                          AnCowan / AaWiggins / JaSmith / DoScott / DaMorsell
+                                        </b>
+                                      </a>
                                     </span>
                                   </OverlayTrigger>},
                 "kind": "data-row",
@@ -12550,14 +12760,25 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
                                     <span>
-                                      <b>
-                                        AnCowan / AaWiggins / JaSmith / ErAyala / DoScott
-                                      </b>
+                                      <a
+                                        href="#"
+                                        style={
+                                          Object {
+                                            "color": "inherit",
+                                            "textDecoration": "inherit",
+                                          }
+                                        }
+                                      >
+                                        <b>
+                                          AnCowan / AaWiggins / JaSmith / ErAyala / DoScott
+                                        </b>
+                                      </a>
                                     </span>
                                   </OverlayTrigger>},
                 "kind": "data-row",
@@ -12868,14 +13089,25 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
                                     <span>
-                                      <b>
-                                        AnCowan / AaWiggins / JaSmith / ErAyala / DoScott
-                                      </b>
+                                      <a
+                                        href="#"
+                                        style={
+                                          Object {
+                                            "color": "inherit",
+                                            "textDecoration": "inherit",
+                                          }
+                                        }
+                                      >
+                                        <b>
+                                          AnCowan / AaWiggins / JaSmith / ErAyala / DoScott
+                                        </b>
+                                      </a>
                                     </span>
                                   </OverlayTrigger>},
                 "kind": "data-row",
@@ -14186,11 +14418,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
-                                    <div>
+                                    <a
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CErAyala%2CDaMorsell&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Morsell%2C%20Darryl%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      style={
+                                        Object {
+                                          "color": "inherit",
+                                          "textDecoration": "inherit",
+                                        }
+                                      }
+                                      target="_blank"
+                                    >
                                       <span>
                                         <span
                                           style={
@@ -14406,7 +14648,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           />
                                         </span>
                                       </span>
-                                    </div>
+                                    </a>
                                   </OverlayTrigger>},
                 "kind": "data-row",
                 "prefixFn": [Function],
@@ -14662,11 +14904,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
-                                    <div>
+                                    <a
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CErAyala%2CDaMorsell&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Morsell%2C%20Darryl%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      style={
+                                        Object {
+                                          "color": "inherit",
+                                          "textDecoration": "inherit",
+                                        }
+                                      }
+                                      target="_blank"
+                                    >
                                       <span>
                                         <span
                                           style={
@@ -14882,7 +15134,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           />
                                         </span>
                                       </span>
-                                    </div>
+                                    </a>
                                   </OverlayTrigger>},
                 "kind": "data-row",
                 "prefixFn": [Function],
@@ -15141,11 +15393,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
-                                    <div>
+                                    <a
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CDoScott%2CDaMorsell&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Scott%2C%20Donta%22%3B%22Morsell%2C%20Darryl%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      style={
+                                        Object {
+                                          "color": "inherit",
+                                          "textDecoration": "inherit",
+                                        }
+                                      }
+                                      target="_blank"
+                                    >
                                       <span>
                                         <span
                                           style={
@@ -15361,7 +15623,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           />
                                         </span>
                                       </span>
-                                    </div>
+                                    </a>
                                   </OverlayTrigger>},
                 "kind": "data-row",
                 "prefixFn": [Function],
@@ -15617,11 +15879,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
-                                    <div>
+                                    <a
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CDoScott%2CDaMorsell&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Scott%2C%20Donta%22%3B%22Morsell%2C%20Darryl%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      style={
+                                        Object {
+                                          "color": "inherit",
+                                          "textDecoration": "inherit",
+                                        }
+                                      }
+                                      target="_blank"
+                                    >
                                       <span>
                                         <span
                                           style={
@@ -15837,7 +16109,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           />
                                         </span>
                                       </span>
-                                    </div>
+                                    </a>
                                   </OverlayTrigger>},
                 "kind": "data-row",
                 "prefixFn": [Function],
@@ -16096,11 +16368,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
-                                    <div>
+                                    <a
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CErAyala%2CDoScott&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Scott%2C%20Donta%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      style={
+                                        Object {
+                                          "color": "inherit",
+                                          "textDecoration": "inherit",
+                                        }
+                                      }
+                                      target="_blank"
+                                    >
                                       <span>
                                         <span
                                           style={
@@ -16316,7 +16598,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           />
                                         </span>
                                       </span>
-                                    </div>
+                                    </a>
                                   </OverlayTrigger>},
                 "kind": "data-row",
                 "prefixFn": [Function],
@@ -16572,11 +16854,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
-                                    <div>
+                                    <a
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CErAyala%2CDoScott&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Scott%2C%20Donta%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      style={
+                                        Object {
+                                          "color": "inherit",
+                                          "textDecoration": "inherit",
+                                        }
+                                      }
+                                      target="_blank"
+                                    >
                                       <span>
                                         <span
                                           style={
@@ -16792,7 +17084,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           />
                                         </span>
                                       </span>
-                                    </div>
+                                    </a>
                                   </OverlayTrigger>},
                 "kind": "data-row",
                 "prefixFn": [Function],
@@ -18145,11 +18437,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
-                                    <div>
+                                    <a
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CErAyala%2CDaMorsell&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Morsell%2C%20Darryl%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      style={
+                                        Object {
+                                          "color": "inherit",
+                                          "textDecoration": "inherit",
+                                        }
+                                      }
+                                      target="_blank"
+                                    >
                                       <span>
                                         <span
                                           style={
@@ -18365,7 +18667,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           />
                                         </span>
                                       </span>
-                                    </div>
+                                    </a>
                                   </OverlayTrigger>},
                 "kind": "data-row",
                 "prefixFn": [Function],
@@ -18687,11 +18989,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
-                                    <div>
+                                    <a
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CErAyala%2CDaMorsell&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Morsell%2C%20Darryl%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      style={
+                                        Object {
+                                          "color": "inherit",
+                                          "textDecoration": "inherit",
+                                        }
+                                      }
+                                      target="_blank"
+                                    >
                                       <span>
                                         <span
                                           style={
@@ -18907,7 +19219,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           />
                                         </span>
                                       </span>
-                                    </div>
+                                    </a>
                                   </OverlayTrigger>},
                 "kind": "data-row",
                 "prefixFn": [Function],
@@ -19232,11 +19544,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
-                                    <div>
+                                    <a
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CDoScott%2CDaMorsell&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Scott%2C%20Donta%22%3B%22Morsell%2C%20Darryl%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      style={
+                                        Object {
+                                          "color": "inherit",
+                                          "textDecoration": "inherit",
+                                        }
+                                      }
+                                      target="_blank"
+                                    >
                                       <span>
                                         <span
                                           style={
@@ -19452,7 +19774,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           />
                                         </span>
                                       </span>
-                                    </div>
+                                    </a>
                                   </OverlayTrigger>},
                 "kind": "data-row",
                 "prefixFn": [Function],
@@ -19774,11 +20096,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
-                                    <div>
+                                    <a
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CDoScott%2CDaMorsell&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Scott%2C%20Donta%22%3B%22Morsell%2C%20Darryl%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      style={
+                                        Object {
+                                          "color": "inherit",
+                                          "textDecoration": "inherit",
+                                        }
+                                      }
+                                      target="_blank"
+                                    >
                                       <span>
                                         <span
                                           style={
@@ -19994,7 +20326,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           />
                                         </span>
                                       </span>
-                                    </div>
+                                    </a>
                                   </OverlayTrigger>},
                 "kind": "data-row",
                 "prefixFn": [Function],
@@ -20319,11 +20651,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
-                                    <div>
+                                    <a
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CErAyala%2CDoScott&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Scott%2C%20Donta%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      style={
+                                        Object {
+                                          "color": "inherit",
+                                          "textDecoration": "inherit",
+                                        }
+                                      }
+                                      target="_blank"
+                                    >
                                       <span>
                                         <span
                                           style={
@@ -20539,7 +20881,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           />
                                         </span>
                                       </span>
-                                    </div>
+                                    </a>
                                   </OverlayTrigger>},
                 "kind": "data-row",
                 "prefixFn": [Function],
@@ -20861,11 +21203,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           
                                           <br />
                                         </span>
+                                        Click to open a more detailed analysis page for this lineup 
                                       </Tooltip>
                                     }
                                     placement="auto"
                                   >
-                                    <div>
+                                    <a
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CErAyala%2CDoScott&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Scott%2C%20Donta%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      style={
+                                        Object {
+                                          "color": "inherit",
+                                          "textDecoration": "inherit",
+                                        }
+                                      }
+                                      target="_blank"
+                                    >
                                       <span>
                                         <span
                                           style={
@@ -21081,7 +21433,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           />
                                         </span>
                                       </span>
-                                    </div>
+                                    </a>
                                   </OverlayTrigger>},
                 "kind": "data-row",
                 "prefixFn": [Function],

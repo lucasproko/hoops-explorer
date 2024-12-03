@@ -220,6 +220,7 @@ exports[`TableDisplayUtils buildDecoratedLineup - buildTooltipTexts 1`] = `
         
         <br />
       </span>
+      Click to open a more detailed analysis page for this lineup 
     </div>
   </div>
 </span>
@@ -228,7 +229,16 @@ exports[`TableDisplayUtils buildDecoratedLineup - buildTooltipTexts 1`] = `
 exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
 <span>
   <div>
-    <div>
+    <a
+      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=p1%2Cp2%2Cp3%2Cp4%2Cp5&offQuery=&onQuery=%7B%22player1%22%3B%22player2%22%3B%22player3%22%3B%22player4%22%3B%22player5%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+      style={
+        Object {
+          "color": "inherit",
+          "textDecoration": "inherit",
+        }
+      }
+      target="_blank"
+    >
       <span>
         <span
           style={
@@ -460,7 +470,7 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
           </span>
         </span>
       </span>
-    </div>
+    </a>
   </div>
 </span>
 `;
@@ -469,9 +479,19 @@ exports[`TableDisplayUtils buildDecoratedLineup - plain version 1`] = `
 <span>
   <div>
     <span>
-      <b>
-        p1 / p2 / p3 / p4 / p5
-      </b>
+      <a
+        href="#"
+        style={
+          Object {
+            "color": "inherit",
+            "textDecoration": "inherit",
+          }
+        }
+      >
+        <b>
+          p1 / p2 / p3 / p4 / p5
+        </b>
+      </a>
     </span>
   </div>
 </span>
