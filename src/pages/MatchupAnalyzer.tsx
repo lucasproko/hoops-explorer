@@ -243,10 +243,10 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
   const playerImpactRef = useRef<HTMLDivElement>(null);
   const timelineViewRef = useRef<HTMLDivElement>(null);
   const navigationRefs = {
-    Top: topRef,
-    "Player Impact": playerImpactRef,
-    Timeline: timelineViewRef,
-    "Play Types": playTypesRef,
+    Top: { ref: topRef },
+    "Player Impact": { ref: playerImpactRef },
+    Timeline: { ref: timelineViewRef },
+    "Play Types": { ref: playTypesRef },
   };
 
   /** Only rebuild the chart if the data changes, or if one of the filter params changes */

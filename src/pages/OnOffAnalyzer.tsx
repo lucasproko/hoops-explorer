@@ -41,6 +41,7 @@ import { UrlRouting } from "../utils/UrlRouting";
 import { HistoryManager } from "../utils/HistoryManager";
 import { ClientRequestCache } from "../utils/ClientRequestCache";
 import InternalNavBarInRow from "../components/shared/InternalNavBarInRow";
+import { sk } from "date-fns/locale";
 
 const OnOffAnalyzerPage: NextPage<{}> = () => {
   useEffect(() => {
@@ -57,13 +58,58 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
   // Quick navigation to the different sections
   const topRef = useRef<HTMLDivElement>(null);
   const teamAnalysisRef = useRef<HTMLDivElement>(null);
+  const teamAnalysisRefA = useRef<HTMLTableRowElement>(null);
+  const teamAnalysisRefB = useRef<HTMLTableRowElement>(null);
+  const teamAnalysisRefBase = useRef<HTMLTableRowElement>(null);
+  const teamAnalysisRefDiffs = useRef<HTMLTableRowElement>(null);
   const indivAnalysisRef = useRef<HTMLDivElement>(null);
   const lineupComparisonRef = useRef<HTMLDivElement>(null);
-  const navigationRefs = {
-    Top: topRef,
-    "Team Analysis": teamAnalysisRef,
-    "Player Analysis": indivAnalysisRef,
-    "Compare Lineups": lineupComparisonRef,
+  const simpleNavigationsRefs = {
+    Top: { ref: topRef },
+    Teams: { ref: teamAnalysisRef },
+    Players: { ref: indivAnalysisRef },
+    "Roster Comp.": { ref: lineupComparisonRef },
+  };
+  const complexNavigationsRefs = (params: GameFilterParams) => {
+    const onOffMode = params.autoOffQuery;
+    const onKey = onOffMode ? "On" : "A";
+    const offKey = onOffMode ? "Off" : "B";
+    return {
+      Top: { ref: topRef },
+      Teams: { ref: teamAnalysisRef },
+      ": [ ": { isLabel: true },
+      [onKey]: { ref: teamAnalysisRefA, offset: 125 },
+      [offKey]: {
+        ref: teamAnalysisRefB,
+        offset: 75,
+        skip:
+          _.isEmpty(params.offQuery) &&
+          !params.autoOffQuery &&
+          _.isEmpty(params.offQueryFilters),
+      },
+      Diffs: params.teamDiffs
+        ? { ref: teamAnalysisRefDiffs, offset: 75 }
+        : { skip: true },
+      Base: { ref: teamAnalysisRefBase, offset: 75 },
+      " ] | ": { isLabel: true },
+      Players: { ref: indivAnalysisRef },
+      "Roster Comp.": { ref: lineupComparisonRef },
+    };
+  };
+  const navigationRefs = (params: GameFilterParams) => {
+    if (
+      (params.teamShotCharts || // Showing extra charts
+        params.showTeamPlayTypes ||
+        params.showExtraInfo) &&
+      (!_.isEmpty(params.onQuery) || // Have multiple queries
+        !_.isEmpty(params.offQuery) ||
+        !_.isEmpty(params.onQueryFilters) ||
+        !_.isEmpty(params.offQueryFilters))
+    ) {
+      return complexNavigationsRefs(params);
+    } else {
+      return simpleNavigationsRefs;
+    }
   };
 
   // Team Stats interface
@@ -289,6 +335,12 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
           gameFilterParams={gameFilterParams}
           dataEvent={dataEvent}
           onChangeState={onGameFilterParamsChange}
+          navigationRefs={{
+            refA: teamAnalysisRefA,
+            refB: teamAnalysisRefB,
+            refBase: teamAnalysisRefBase,
+            refDiffs: teamAnalysisRefDiffs,
+          }}
         />
       </GenericCollapsibleCard>
     );
@@ -338,7 +390,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
           />
         </GenericCollapsibleCard>
       </Row>
-      <InternalNavBarInRow refs={navigationRefs} />
+      <InternalNavBarInRow refs={navigationRefs(gameFilterParamsRef.current)} />
       <Row ref={teamAnalysisRef}>{teamStatsTable}</Row>
       <Row ref={indivAnalysisRef}>{rosterStatsTable}</Row>
       <Row ref={lineupComparisonRef}>

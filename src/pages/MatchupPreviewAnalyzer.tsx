@@ -530,10 +530,10 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
   const playerImpactRef = useRef<HTMLDivElement>(null);
   const shotChartsRef = useRef<HTMLDivElement>(null);
   const navigationRefs = {
-    Top: topRef,
-    "Play Types": playTypesRef,
-    "Player Impact": playerImpactRef,
-    "Shot Charts": showShotCharts ? shotChartsRef : undefined,
+    Top: { ref: topRef },
+    "Play Types": { ref: playTypesRef },
+    "Player Impact": { ref: playerImpactRef },
+    "Shot Charts": showShotCharts ? { ref: shotChartsRef } : { skip: true },
   };
 
   /** Only rebuild the chart if the data changes, or if one of the filter params changes */

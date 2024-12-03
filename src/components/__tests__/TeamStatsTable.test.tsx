@@ -69,6 +69,11 @@ describe("TeamStatsTable", () => {
       sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets,
   };
 
+  const refA = React.createRef<HTMLTableRowElement>();
+  const refB = React.createRef<HTMLTableRowElement>();
+  const refBase = React.createRef<HTMLTableRowElement>();
+  const refDiffs = React.createRef<HTMLTableRowElement>();
+
   test("TeamStatsTable - should create snapshot", () => {
     const { container } = render(
       <TeamStatsTable
@@ -84,6 +89,7 @@ describe("TeamStatsTable", () => {
           lineupStats: [],
         }}
         onChangeState={(newParams: GameFilterParams) => {}}
+        navigationRefs={{ refA, refB, refBase, refDiffs }}
       />
     );
     expect(container).toMatchSnapshot();
@@ -147,6 +153,7 @@ describe("TeamStatsTable", () => {
           lineupStats: [], // empty table
         }}
         onChangeState={(newParams: GameFilterParams) => {}}
+        navigationRefs={{ refA, refB, refBase, refDiffs }}
       />
     );
 
@@ -214,6 +221,7 @@ describe("TeamStatsTable", () => {
           lineupStats: [], //(can't find lineup that works with this, needs more investigation - in the meantime just show the empty table)
         }}
         onChangeState={(newParams: GameFilterParams) => {}}
+        navigationRefs={{ refA, refB, refBase, refDiffs }}
       />
     );
 

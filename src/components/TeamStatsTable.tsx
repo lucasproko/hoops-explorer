@@ -46,7 +46,6 @@ import {
   TeamStatsTableUtils,
   TeamStatsBreakdown,
 } from "../utils/tables/TeamStatsTableUtils";
-import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import { DateUtils } from "../utils/DateUtils";
 import { UserChartOpts } from "./diags/ShotChartDiagView";
 
@@ -69,12 +68,20 @@ type Props = {
     lineupStats: LineupStatsModel[];
   };
   onChangeState: (newParams: GameFilterParams) => void;
+  // Some refs for navigation:
+  navigationRefs: {
+    refA: React.RefObject<HTMLTableRowElement>;
+    refB: React.RefObject<HTMLTableRowElement>;
+    refBase: React.RefObject<HTMLTableRowElement>;
+    refDiffs: React.RefObject<HTMLTableRowElement>;
+  };
 };
 
 const TeamStatsTable: React.FunctionComponent<Props> = ({
   gameFilterParams,
   dataEvent,
   onChangeState,
+  navigationRefs,
 }) => {
   const { teamStats, rosterStats, shotStats, lineupStats } = dataEvent;
   const server =
@@ -262,8 +269,12 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
 
   const buildRows = (
     stats: TeamStatsBreakdown | undefined,
+    naviationRef: React.RefObject<HTMLTableRowElement>,
     withSeparator: boolean
   ) => {
+    if (stats) {
+      stats.teamStatsRows[0].navigationRef = naviationRef;
+    }
     return stats
       ? _.flatten([
           stats.teamStatsRows,
@@ -275,12 +286,15 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   };
 
   const tableData = _.flatten([
-    buildRows(tableInfo.on, true),
-    buildRows(tableInfo.off, true),
-    buildRows(tableInfo.baseline, false),
+    buildRows(tableInfo.on, navigationRefs.refA, true),
+    buildRows(tableInfo.off, navigationRefs.refB, true),
+    buildRows(tableInfo.baseline, navigationRefs.refBase, false),
     // Diffs if showing:
     showDiffs ? [GenericTableOps.buildRowSeparator()] : [],
-    tableInfo.diffs,
+    _.map(tableInfo.diffs, (row, idx) => {
+      if (idx == 0) row.navigationRef = navigationRefs.refDiffs;
+      return row;
+    }),
   ]);
 
   // 3] Utils

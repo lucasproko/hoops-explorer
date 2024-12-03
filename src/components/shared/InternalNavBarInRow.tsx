@@ -3,7 +3,15 @@ import _ from "lodash";
 import { Col, Row } from "react-bootstrap";
 
 type Props = {
-  refs: Record<string, React.RefObject<HTMLDivElement> | undefined>;
+  refs: Record<
+    string,
+    {
+      ref?: React.RefObject<HTMLTableElement | HTMLDivElement> | undefined;
+      isLabel?: boolean;
+      skip?: boolean;
+      offset?: number;
+    }
+  >;
 };
 
 const InternalNavBarInRow: React.FunctionComponent<Props> = ({ refs }) => {
@@ -16,21 +24,48 @@ const InternalNavBarInRow: React.FunctionComponent<Props> = ({ refs }) => {
         <div>
           Jump to:{" "}
           {_.map(
-            _.keys(refs).filter((ref) => refs[ref]),
-            (key, idx) => (
-              <span key={`internal-nav-${idx}`}>
-                <a
-                  href={`#`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    refs[key]?.current?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                >
-                  {key}
-                </a>
-                {idx < _.size(refs) - 1 ? " | " : ""}
-              </span>
-            )
+            _.keys(refs).filter((ref) => !refs[ref]?.skip),
+            (key, idx, array) => {
+              return refs[key]?.isLabel ? (
+                <span key={`internal-nav-${idx}`}>{key}</span>
+              ) : (
+                <span key={`internal-nav-${idx}`}>
+                  <a
+                    href={`#`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const refMeta = refs[key];
+                      const element = refMeta.ref?.current;
+                      if (refMeta && element) {
+                        if (
+                          _.isNumber(refMeta.offset) &&
+                          refMeta.offset != 0 &&
+                          typeof window !== "undefined"
+                        ) {
+                          // Want to skip forward a bit
+                          const headerOffset = refMeta.offset;
+                          const elementPosition =
+                            element.getBoundingClientRect().top;
+                          const offsetPosition =
+                            elementPosition + window.scrollY - headerOffset;
+                          window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth",
+                          });
+                        } else {
+                          element?.scrollIntoView({ behavior: "smooth" });
+                        }
+                      }
+                    }}
+                  >
+                    {key}
+                  </a>
+                  {idx < _.size(array) - 1 && !refs[array?.[idx + 1]]?.isLabel
+                    ? " | "
+                    : ""}
+                </span>
+              );
+            }
           )}
         </div>
       </Col>

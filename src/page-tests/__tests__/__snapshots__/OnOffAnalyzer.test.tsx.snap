@@ -49,17 +49,25 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
   <InternalNavBarInRow
     refs={
       Object {
-        "Compare Lineups": Object {
-          "current": null,
+        "Players": Object {
+          "ref": Object {
+            "current": null,
+          },
         },
-        "Player Analysis": Object {
-          "current": null,
+        "Roster Comp.": Object {
+          "ref": Object {
+            "current": null,
+          },
         },
-        "Team Analysis": Object {
-          "current": null,
+        "Teams": Object {
+          "ref": Object {
+            "current": null,
+          },
         },
         "Top": Object {
-          "current": null,
+          "ref": Object {
+            "current": null,
+          },
         },
       }
     }
@@ -113,6 +121,22 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
           }
         }
         gameFilterParams={Object {}}
+        navigationRefs={
+          Object {
+            "refA": Object {
+              "current": null,
+            },
+            "refB": Object {
+              "current": null,
+            },
+            "refBase": Object {
+              "current": null,
+            },
+            "refDiffs": Object {
+              "current": null,
+            },
+          }
+        }
         onChangeState={[Function]}
       />
     </GenericCollapsibleCard>

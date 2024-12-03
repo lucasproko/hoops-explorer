@@ -85,9 +85,11 @@ class GenericTableDataRow {
     | Record<string, GenericTableColProps>
     | undefined;
   readonly colSpanOverride: undefined | ((key: string) => number);
+  navigationRef: undefined | React.RefObject<HTMLTableRowElement>;
 }
 class GenericTableSeparator {
   readonly kind: string = "separator";
+  navigationRef: undefined | React.RefObject<HTMLTableRowElement>;
 }
 class GenericTableTextRow {
   constructor(text: React.ReactNode, className: string) {
@@ -97,6 +99,7 @@ class GenericTableTextRow {
   readonly kind: string = "text-row";
   readonly text: React.ReactNode;
   readonly className: string;
+  navigationRef: undefined | React.RefObject<HTMLTableRowElement>;
 }
 class GenericTableSubHeaderRow {
   constructor(cols: [React.ReactNode, number][], className: string) {
@@ -108,6 +111,7 @@ class GenericTableSubHeaderRow {
   readonly cols: React.ReactNode[];
   readonly spans: number[];
   readonly className: string;
+  navigationRef: undefined | React.RefObject<HTMLTableRowElement>;
 }
 class GenericTableRepeatHeaderRow {
   constructor(colRename: Record<string, string>, className: string) {
@@ -117,6 +121,7 @@ class GenericTableRepeatHeaderRow {
   readonly kind: string = "text-row";
   readonly colRename: Record<string, string>;
   readonly className: string;
+  navigationRef: undefined | React.RefObject<HTMLTableRowElement>;
 }
 export type GenericTableRow =
   | GenericTableDataRow
@@ -655,11 +660,13 @@ const GenericTable: React.FunctionComponent<Props> = ({
     return tableData.map((row, index) => {
       if (row instanceof GenericTableDataRow) {
         return (
-          <tr key={"" + index}>{renderTableRow(row, prefixAwareDataMap)}</tr>
+          <tr ref={row.navigationRef} key={"" + index}>
+            {renderTableRow(row, prefixAwareDataMap)}
+          </tr>
         );
       } else if (row instanceof GenericTableTextRow) {
         return (
-          <tr key={"" + index}>
+          <tr ref={row.navigationRef} key={"" + index}>
             <td colSpan={totalTableCols} className={row.className}>
               {row.text}
             </td>
@@ -667,7 +674,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
         );
       } else if (row instanceof GenericTableSubHeaderRow) {
         return (
-          <tr key={"" + index}>
+          <tr ref={row.navigationRef} key={"" + index}>
             {row.cols.map((col, colIndex) => {
               return (
                 <td
@@ -682,7 +689,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
           </tr>
         );
       } else if (row instanceof GenericTableRepeatHeaderRow) {
-        return <tr>{renderTableHeaders(row)}</tr>;
+        return <tr ref={row.navigationRef}>{renderTableHeaders(row)}</tr>;
       } else {
         //(separator, don't merge the cols because we don't have cell boundaries and that messes up spreadsheet)
         return (
