@@ -71,6 +71,7 @@ import QueryFilterDropdown from "./shared/QueryFilterDropdown";
 import { QueryDisplayUtils } from "../utils/QueryDisplayUtils";
 import DateRangeModal from "./shared/DateRangeModal";
 import { DateUtils } from "../utils/DateUtils";
+import { Badge } from "react-bootstrap";
 
 interface Props<PARAMS> {
   startingState: PARAMS;
@@ -840,7 +841,7 @@ const CommonFilter: CommonFilterI = ({
                   <InputGroup>
                     <LineupQueryAutoSuggestText
                       readOnly={false}
-                      placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
+                      placeholder="eg 'Player1 AND NOT (WalkOn1)'"
                       initValue={baseQuery}
                       year={year}
                       gender={gender}
@@ -866,7 +867,11 @@ const CommonFilter: CommonFilterI = ({
                     {queryFilters
                       .map((p, i) => (
                         <span key={`conf${i}`}>
-                          {i > 0 ? null : <small>AND </small>}
+                          {i > 0 ? null : (
+                            <span>
+                              <Badge variant="primary">AND</Badge>{" "}
+                            </span>
+                          )}
                           {QueryDisplayUtils.showQueryFilter(p, gender, year)}
                           &nbsp;&nbsp;
                         </span>
@@ -876,7 +881,10 @@ const CommonFilter: CommonFilterI = ({
                           startingState.invertBaseQueryFilters
                           ? [
                               <span key="invertBase">
-                                <small>AND NOT </small>
+                                <span>
+                                  <Badge variant="primary">AND</Badge>
+                                  <Badge variant="danger">NOT</Badge>{" "}
+                                </span>
                                 {QueryDisplayUtils.showInvertedQueryAndFilters(
                                   startingState.invertBase,
                                   startingState.invertBaseQueryFilters

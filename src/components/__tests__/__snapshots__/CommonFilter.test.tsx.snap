@@ -1873,7 +1873,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 onChange={[Function]}
                 onKeyDown={[Function]}
                 onKeyUp={[Function]}
-                placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
+                placeholder="eg 'Player1 AND NOT (WalkOn1)'"
                 readOnly={false}
                 team=""
                 year="2024/25"
@@ -2889,7 +2889,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
                 onChange={[Function]}
                 onKeyDown={[Function]}
                 onKeyUp={[Function]}
-                placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
+                placeholder="eg 'Player1 AND NOT (WalkOn1)'"
                 readOnly={false}
                 team="Maryland"
                 year="2018/9"
@@ -2915,9 +2915,15 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
             <span
               key="conf0"
             >
-              <small>
-                AND 
-              </small>
+              <span>
+                <Badge
+                  pill={false}
+                  variant="primary"
+                >
+                  AND
+                </Badge>
+                 
+              </span>
               <OverlayTrigger
                 overlay={
                   <Tooltip
@@ -4020,7 +4026,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
                 onChange={[Function]}
                 onKeyDown={[Function]}
                 onKeyUp={[Function]}
-                placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
+                placeholder="eg 'Player1 AND NOT (WalkOn1)'"
                 readOnly={false}
                 team="Maryland"
                 year="2018/9"
@@ -5076,7 +5082,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
                 onChange={[Function]}
                 onKeyDown={[Function]}
                 onKeyUp={[Function]}
-                placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
+                placeholder="eg 'Player1 AND NOT (WalkOn1)'"
                 readOnly={false}
                 team="Maryland"
                 year="2018/9"
@@ -5101,9 +5107,15 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
             <span
               key="conf0"
             >
-              <small>
-                AND 
-              </small>
+              <span>
+                <Badge
+                  pill={false}
+                  variant="primary"
+                >
+                  AND
+                </Badge>
+                 
+              </span>
               <OverlayTrigger
                 overlay={
                   <Tooltip
@@ -5130,9 +5142,21 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
             <span
               key="invertBase"
             >
-              <small>
-                AND NOT 
-              </small>
+              <span>
+                <Badge
+                  pill={false}
+                  variant="primary"
+                >
+                  AND
+                </Badge>
+                <Badge
+                  pill={false}
+                  variant="danger"
+                >
+                  NOT
+                </Badge>
+                 
+              </span>
               <OverlayTrigger
                 overlay={
                   <Tooltip

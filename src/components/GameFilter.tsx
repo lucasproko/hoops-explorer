@@ -41,6 +41,7 @@ import { QueryDisplayUtils } from "../utils/QueryDisplayUtils";
 import QueryFilterDropdown from "./shared/QueryFilterDropdown";
 import DateRangeModal from "./shared/DateRangeModal";
 import { UrlRouting } from "../utils/UrlRouting";
+import { Badge } from "react-bootstrap";
 
 type Props = {
   onStats: (
@@ -753,7 +754,11 @@ const GameFilter: React.FunctionComponent<Props> = ({
                       &nbsp;
                       {onQueryFilters.map((p, i) => (
                         <span key={`conf${i}`}>
-                          {i > 0 ? null : <small>AND </small>}
+                          {i > 0 ? null : (
+                            <span>
+                              <Badge variant="primary">AND</Badge>{" "}
+                            </span>
+                          )}
                           {QueryDisplayUtils.showQueryFilter(
                             p,
                             commonParams.gender || "",
@@ -806,7 +811,11 @@ const GameFilter: React.FunctionComponent<Props> = ({
                           &nbsp;
                           {offQueryFilters.map((p, i) => (
                             <span key={`conf${i}`}>
-                              {i > 0 ? null : <small>AND </small>}
+                              {i > 0 ? null : (
+                                <span>
+                                  <Badge variant="primary">AND</Badge>{" "}
+                                </span>
+                              )}
                               {QueryDisplayUtils.showQueryFilter(
                                 p,
                                 commonParams.gender || "",
@@ -822,7 +831,15 @@ const GameFilter: React.FunctionComponent<Props> = ({
                           &nbsp;
                           {onQueryFilters.map((p, i) => (
                             <span key={`conf${i}`}>
-                              {i > 0 ? <span>/ </span> : <small>OR </small>}
+                              {i > 0 ? (
+                                <span>/ </span>
+                              ) : (
+                                <span>
+                                  <Badge pill variant="primary">
+                                    OR
+                                  </Badge>{" "}
+                                </span>
+                              )}
                               {QueryDisplayUtils.showQueryFilter(
                                 p,
                                 commonParams.gender || "",
