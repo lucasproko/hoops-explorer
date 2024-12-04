@@ -117,6 +117,8 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
     });
   };
 
+  const [csvData, setCsvData] = useState<object[]>([]);
+
   // Game and Lineup filters
 
   const allParams =
@@ -329,7 +331,42 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
             <Row className="mt-0 mb-2">
               <Col>
                 <div className="small">
-                  {PlayTypeDiagUtils.buildLegend("LEGEND")}
+                  {PlayTypeDiagUtils.buildLegend("LEGEND")}&nbsp;|&nbsp;
+                  {PlayTypeDiagUtils.buildCsvDownload(
+                    "CSV",
+                    `${matchupFilterParams.team || "Unknown"} ${
+                      matchupFilterParams.oppoTeam || ""
+                    }`,
+                    csvData,
+                    () => {
+                      const oppoAndDate = buildOppoFilter(
+                        matchupFilterParams.oppoTeam || ""
+                      );
+                      const dataTeamA: object[] =
+                        PlayTypeDiagUtils.buildTeamStyleBreakdownData(
+                          matchupFilterParams.team || "Unknown",
+                          true,
+                          matchupFilterParams.oppoTeam || "",
+                          dataEvent.rosterStatsA,
+                          dataEvent.teamStatsA,
+                          avgEfficiency,
+                          divisionStatsCache,
+                          true
+                        );
+                      const dataTeamB: object[] =
+                        PlayTypeDiagUtils.buildTeamStyleBreakdownData(
+                          matchupFilterParams.team || "Unknown",
+                          false,
+                          matchupFilterParams.oppoTeam || "",
+                          dataEvent.rosterStatsB,
+                          dataEvent.teamStatsB,
+                          avgEfficiency,
+                          divisionStatsCache,
+                          true
+                        );
+                      setCsvData(dataTeamA.concat(dataTeamB));
+                    }
+                  )}{" "}
                 </div>
               </Col>
             </Row>
@@ -384,7 +421,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
         )}
       </GenericCollapsibleCard>
     );
-  }, [dataEvent, divisionStatsCache]);
+  }, [dataEvent, divisionStatsCache, csvData]);
 
   return (
     <Container>

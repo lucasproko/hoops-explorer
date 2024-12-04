@@ -21,6 +21,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-regular-svg-icons";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
+import { CSVLink, CSVDownload } from "react-csv";
 
 const targetSource = ["source", "target"];
 const shotTypes = ["3p", "mid", "rim"];
@@ -44,11 +45,12 @@ import {
   TeamStatSet,
   RosterEntry,
 } from "../StatModels";
-import { DivisionStatsCache } from "./GradeTableUtils";
+import { DivisionStatsCache, GradeTableUtils } from "./GradeTableUtils";
 import { RosterTableUtils } from "./RosterTableUtils";
 import { RosterStatsModel } from "../../components/RosterStatsTable";
 import { TeamStatsModel } from "../../components/TeamStatsTable";
 import { TopLevelPlayAnalysis } from "../stats/PlayTypeUtils";
+import { GradeUtils } from "../stats/GradeUtils";
 
 /** Encapsulates some of the logic used to build the diag visualiations in XxxPlayTypeDiags */
 export class PlayTypeDiagUtils {
@@ -500,6 +502,140 @@ export class PlayTypeDiagUtils {
     );
   };
 
+  /** Encapsulates the logic to build a play style table from either single game or season -
+   * like buildTeamStyleBreakdown but generates a JSON object instead of
+   * TODO: need to do a better job of deduplicating the code
+   */
+  static buildTeamStyleBreakdownData = (
+    nameTeamA: string,
+    isTeamA: boolean,
+    menuItemTeamB: string,
+    players: RosterStatsModel,
+    teamStats: TeamStatsModel,
+    avgEfficiency: number,
+    grades: DivisionStatsCache,
+    singleGameMode: boolean,
+    defensiveOverride?: TopLevelPlayAnalysis
+  ): Record<string, string | number>[] => {
+    const rosterInfo = teamStats.global.roster || {};
+
+    /** Largest sample of player stats, by player key - use for ORtg calcs */
+    const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(
+      players.global,
+      rosterInfo,
+      true //(injects positional info into the player stats, needed for play style analysis below)
+    );
+
+    const playersIn = players.baseline;
+    const teamStatsIn = teamStats.baseline;
+
+    const gameInfo = PlayTypeDiagUtils.buildGameInfo(menuItemTeamB);
+
+    // From here I've coped and pasted the data processing bits of TeamPlayTypeDiagRadar
+    //TODO: dedup into shared modules
+
+    const playCountToUse =
+      singleGameMode && teamStats.baseline.off_poss
+        ? (teamStats.baseline.off_poss?.value || 0) +
+          (teamStats.baseline.total_off_orb?.value || 0)
+        : undefined;
+
+    const oppoDefAdj = defensiveOverride
+      ? teamStatsIn.off_adj_opp?.value
+      : teamStatsIn.def_adj_opp?.value;
+    const sosAdjustment = avgEfficiency / (oppoDefAdj || avgEfficiency);
+
+    const topLevelPlayTypeStyles =
+      defensiveOverride ||
+      PlayTypeUtils.buildTopLevelPlayStyles(
+        playersIn,
+        globalRosterStatsByCode,
+        teamStatsIn
+      );
+
+    const { tierToUse } = GradeTableUtils.buildTeamTierInfo("rank:Combo", {
+      comboTier: grades?.Combo,
+      highTier: grades?.High,
+      mediumTier: grades?.Medium,
+      lowTier: grades?.Low,
+    });
+    const possFactor = _.isNumber(playCountToUse) ? playCountToUse / 100 : 1.0;
+
+    const topLevelPlayTypeStylesPctile = tierToUse
+      ? GradeUtils.getPlayStyleStats(
+          topLevelPlayTypeStyles,
+          tierToUse,
+          undefined, //(SoS calc separately below)
+          true
+        )
+      : undefined;
+
+    const adjTopLevelPlayTypeStylesPctile = tierToUse
+      ? GradeUtils.getPlayStyleStats(
+          topLevelPlayTypeStyles,
+          tierToUse,
+          sosAdjustment,
+          true
+        )
+      : undefined;
+
+    const data = topLevelPlayTypeStylesPctile
+      ? _.map(topLevelPlayTypeStylesPctile, (stat, playType) => {
+          const rawVal = (
+            topLevelPlayTypeStyles as Record<
+              string,
+              { possPct: Statistic; pts: Statistic }
+            >
+          )[playType];
+
+          const rawPct = rawVal?.possPct?.value || 0;
+
+          return {
+            game_id: `${nameTeamA} ${menuItemTeamB}`,
+            team: isTeamA ? nameTeamA : gameInfo?.teamB || "Unknown",
+            opponent: !isTeamA ? nameTeamA : gameInfo?.teamB || "Unknown",
+            game_date: gameInfo?.dateStr || "Unknown",
+            team_score: isTeamA
+              ? gameInfo?.scoreTeamA || 0
+              : gameInfo?.scoreTeamB || 0,
+            opponent_score: !isTeamA
+              ? gameInfo?.scoreTeamA || 0
+              : gameInfo?.scoreTeamB || 0,
+            play_type: PlayTypeDiagUtils.getPlayTypeName(playType),
+            freq_per_100: rawPct * 100.0,
+            freq_percentile:
+              rawPct == 0 ? 0 : Math.min(100, (stat.possPct.value || 0) * 100),
+            plays_per_game: rawPct * possFactor * 100.0,
+            efficiency: rawVal?.pts?.value || 0,
+            efficiency_percentile: Math.min(100, (stat.pts.value || 0) * 100),
+            adj_efficiency: (rawVal?.pts?.value || 0) * sosAdjustment,
+            adj_efficiency_percentile: Math.min(
+              100,
+              (adjTopLevelPlayTypeStylesPctile?.[playType as TopLevelPlayType]
+                ?.pts?.value || 0) * 100.0
+            ),
+            opponent_def_adj: (oppoDefAdj || 0.0) * 0.01, //(all eff are per play)
+            total_plays: playCountToUse || 100,
+          };
+        })
+      : [];
+
+    return data;
+  };
+
+  /** Translates from the internal model to the one I'm exposing to users */
+  static getPlayTypeName = (name: string) => {
+    if (name == "Put-Back") {
+      return "Rebound & Scramble";
+    } else if (name == "Backdoor Cut") {
+      return "Perimeter Cut";
+    } else if (name == "Post & Kick") {
+      return "Inside Out";
+    } else {
+      return name;
+    }
+  };
+
   /** Not totally sold on this presentation, but give some handy insight into what the graph means */
   static readonly buildLegendText = (
     <div>
@@ -586,6 +722,54 @@ export class PlayTypeDiagUtils {
           <u>{legendLabelName}</u>
         </OverlayTrigger>
       </span>
+    );
+  };
+
+  /** Convert from the menu string into game info - TODO dedup with MatchupFilter */
+  static buildGameInfo = (
+    menuItemStr: string
+  ):
+    | { teamB: string; dateStr: string; scoreTeamA: number; scoreTeamB: number }
+    | undefined => {
+    const regex = /^(?:@|vs)? *(.*) [(]([^)]*)[)]: *[WL] *(\d+)-(\d+).*$/;
+    const regexResult = regex.exec(menuItemStr);
+    if (regexResult && regexResult.length >= 3) {
+      return {
+        teamB: regexResult[1],
+        dateStr: regexResult[2],
+        scoreTeamA: parseInt(regexResult[3]),
+        scoreTeamB: parseInt(regexResult[4]),
+      };
+    } else {
+      return undefined;
+    }
+  };
+
+  /** Builds a slightly back CSV download link, onClick has to set a useState
+   * variable which is passed into data (don't forget to include the useState in any useMemos!)
+   */
+  static buildCsvDownload = (
+    labelName: string,
+    gameId: string,
+    data: object[],
+    onClick: () => void
+  ) => {
+    const filename =
+      gameId.replace("@", "at").replaceAll(/[^a-zA-Z0-9]/g, "_") + ".csv";
+    const tooltip = (
+      <Tooltip id={filename}>Download the play-type data as CSV</Tooltip>
+    );
+    return (
+      <OverlayTrigger placement="auto" overlay={tooltip}>
+        <CSVLink
+          filename={filename}
+          data={data}
+          asyncOnClick={true}
+          onClick={onClick}
+        >
+          {labelName}
+        </CSVLink>
+      </OverlayTrigger>
     );
   };
 }

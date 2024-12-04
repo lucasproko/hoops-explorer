@@ -588,6 +588,11 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
         })
         .groupBy((l) => l.posKey)
         .mapValues((lineups) => {
+          //TODO: split this into 2 phases so I have the keys
+          //For each pos key position get a list of positions
+          //Sort the players by position using the existing code
+          //Depending on the key type either lower or higher players get added to the NOT list
+
           const key = lineups?.[0].posKey;
           const codesAndIds = lineups?.[0].codesAndIds || [];
 
