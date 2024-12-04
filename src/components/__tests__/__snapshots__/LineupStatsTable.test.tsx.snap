@@ -1007,7 +1007,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     placement="auto"
                                   >
                                     <a
-                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AaWiggins%2CDaMorsell%2CJaSmith%2CErAyala%2CAnCowan&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%3B%22Morsell%2C%20Darryl%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Cowan%2C%20Anthony%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AaWiggins%2CDaMorsell%2CJaSmith%2CErAyala%2CAnCowan&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%3B%22Morsell%2C%20Darryl%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Cowan%2C%20Anthony%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      onClick={[Function]}
                                       style={
                                         Object {
                                           "color": "inherit",
@@ -1479,7 +1480,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     placement="auto"
                                   >
                                     <a
-                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AaWiggins%2CDaMorsell%2CJaSmith%2CErAyala%2CAnCowan&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%3B%22Morsell%2C%20Darryl%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Cowan%2C%20Anthony%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AaWiggins%2CDaMorsell%2CJaSmith%2CErAyala%2CAnCowan&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%3B%22Morsell%2C%20Darryl%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Cowan%2C%20Anthony%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      onClick={[Function]}
                                       style={
                                         Object {
                                           "color": "inherit",
@@ -1954,7 +1956,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     placement="auto"
                                   >
                                     <a
-                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AaWiggins%2CDaMorsell%2CJaSmith%2CDoScott%2CAnCowan&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%3B%22Morsell%2C%20Darryl%22%3B%22Smith%2C%20Jalen%22%3B%22Scott%2C%20Donta%22%3B%22Cowan%2C%20Anthony%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AaWiggins%2CDaMorsell%2CJaSmith%2CDoScott%2CAnCowan&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%3B%22Morsell%2C%20Darryl%22%3B%22Smith%2C%20Jalen%22%3B%22Scott%2C%20Donta%22%3B%22Cowan%2C%20Anthony%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      onClick={[Function]}
                                       style={
                                         Object {
                                           "color": "inherit",
@@ -2426,7 +2429,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     placement="auto"
                                   >
                                     <a
-                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AaWiggins%2CDaMorsell%2CJaSmith%2CDoScott%2CAnCowan&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%3B%22Morsell%2C%20Darryl%22%3B%22Smith%2C%20Jalen%22%3B%22Scott%2C%20Donta%22%3B%22Cowan%2C%20Anthony%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AaWiggins%2CDaMorsell%2CJaSmith%2CDoScott%2CAnCowan&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%3B%22Morsell%2C%20Darryl%22%3B%22Smith%2C%20Jalen%22%3B%22Scott%2C%20Donta%22%3B%22Cowan%2C%20Anthony%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      onClick={[Function]}
                                       style={
                                         Object {
                                           "color": "inherit",
@@ -2901,7 +2905,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     placement="auto"
                                   >
                                     <a
-                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AaWiggins%2CDoScott%2CJaSmith%2CErAyala%2CAnCowan&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%3B%22Scott%2C%20Donta%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Cowan%2C%20Anthony%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AaWiggins%2CDoScott%2CJaSmith%2CErAyala%2CAnCowan&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%3B%22Scott%2C%20Donta%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Cowan%2C%20Anthony%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      onClick={[Function]}
                                       style={
                                         Object {
                                           "color": "inherit",
@@ -3373,7 +3378,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     placement="auto"
                                   >
                                     <a
-                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AaWiggins%2CDoScott%2CJaSmith%2CErAyala%2CAnCowan&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%3B%22Scott%2C%20Donta%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Cowan%2C%20Anthony%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AaWiggins%2CDoScott%2CJaSmith%2CErAyala%2CAnCowan&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%3B%22Scott%2C%20Donta%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Cowan%2C%20Anthony%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      onClick={[Function]}
                                       style={
                                         Object {
                                           "color": "inherit",
@@ -5315,7 +5321,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                     placement="auto"
                                   >
                                     <a
-                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AaWiggins%2CDaMorsell%2CJaSmith%2CErAyala%2CAnCowan&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%3B%22Morsell%2C%20Darryl%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Cowan%2C%20Anthony%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AaWiggins%2CDaMorsell%2CJaSmith%2CErAyala%2CAnCowan&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%3B%22Morsell%2C%20Darryl%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Cowan%2C%20Anthony%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      onClick={[Function]}
                                       style={
                                         Object {
                                           "color": "inherit",
@@ -5787,7 +5794,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                     placement="auto"
                                   >
                                     <a
-                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AaWiggins%2CDaMorsell%2CJaSmith%2CErAyala%2CAnCowan&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%3B%22Morsell%2C%20Darryl%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Cowan%2C%20Anthony%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AaWiggins%2CDaMorsell%2CJaSmith%2CErAyala%2CAnCowan&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%3B%22Morsell%2C%20Darryl%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Cowan%2C%20Anthony%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      onClick={[Function]}
                                       style={
                                         Object {
                                           "color": "inherit",
@@ -6262,7 +6270,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                     placement="auto"
                                   >
                                     <a
-                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AaWiggins%2CDaMorsell%2CJaSmith%2CDoScott%2CAnCowan&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%3B%22Morsell%2C%20Darryl%22%3B%22Smith%2C%20Jalen%22%3B%22Scott%2C%20Donta%22%3B%22Cowan%2C%20Anthony%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AaWiggins%2CDaMorsell%2CJaSmith%2CDoScott%2CAnCowan&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%3B%22Morsell%2C%20Darryl%22%3B%22Smith%2C%20Jalen%22%3B%22Scott%2C%20Donta%22%3B%22Cowan%2C%20Anthony%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      onClick={[Function]}
                                       style={
                                         Object {
                                           "color": "inherit",
@@ -6734,7 +6743,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                     placement="auto"
                                   >
                                     <a
-                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AaWiggins%2CDaMorsell%2CJaSmith%2CDoScott%2CAnCowan&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%3B%22Morsell%2C%20Darryl%22%3B%22Smith%2C%20Jalen%22%3B%22Scott%2C%20Donta%22%3B%22Cowan%2C%20Anthony%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AaWiggins%2CDaMorsell%2CJaSmith%2CDoScott%2CAnCowan&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%3B%22Morsell%2C%20Darryl%22%3B%22Smith%2C%20Jalen%22%3B%22Scott%2C%20Donta%22%3B%22Cowan%2C%20Anthony%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      onClick={[Function]}
                                       style={
                                         Object {
                                           "color": "inherit",
@@ -14424,7 +14434,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     placement="auto"
                                   >
                                     <a
-                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CErAyala%2CDaMorsell&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Morsell%2C%20Darryl%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CErAyala%2CDaMorsell&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Morsell%2C%20Darryl%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      onClick={[Function]}
                                       style={
                                         Object {
                                           "color": "inherit",
@@ -14910,7 +14921,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     placement="auto"
                                   >
                                     <a
-                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CErAyala%2CDaMorsell&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Morsell%2C%20Darryl%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CErAyala%2CDaMorsell&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Morsell%2C%20Darryl%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      onClick={[Function]}
                                       style={
                                         Object {
                                           "color": "inherit",
@@ -15399,7 +15411,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     placement="auto"
                                   >
                                     <a
-                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CDoScott%2CDaMorsell&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Scott%2C%20Donta%22%3B%22Morsell%2C%20Darryl%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CDoScott%2CDaMorsell&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Scott%2C%20Donta%22%3B%22Morsell%2C%20Darryl%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      onClick={[Function]}
                                       style={
                                         Object {
                                           "color": "inherit",
@@ -15885,7 +15898,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     placement="auto"
                                   >
                                     <a
-                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CDoScott%2CDaMorsell&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Scott%2C%20Donta%22%3B%22Morsell%2C%20Darryl%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CDoScott%2CDaMorsell&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Scott%2C%20Donta%22%3B%22Morsell%2C%20Darryl%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      onClick={[Function]}
                                       style={
                                         Object {
                                           "color": "inherit",
@@ -16374,7 +16388,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     placement="auto"
                                   >
                                     <a
-                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CErAyala%2CDoScott&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Scott%2C%20Donta%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CErAyala%2CDoScott&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Scott%2C%20Donta%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      onClick={[Function]}
                                       style={
                                         Object {
                                           "color": "inherit",
@@ -16860,7 +16875,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     placement="auto"
                                   >
                                     <a
-                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CErAyala%2CDoScott&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Scott%2C%20Donta%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CErAyala%2CDoScott&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Scott%2C%20Donta%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      onClick={[Function]}
                                       style={
                                         Object {
                                           "color": "inherit",
@@ -18443,7 +18459,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     placement="auto"
                                   >
                                     <a
-                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CErAyala%2CDaMorsell&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Morsell%2C%20Darryl%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CErAyala%2CDaMorsell&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Morsell%2C%20Darryl%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      onClick={[Function]}
                                       style={
                                         Object {
                                           "color": "inherit",
@@ -18995,7 +19012,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     placement="auto"
                                   >
                                     <a
-                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CErAyala%2CDaMorsell&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Morsell%2C%20Darryl%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CErAyala%2CDaMorsell&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Morsell%2C%20Darryl%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      onClick={[Function]}
                                       style={
                                         Object {
                                           "color": "inherit",
@@ -19550,7 +19568,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     placement="auto"
                                   >
                                     <a
-                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CDoScott%2CDaMorsell&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Scott%2C%20Donta%22%3B%22Morsell%2C%20Darryl%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CDoScott%2CDaMorsell&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Scott%2C%20Donta%22%3B%22Morsell%2C%20Darryl%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      onClick={[Function]}
                                       style={
                                         Object {
                                           "color": "inherit",
@@ -20102,7 +20121,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     placement="auto"
                                   >
                                     <a
-                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CDoScott%2CDaMorsell&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Scott%2C%20Donta%22%3B%22Morsell%2C%20Darryl%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CDoScott%2CDaMorsell&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Scott%2C%20Donta%22%3B%22Morsell%2C%20Darryl%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      onClick={[Function]}
                                       style={
                                         Object {
                                           "color": "inherit",
@@ -20657,7 +20677,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     placement="auto"
                                   >
                                     <a
-                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CErAyala%2CDoScott&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Scott%2C%20Donta%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CErAyala%2CDoScott&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Scott%2C%20Donta%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      onClick={[Function]}
                                       style={
                                         Object {
                                           "color": "inherit",
@@ -21209,7 +21230,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     placement="auto"
                                   >
                                     <a
-                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CErAyala%2CDoScott&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Scott%2C%20Donta%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CAaWiggins%2CJaSmith%2CErAyala%2CDoScott&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Wiggins%2C%20Aaron%22%3B%22Smith%2C%20Jalen%22%3B%22Ayala%2C%20Eric%22%3B%22Scott%2C%20Donta%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&teamShotCharts=true&"
+                                      onClick={[Function]}
                                       style={
                                         Object {
                                           "color": "inherit",

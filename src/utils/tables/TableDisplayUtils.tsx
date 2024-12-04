@@ -89,6 +89,36 @@ export class TableDisplayUtils {
     );
   }
 
+  static buildGameUrl(
+    params: CommonFilterParams,
+    sortedLineup: { code: string; id: string }[],
+    excludes: { code: string; id: string }[]
+  ): string {
+    return UrlRouting.getGameUrl(
+      {
+        ...params,
+        onQuery:
+          `{${sortedLineup.map((p) => `"${p.id}"`).join(";")}}~${
+            sortedLineup.length
+          }` +
+          (_.isEmpty(excludes)
+            ? ""
+            : ` AND NOT (${excludes.map((p) => `"${p.id}"`).join(" OR ")})`),
+        offQuery: "",
+        autoOffQuery: false,
+        showExtraInfo: true,
+        teamShotCharts: true,
+        showRoster: true,
+        showTeamPlayTypes: true,
+        calcRapm: true,
+        possAsPct: false,
+        filter: `${sortedLineup.map((p) => `${p.code}`).join(",")}`,
+        showExpanded: true,
+      },
+      {}
+    );
+  }
+
   /** Builds an information (over-)loaded lineup HTML */
   static buildDecoratedLineup(
     key: string,
@@ -98,7 +128,8 @@ export class TableDisplayUtils {
     colorField: string,
     decorateLineup: boolean,
     params: CommonFilterParams,
-    extendedTooltipView: boolean = false
+    extendedTooltipView: boolean = false,
+    onClickOverride?: (sortedLineup: { code: string; id: string }[]) => string
   ) {
     const tooltipBuilder = (pid: number) =>
       TableDisplayUtils.buildTooltipTexts(
@@ -108,25 +139,6 @@ export class TableDisplayUtils {
         positionFromPlayerKey,
         extendedTooltipView
       );
-
-    const link = UrlRouting.getGameUrl(
-      {
-        ...params,
-        onQuery: `{${sortedLineup.map((p) => `"${p.id}"`).join(";")}}~${
-          sortedLineup.length
-        }`,
-        offQuery: "",
-        autoOffQuery: false,
-        showExtraInfo: true,
-        teamShotCharts: true,
-        showTeamPlayTypes: true,
-        calcRapm: true,
-        possAsPct: false,
-        filter: `${sortedLineup.map((p) => `${p.code}`).join(",")}`,
-        showExpanded: true,
-      },
-      {}
-    );
 
     if (decorateLineup) {
       const max = (sortedLineup?.length || 0) - 1;
@@ -146,9 +158,16 @@ export class TableDisplayUtils {
             <div>{lineupElement}</div>
           ) : (
             <a
-              href={link}
+              href={TableDisplayUtils.buildGameUrl(params, sortedLineup, [])}
               target="_blank"
               style={{ color: "inherit", textDecoration: "inherit" }}
+              onClick={(e) => {
+                if (onClickOverride) {
+                  e.preventDefault();
+                  const link = onClickOverride(sortedLineup);
+                  window.open(link, "_blank");
+                }
+              }}
             >
               {lineupElement}
             </a>

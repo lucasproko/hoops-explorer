@@ -1332,7 +1332,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DeDotson%2CMaGarrett%2COcAgbaji%2CChBraun%2CUdAzubuike&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Dotson%2C%20Devon%22%3B%22Garrett%2C%20Marcus%22%3B%22Agbaji%2C%20Ochai%22%3B%22Braun%2C%20Christian%22%3B%22Azubuike%2C%20Udoka%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Kansas&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DeDotson%2CMaGarrett%2COcAgbaji%2CChBraun%2CUdAzubuike&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Dotson%2C%20Devon%22%3B%22Garrett%2C%20Marcus%22%3B%22Agbaji%2C%20Ochai%22%3B%22Braun%2C%20Christian%22%3B%22Azubuike%2C%20Udoka%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Kansas&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -1950,7 +1951,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DeDotson%2CMaGarrett%2COcAgbaji%2CChBraun%2CUdAzubuike&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Dotson%2C%20Devon%22%3B%22Garrett%2C%20Marcus%22%3B%22Agbaji%2C%20Ochai%22%3B%22Braun%2C%20Christian%22%3B%22Azubuike%2C%20Udoka%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Kansas&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DeDotson%2CMaGarrett%2COcAgbaji%2CChBraun%2CUdAzubuike&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Dotson%2C%20Devon%22%3B%22Garrett%2C%20Marcus%22%3B%22Agbaji%2C%20Ochai%22%3B%22Braun%2C%20Christian%22%3B%22Azubuike%2C%20Udoka%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Kansas&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -2571,7 +2573,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=JaCrutcher%2CIbWatson%2CTrLanders%2CRyMikesell%2CObToppin&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Crutcher%2C%20Jalen%22%3B%22Watson%2C%20Ibi%22%3B%22Landers%2C%20Trey%22%3B%22Mikesell%2C%20Ryan%22%3B%22Toppin%2C%20Obi%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Dayton&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=JaCrutcher%2CIbWatson%2CTrLanders%2CRyMikesell%2CObToppin&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Crutcher%2C%20Jalen%22%3B%22Watson%2C%20Ibi%22%3B%22Landers%2C%20Trey%22%3B%22Mikesell%2C%20Ryan%22%3B%22Toppin%2C%20Obi%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Dayton&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -3179,7 +3182,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=JaCrutcher%2CIbWatson%2CTrLanders%2CRyMikesell%2CObToppin&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Crutcher%2C%20Jalen%22%3B%22Watson%2C%20Ibi%22%3B%22Landers%2C%20Trey%22%3B%22Mikesell%2C%20Ryan%22%3B%22Toppin%2C%20Obi%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Dayton&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=JaCrutcher%2CIbWatson%2CTrLanders%2CRyMikesell%2CObToppin&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Crutcher%2C%20Jalen%22%3B%22Watson%2C%20Ibi%22%3B%22Landers%2C%20Trey%22%3B%22Mikesell%2C%20Ryan%22%3B%22Toppin%2C%20Obi%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Dayton&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -3790,7 +3794,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DaJohnson%2CRyMcmahon%2CJoNwora%2CDwSutton%2CMaWilliams&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Johnson%2C%20David%22%3B%22McMahon%2C%20Ryan%22%3B%22Nwora%2C%20Jordan%22%3B%22Sutton%2C%20Dwayne%22%3B%22Williams%2C%20Malik%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Louisville&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DaJohnson%2CRyMcmahon%2CJoNwora%2CDwSutton%2CMaWilliams&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Johnson%2C%20David%22%3B%22McMahon%2C%20Ryan%22%3B%22Nwora%2C%20Jordan%22%3B%22Sutton%2C%20Dwayne%22%3B%22Williams%2C%20Malik%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Louisville&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -4398,7 +4403,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DaJohnson%2CRyMcmahon%2CJoNwora%2CDwSutton%2CMaWilliams&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Johnson%2C%20David%22%3B%22McMahon%2C%20Ryan%22%3B%22Nwora%2C%20Jordan%22%3B%22Sutton%2C%20Dwayne%22%3B%22Williams%2C%20Malik%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Louisville&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DaJohnson%2CRyMcmahon%2CJoNwora%2CDwSutton%2CMaWilliams&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Johnson%2C%20David%22%3B%22McMahon%2C%20Ryan%22%3B%22Nwora%2C%20Jordan%22%3B%22Sutton%2C%20Dwayne%22%3B%22Williams%2C%20Malik%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Louisville&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -5009,7 +5015,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=CaWinston%2CRoWatts%2CAaHenry%2CMaHall%2CXaTillman&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Winston%2C%20Cassius%22%3B%22Watts%2C%20Rocket%22%3B%22Henry%2C%20Aaron%22%3B%22Hall%2C%20Malik%22%3B%22Tillman%2C%20Xavier%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Michigan%20St.&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=CaWinston%2CRoWatts%2CAaHenry%2CMaHall%2CXaTillman&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Winston%2C%20Cassius%22%3B%22Watts%2C%20Rocket%22%3B%22Henry%2C%20Aaron%22%3B%22Hall%2C%20Malik%22%3B%22Tillman%2C%20Xavier%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Michigan%20St.&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -5617,7 +5624,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=CaWinston%2CRoWatts%2CAaHenry%2CMaHall%2CXaTillman&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Winston%2C%20Cassius%22%3B%22Watts%2C%20Rocket%22%3B%22Henry%2C%20Aaron%22%3B%22Hall%2C%20Malik%22%3B%22Tillman%2C%20Xavier%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Michigan%20St.&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=CaWinston%2CRoWatts%2CAaHenry%2CMaHall%2CXaTillman&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Winston%2C%20Cassius%22%3B%22Watts%2C%20Rocket%22%3B%22Henry%2C%20Aaron%22%3B%22Hall%2C%20Malik%22%3B%22Tillman%2C%20Xavier%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Michigan%20St.&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -6228,7 +6236,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=LaKimble%2CRyMcmahon%2CJoNwora%2CDwSutton%2CMaWilliams&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Kimble%2C%20Lamarr%22%3B%22McMahon%2C%20Ryan%22%3B%22Nwora%2C%20Jordan%22%3B%22Sutton%2C%20Dwayne%22%3B%22Williams%2C%20Malik%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Louisville&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=LaKimble%2CRyMcmahon%2CJoNwora%2CDwSutton%2CMaWilliams&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Kimble%2C%20Lamarr%22%3B%22McMahon%2C%20Ryan%22%3B%22Nwora%2C%20Jordan%22%3B%22Sutton%2C%20Dwayne%22%3B%22Williams%2C%20Malik%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Louisville&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -6833,7 +6842,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=LaKimble%2CRyMcmahon%2CJoNwora%2CDwSutton%2CMaWilliams&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Kimble%2C%20Lamarr%22%3B%22McMahon%2C%20Ryan%22%3B%22Nwora%2C%20Jordan%22%3B%22Sutton%2C%20Dwayne%22%3B%22Williams%2C%20Malik%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Louisville&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=LaKimble%2CRyMcmahon%2CJoNwora%2CDwSutton%2CMaWilliams&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Kimble%2C%20Lamarr%22%3B%22McMahon%2C%20Ryan%22%3B%22Nwora%2C%20Jordan%22%3B%22Sutton%2C%20Dwayne%22%3B%22Williams%2C%20Malik%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Louisville&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -7452,7 +7462,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DaMitchell%2CMaTeague%2CDeBandoo%2CMaVital%2CFrGillespie&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Mitchell%2C%20Davion%22%3B%22Teague%2C%20MaCio%22%3B%22Bandoo%2C%20Devonte%22%3B%22Vital%2C%20Mark%22%3B%22Gillespie%2C%20Freddie%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Baylor&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DaMitchell%2CMaTeague%2CDeBandoo%2CMaVital%2CFrGillespie&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Mitchell%2C%20Davion%22%3B%22Teague%2C%20MaCio%22%3B%22Bandoo%2C%20Devonte%22%3B%22Vital%2C%20Mark%22%3B%22Gillespie%2C%20Freddie%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Baylor&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -8066,7 +8077,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DaMitchell%2CMaTeague%2CDeBandoo%2CMaVital%2CFrGillespie&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Mitchell%2C%20Davion%22%3B%22Teague%2C%20MaCio%22%3B%22Bandoo%2C%20Devonte%22%3B%22Vital%2C%20Mark%22%3B%22Gillespie%2C%20Freddie%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Baylor&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DaMitchell%2CMaTeague%2CDeBandoo%2CMaVital%2CFrGillespie&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Mitchell%2C%20Davion%22%3B%22Teague%2C%20MaCio%22%3B%22Bandoo%2C%20Devonte%22%3B%22Vital%2C%20Mark%22%3B%22Gillespie%2C%20Freddie%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Baylor&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -8687,7 +8699,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=IsHill%2CDaJackson%2CLaKorita%2CJeHorne%2CMaIgbanu&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Hill%2C%20Isaiah%22%3B%22Jackson%2C%20Darien%22%3B%22Korita%2C%20Lawson%22%3B%22Horne%2C%20Jeriah%22%3B%22Igbanu%2C%20Martins%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Tulsa&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=IsHill%2CDaJackson%2CLaKorita%2CJeHorne%2CMaIgbanu&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Hill%2C%20Isaiah%22%3B%22Jackson%2C%20Darien%22%3B%22Korita%2C%20Lawson%22%3B%22Horne%2C%20Jeriah%22%3B%22Igbanu%2C%20Martins%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Tulsa&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -9302,7 +9315,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=IsHill%2CDaJackson%2CLaKorita%2CJeHorne%2CMaIgbanu&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Hill%2C%20Isaiah%22%3B%22Jackson%2C%20Darien%22%3B%22Korita%2C%20Lawson%22%3B%22Horne%2C%20Jeriah%22%3B%22Igbanu%2C%20Martins%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Tulsa&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=IsHill%2CDaJackson%2CLaKorita%2CJeHorne%2CMaIgbanu&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Hill%2C%20Isaiah%22%3B%22Jackson%2C%20Darien%22%3B%22Korita%2C%20Lawson%22%3B%22Horne%2C%20Jeriah%22%3B%22Igbanu%2C%20Martins%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Tulsa&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -9920,7 +9934,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AbPorter%2CSaMerrill%2CDiBrito%2CJuBean%2CNeQueta&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Porter%2C%20Abel%22%3B%22Merrill%2C%20Sam%22%3B%22Brito%2C%20Diogo%22%3B%22Bean%2C%20Justin%22%3B%22Queta%2C%20Neemias%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Utah%20St.&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AbPorter%2CSaMerrill%2CDiBrito%2CJuBean%2CNeQueta&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Porter%2C%20Abel%22%3B%22Merrill%2C%20Sam%22%3B%22Brito%2C%20Diogo%22%3B%22Bean%2C%20Justin%22%3B%22Queta%2C%20Neemias%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Utah%20St.&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -10550,7 +10565,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AbPorter%2CSaMerrill%2CDiBrito%2CJuBean%2CNeQueta&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Porter%2C%20Abel%22%3B%22Merrill%2C%20Sam%22%3B%22Brito%2C%20Diogo%22%3B%22Bean%2C%20Justin%22%3B%22Queta%2C%20Neemias%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Utah%20St.&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AbPorter%2CSaMerrill%2CDiBrito%2CJuBean%2CNeQueta&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Porter%2C%20Abel%22%3B%22Merrill%2C%20Sam%22%3B%22Brito%2C%20Diogo%22%3B%22Bean%2C%20Justin%22%3B%22Queta%2C%20Neemias%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Utah%20St.&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -11183,7 +11199,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=QuMcknight%2CMyPowell%2CJaRhoden%2CSaMamukelash%2CRoGill&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22McKnight%2C%20Quincy%22%3B%22Powell%2C%20Myles%22%3B%22Rhoden%2C%20Jared%22%3B%22Mamukelashvili%2C%20Sandro%22%3B%22Gill%2C%20Romaro%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Seton%20Hall&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=QuMcknight%2CMyPowell%2CJaRhoden%2CSaMamukelash%2CRoGill&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22McKnight%2C%20Quincy%22%3B%22Powell%2C%20Myles%22%3B%22Rhoden%2C%20Jared%22%3B%22Mamukelashvili%2C%20Sandro%22%3B%22Gill%2C%20Romaro%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Seton%20Hall&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -11793,7 +11810,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=QuMcknight%2CMyPowell%2CJaRhoden%2CSaMamukelash%2CRoGill&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22McKnight%2C%20Quincy%22%3B%22Powell%2C%20Myles%22%3B%22Rhoden%2C%20Jared%22%3B%22Mamukelashvili%2C%20Sandro%22%3B%22Gill%2C%20Romaro%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Seton%20Hall&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=QuMcknight%2CMyPowell%2CJaRhoden%2CSaMamukelash%2CRoGill&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22McKnight%2C%20Quincy%22%3B%22Powell%2C%20Myles%22%3B%22Rhoden%2C%20Jared%22%3B%22Mamukelashvili%2C%20Sandro%22%3B%22Gill%2C%20Romaro%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Seton%20Hall&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -12406,7 +12424,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=CaWinston%2CRoWatts%2CAaHenry%2CXaTillman%2CThKithier&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Winston%2C%20Cassius%22%3B%22Watts%2C%20Rocket%22%3B%22Henry%2C%20Aaron%22%3B%22Tillman%2C%20Xavier%22%3B%22Kithier%2C%20Thomas%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Michigan%20St.&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=CaWinston%2CRoWatts%2CAaHenry%2CXaTillman%2CThKithier&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Winston%2C%20Cassius%22%3B%22Watts%2C%20Rocket%22%3B%22Henry%2C%20Aaron%22%3B%22Tillman%2C%20Xavier%22%3B%22Kithier%2C%20Thomas%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Michigan%20St.&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -13014,7 +13033,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=CaWinston%2CRoWatts%2CAaHenry%2CXaTillman%2CThKithier&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Winston%2C%20Cassius%22%3B%22Watts%2C%20Rocket%22%3B%22Henry%2C%20Aaron%22%3B%22Tillman%2C%20Xavier%22%3B%22Kithier%2C%20Thomas%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Michigan%20St.&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=CaWinston%2CRoWatts%2CAaHenry%2CXaTillman%2CThKithier&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Winston%2C%20Cassius%22%3B%22Watts%2C%20Rocket%22%3B%22Henry%2C%20Aaron%22%3B%22Tillman%2C%20Xavier%22%3B%22Kithier%2C%20Thomas%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Michigan%20St.&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -14871,7 +14891,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DeDotson%2CMaGarrett%2COcAgbaji%2CChBraun%2CUdAzubuike&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Dotson%2C%20Devon%22%3B%22Garrett%2C%20Marcus%22%3B%22Agbaji%2C%20Ochai%22%3B%22Braun%2C%20Christian%22%3B%22Azubuike%2C%20Udoka%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Kansas&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DeDotson%2CMaGarrett%2COcAgbaji%2CChBraun%2CUdAzubuike&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Dotson%2C%20Devon%22%3B%22Garrett%2C%20Marcus%22%3B%22Agbaji%2C%20Ochai%22%3B%22Braun%2C%20Christian%22%3B%22Azubuike%2C%20Udoka%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Kansas&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -15498,7 +15519,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DeDotson%2CMaGarrett%2COcAgbaji%2CChBraun%2CUdAzubuike&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Dotson%2C%20Devon%22%3B%22Garrett%2C%20Marcus%22%3B%22Agbaji%2C%20Ochai%22%3B%22Braun%2C%20Christian%22%3B%22Azubuike%2C%20Udoka%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Kansas&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DeDotson%2CMaGarrett%2COcAgbaji%2CChBraun%2CUdAzubuike&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Dotson%2C%20Devon%22%3B%22Garrett%2C%20Marcus%22%3B%22Agbaji%2C%20Ochai%22%3B%22Braun%2C%20Christian%22%3B%22Azubuike%2C%20Udoka%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Kansas&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -16128,7 +16150,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=TyJerome%2CKiClark%2CKyGuy%2CDeHunter%2CMaDiakite&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Jerome%2C%20Ty%22%3B%22Clark%2C%20Kihei%22%3B%22Guy%2C%20Kyle%22%3B%22Hunter%2C%20De%27Andre%22%3B%22Diakite%2C%20Mamadi%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Virginia&teamShotCharts=true&year=2018%2F9&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=TyJerome%2CKiClark%2CKyGuy%2CDeHunter%2CMaDiakite&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Jerome%2C%20Ty%22%3B%22Clark%2C%20Kihei%22%3B%22Guy%2C%20Kyle%22%3B%22Hunter%2C%20De%27Andre%22%3B%22Diakite%2C%20Mamadi%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Virginia&teamShotCharts=true&year=2018%2F9&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -16749,7 +16772,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=TyJerome%2CKiClark%2CKyGuy%2CDeHunter%2CMaDiakite&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Jerome%2C%20Ty%22%3B%22Clark%2C%20Kihei%22%3B%22Guy%2C%20Kyle%22%3B%22Hunter%2C%20De%27Andre%22%3B%22Diakite%2C%20Mamadi%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Virginia&teamShotCharts=true&year=2018%2F9&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=TyJerome%2CKiClark%2CKyGuy%2CDeHunter%2CMaDiakite&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Jerome%2C%20Ty%22%3B%22Clark%2C%20Kihei%22%3B%22Guy%2C%20Kyle%22%3B%22Hunter%2C%20De%27Andre%22%3B%22Diakite%2C%20Mamadi%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Virginia&teamShotCharts=true&year=2018%2F9&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -17373,7 +17397,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=JaCrutcher%2CIbWatson%2CTrLanders%2CRyMikesell%2CObToppin&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Crutcher%2C%20Jalen%22%3B%22Watson%2C%20Ibi%22%3B%22Landers%2C%20Trey%22%3B%22Mikesell%2C%20Ryan%22%3B%22Toppin%2C%20Obi%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Dayton&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=JaCrutcher%2CIbWatson%2CTrLanders%2CRyMikesell%2CObToppin&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Crutcher%2C%20Jalen%22%3B%22Watson%2C%20Ibi%22%3B%22Landers%2C%20Trey%22%3B%22Mikesell%2C%20Ryan%22%3B%22Toppin%2C%20Obi%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Dayton&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -17990,7 +18015,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=JaCrutcher%2CIbWatson%2CTrLanders%2CRyMikesell%2CObToppin&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Crutcher%2C%20Jalen%22%3B%22Watson%2C%20Ibi%22%3B%22Landers%2C%20Trey%22%3B%22Mikesell%2C%20Ryan%22%3B%22Toppin%2C%20Obi%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Dayton&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=JaCrutcher%2CIbWatson%2CTrLanders%2CRyMikesell%2CObToppin&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Crutcher%2C%20Jalen%22%3B%22Watson%2C%20Ibi%22%3B%22Landers%2C%20Trey%22%3B%22Mikesell%2C%20Ryan%22%3B%22Toppin%2C%20Obi%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Dayton&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -18610,7 +18636,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=ZaSimpson%2CJoPoole%2CIgBrazdeikis%2CIsLivers%2CJoTeske&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Simpson%2C%20Zavier%22%3B%22Poole%2C%20Jordan%22%3B%22Brazdeikis%2C%20Ignas%22%3B%22Livers%2C%20Isaiah%22%3B%22Teske%2C%20Jon%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Michigan&teamShotCharts=true&year=2018%2F9&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=ZaSimpson%2CJoPoole%2CIgBrazdeikis%2CIsLivers%2CJoTeske&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Simpson%2C%20Zavier%22%3B%22Poole%2C%20Jordan%22%3B%22Brazdeikis%2C%20Ignas%22%3B%22Livers%2C%20Isaiah%22%3B%22Teske%2C%20Jon%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Michigan&teamShotCharts=true&year=2018%2F9&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -19224,7 +19251,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=ZaSimpson%2CJoPoole%2CIgBrazdeikis%2CIsLivers%2CJoTeske&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Simpson%2C%20Zavier%22%3B%22Poole%2C%20Jordan%22%3B%22Brazdeikis%2C%20Ignas%22%3B%22Livers%2C%20Isaiah%22%3B%22Teske%2C%20Jon%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Michigan&teamShotCharts=true&year=2018%2F9&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=ZaSimpson%2CJoPoole%2CIgBrazdeikis%2CIsLivers%2CJoTeske&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Simpson%2C%20Zavier%22%3B%22Poole%2C%20Jordan%22%3B%22Brazdeikis%2C%20Ignas%22%3B%22Livers%2C%20Isaiah%22%3B%22Teske%2C%20Jon%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Michigan&teamShotCharts=true&year=2018%2F9&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -19841,7 +19869,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DaJohnson%2CRyMcmahon%2CJoNwora%2CDwSutton%2CMaWilliams&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Johnson%2C%20David%22%3B%22McMahon%2C%20Ryan%22%3B%22Nwora%2C%20Jordan%22%3B%22Sutton%2C%20Dwayne%22%3B%22Williams%2C%20Malik%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Louisville&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DaJohnson%2CRyMcmahon%2CJoNwora%2CDwSutton%2CMaWilliams&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Johnson%2C%20David%22%3B%22McMahon%2C%20Ryan%22%3B%22Nwora%2C%20Jordan%22%3B%22Sutton%2C%20Dwayne%22%3B%22Williams%2C%20Malik%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Louisville&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -20458,7 +20487,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DaJohnson%2CRyMcmahon%2CJoNwora%2CDwSutton%2CMaWilliams&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Johnson%2C%20David%22%3B%22McMahon%2C%20Ryan%22%3B%22Nwora%2C%20Jordan%22%3B%22Sutton%2C%20Dwayne%22%3B%22Williams%2C%20Malik%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Louisville&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DaJohnson%2CRyMcmahon%2CJoNwora%2CDwSutton%2CMaWilliams&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Johnson%2C%20David%22%3B%22McMahon%2C%20Ryan%22%3B%22Nwora%2C%20Jordan%22%3B%22Sutton%2C%20Dwayne%22%3B%22Williams%2C%20Malik%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Louisville&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -21093,7 +21123,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=CaWinston%2CRoWatts%2CAaHenry%2CMaHall%2CXaTillman&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Winston%2C%20Cassius%22%3B%22Watts%2C%20Rocket%22%3B%22Henry%2C%20Aaron%22%3B%22Hall%2C%20Malik%22%3B%22Tillman%2C%20Xavier%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Michigan%20St.&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=CaWinston%2CRoWatts%2CAaHenry%2CMaHall%2CXaTillman&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Winston%2C%20Cassius%22%3B%22Watts%2C%20Rocket%22%3B%22Henry%2C%20Aaron%22%3B%22Hall%2C%20Malik%22%3B%22Tillman%2C%20Xavier%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Michigan%20St.&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -21710,7 +21741,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=CaWinston%2CRoWatts%2CAaHenry%2CMaHall%2CXaTillman&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Winston%2C%20Cassius%22%3B%22Watts%2C%20Rocket%22%3B%22Henry%2C%20Aaron%22%3B%22Hall%2C%20Malik%22%3B%22Tillman%2C%20Xavier%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Michigan%20St.&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=CaWinston%2CRoWatts%2CAaHenry%2CMaHall%2CXaTillman&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Winston%2C%20Cassius%22%3B%22Watts%2C%20Rocket%22%3B%22Henry%2C%20Aaron%22%3B%22Hall%2C%20Malik%22%3B%22Tillman%2C%20Xavier%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Michigan%20St.&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -22330,7 +22362,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=LaKimble%2CRyMcmahon%2CJoNwora%2CDwSutton%2CMaWilliams&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Kimble%2C%20Lamarr%22%3B%22McMahon%2C%20Ryan%22%3B%22Nwora%2C%20Jordan%22%3B%22Sutton%2C%20Dwayne%22%3B%22Williams%2C%20Malik%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Louisville&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=LaKimble%2CRyMcmahon%2CJoNwora%2CDwSutton%2CMaWilliams&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Kimble%2C%20Lamarr%22%3B%22McMahon%2C%20Ryan%22%3B%22Nwora%2C%20Jordan%22%3B%22Sutton%2C%20Dwayne%22%3B%22Williams%2C%20Malik%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Louisville&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -22944,7 +22977,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=LaKimble%2CRyMcmahon%2CJoNwora%2CDwSutton%2CMaWilliams&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Kimble%2C%20Lamarr%22%3B%22McMahon%2C%20Ryan%22%3B%22Nwora%2C%20Jordan%22%3B%22Sutton%2C%20Dwayne%22%3B%22Williams%2C%20Malik%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Louisville&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=LaKimble%2CRyMcmahon%2CJoNwora%2CDwSutton%2CMaWilliams&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Kimble%2C%20Lamarr%22%3B%22McMahon%2C%20Ryan%22%3B%22Nwora%2C%20Jordan%22%3B%22Sutton%2C%20Dwayne%22%3B%22Williams%2C%20Malik%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Louisville&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -23561,7 +23595,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=CaEdwards%2CRyCline%2CNoEastern%2CGrEifert%2CMaHaarms&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Edwards%2C%20Carsen%22%3B%22Cline%2C%20Ryan%22%3B%22Eastern%2C%20Nojel%22%3B%22Eifert%2C%20Grady%22%3B%22Haarms%2C%20Matt%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Purdue&teamShotCharts=true&year=2018%2F9&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=CaEdwards%2CRyCline%2CNoEastern%2CGrEifert%2CMaHaarms&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Edwards%2C%20Carsen%22%3B%22Cline%2C%20Ryan%22%3B%22Eastern%2C%20Nojel%22%3B%22Eifert%2C%20Grady%22%3B%22Haarms%2C%20Matt%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Purdue&teamShotCharts=true&year=2018%2F9&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -24185,7 +24220,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=CaEdwards%2CRyCline%2CNoEastern%2CGrEifert%2CMaHaarms&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Edwards%2C%20Carsen%22%3B%22Cline%2C%20Ryan%22%3B%22Eastern%2C%20Nojel%22%3B%22Eifert%2C%20Grady%22%3B%22Haarms%2C%20Matt%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Purdue&teamShotCharts=true&year=2018%2F9&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=CaEdwards%2CRyCline%2CNoEastern%2CGrEifert%2CMaHaarms&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Edwards%2C%20Carsen%22%3B%22Cline%2C%20Ryan%22%3B%22Eastern%2C%20Nojel%22%3B%22Eifert%2C%20Grady%22%3B%22Haarms%2C%20Matt%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Purdue&teamShotCharts=true&year=2018%2F9&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -24812,7 +24848,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=JoBone%2CLaTurner%2CJoBowden%2CAdSchofield%2CGrWilliams&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Bone%2C%20Jordan%22%3B%22Turner%2C%20Lamonte%22%3B%22Bowden%2C%20Jordan%22%3B%22Schofield%2C%20Admiral%22%3B%22Williams%2C%20Grant%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Tennessee&teamShotCharts=true&year=2018%2F9&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=JoBone%2CLaTurner%2CJoBowden%2CAdSchofield%2CGrWilliams&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Bone%2C%20Jordan%22%3B%22Turner%2C%20Lamonte%22%3B%22Bowden%2C%20Jordan%22%3B%22Schofield%2C%20Admiral%22%3B%22Williams%2C%20Grant%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Tennessee&teamShotCharts=true&year=2018%2F9&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -25432,7 +25469,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=JoBone%2CLaTurner%2CJoBowden%2CAdSchofield%2CGrWilliams&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Bone%2C%20Jordan%22%3B%22Turner%2C%20Lamonte%22%3B%22Bowden%2C%20Jordan%22%3B%22Schofield%2C%20Admiral%22%3B%22Williams%2C%20Grant%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Tennessee&teamShotCharts=true&year=2018%2F9&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=JoBone%2CLaTurner%2CJoBowden%2CAdSchofield%2CGrWilliams&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Bone%2C%20Jordan%22%3B%22Turner%2C%20Lamonte%22%3B%22Bowden%2C%20Jordan%22%3B%22Schofield%2C%20Admiral%22%3B%22Williams%2C%20Grant%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Tennessee&teamShotCharts=true&year=2018%2F9&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -26043,7 +26081,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=MeTrimble%2CRaSulaimon%2CJaNickens%2CRoCarter%2CDiStone&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Trimble%2C%20Melo%22%3B%22Sulaimon%2C%20Rasheed%22%3B%22Nickens%2C%20Jared%22%3B%22Carter%2C%20Robert%22%3B%22Stone%2C%20Diamond%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Maryland&teamShotCharts=true&year=2015%2F6&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=MeTrimble%2CRaSulaimon%2CJaNickens%2CRoCarter%2CDiStone&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Trimble%2C%20Melo%22%3B%22Sulaimon%2C%20Rasheed%22%3B%22Nickens%2C%20Jared%22%3B%22Carter%2C%20Robert%22%3B%22Stone%2C%20Diamond%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Maryland&teamShotCharts=true&year=2015%2F6&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -26657,7 +26696,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=MeTrimble%2CRaSulaimon%2CJaNickens%2CRoCarter%2CDiStone&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Trimble%2C%20Melo%22%3B%22Sulaimon%2C%20Rasheed%22%3B%22Nickens%2C%20Jared%22%3B%22Carter%2C%20Robert%22%3B%22Stone%2C%20Diamond%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Maryland&teamShotCharts=true&year=2015%2F6&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=MeTrimble%2CRaSulaimon%2CJaNickens%2CRoCarter%2CDiStone&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Trimble%2C%20Melo%22%3B%22Sulaimon%2C%20Rasheed%22%3B%22Nickens%2C%20Jared%22%3B%22Carter%2C%20Robert%22%3B%22Stone%2C%20Diamond%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Maryland&teamShotCharts=true&year=2015%2F6&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -27301,7 +27341,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=JoPerkins%2CZaNorvell%2CJeJones%2CRuHachimura%2CBrClarke&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Perkins%2C%20Josh%22%3B%22Norvell%20Jr.%2C%20Zach%22%3B%22Jones%2C%20Jeremy%22%3B%22Hachimura%2C%20Rui%22%3B%22Clarke%2C%20Brandon%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Gonzaga&teamShotCharts=true&year=2018%2F9&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=JoPerkins%2CZaNorvell%2CJeJones%2CRuHachimura%2CBrClarke&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Perkins%2C%20Josh%22%3B%22Norvell%20Jr.%2C%20Zach%22%3B%22Jones%2C%20Jeremy%22%3B%22Hachimura%2C%20Rui%22%3B%22Clarke%2C%20Brandon%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Gonzaga&teamShotCharts=true&year=2018%2F9&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -27928,7 +27969,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=JoPerkins%2CZaNorvell%2CJeJones%2CRuHachimura%2CBrClarke&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Perkins%2C%20Josh%22%3B%22Norvell%20Jr.%2C%20Zach%22%3B%22Jones%2C%20Jeremy%22%3B%22Hachimura%2C%20Rui%22%3B%22Clarke%2C%20Brandon%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Gonzaga&teamShotCharts=true&year=2018%2F9&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=JoPerkins%2CZaNorvell%2CJeJones%2CRuHachimura%2CBrClarke&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Perkins%2C%20Josh%22%3B%22Norvell%20Jr.%2C%20Zach%22%3B%22Jones%2C%20Jeremy%22%3B%22Hachimura%2C%20Rui%22%3B%22Clarke%2C%20Brandon%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Gonzaga&teamShotCharts=true&year=2018%2F9&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -28546,7 +28588,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=MeTrimble%2CRiPack%2CDeWells%2CJaLayman%2CEvSmotrycz&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Trimble%2C%20Melo%22%3B%22Pack%2C%20Richaud%22%3B%22Wells%2C%20Dez%22%3B%22Layman%2C%20Jake%22%3B%22Smotrycz%2C%20Evan%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Maryland&teamShotCharts=true&year=2014%2F5&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=MeTrimble%2CRiPack%2CDeWells%2CJaLayman%2CEvSmotrycz&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Trimble%2C%20Melo%22%3B%22Pack%2C%20Richaud%22%3B%22Wells%2C%20Dez%22%3B%22Layman%2C%20Jake%22%3B%22Smotrycz%2C%20Evan%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Maryland&teamShotCharts=true&year=2014%2F5&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -29164,7 +29207,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=MeTrimble%2CRiPack%2CDeWells%2CJaLayman%2CEvSmotrycz&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Trimble%2C%20Melo%22%3B%22Pack%2C%20Richaud%22%3B%22Wells%2C%20Dez%22%3B%22Layman%2C%20Jake%22%3B%22Smotrycz%2C%20Evan%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Maryland&teamShotCharts=true&year=2014%2F5&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=MeTrimble%2CRiPack%2CDeWells%2CJaLayman%2CEvSmotrycz&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Trimble%2C%20Melo%22%3B%22Pack%2C%20Richaud%22%3B%22Wells%2C%20Dez%22%3B%22Layman%2C%20Jake%22%3B%22Smotrycz%2C%20Evan%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Maryland&teamShotCharts=true&year=2014%2F5&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -29785,7 +29829,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CKeHuerter%2CDaMorsell%2CJuJackson%2CBrFernando&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Huerter%2C%20Kevin%22%3B%22Morsell%2C%20Darryl%22%3B%22Jackson%2C%20Justin%22%3B%22Fernando%2C%20Bruno%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Maryland&teamShotCharts=true&year=2017%2F8&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CKeHuerter%2CDaMorsell%2CJuJackson%2CBrFernando&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Huerter%2C%20Kevin%22%3B%22Morsell%2C%20Darryl%22%3B%22Jackson%2C%20Justin%22%3B%22Fernando%2C%20Bruno%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Maryland&teamShotCharts=true&year=2017%2F8&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -30399,7 +30444,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CKeHuerter%2CDaMorsell%2CJuJackson%2CBrFernando&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Huerter%2C%20Kevin%22%3B%22Morsell%2C%20Darryl%22%3B%22Jackson%2C%20Justin%22%3B%22Fernando%2C%20Bruno%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Maryland&teamShotCharts=true&year=2017%2F8&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AnCowan%2CKeHuerter%2CDaMorsell%2CJuJackson%2CBrFernando&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%3B%22Huerter%2C%20Kevin%22%3B%22Morsell%2C%20Darryl%22%3B%22Jackson%2C%20Justin%22%3B%22Fernando%2C%20Bruno%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Maryland&teamShotCharts=true&year=2017%2F8&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -31012,7 +31058,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=MeTrimble%2CRiPack%2CJaNickens%2CJaLayman%2CDaDodd&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Trimble%2C%20Melo%22%3B%22Pack%2C%20Richaud%22%3B%22Nickens%2C%20Jared%22%3B%22Layman%2C%20Jake%22%3B%22Dodd%2C%20Damonte%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Maryland&teamShotCharts=true&year=2014%2F5&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=MeTrimble%2CRiPack%2CJaNickens%2CJaLayman%2CDaDodd&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Trimble%2C%20Melo%22%3B%22Pack%2C%20Richaud%22%3B%22Nickens%2C%20Jared%22%3B%22Layman%2C%20Jake%22%3B%22Dodd%2C%20Damonte%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Maryland&teamShotCharts=true&year=2014%2F5&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -31623,7 +31670,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=MeTrimble%2CRiPack%2CJaNickens%2CJaLayman%2CDaDodd&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Trimble%2C%20Melo%22%3B%22Pack%2C%20Richaud%22%3B%22Nickens%2C%20Jared%22%3B%22Layman%2C%20Jake%22%3B%22Dodd%2C%20Damonte%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Maryland&teamShotCharts=true&year=2014%2F5&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=MeTrimble%2CRiPack%2CJaNickens%2CJaLayman%2CDaDodd&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Trimble%2C%20Melo%22%3B%22Pack%2C%20Richaud%22%3B%22Nickens%2C%20Jared%22%3B%22Layman%2C%20Jake%22%3B%22Dodd%2C%20Damonte%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Maryland&teamShotCharts=true&year=2014%2F5&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -32241,7 +32289,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=KhCarrington%2CMyPowell%2CDeRodriguez%2CIsSanogo%2CAnDelgado&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Carrington%2C%20Khadeen%22%3B%22Powell%2C%20Myles%22%3B%22Rodriguez%2C%20Desi%22%3B%22Sanogo%2C%20Ismael%22%3B%22Delgado%2C%20Angel%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Seton%20Hall&teamShotCharts=true&year=2017%2F8&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=KhCarrington%2CMyPowell%2CDeRodriguez%2CIsSanogo%2CAnDelgado&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Carrington%2C%20Khadeen%22%3B%22Powell%2C%20Myles%22%3B%22Rodriguez%2C%20Desi%22%3B%22Sanogo%2C%20Ismael%22%3B%22Delgado%2C%20Angel%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Seton%20Hall&teamShotCharts=true&year=2017%2F8&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -32852,7 +32901,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=KhCarrington%2CMyPowell%2CDeRodriguez%2CIsSanogo%2CAnDelgado&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Carrington%2C%20Khadeen%22%3B%22Powell%2C%20Myles%22%3B%22Rodriguez%2C%20Desi%22%3B%22Sanogo%2C%20Ismael%22%3B%22Delgado%2C%20Angel%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Seton%20Hall&teamShotCharts=true&year=2017%2F8&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=KhCarrington%2CMyPowell%2CDeRodriguez%2CIsSanogo%2CAnDelgado&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Carrington%2C%20Khadeen%22%3B%22Powell%2C%20Myles%22%3B%22Rodriguez%2C%20Desi%22%3B%22Sanogo%2C%20Ismael%22%3B%22Delgado%2C%20Angel%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Seton%20Hall&teamShotCharts=true&year=2017%2F8&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -34706,7 +34756,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DeDotson%2CMaGarrett%2COcAgbaji%2CChBraun%2CUdAzubuike&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Dotson%2C%20Devon%22%3B%22Garrett%2C%20Marcus%22%3B%22Agbaji%2C%20Ochai%22%3B%22Braun%2C%20Christian%22%3B%22Azubuike%2C%20Udoka%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Kansas&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DeDotson%2CMaGarrett%2COcAgbaji%2CChBraun%2CUdAzubuike&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Dotson%2C%20Devon%22%3B%22Garrett%2C%20Marcus%22%3B%22Agbaji%2C%20Ochai%22%3B%22Braun%2C%20Christian%22%3B%22Azubuike%2C%20Udoka%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Kansas&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -35324,7 +35375,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DeDotson%2CMaGarrett%2COcAgbaji%2CChBraun%2CUdAzubuike&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Dotson%2C%20Devon%22%3B%22Garrett%2C%20Marcus%22%3B%22Agbaji%2C%20Ochai%22%3B%22Braun%2C%20Christian%22%3B%22Azubuike%2C%20Udoka%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Kansas&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DeDotson%2CMaGarrett%2COcAgbaji%2CChBraun%2CUdAzubuike&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Dotson%2C%20Devon%22%3B%22Garrett%2C%20Marcus%22%3B%22Agbaji%2C%20Ochai%22%3B%22Braun%2C%20Christian%22%3B%22Azubuike%2C%20Udoka%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Kansas&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -35980,7 +36032,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=JaCrutcher%2CIbWatson%2CTrLanders%2CRyMikesell%2CObToppin&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Crutcher%2C%20Jalen%22%3B%22Watson%2C%20Ibi%22%3B%22Landers%2C%20Trey%22%3B%22Mikesell%2C%20Ryan%22%3B%22Toppin%2C%20Obi%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Dayton&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=JaCrutcher%2CIbWatson%2CTrLanders%2CRyMikesell%2CObToppin&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Crutcher%2C%20Jalen%22%3B%22Watson%2C%20Ibi%22%3B%22Landers%2C%20Trey%22%3B%22Mikesell%2C%20Ryan%22%3B%22Toppin%2C%20Obi%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Dayton&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -36588,7 +36641,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=JaCrutcher%2CIbWatson%2CTrLanders%2CRyMikesell%2CObToppin&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Crutcher%2C%20Jalen%22%3B%22Watson%2C%20Ibi%22%3B%22Landers%2C%20Trey%22%3B%22Mikesell%2C%20Ryan%22%3B%22Toppin%2C%20Obi%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Dayton&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=JaCrutcher%2CIbWatson%2CTrLanders%2CRyMikesell%2CObToppin&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Crutcher%2C%20Jalen%22%3B%22Watson%2C%20Ibi%22%3B%22Landers%2C%20Trey%22%3B%22Mikesell%2C%20Ryan%22%3B%22Toppin%2C%20Obi%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Dayton&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -37234,7 +37288,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DaJohnson%2CRyMcmahon%2CJoNwora%2CDwSutton%2CMaWilliams&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Johnson%2C%20David%22%3B%22McMahon%2C%20Ryan%22%3B%22Nwora%2C%20Jordan%22%3B%22Sutton%2C%20Dwayne%22%3B%22Williams%2C%20Malik%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Louisville&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DaJohnson%2CRyMcmahon%2CJoNwora%2CDwSutton%2CMaWilliams&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Johnson%2C%20David%22%3B%22McMahon%2C%20Ryan%22%3B%22Nwora%2C%20Jordan%22%3B%22Sutton%2C%20Dwayne%22%3B%22Williams%2C%20Malik%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Louisville&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -37842,7 +37897,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DaJohnson%2CRyMcmahon%2CJoNwora%2CDwSutton%2CMaWilliams&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Johnson%2C%20David%22%3B%22McMahon%2C%20Ryan%22%3B%22Nwora%2C%20Jordan%22%3B%22Sutton%2C%20Dwayne%22%3B%22Williams%2C%20Malik%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Louisville&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DaJohnson%2CRyMcmahon%2CJoNwora%2CDwSutton%2CMaWilliams&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Johnson%2C%20David%22%3B%22McMahon%2C%20Ryan%22%3B%22Nwora%2C%20Jordan%22%3B%22Sutton%2C%20Dwayne%22%3B%22Williams%2C%20Malik%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Louisville&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -38488,7 +38544,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=CaWinston%2CRoWatts%2CAaHenry%2CMaHall%2CXaTillman&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Winston%2C%20Cassius%22%3B%22Watts%2C%20Rocket%22%3B%22Henry%2C%20Aaron%22%3B%22Hall%2C%20Malik%22%3B%22Tillman%2C%20Xavier%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Michigan%20St.&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=CaWinston%2CRoWatts%2CAaHenry%2CMaHall%2CXaTillman&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Winston%2C%20Cassius%22%3B%22Watts%2C%20Rocket%22%3B%22Henry%2C%20Aaron%22%3B%22Hall%2C%20Malik%22%3B%22Tillman%2C%20Xavier%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Michigan%20St.&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -39096,7 +39153,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=CaWinston%2CRoWatts%2CAaHenry%2CMaHall%2CXaTillman&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Winston%2C%20Cassius%22%3B%22Watts%2C%20Rocket%22%3B%22Henry%2C%20Aaron%22%3B%22Hall%2C%20Malik%22%3B%22Tillman%2C%20Xavier%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Michigan%20St.&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=CaWinston%2CRoWatts%2CAaHenry%2CMaHall%2CXaTillman&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Winston%2C%20Cassius%22%3B%22Watts%2C%20Rocket%22%3B%22Henry%2C%20Aaron%22%3B%22Hall%2C%20Malik%22%3B%22Tillman%2C%20Xavier%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Michigan%20St.&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -39742,7 +39800,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=LaKimble%2CRyMcmahon%2CJoNwora%2CDwSutton%2CMaWilliams&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Kimble%2C%20Lamarr%22%3B%22McMahon%2C%20Ryan%22%3B%22Nwora%2C%20Jordan%22%3B%22Sutton%2C%20Dwayne%22%3B%22Williams%2C%20Malik%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Louisville&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=LaKimble%2CRyMcmahon%2CJoNwora%2CDwSutton%2CMaWilliams&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Kimble%2C%20Lamarr%22%3B%22McMahon%2C%20Ryan%22%3B%22Nwora%2C%20Jordan%22%3B%22Sutton%2C%20Dwayne%22%3B%22Williams%2C%20Malik%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Louisville&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -40347,7 +40406,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=LaKimble%2CRyMcmahon%2CJoNwora%2CDwSutton%2CMaWilliams&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Kimble%2C%20Lamarr%22%3B%22McMahon%2C%20Ryan%22%3B%22Nwora%2C%20Jordan%22%3B%22Sutton%2C%20Dwayne%22%3B%22Williams%2C%20Malik%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Louisville&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=LaKimble%2CRyMcmahon%2CJoNwora%2CDwSutton%2CMaWilliams&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Kimble%2C%20Lamarr%22%3B%22McMahon%2C%20Ryan%22%3B%22Nwora%2C%20Jordan%22%3B%22Sutton%2C%20Dwayne%22%3B%22Williams%2C%20Malik%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Louisville&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -40986,7 +41046,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DaMitchell%2CMaTeague%2CDeBandoo%2CMaVital%2CFrGillespie&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Mitchell%2C%20Davion%22%3B%22Teague%2C%20MaCio%22%3B%22Bandoo%2C%20Devonte%22%3B%22Vital%2C%20Mark%22%3B%22Gillespie%2C%20Freddie%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Baylor&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DaMitchell%2CMaTeague%2CDeBandoo%2CMaVital%2CFrGillespie&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Mitchell%2C%20Davion%22%3B%22Teague%2C%20MaCio%22%3B%22Bandoo%2C%20Devonte%22%3B%22Vital%2C%20Mark%22%3B%22Gillespie%2C%20Freddie%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Baylor&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -41600,7 +41661,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DaMitchell%2CMaTeague%2CDeBandoo%2CMaVital%2CFrGillespie&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Mitchell%2C%20Davion%22%3B%22Teague%2C%20MaCio%22%3B%22Bandoo%2C%20Devonte%22%3B%22Vital%2C%20Mark%22%3B%22Gillespie%2C%20Freddie%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Baylor&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=DaMitchell%2CMaTeague%2CDeBandoo%2CMaVital%2CFrGillespie&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Mitchell%2C%20Davion%22%3B%22Teague%2C%20MaCio%22%3B%22Bandoo%2C%20Devonte%22%3B%22Vital%2C%20Mark%22%3B%22Gillespie%2C%20Freddie%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Baylor&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -42256,7 +42318,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=IsHill%2CDaJackson%2CLaKorita%2CJeHorne%2CMaIgbanu&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Hill%2C%20Isaiah%22%3B%22Jackson%2C%20Darien%22%3B%22Korita%2C%20Lawson%22%3B%22Horne%2C%20Jeriah%22%3B%22Igbanu%2C%20Martins%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Tulsa&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=IsHill%2CDaJackson%2CLaKorita%2CJeHorne%2CMaIgbanu&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Hill%2C%20Isaiah%22%3B%22Jackson%2C%20Darien%22%3B%22Korita%2C%20Lawson%22%3B%22Horne%2C%20Jeriah%22%3B%22Igbanu%2C%20Martins%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Tulsa&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -42871,7 +42934,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=IsHill%2CDaJackson%2CLaKorita%2CJeHorne%2CMaIgbanu&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Hill%2C%20Isaiah%22%3B%22Jackson%2C%20Darien%22%3B%22Korita%2C%20Lawson%22%3B%22Horne%2C%20Jeriah%22%3B%22Igbanu%2C%20Martins%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Tulsa&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=IsHill%2CDaJackson%2CLaKorita%2CJeHorne%2CMaIgbanu&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Hill%2C%20Isaiah%22%3B%22Jackson%2C%20Darien%22%3B%22Korita%2C%20Lawson%22%3B%22Horne%2C%20Jeriah%22%3B%22Igbanu%2C%20Martins%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Tulsa&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -43524,7 +43588,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AbPorter%2CSaMerrill%2CDiBrito%2CJuBean%2CNeQueta&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Porter%2C%20Abel%22%3B%22Merrill%2C%20Sam%22%3B%22Brito%2C%20Diogo%22%3B%22Bean%2C%20Justin%22%3B%22Queta%2C%20Neemias%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Utah%20St.&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AbPorter%2CSaMerrill%2CDiBrito%2CJuBean%2CNeQueta&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Porter%2C%20Abel%22%3B%22Merrill%2C%20Sam%22%3B%22Brito%2C%20Diogo%22%3B%22Bean%2C%20Justin%22%3B%22Queta%2C%20Neemias%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Utah%20St.&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -44154,7 +44219,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AbPorter%2CSaMerrill%2CDiBrito%2CJuBean%2CNeQueta&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Porter%2C%20Abel%22%3B%22Merrill%2C%20Sam%22%3B%22Brito%2C%20Diogo%22%3B%22Bean%2C%20Justin%22%3B%22Queta%2C%20Neemias%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Utah%20St.&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=AbPorter%2CSaMerrill%2CDiBrito%2CJuBean%2CNeQueta&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Porter%2C%20Abel%22%3B%22Merrill%2C%20Sam%22%3B%22Brito%2C%20Diogo%22%3B%22Bean%2C%20Justin%22%3B%22Queta%2C%20Neemias%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Utah%20St.&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -44822,7 +44888,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=QuMcknight%2CMyPowell%2CJaRhoden%2CSaMamukelash%2CRoGill&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22McKnight%2C%20Quincy%22%3B%22Powell%2C%20Myles%22%3B%22Rhoden%2C%20Jared%22%3B%22Mamukelashvili%2C%20Sandro%22%3B%22Gill%2C%20Romaro%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Seton%20Hall&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=QuMcknight%2CMyPowell%2CJaRhoden%2CSaMamukelash%2CRoGill&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22McKnight%2C%20Quincy%22%3B%22Powell%2C%20Myles%22%3B%22Rhoden%2C%20Jared%22%3B%22Mamukelashvili%2C%20Sandro%22%3B%22Gill%2C%20Romaro%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Seton%20Hall&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -45432,7 +45499,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=QuMcknight%2CMyPowell%2CJaRhoden%2CSaMamukelash%2CRoGill&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22McKnight%2C%20Quincy%22%3B%22Powell%2C%20Myles%22%3B%22Rhoden%2C%20Jared%22%3B%22Mamukelashvili%2C%20Sandro%22%3B%22Gill%2C%20Romaro%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Seton%20Hall&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=QuMcknight%2CMyPowell%2CJaRhoden%2CSaMamukelash%2CRoGill&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22McKnight%2C%20Quincy%22%3B%22Powell%2C%20Myles%22%3B%22Rhoden%2C%20Jared%22%3B%22Mamukelashvili%2C%20Sandro%22%3B%22Gill%2C%20Romaro%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Seton%20Hall&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -46080,7 +46148,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=CaWinston%2CRoWatts%2CAaHenry%2CXaTillman%2CThKithier&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Winston%2C%20Cassius%22%3B%22Watts%2C%20Rocket%22%3B%22Henry%2C%20Aaron%22%3B%22Tillman%2C%20Xavier%22%3B%22Kithier%2C%20Thomas%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Michigan%20St.&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=CaWinston%2CRoWatts%2CAaHenry%2CXaTillman%2CThKithier&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Winston%2C%20Cassius%22%3B%22Watts%2C%20Rocket%22%3B%22Henry%2C%20Aaron%22%3B%22Tillman%2C%20Xavier%22%3B%22Kithier%2C%20Thomas%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Michigan%20St.&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",
@@ -46688,7 +46757,8 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       placement="auto"
                                     >
                                       <a
-                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=CaWinston%2CRoWatts%2CAaHenry%2CXaTillman%2CThKithier&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Winston%2C%20Cassius%22%3B%22Watts%2C%20Rocket%22%3B%22Henry%2C%20Aaron%22%3B%22Tillman%2C%20Xavier%22%3B%22Kithier%2C%20Thomas%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showTeamPlayTypes=true&team=Michigan%20St.&teamShotCharts=true&year=2019%2F20&"
+                                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=CaWinston%2CRoWatts%2CAaHenry%2CXaTillman%2CThKithier&gender=Men&maxRank=400&offQuery=&onQuery=%7B%22Winston%2C%20Cassius%22%3B%22Watts%2C%20Rocket%22%3B%22Henry%2C%20Aaron%22%3B%22Tillman%2C%20Xavier%22%3B%22Kithier%2C%20Thomas%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&team=Michigan%20St.&teamShotCharts=true&year=2019%2F20&"
+                                        onClick={[Function]}
                                         style={
                                           Object {
                                             "color": "inherit",

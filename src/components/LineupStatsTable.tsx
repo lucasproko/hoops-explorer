@@ -492,7 +492,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           positionFromPlayerKey
         );
 
-      const enrichedLineups = _.chain(
+      const enrichedLineupsPhase1 = _.chain(
         LineupTableUtils.buildEnrichedLineups(
           filteredLineups,
           teamStats.global,
@@ -506,94 +506,88 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           positionFromPlayerKey,
           baselinePlayerInfo
         )
-      )
-        .flatMap((lineup, lineupIndex) => {
-          TableDisplayUtils.injectPlayTypeInfo(
-            lineup,
-            false,
-            false,
-            teamSeasonLookup
-          ); //(inject assist numbers)
+      ).flatMap((lineup, lineupIndex) => {
+        TableDisplayUtils.injectPlayTypeInfo(
+          lineup,
+          false,
+          false,
+          teamSeasonLookup
+        ); //(inject assist numbers)
 
-          const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
-          const sortedCodesAndIds =
-            lineup.key == LineupTableUtils.totalLineupId
-              ? undefined
-              : PositionUtils.orderLineup(
-                  codesAndIds,
-                  positionFromPlayerKey,
-                  teamSeasonLookup
-                );
-
-          const getBackcourtCombos = () => {
-            const top4 = _.take(sortedCodesAndIds || [], 4).map((p) => p.id);
-            const pf = top4?.[3] || "";
-            const is4Guard = _.endsWith(
-              positionFromPlayerKey[pf]?.posClass || "",
-              "G"
-            ); //(not "G?" since we don't really know if that's a guard/forward yet)
-            return is4Guard ? top4.join(" / ") : _.take(top4, 3).join(" / ");
-          };
-          const getKeys = () => {
-            if (lineup.key != LineupTableUtils.totalLineupId)
-              switch (aggregateByPos) {
-                case "PG":
-                  return [sortedCodesAndIds?.[0]?.id || "Unknown"];
-                case "Backcourt":
-                  return [getBackcourtCombos()];
-                case "PG+C":
-                  return [
-                    `${sortedCodesAndIds?.[0]?.id || "Unknown"} / ${
-                      sortedCodesAndIds?.[4]?.id || "Unknown"
-                    }`,
-                  ];
-                case "Frontcourt":
-                  return [
-                    _.chain(sortedCodesAndIds || [])
-                      .drop(3)
-                      .map((p) => p.id)
-                      .value()
-                      .join(" / "),
-                  ];
-                case "C":
-                  return [sortedCodesAndIds?.[4]?.id || "Unknown"];
-                case "Pairs":
-                  return getPairs((sortedCodesAndIds || []).map((p) => p.id));
-                case "Triples":
-                  return getTriples((sortedCodesAndIds || []).map((p) => p.id));
-                case "Quads":
-                  return getQuads((sortedCodesAndIds || []).map((p) => p.id));
-                default:
-                  return [];
-              }
-            else return [LineupTableUtils.totalLineupId];
-          };
-
-          return getKeys().map((key) => {
-            const comboCodeAndIds = key
-              .split(" / ")
-              .flatMap((keyPos) =>
-                (sortedCodesAndIds || []).filter(
-                  (codeId) => codeId.id == keyPos
-                )
+        const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
+        const sortedCodesAndIds =
+          lineup.key == LineupTableUtils.totalLineupId
+            ? undefined
+            : PositionUtils.orderLineup(
+                codesAndIds,
+                positionFromPlayerKey,
+                teamSeasonLookup
               );
 
-            const stats = {
-              ...lineup,
-              posKey: key,
-              codesAndIds: comboCodeAndIds,
-            } as LineupStatSet;
-            return stats;
-          });
-        })
+        const getBackcourtCombos = () => {
+          const top4 = _.take(sortedCodesAndIds || [], 4).map((p) => p.id);
+          const pf = top4?.[3] || "";
+          const is4Guard = _.endsWith(
+            positionFromPlayerKey[pf]?.posClass || "",
+            "G"
+          ); //(not "G?" since we don't really know if that's a guard/forward yet)
+          return is4Guard ? top4.join(" / ") : _.take(top4, 3).join(" / ");
+        };
+        const getKeys = (l: LineupStatSet) => {
+          if (lineup.key != LineupTableUtils.totalLineupId)
+            switch (aggregateByPos) {
+              case "PG":
+                return [sortedCodesAndIds?.[0]?.id || "Unknown"];
+              case "Backcourt":
+                return [getBackcourtCombos()];
+              case "PG+C":
+                return [
+                  `${sortedCodesAndIds?.[0]?.id || "Unknown"} / ${
+                    sortedCodesAndIds?.[4]?.id || "Unknown"
+                  }`,
+                ];
+              case "Frontcourt":
+                return [
+                  _.chain(sortedCodesAndIds || [])
+                    .drop(3)
+                    .map((p) => p.id)
+                    .value()
+                    .join(" / "),
+                ];
+              case "C":
+                return [sortedCodesAndIds?.[4]?.id || "Unknown"];
+              case "Pairs":
+                return getPairs((sortedCodesAndIds || []).map((p) => p.id));
+              case "Triples":
+                return getTriples((sortedCodesAndIds || []).map((p) => p.id));
+              case "Quads":
+                return getQuads((sortedCodesAndIds || []).map((p) => p.id));
+              default:
+                return [];
+            }
+          else return [LineupTableUtils.totalLineupId];
+        };
+
+        return getKeys(lineup).map((key) => {
+          const comboCodeAndIds = key
+            .split(" / ")
+            .flatMap((keyPos) =>
+              (sortedCodesAndIds || []).filter((codeId) => codeId.id == keyPos)
+            );
+
+          const stats = {
+            ...lineup,
+            posKey: key,
+            codesAndIds: comboCodeAndIds,
+          } as LineupStatSet;
+          return stats;
+        });
+      });
+
+      const enrichedLineups = enrichedLineupsPhase1
         .groupBy((l) => l.posKey)
         .mapValues((lineups) => {
-          //TODO: split this into 2 phases so I have the keys
-          //For each pos key position get a list of positions
-          //Sort the players by position using the existing code
-          //Depending on the key type either lower or higher players get added to the NOT list
-
-          const key = lineups?.[0].posKey;
+          const posKey = lineups?.[0].posKey;
           const codesAndIds = lineups?.[0].codesAndIds || [];
 
           const perLineupBaselinePlayerMap: Record<PlayerId, IndivStatSet> =
@@ -606,7 +600,54 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
               })
             );
 
-          const lineupTitleKey = "" + key;
+          const linkParams = getCommonFilterParams(startingState);
+          const maybeOnClickOverride = _.thru(aggregateByPos, (agg) => {
+            switch (agg) {
+              case "PG":
+              case "Backcourt":
+              case "PG+C":
+              case "Frontcourt":
+              case "C":
+                return (codes: { code: string; id: string }[]) => {
+                  const excludeList = enrichedLineupsPhase1
+                    .filter((l) => {
+                      // Go over all lineups, remove those that are part of this positional lineup key
+                      //... or don't have all players (anywhere in lineup) from this position lineup key
+
+                      return (
+                        l.key != LineupTableUtils.totalLineupId &&
+                        l.posKey != posKey &&
+                        _.every(codes, (playerSet) => {
+                          return (
+                            l.key.startsWith(playerSet.code + "_") ||
+                            l.key.endsWith("_" + playerSet.code) ||
+                            l.key.indexOf("_" + playerSet.code + "_") >= 0
+                          );
+                        })
+                      );
+                    })
+                    .flatMap((l) => {
+                      return (l.codesAndIds || []).filter((cid) => {
+                        return !_.some(codes, (playerSet) => {
+                          return cid.id == playerSet.id;
+                        });
+                      });
+                    })
+                    .uniqBy((cid) => cid.code)
+                    .value();
+
+                  return TableDisplayUtils.buildGameUrl(
+                    linkParams,
+                    codes,
+                    excludeList
+                  );
+                };
+              default:
+                return undefined;
+            }
+          });
+
+          const lineupTitleKey = "" + posKey;
           const title = TableDisplayUtils.buildDecoratedLineup(
             lineupTitleKey,
             codesAndIds,
@@ -614,12 +655,14 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
             positionFromPlayerKey,
             "off_adj_rtg",
             decorateLineups,
-            getCommonFilterParams(startingState)
+            linkParams,
+            false,
+            maybeOnClickOverride
           );
 
           const maybeLineBreak = aggregateByPos.length > 2 ? <br /> : null;
 
-          return key == LineupTableUtils.totalLineupId
+          return posKey == LineupTableUtils.totalLineupId
             ? {
                 ...lineups[0],
                 off_title: "Weighted Total",
