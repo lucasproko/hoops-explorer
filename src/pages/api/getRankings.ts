@@ -23,7 +23,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const cacheKey = `${parsed.year}_${parsed.name}_${parsed.gender || "Men"}`;
 
   if (parsed.name == "NET") {
-    if (parsed.year <= DateUtils.mostRecentYearWithNetAvailable) {
+    if (parsed.year == DateUtils.mostRecentYearWithNetAvailable) {
+      //(archives not so easily available)
       const maybeCachedVal = rankingCache.get(cacheKey);
       if (!maybeCachedVal) {
         console.log(`getRankings: Retrieving and caching [${cacheKey}]`);
