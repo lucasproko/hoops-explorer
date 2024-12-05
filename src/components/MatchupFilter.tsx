@@ -497,9 +497,12 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
     maxRank: "400",
     gender: params.gender,
     year: params.year,
-    baseQuery: subFor
+    onQuery: subFor
       ? (params.baseQuery || "").replace(`"${team}"`, `"${subFor}"`)
       : params.baseQuery,
+    autoOffQuery: false,
+    offQuery: undefined,
+    baseQuery: "",
     showRoster: true,
     calcRapm: true,
     showTeamPlayTypes: true,
