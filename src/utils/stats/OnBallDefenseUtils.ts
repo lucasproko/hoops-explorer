@@ -97,8 +97,12 @@ export class OnBallDefenseUtils {
     // Phase 2: find the line corresponding to the team
 
     const longerFormat = OnBallDefenseUtils.isLongRow(playerRowsCols[0] || []);
+    const teamIndex = longerFormat ? 3 : 2;
     const teamName =
-      playerRowsCols[0]?.[longerFormat ? 3 : 2] || "NOT FOUND TEAM";
+      _.find(playerRowsCols, (playerRowCol) => {
+        return playerRowCol?.[teamIndex] != '"Team"'; //(skip over header)
+      })?.[teamIndex] || "NOT FOUND TEAM";
+
     const teamRow = teamRowsCols.find((row) => row?.[1] == teamName);
     const transformTeamRow = (row: string[]) => {
       return longerFormat

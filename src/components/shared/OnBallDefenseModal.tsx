@@ -384,6 +384,7 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = ({
             contents?.[0] || "",
             contents?.[1] || ""
           );
+
       setInputChanged(true);
       setInputContents(combinedContents);
       onApply(combinedContents);
