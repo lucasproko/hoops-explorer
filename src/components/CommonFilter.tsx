@@ -785,10 +785,13 @@ const CommonFilter: CommonFilterI = ({
               isDisabled={majorParamsDisabled}
               styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
               value={stringToOption(year)}
-              options={Array.from(
-                new Set(
-                  AvailableTeams.getTeams(team, null, gender, true).map(
-                    (r) => r.year
+              options={_.reverse(
+                Array.from(
+                  //(reverse because years are descending we want them ascending)
+                  new Set(
+                    AvailableTeams.getTeams(team, null, gender, true).map(
+                      (r) => r.year
+                    )
                   )
                 )
               )

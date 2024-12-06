@@ -25,13 +25,13 @@ export class DateUtils {
 
   /** The years for which I have collected "bulk" data (ie not just hand-picked teams), from men "2020/21", all D1 */
   static readonly coreYears: string[] = [
-    "2018/9",
-    "2019/20",
-    "2020/21",
-    "2021/22",
-    "2022/23",
-    "2023/24",
     "2024/25",
+    "2023/24",
+    "2022/23",
+    "2021/22",
+    "2020/21",
+    "2019/20",
+    "2018/9",
   ];
 
   /** Note should include all 3 formats $date, Men_$date, Women_$date */
@@ -65,7 +65,10 @@ export class DateUtils {
   };
 
   /** The first year for which we had bulk date (ie not just hand-picked) */
-  static readonly firstYearWithData = DateUtils.coreYears[0];
+  static readonly firstYearWithData = _.last(DateUtils.coreYears)!;
+
+  /** The first year for which we had bulk date (ie not just hand-picked) */
+  static readonly mostRecetYearWithData = _.first(DateUtils.coreYears)!;
 
   /** Used for defaults for everything but leaderboards (which get updated later) */
   static readonly mostRecentYearWithData: string = "2024/25";

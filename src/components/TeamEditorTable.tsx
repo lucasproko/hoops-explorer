@@ -507,9 +507,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
     if (showGrades) {
       const yearToUse = // pick the closest year for which we have data (regardless of eval mode etc)
         _.find(DateUtils.coreYears, year) ||
-        (year < DateUtils.coreYears[0]
-          ? DateUtils.coreYears[0]
-          : _.last(DateUtils.coreYears)!);
+        (year < DateUtils.firstYearWithData
+          ? DateUtils.firstYearWithData!
+          : DateUtils.mostRecetYearWithData);
 
       const yearOrGenderChanged =
         yearToUse != divisionStatsCache.year ||
