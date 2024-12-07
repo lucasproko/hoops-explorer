@@ -177,38 +177,51 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
 
     const noExtraFullSeasonRequests = true;
 
-    const primaryRequests: FilterRequestInfo[] = (
-      [
-        {
-          context: ParamPrefixes.game as ParamPrefixesType,
-          paramsObj: secondaryRequestA,
-        },
-        {
-          context: ParamPrefixes.player as ParamPrefixesType,
-          paramsObj: secondaryRequestA,
-          includeRoster: noExtraFullSeasonRequests,
-        },
-      ] as FilterRequestInfo[]
-    ).concat(
-      shotChartEnabled
-        ? [
-            {
-              context: ParamPrefixes.shots as ParamPrefixesType,
-              paramsObj: primaryRequestA,
-            },
-          ]
-        : []
-    );
+    const primaryRequests: FilterRequestInfo[] =
+      //(new format with tags - primaryRequest is included)
+      (
+        [
+          {
+            tag: "lineupsA",
+            context: ParamPrefixes.lineup as ParamPrefixesType,
+            paramsObj: primaryRequestA as FilterParamsType,
+          },
+          {
+            tag: "teamA",
+            context: ParamPrefixes.game as ParamPrefixesType,
+            paramsObj: secondaryRequestA,
+          },
+          {
+            tag: "playersA",
+            context: ParamPrefixes.player as ParamPrefixesType,
+            paramsObj: secondaryRequestA,
+            includeRoster: noExtraFullSeasonRequests,
+          },
+        ] as FilterRequestInfo[]
+      ).concat(
+        shotChartEnabled
+          ? [
+              {
+                tag: "shotsA",
+                context: ParamPrefixes.shots as ParamPrefixesType,
+                paramsObj: primaryRequestA,
+              },
+            ]
+          : []
+      );
     const secondaryRequests: FilterRequestInfo[] = [
       {
+        tag: "lineupsB",
         context: ParamPrefixes.lineup as ParamPrefixesType,
         paramsObj: primaryRequestB as FilterParamsType,
       },
       {
+        tag: "teamB",
         context: ParamPrefixes.game as ParamPrefixesType,
         paramsObj: secondaryRequestB,
       },
       {
+        tag: "playersB",
         context: ParamPrefixes.player as ParamPrefixesType,
         paramsObj: secondaryRequestB,
         includeRoster: noExtraFullSeasonRequests,
@@ -217,6 +230,7 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
       shotChartEnabled
         ? [
             {
+              tag: "shotsB",
               context: ParamPrefixes.shots as ParamPrefixesType,
               paramsObj: primaryRequestB,
             },
@@ -227,10 +241,12 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
       ? _.take(
           [
             {
+              tag: "defenseA",
               context: ParamPrefixes.defensiveInfo as ParamPrefixesType,
               paramsObj: primaryRequestA as FilterParamsType,
             },
             {
+              tag: "defenseB",
               context: ParamPrefixes.defensiveInfo as ParamPrefixesType,
               paramsObj: primaryRequestB as FilterParamsType,
             },
@@ -252,15 +268,16 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
   }
 
   /** Handles the response from ES to a stats calc request */
-  function handleResponse(jsonResps: any[], wasError: Boolean) {
+  function handleResponse(jsonResps: Record<string, any>, wasError: Boolean) {
     const shotChartEnabled =
       !commonParams.year ||
       commonParams.year >= DateUtils.firstYearWithShotChartData;
+    const jsonStatuses = _.mapValues(jsonResps, (j) => j.status);
 
     const fromLineups = (lineupJson: any) => ({
       lineups: lineupJson?.aggregations?.lineups?.buckets,
       error_code: wasError
-        ? lineupJson?.status || jsonStatuses?.[0] || "Unknown"
+        ? lineupJson?.status || jsonStatuses?.["lineupsA"] || "Unknown"
         : undefined,
     });
     const fromTeam = (teamJson: any, globalTeam: any) => ({
@@ -272,7 +289,7 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
         StatModels.emptyTeam(),
       global: globalTeam,
       error_code: wasError
-        ? teamJson?.status || jsonStatuses?.[1] || "Unknown"
+        ? teamJson?.status || jsonStatuses?.["teamA"] || "Unknown"
         : undefined,
     });
     const fromRoster = (rosterStatsJson: any, globalRosterStatsJson: any) => ({
@@ -286,41 +303,31 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
           ?.player?.buckets || [],
       error_code: wasError
         ? rosterStatsJson?.status ||
-          jsonStatuses?.[2] ||
+          jsonStatuses?.["playersA"] ||
           globalRosterStatsJson?.status ||
-          jsonStatuses?.[3] ||
           "Unknown"
         : undefined,
     });
 
-    const extraFullSeasonRequests = 0; //0 or 1, will be 1 later if we allow more granular filtering
-    const jsonStatuses = jsonResps.map((j) => j.status);
-
-    const lineupJsonA = jsonResps?.[0]?.responses?.[0] || {};
-    const teamJsonA = jsonResps?.[1]?.responses?.[0] || {};
-    const rosterStatsJsonA = jsonResps?.[2]?.responses?.[0] || {};
+    const lineupJsonA = jsonResps?.["lineupsA"]?.responses?.[0] || {};
+    const teamJsonA = jsonResps?.["teamA"]?.responses?.[0] || {};
+    const rosterStatsJsonA = jsonResps?.["playersA"]?.responses?.[0] || {};
     const globalRosterStatsJsonA =
-      jsonResps?.[2 + extraFullSeasonRequests]?.responses?.[0] ||
-      rosterStatsJsonA;
+      jsonResps?.["playersA"]?.responses?.[0] || rosterStatsJsonA;
     const globalTeamA =
       teamJsonA?.aggregations?.global?.only?.buckets?.team ||
       StatModels.emptyTeam();
-    const rosterInfoA = jsonResps?.[2 + extraFullSeasonRequests]?.roster;
+    const rosterInfoA = jsonResps?.["playersA"]?.roster;
     globalTeamA.roster = rosterInfoA;
 
     const shotChartInfoA = shotChartEnabled
       ? {
-          off: jsonResps?.[3 + extraFullSeasonRequests]?.responses?.[0]
-            ?.aggregations?.tri_filter?.buckets?.baseline?.off_def?.buckets
-            ?.off,
-          def: jsonResps?.[3 + extraFullSeasonRequests]?.responses?.[0]
-            ?.aggregations?.tri_filter?.buckets?.baseline?.off_def?.buckets
-            ?.def,
+          off: jsonResps?.["shotsA"]?.responses?.[0]?.aggregations?.tri_filter
+            ?.buckets?.baseline?.off_def?.buckets?.off,
+          def: jsonResps?.["shotsA"]?.responses?.[0]?.aggregations?.tri_filter
+            ?.buckets?.baseline?.off_def?.buckets?.def,
         }
       : { off: {}, def: {} };
-
-    const noOpponentCase =
-      jsonResps.length < extraFullSeasonRequests + (includeDefense ? 8 : 6);
 
     const buildDefensiveInfo = (jsonResp: any[]) => {
       const teamsStatsByTeam: Record<string, TeamStatSet> = _.chain(
@@ -364,22 +371,17 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
         .value();
     };
     const [defensiveStatsA, defensiveStatsB] = _.thru(includeDefense, (__) => {
-      const numEls = shotChartEnabled ? 4 : 3;
-      const startingIndex =
-        extraFullSeasonRequests +
-        (noOpponentCase ? numEls : 2 * numEls + extraFullSeasonRequests);
-
       if (includeDefense) {
         return [
-          buildDefensiveInfo(jsonResps?.[startingIndex]?.responses || []),
-          buildDefensiveInfo(jsonResps?.[startingIndex + 1]?.responses || []),
+          buildDefensiveInfo(jsonResps?.["defenseA"]?.responses || []),
+          buildDefensiveInfo(jsonResps?.["defenseB"]?.responses || []),
         ];
       } else {
         return [undefined, undefined];
       }
     });
 
-    if (noOpponentCase) {
+    if (!jsonResps?.["teamB"]) {
       //special "no opponent case", short circuit the rest
       onStats(
         fromLineups(lineupJsonA),
@@ -396,30 +398,23 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
         defensiveStatsB
       );
     } else {
-      const startIndexB =
-        3 + extraFullSeasonRequests + (shotChartEnabled ? 1 : 0);
-      const lineupJsonB = jsonResps?.[startIndexB]?.responses?.[0] || {};
-      const teamJsonB = jsonResps?.[1 + startIndexB]?.responses?.[0] || {};
-      const rosterStatsJsonB =
-        jsonResps?.[2 + startIndexB]?.responses?.[0] || {};
+      const lineupJsonB = jsonResps?.["lineupsB"]?.responses?.[0] || {};
+      const teamJsonB = jsonResps?.["teamB"]?.responses?.[0] || {};
+      const rosterStatsJsonB = jsonResps?.["playersB"]?.responses?.[0] || {};
       const globalRosterStatsJsonB =
-        jsonResps?.[extraFullSeasonRequests + 2 + startIndexB]
-          ?.responses?.[0] || rosterStatsJsonB;
+        jsonResps?.["playersB"]?.responses?.[0] || rosterStatsJsonB;
       const globalTeamB =
         teamJsonB?.aggregations?.global?.only?.buckets?.team ||
         StatModels.emptyTeam();
-      const rosterInfoB =
-        jsonResps?.[extraFullSeasonRequests + 2 + startIndexB]?.roster;
+      const rosterInfoB = jsonResps?.["playersB"]?.roster;
       globalTeamB.roster = rosterInfoB;
 
       const shotChartInfoB = shotChartEnabled
         ? {
-            off: jsonResps?.[extraFullSeasonRequests + 3 + startIndexB]
-              ?.responses?.[0]?.aggregations?.tri_filter?.buckets?.baseline
-              ?.off_def?.buckets?.off,
-            def: jsonResps?.[extraFullSeasonRequests + 3 + startIndexB]
-              ?.responses?.[0]?.aggregations?.tri_filter?.buckets?.baseline
-              ?.off_def?.buckets?.def,
+            off: jsonResps?.["shotsB"]?.responses?.[0]?.aggregations?.tri_filter
+              ?.buckets?.baseline?.off_def?.buckets?.off,
+            def: jsonResps?.["shotsB"]?.responses?.[0]?.aggregations?.tri_filter
+              ?.buckets?.baseline?.off_def?.buckets?.def,
           }
         : { off: {}, def: {} };
 
