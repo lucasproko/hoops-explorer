@@ -292,49 +292,62 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
       offQuery: "",
     };
 
+    // New format, so duplicate primaryRequest and everything has a tag
     return [
       primaryRequestA,
       [
         {
+          tag: "lineupsA",
+          context: ParamPrefixes.lineup as ParamPrefixesType,
+          paramsObj: primaryRequestA,
+        },
+        {
+          tag: "teamA_season",
           context: ParamPrefixes.game as ParamPrefixesType,
           paramsObj: secondaryRequestA,
         },
         {
+          tag: "playersA",
           context: ParamPrefixes.player as ParamPrefixesType,
           paramsObj: secondaryRequestA,
           includeRoster: false,
         },
         {
-          //(don't make a spurious call)
+          tag: "playersA_season",
           context: ParamPrefixes.player as ParamPrefixesType,
           paramsObj: entireSeasonRequestA,
           includeRoster: true,
         },
         {
+          tag: "lineupsB",
           context: ParamPrefixes.lineup as ParamPrefixesType,
           paramsObj: primaryRequestB,
         },
         {
+          tag: "teamB_season",
           context: ParamPrefixes.game as ParamPrefixesType,
           paramsObj: secondaryRequestB,
         },
         {
+          tag: "playersB",
           context: ParamPrefixes.player as ParamPrefixesType,
           paramsObj: secondaryRequestB,
           includeRoster: false,
         },
         {
-          //(don't make a spurious call)
+          tag: "playersB_season",
           context: ParamPrefixes.player as ParamPrefixesType,
           paramsObj: entireSeasonRequestB,
           includeRoster: true,
         },
         {
+          tag: "game_lineupsA",
           context: ParamPrefixes.lineupStints as ParamPrefixesType,
           paramsObj: primaryRequestA,
           includeRoster: false,
         },
         {
+          tag: "game_lineupsB",
           context: ParamPrefixes.lineupStints as ParamPrefixesType,
           paramsObj: primaryRequestB,
           includeRoster: false,
@@ -344,29 +357,29 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
   }
 
   /** Handles the response from ES to a stats calc request */
-  function handleResponse(jsonResps: any[], wasError: Boolean) {
-    const jsonStatuses = jsonResps.map((j) => j.status);
+  function handleResponse(jsonResps: Record<string, any>, wasError: Boolean) {
+    const jsonStatuses = _.mapValues(jsonResps, (j) => j.status);
 
-    const lineupJsonA = jsonResps?.[0]?.responses?.[0] || {};
-    const teamJsonA = jsonResps?.[1]?.responses?.[0] || {};
-    const rosterStatsJsonA = jsonResps?.[2]?.responses?.[0] || {};
+    const lineupJsonA = jsonResps?.["lineupsA"]?.responses?.[0] || {};
+    const teamJsonA = jsonResps?.["teamA_season"]?.responses?.[0] || {};
+    const rosterStatsJsonA = jsonResps?.["playersA"]?.responses?.[0] || {};
     const globalRosterStatsJsonA =
-      jsonResps?.[3]?.responses?.[0] || rosterStatsJsonA;
+      jsonResps?.["playersA_season"]?.responses?.[0] || rosterStatsJsonA;
     const globalTeamA =
       teamJsonA?.aggregations?.global?.only?.buckets?.team ||
       StatModels.emptyTeam();
-    const rosterInfoA = jsonResps?.[3]?.roster;
+    const rosterInfoA = jsonResps?.["playersA_season"]?.roster;
     globalTeamA.roster = rosterInfoA;
 
-    const lineupJsonB = jsonResps?.[4]?.responses?.[0] || {};
-    const teamJsonB = jsonResps?.[5]?.responses?.[0] || {};
-    const rosterStatsJsonB = jsonResps?.[6]?.responses?.[0] || {};
+    const lineupJsonB = jsonResps?.["lineupsB"]?.responses?.[0] || {};
+    const teamJsonB = jsonResps?.["teamB_season"]?.responses?.[0] || {};
+    const rosterStatsJsonB = jsonResps?.["playersB"]?.responses?.[0] || {};
     const globalRosterStatsJsonB =
-      jsonResps?.[7]?.responses?.[0] || rosterStatsJsonB;
+      jsonResps?.["playersB_season"]?.responses?.[0] || rosterStatsJsonB;
     const globalTeamB =
       teamJsonB?.aggregations?.global?.only?.buckets?.team ||
       StatModels.emptyTeam();
-    const rosterInfoB = jsonResps?.[7]?.roster;
+    const rosterInfoB = jsonResps?.["playersB_season"]?.roster;
     globalTeamB.roster = rosterInfoB;
 
     /** Combines player and team info for each minute */
@@ -414,12 +427,12 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
     };
 
     const lineupStintsA: LineupStintInfo[] = buildLineupStint(
-      (jsonResps?.[8]?.responses?.[0]?.hits?.hits || []).map(
+      (jsonResps?.["game_lineupsA"]?.responses?.[0]?.hits?.hits || []).map(
         (p: any) => p._source
       )
     );
     const lineupStintsB: LineupStintInfo[] = buildLineupStint(
-      (jsonResps?.[9]?.responses?.[0]?.hits?.hits || []).map(
+      (jsonResps?.["game_lineupsB"]?.responses?.[0]?.hits?.hits || []).map(
         (p: any) => p._source
       )
     );
@@ -427,7 +440,7 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
     const fromLineups = (lineupJson: any) => ({
       lineups: lineupJson?.aggregations?.lineups?.buckets,
       error_code: wasError
-        ? lineupJson?.status || jsonStatuses?.[0] || "Unknown"
+        ? lineupJson?.status || jsonStatuses?.["lineupsA"] || "Unknown"
         : undefined,
     });
     const fromTeam = (teamJson: any, globalTeam: any) => ({
@@ -439,7 +452,7 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
         StatModels.emptyTeam(),
       global: globalTeam,
       error_code: wasError
-        ? teamJson?.status || jsonStatuses?.[1] || "Unknown"
+        ? teamJson?.status || jsonStatuses?.["teamA_season"] || "Unknown"
         : undefined,
     });
     const fromRoster = (rosterStatsJson: any, globalRosterStatsJson: any) => ({
@@ -453,9 +466,9 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
           ?.player?.buckets || [],
       error_code: wasError
         ? rosterStatsJson?.status ||
-          jsonStatuses?.[2] ||
+          jsonStatuses?.["playersA"] ||
           globalRosterStatsJson?.status ||
-          jsonStatuses?.[3] ||
+          jsonStatuses?.["playersA_season"] ||
           "Unknown"
         : undefined,
     });

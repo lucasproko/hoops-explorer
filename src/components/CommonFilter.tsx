@@ -79,10 +79,14 @@ interface Props<PARAMS> {
   onChangeCommonState: (newCommonParams: CommonFilterParams) => void;
   tablePrefix: ParamPrefixesType;
   tablePrefixForPrimaryRequest?: ParamPrefixesType; //(goes with primary request, normally same as tablePrefix)
+  /** If all FilterRequestInfo[] have tags then first FilterRequestInfo[] must equal PARAMS and all must have tags */
   buildParamsFromState: (
     includeFilterParams: Boolean
   ) => [PARAMS, FilterRequestInfo[]];
-  childHandleResponse: (json: any, wasError: Boolean) => void;
+  /** if the FilterRequestInfo's all contains tags then its input is a Record<string, (json)>, else it's an array */
+  childHandleResponse:
+    | ((json: any[], wasError: Boolean) => void)
+    | ((json: Record<string, any>, wasError: Boolean) => void);
   buildLinks?: (params: PARAMS) => React.ReactNode[];
   majorParamsDisabled?: boolean; //(not currently used but would allow you to block changing team/seeason/gender)
   /** Note there needs to be an intermediate 1-up in the parent filter, see LineupFilter for an example */
@@ -286,13 +290,15 @@ const CommonFilter: CommonFilterI = ({
             new Error("Needed request, currently forcing user to press submit")
           );
     };
-    const [primaryRequest, otherRequests] = buildParamsFromState(false);
+    const [primaryRequest, filterRequests] = buildParamsFromState(false);
+
+    const newFormat = !_.isNil(_.find(filterRequests, (req) => req.tag));
 
     const allPromises = Promise.all(
       RequestUtils.requestHandlingLogic(
         primaryRequest,
         tablePrefixForPrimaryRequest || tablePrefix,
-        otherRequests,
+        _.drop(filterRequests, newFormat ? 1 : 0),
         fetchUrl,
         currentJsonEpoch,
         isDebug
@@ -301,7 +307,21 @@ const CommonFilter: CommonFilterI = ({
     allPromises.then(
       (jsons: any[]) => {
         if (onLoadIn) registerSessionActivity(sessionActive); //(retrieved from cache => session active)
-        handleResponse(jsons);
+        if (newFormat) {
+          if (!_.every(filterRequests, (req) => req.tag)) {
+            throw new Error(
+              `In new format, all requests must have a tag [${filterRequests.map(
+                (r, index) => r.tag || `MISSING=${index}`
+              )}])`
+            );
+          }
+          handleResponse(
+            jsons,
+            _.map(filterRequests, (req, index) => req.tag || `MISSING=${index}`)
+          );
+        } else {
+          handleResponse(jsons);
+        }
       },
       (rejection) => {
         if (isDebug) {
@@ -401,7 +421,7 @@ const CommonFilter: CommonFilterI = ({
   }
 
   /** Handles the response from ES to a stats calc request */
-  function handleResponse(jsons: any[]) {
+  function handleResponse(jsons: any[], tags?: string[]) {
     setQueryIsLoading(false);
     const newParams = buildParamsFromState(true)[0];
     const wasError = _.some(jsons, (json) =>
@@ -412,7 +432,22 @@ const CommonFilter: CommonFilterI = ({
       setCurrState(newParams);
       onChangeState(newParams);
     }
-    childHandleResponse(jsons, wasError);
+    if (tags) {
+      //(new format)
+      const newFormatResponse = childHandleResponse as (
+        json: Record<string, any>,
+        wasError: Boolean
+      ) => void;
+      const jsonMap = _.zipObject(tags, jsons);
+      newFormatResponse(jsonMap, wasError);
+    } else {
+      //(legacy format)
+      const oldFormatResponse = childHandleResponse as (
+        jsons: any[],
+        wasError: Boolean
+      ) => void;
+      oldFormatResponse(jsons, wasError);
+    }
   }
 
   /** The user has pressed the submit button - mix of generic and custom logic */

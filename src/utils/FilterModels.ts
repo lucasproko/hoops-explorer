@@ -444,6 +444,8 @@ export type FilterParamsType =
 
 /** Which API to call and with what object */
 export type FilterRequestInfo = {
+  /** Need to start using this to avoid the hideous array wrangling I currently have */
+  tag?: string;
   context: ParamPrefixesType;
   paramsObj: FilterParamsType;
   includeRoster?: boolean; //(if true will fetch the roster, eg one call per page should do this)
