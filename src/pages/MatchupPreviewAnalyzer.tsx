@@ -327,6 +327,18 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
     }
   }
 
+  // Quick navigation to the different sections
+  const topRef = useRef<HTMLDivElement>(null);
+  const playTypesRef = useRef<HTMLDivElement>(null);
+  const playerImpactRef = useRef<HTMLDivElement>(null);
+  const shotChartsRef = useRef<HTMLDivElement>(null);
+  const navigationRefs = {
+    Top: { ref: topRef },
+    "Play Types": { ref: playTypesRef },
+    "Player Impact": { ref: playerImpactRef },
+    "Shot Charts": showShotCharts ? { ref: shotChartsRef } : { skip: true },
+  };
+
   /** Only rebuild the chart if the data changes, or if one of the filter params changes */
   const chart = React.useMemo(() => {
     return (
@@ -523,18 +535,6 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
       </GenericCollapsibleCard>
     );
   }, [dataEvent, divisionStatsCache, allPlayerStatsCache, breakdownView]);
-
-  // Quick navigation to the different sections
-  const topRef = useRef<HTMLDivElement>(null);
-  const playTypesRef = useRef<HTMLDivElement>(null);
-  const playerImpactRef = useRef<HTMLDivElement>(null);
-  const shotChartsRef = useRef<HTMLDivElement>(null);
-  const navigationRefs = {
-    Top: { ref: topRef },
-    "Play Types": { ref: playTypesRef },
-    "Player Impact": { ref: playerImpactRef },
-    "Shot Charts": showShotCharts ? { ref: shotChartsRef } : { skip: true },
-  };
 
   /** Only rebuild the chart if the data changes, or if one of the filter params changes */
   const shotChart = React.useMemo(() => {

@@ -341,7 +341,7 @@ export class GameAnalysisUtils {
           <i>
             {`#${stats?.roster?.number || "??"} `}
             {`${stats?.roster?.height || "?-?"} `}
-            {`${playerPosInfo.posClass || "??"}`}
+            {`${playerPosInfo?.posClass || "??"}`}
           </i>
         </p>
         <p className="desc">

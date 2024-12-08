@@ -39,7 +39,7 @@ import MatchupFilter from "../components/MatchupFilter";
 import PlayerImpactChart from "../components/PlayerImpactChart";
 import { buildOppoFilter } from "../components/MatchupFilter";
 import LineupStintsChart from "../components/LineupStintsChart";
-import { LineupStintInfo } from "../utils/StatModels";
+import { LineupStintInfo, ShotStats } from "../utils/StatModels";
 import {
   DivisionStatsCache,
   GradeTableUtils,
@@ -47,6 +47,8 @@ import {
 import { PlayTypeDiagUtils } from "../utils/tables/PlayTypeDiagUtils";
 import { efficiencyAverages } from "../utils/public-data/efficiencyAverages";
 import InternalNavBarInRow from "../components/shared/InternalNavBarInRow";
+import { DateUtils } from "../utils/DateUtils";
+import ShotChartDiagView from "../components/diags/ShotChartDiagView";
 
 const MatchupAnalyzerPage: NextPage<{}> = () => {
   useEffect(() => {
@@ -93,6 +95,22 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
     lineupStatsB: { lineups: [] } as LineupStatsModel,
     lineupStintsA: [] as LineupStintInfo[],
     lineupStintsB: [] as LineupStintInfo[],
+    shotChartInfo: undefined as
+      | undefined
+      | {
+          game: {
+            off: ShotStats;
+            def: ShotStats;
+          };
+          seasonA: {
+            off: ShotStats;
+            def: ShotStats;
+          };
+          seasonB: {
+            off: ShotStats;
+            def: ShotStats;
+          };
+        },
   });
 
   const injectStats = (
@@ -103,7 +121,21 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
     teamStatsB: TeamStatsModel,
     rosterStatsB: RosterStatsModel,
     lineupStintsA: LineupStintInfo[],
-    lineupStintsB: LineupStintInfo[]
+    lineupStintsB: LineupStintInfo[],
+    shotChartInfo?: {
+      game: {
+        off: ShotStats;
+        def: ShotStats;
+      };
+      seasonA: {
+        off: ShotStats;
+        def: ShotStats;
+      };
+      seasonB: {
+        off: ShotStats;
+        def: ShotStats;
+      };
+    }
   ) => {
     setDataEvent({
       teamStatsA,
@@ -114,6 +146,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
       lineupStatsB,
       lineupStintsA,
       lineupStintsB,
+      shotChartInfo,
     });
   };
 
@@ -144,11 +177,24 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
     HistoryManager.clearHistory();
   }
 
+  const startingMatchupFilterParams = UrlRouting.removedSavedKeys(
+    allParams
+  ) as MatchupFilterParams; //(only used to init a couple of useStates)
   const [matchupFilterParams, setMatchupFilterParams] = useState(
-    UrlRouting.removedSavedKeys(allParams) as MatchupFilterParams
+    startingMatchupFilterParams
   );
   const matchupFilterParamsRef = useRef<MatchupFilterParams>();
   matchupFilterParamsRef.current = matchupFilterParams;
+
+  const showShotCharts =
+    !matchupFilterParams.year ||
+    matchupFilterParams.year >= DateUtils.firstYearWithShotChartData;
+
+  const [shotChartsShowZones, setShotChartsShowZones] = useState(
+    _.isNil(startingMatchupFilterParams.shotChartsShowZones)
+      ? ParamDefaults.defaultShotChartShowZones
+      : startingMatchupFilterParams.shotChartsShowZones
+  );
 
   function getRootUrl(params: MatchupFilterParams) {
     return UrlRouting.getMatchupUrl(params);
@@ -191,6 +237,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
         ParamDefaults.defaultMatchupAnalysisIconType
           ? ["iconType"]
           : [],
+        rawParams.shotChartsShowZones ? ["shotChartsShowZones"] : [],
       ])
     );
     if (!_.isEqual(params, matchupFilterParamsRef.current)) {
@@ -229,6 +276,14 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
     }
   }, [matchupFilterParams]);
 
+  // Update URL when dynamic (non-submit fields change)
+  useEffect(() => {
+    onMatchupFilterParamsChange({
+      ...matchupFilterParamsRef.current,
+      shotChartsShowZones: shotChartsShowZones,
+    });
+  }, [shotChartsShowZones]);
+
   // View
 
   function maybeShowDocs() {
@@ -244,11 +299,13 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
   const playTypesRef = useRef<HTMLDivElement>(null);
   const playerImpactRef = useRef<HTMLDivElement>(null);
   const timelineViewRef = useRef<HTMLDivElement>(null);
+  const shotChartsRef = useRef<HTMLDivElement>(null);
   const navigationRefs = {
     Top: { ref: topRef },
     "Player Impact": { ref: playerImpactRef },
     Timeline: { ref: timelineViewRef },
     "Play Types": { ref: playTypesRef },
+    "Shot Charts": showShotCharts ? { ref: shotChartsRef } : { skip: true },
   };
 
   /** Only rebuild the chart if the data changes, or if one of the filter params changes */
@@ -423,6 +480,81 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
     );
   }, [dataEvent, divisionStatsCache, csvData]);
 
+  const shotChart = React.useMemo(() => {
+    return (
+      <GenericCollapsibleCard
+        minimizeMargin={true}
+        title="Game Shot Charts"
+        helpLink={maybeShowDocs()}
+      >
+        {dataEvent.teamStatsA.baseline.off_poss?.value &&
+        dataEvent.shotChartInfo ? (
+          <Container>
+            <Row>
+              <Col xs={12} className="text-center small">
+                <ShotChartDiagView
+                  off={dataEvent.shotChartInfo.game.off}
+                  def={dataEvent.shotChartInfo.game.def}
+                  gender={matchupFilterParams.gender as "Men" | "Women"}
+                  title={`Game Shot Charts`}
+                  quickSwitchOptions={[
+                    {
+                      title: `${matchupFilterParams.team} season`,
+                      off: dataEvent.shotChartInfo.seasonA.off,
+                      def: dataEvent.shotChartInfo.seasonA.def,
+                      gender: matchupFilterParams.gender as "Men" | "Women",
+                      labelOverrides: [
+                        `${matchupFilterParams.team} offense:`,
+                        `Opponents' offense:`,
+                      ],
+                    },
+                    {
+                      title: `${
+                        buildOppoFilter(matchupFilterParams.oppoTeam || "")
+                          ?.team
+                      } season`,
+                      off: dataEvent.shotChartInfo.seasonB.def,
+                      def: dataEvent.shotChartInfo.seasonB.off,
+                      labelOverrides: [
+                        `Opponents' offense:`,
+                        `${
+                          buildOppoFilter(matchupFilterParams.oppoTeam || "")
+                            ?.team
+                        } offense:`,
+                      ],
+                      gender: matchupFilterParams.gender as "Men" | "Women",
+                    },
+                  ]}
+                  chartOpts={{ buildZones: shotChartsShowZones }}
+                  onChangeChartOpts={(newOpts) => {
+                    setShotChartsShowZones(newOpts.buildZones || false);
+                  }}
+                  labelOverrides={[
+                    `${matchupFilterParams.team} Shots:`,
+                    `${
+                      buildOppoFilter(matchupFilterParams.oppoTeam || "")?.team
+                    } Shots:`,
+                  ]}
+                  offDefOverrides={[false, false]}
+                />
+              </Col>
+            </Row>
+          </Container>
+        ) : (
+          <Container>
+            <Row>
+              <Col xs={12} className="text-center pt-2">
+                <span>
+                  <i>(No Data)</i>
+                </span>
+              </Col>
+            </Row>
+          </Container>
+        )}
+      </GenericCollapsibleCard>
+    );
+  }, [dataEvent, shotChartsShowZones]);
+
   return (
     <Container>
       <Row ref={topRef}>
@@ -456,6 +588,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
       <Row ref={playerImpactRef}>{chart}</Row>
       <Row ref={timelineViewRef}>{lineupStintTable}</Row>
       <Row ref={playTypesRef}>{playStyleChart}</Row>
+      {showShotCharts ? <Row ref={shotChartsRef}>{shotChart}</Row> : undefined}
       <Footer
         year={matchupFilterParams.year}
         gender={matchupFilterParams.gender}

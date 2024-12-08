@@ -992,6 +992,18 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
       ? _.find(quickSwitchOptions || [], (opt) => opt.title == quickSwitch)?.def
       : def) || def;
 
+  const selOffDefOverrides =
+    (quickSwitch
+      ? _.find(quickSwitchOptions || [], (opt) => opt.title == quickSwitch)
+          ?.offDefOverrides
+      : offDefOverrides) || offDefOverrides;
+
+  const selLabelOverrides =
+    (quickSwitch
+      ? _.find(quickSwitchOptions || [], (opt) => opt.title == quickSwitch)
+          ?.labelOverrides
+      : labelOverrides) || labelOverrides;
+
   const { data: offData, zones: offZones } = shotStatsToHexData(
     selectedOff,
     diffDataSet
@@ -1038,8 +1050,8 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
           <Container>
             <Row>
               <Col xs={12} className="text-center">
-                {labelOverrides ? (
-                  <b>{labelOverrides[leftIndex]}</b>
+                {selLabelOverrides ? (
+                  <b>{selLabelOverrides[leftIndex]}</b>
                 ) : (
                   <b>Offense:</b>
                 )}
@@ -1051,7 +1063,9 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
                   data={invertLeftRight ? defData : offData}
                   zones={invertLeftRight ? defZones : offZones}
                   d1Zones={d1Zones}
-                  isDef={offDefOverrides ? offDefOverrides[leftIndex] : false}
+                  isDef={
+                    selOffDefOverrides ? selOffDefOverrides[leftIndex] : false
+                  }
                   diffDataSet={diffDataSet}
                   width={HEX_WIDTH}
                   height={HEX_HEIGHT}
@@ -1065,8 +1079,8 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
           <Container>
             <Row>
               <Col xs={12} className="text-center">
-                {labelOverrides ? (
-                  <b>{labelOverrides[rightIndex]}</b>
+                {selLabelOverrides ? (
+                  <b>{selLabelOverrides[rightIndex]}</b>
                 ) : (
                   <b>Defense:</b>
                 )}
@@ -1079,8 +1093,8 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
                   zones={invertLeftRight ? offZones : defZones}
                   d1Zones={d1Zones}
                   isDef={
-                    offDefOverrides
-                      ? offDefOverrides[rightIndex]
+                    selOffDefOverrides
+                      ? selOffDefOverrides[rightIndex]
                       : invertLeftRight != true
                   }
                   diffDataSet={diffDataSet}

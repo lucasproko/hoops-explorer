@@ -38,13 +38,14 @@ import {
   StatModels,
   LineupStintInfo,
   PlayerCode,
-  PureStatSet,
   LineupStintTeamStats,
+  ShotStats,
 } from "../utils/StatModels";
 import { QueryUtils } from "../utils/QueryUtils";
 import { dataLastUpdated } from "../utils/internal-data/dataLastUpdated";
 import { ClientRequestCache } from "../utils/ClientRequestCache";
 import { UrlRouting } from "../utils/UrlRouting";
+import { DateUtils } from "../utils/DateUtils";
 
 type Props = {
   onStats: (
@@ -55,7 +56,21 @@ type Props = {
     teamStatsB: TeamStatsModel,
     rosterStatsB: RosterStatsModel,
     lineupStintsA: LineupStintInfo[],
-    lineupStintsB: LineupStintInfo[]
+    lineupStintsB: LineupStintInfo[],
+    shotChartInfo?: {
+      game: {
+        off: ShotStats;
+        def: ShotStats;
+      };
+      seasonA: {
+        off: ShotStats;
+        def: ShotStats;
+      };
+      seasonB: {
+        off: ShotStats;
+        def: ShotStats;
+      };
+    }
   ) => void;
   startingState: MatchupFilterParams;
   onChangeState: (newParams: MatchupFilterParams) => void;
@@ -232,6 +247,10 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
     if (!oppoQueryInfo) {
       return [{}, []];
     }
+    const shotChartEnabled =
+      !commonParams.year ||
+      commonParams.year >= DateUtils.firstYearWithShotChartData;
+
     const baseQueryA = `opponent.team:"${oppoQueryInfo.team}" AND date:(${oppoQueryInfo.dateStr})`;
     const baseQueryB = `opponent.team:"${team}" AND date:(${oppoQueryInfo.dateStr})`;
 
@@ -352,12 +371,36 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
           paramsObj: primaryRequestB,
           includeRoster: false,
         },
-      ],
+      ].concat(
+        shotChartEnabled
+          ? [
+              {
+                tag: "game_shots", //TODO: need a game mode for this so that "def" is the opponent's off, with players tagged
+                context: ParamPrefixes.shots as ParamPrefixesType,
+                paramsObj: secondaryRequestA,
+              },
+              {
+                tag: "season_shotsA",
+                context: ParamPrefixes.shots as ParamPrefixesType,
+                paramsObj: entireSeasonRequestA,
+              },
+              {
+                tag: "season_shotsB",
+                context: ParamPrefixes.shots as ParamPrefixesType,
+                paramsObj: entireSeasonRequestB,
+              },
+            ]
+          : []
+      ),
     ];
   }
 
   /** Handles the response from ES to a stats calc request */
   function handleResponse(jsonResps: Record<string, any>, wasError: Boolean) {
+    const shotChartEnabled =
+      !commonParams.year ||
+      commonParams.year >= DateUtils.firstYearWithShotChartData;
+
     const jsonStatuses = _.mapValues(jsonResps, (j) => j.status);
 
     const lineupJsonA = jsonResps?.["lineupsA"]?.responses?.[0] || {};
@@ -480,7 +523,35 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
       fromTeam(teamJsonB, globalTeamB),
       fromRoster(rosterStatsJsonB, globalRosterStatsJsonB),
       lineupStintsA,
-      lineupStintsB
+      lineupStintsB,
+      shotChartEnabled
+        ? {
+            game: {
+              off: jsonResps?.["game_shots"]?.responses?.[0]?.aggregations
+                ?.tri_filter?.buckets?.baseline?.off_def?.buckets
+                ?.off as ShotStats,
+              def: jsonResps?.["game_shots"]?.responses?.[0]?.aggregations
+                ?.tri_filter?.buckets?.baseline?.off_def?.buckets
+                ?.def as ShotStats,
+            },
+            seasonA: {
+              off: jsonResps?.["season_shotsA"]?.responses?.[0]?.aggregations
+                ?.tri_filter?.buckets?.baseline?.off_def?.buckets
+                ?.off as ShotStats,
+              def: jsonResps?.["season_shotsA"]?.responses?.[0]?.aggregations
+                ?.tri_filter?.buckets?.baseline?.off_def?.buckets
+                ?.def as ShotStats,
+            },
+            seasonB: {
+              off: jsonResps?.["season_shotsB"]?.responses?.[0]?.aggregations
+                ?.tri_filter?.buckets?.baseline?.off_def?.buckets
+                ?.off as ShotStats,
+              def: jsonResps?.["season_shotsB"]?.responses?.[0]?.aggregations
+                ?.tri_filter?.buckets?.baseline?.off_def?.buckets
+                ?.def as ShotStats,
+            },
+          }
+        : undefined
     );
   }
 
