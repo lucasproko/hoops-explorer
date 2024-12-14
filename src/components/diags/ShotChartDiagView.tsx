@@ -1108,7 +1108,7 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
         </Col>
       </Row>
       <Row>
-        <Col xs={6} md={6} lg={6} xl={12} className="small text-center pt-1">
+        <Col xs={12} className="small text-center pt-1">
           {buildZones ? (
             <p>
               Each circle shows the eFG% (FG% where 3pts shots count more),
