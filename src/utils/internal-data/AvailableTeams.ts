@@ -13089,8 +13089,10 @@ export class AvailableTeams {
         index_template: "nec",
         category: "low",
       },
+    ],
+    "Saint Francis": [
       {
-        team: "Saint Francis (PA)",
+        team: "Saint Francis",
         year: "2024/25",
         gender: "Men",
         index_template: "nec",
