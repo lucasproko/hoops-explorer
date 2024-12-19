@@ -412,31 +412,31 @@ const apPollWomen_2023_24: () => Record<string, number> = () =>
 const apPollWomen_2024_25: () => Record<string, number> = () =>
   _.chain(
     `
-1	UCLA (24)	9-0	791	1
-2	UConn (8)	8-0	769	2
-3	South Carolina	9-1	742	3
-4	LSU	11-0	652	5
-5	Southern Cal	8-1	628	6
-6	Texas	8-1	621	4
-7	Maryland	10-0	608	7
-8	Notre Dame	7-2	607	10
-9	Duke	9-2	533	8
-10	Oklahoma	8-1	517	11
-11	Ohio State	8-0	459	12
-12	TCU	9-1	447	9
-13	Kansas State	10-1	427	13
-14	North Carolina	9-1	419	16
-15	West Virginia	9-1	376	15
-16	Kentucky	7-1	296	14
-17	Michigan State	9-0	193	24
-18	Iowa State	8-2	190	20
-19	Tennessee	7-0	179	19
-20	Michigan	8-1	166	23
-21	Iowa	8-1	125	17
-22	Ole Miss	6-3	104	18
-22	North Carolina State	6-3	104	NR
-24	Nebraska	8-1	99	25
-25	Georgia Tech	9-0	92	NR
+1	UCLA (30)	10-0	798	1
+2	South Carolina (1)	10-1	763	3
+3	Notre Dame (1)	9-2	716	8
+4	UConn	9-1	668	2
+5	LSU	12-0	649	4
+6	Texas	10-1	632	6
+7	Southern California	10-1	631	5
+8	Maryland	10-0	598	7
+9	Duke	9-2	523	9
+10	Oklahoma	9-1	510	10
+11	Ohio State	10-0	469	11
+12	TCU	10-1	453	12
+13	Kansas State	11-1	417	13
+14	West Virginia	10-1	384	15
+15	Michigan State	10-0	312	17
+16	Kentucky	9-1	283	16
+17	Georgia Tech	11-0	269	25
+18	Tennessee	8-0	249	19
+19	North Carolina	10-2	242	14
+20	Michigan	9-1	183	20
+21	North Carolina State	8-3	130	22
+22	Iowa	9-2	102	21
+23	Nebraska	10-1	94	24
+24	California	11-1	81	NR
+25	Ole Miss	7-3	78	22
 `
   )
     .split("\n")
@@ -451,7 +451,7 @@ const apPollWomen_2024_25: () => Record<string, number> = () =>
     })
     .fromPairs()
     .assign({
-      __week__: 6,
+      __week__: 7,
     })
     .value();
 
@@ -472,7 +472,7 @@ export const apPolls: Record<string, () => Record<string, number>> = {
 
 ////////////////////////////////////////////////////////////////
 
-// AP Rankings
+// S Curves
 
 /** From https://www.ncaa.com/news/basketball-men/article/2022-03-13/2022-ncaa-mens-tournament-bids-all-68-march-madness-teams. Note you need to edit the names by hand */
 const sCurveMen_2021_22: () => Record<string, number> = () =>
