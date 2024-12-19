@@ -108,6 +108,7 @@ export type MatchupFilterParams = {
   lockAspect?: boolean; //(force x to be correct proportions to y)
   breakdownConfig?: string; //(currently: [off|def];[off|def])
   shotChartsShowZones?: boolean;
+  customDisplayMode?: string; //(write only: CSV list: can be teamStats|playTypes)
 };
 
 /** Combined params for game filtering */

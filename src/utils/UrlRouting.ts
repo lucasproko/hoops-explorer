@@ -134,6 +134,11 @@ export class UrlRouting {
       [UrlRouting.noSuffix]: params,
     })}`;
   }
+  static getCustomMatchupUrl(params: MatchupFilterParams) {
+    return `/CustomMatchupAnalyzer?${UrlRouting.getUrl({
+      [UrlRouting.noSuffix]: params,
+    })}`;
+  }
   /** The URL to use to view the "Matchup Analyzer" page */
   static getMatchupPreviewUrl(params: MatchupFilterParams) {
     return `/MatchupPreviewAnalyzer?${UrlRouting.getUrl({
