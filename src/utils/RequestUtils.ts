@@ -6,6 +6,8 @@ import {
   ParamPrefixesType,
   FilterParamsType,
   FilterRequestInfo,
+  CommonFilterParams,
+  ParamDefaults,
 } from "./FilterModels";
 import { QueryUtils } from "./QueryUtils";
 import { ClientRequestCache } from "./ClientRequestCache";
@@ -233,9 +235,103 @@ export class RequestUtils {
     }
   }
 
+  //////////////////////////////////
+
+  // Common smaller requests for control purposes:
+
+  /** Makes an API call to elasticsearch to get the roster */
+  static fetchOpponents(
+    params: CommonFilterParams,
+    resultCallback: (gameObjs: any[]) => void,
+    dataLastUpdated: Record<string, number>,
+    isDebug: boolean
+  ) {
+    const { gender, year, team } = params;
+    if (gender && year && team) {
+      const genderYear = `${gender}_${year}`;
+      const currentJsonEpoch = dataLastUpdated[genderYear] || -1;
+
+      const query: CommonFilterParams = {
+        gender: gender,
+        year: year,
+        team: team,
+        baseQuery: "start_min:0",
+        minRank: ParamDefaults.defaultMinRank,
+        maxRank: ParamDefaults.defaultMaxRank,
+      };
+      const paramStr = QueryUtils.stringify(query);
+      // Check if it's in the cache:
+      const cachedJson = ClientRequestCache.decacheResponse(
+        paramStr,
+        ParamPrefixes.gameInfo,
+        currentJsonEpoch,
+        isDebug
+      );
+      if (cachedJson && !_.isEmpty(cachedJson)) {
+        //(ignore placeholders here)
+        resultCallback(
+          _.orderBy(
+            cachedJson?.responses?.[0]?.aggregations?.game_info?.buckets || [],
+            RequestUtils.buildDateStr,
+            "desc"
+          )
+        );
+      } else {
+        fetch(`/api/getGameInfo?${paramStr}`).then(function (
+          response: fetch.IsomorphicResponse
+        ) {
+          response.json().then(function (json: any) {
+            // Cache result locally:
+            if (isDebug) {
+              console.log(`CACHE_KEY=[${ParamPrefixes.lineup}${paramStr}]`);
+              //(this is a bit chatty)
+              //console.log(`CACHE_VAL=[${JSON.stringify(json)}]`);
+            }
+            if (response.ok) {
+              //(never cache errors)
+              ClientRequestCache.cacheResponse(
+                paramStr,
+                ParamPrefixes.gameInfo,
+                json,
+                currentJsonEpoch,
+                isDebug
+              );
+            }
+            resultCallback(
+              _.orderBy(
+                json?.responses?.[0]?.aggregations?.game_info?.buckets || [],
+                RequestUtils.buildDateStr,
+                "desc"
+              )
+            );
+          });
+        });
+      }
+    }
+  }
+
   /////////////////////////////////
 
   // Utils:
+
+  /** Builds a date string from the result of a game query */
+  static buildDateStr(gameInfoObj: any) {
+    return (
+      gameInfoObj?.game_info?.buckets?.[0]?.key_as_string || "????-??-??"
+    ).substring(0, 10);
+  }
+
+  /** Builds a score string from the result of a game query */
+  static buildScoreInfo(gameInfoObj: any) {
+    const scoreInfoObj = gameInfoObj?.game_info?.buckets?.[0]?.end_of_game?.hits
+      ?.hits?.[0]?._source?.score_info?.end || { scored: 0, allowed: 0 };
+
+    return `${scoreInfoObj.scored > scoreInfoObj.allowed ? "W" : "L"} ${
+      scoreInfoObj.scored
+    }-${scoreInfoObj.allowed}`;
+  }
+
+  // Internals
 
   private static buildRequestList(
     primaryRequest: FilterParamsType,

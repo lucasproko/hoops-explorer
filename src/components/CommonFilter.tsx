@@ -15,11 +15,9 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Alert from "react-bootstrap/Alert";
 import InputGroup from "react-bootstrap/InputGroup";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
-import Dropdown from "react-bootstrap/Dropdown";
 import Tooltip from "react-bootstrap/Tooltip";
 import Modal from "react-bootstrap/Modal";
 
@@ -29,10 +27,8 @@ import Select, { components } from "react-select";
 // @ts-ignore
 import LoadingOverlay from "@ronchalant/react-loading-overlay";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import { faHistory } from "@fortawesome/free-solid-svg-icons";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import ClipboardJS from "clipboard";
 // @ts-ignore
@@ -72,6 +68,8 @@ import { QueryDisplayUtils } from "../utils/QueryDisplayUtils";
 import DateRangeModal from "./shared/DateRangeModal";
 import { DateUtils } from "../utils/DateUtils";
 import { Badge } from "react-bootstrap";
+import GamesModal from "./shared/GamesModal";
+import { FeatureFlags } from "../utils/stats/FeatureFlags";
 
 interface Props<PARAMS> {
   startingState: PARAMS;
@@ -175,6 +173,52 @@ const CommonFilter: CommonFilterI = ({
   );
 
   const [showDateRangeModal, setShowDateRangeModal] = useState(false);
+  const [games, setGames] = useState<
+    { date: string; opponent: string; location: string; score: string }[]
+  >([]);
+  const [showGamesModal, setShowGamesModal] = useState<boolean>(
+    FeatureFlags.isActiveWindow(FeatureFlags.gamesModal) &&
+      team &&
+      year &&
+      gender
+  );
+  useEffect(() => {
+    setGames([]); //(changes to team season so unset games)
+    if (
+      team &&
+      year &&
+      gender &&
+      FeatureFlags.isActiveWindow(FeatureFlags.gamesModal)
+    ) {
+      // Fetch the team's set of games
+      RequestUtils.fetchOpponents(
+        { team, year, gender },
+        (results) => {
+          setGames(
+            results.map((r) => {
+              return {
+                date: RequestUtils.buildDateStr(r),
+                score: RequestUtils.buildScoreInfo(r),
+                opponent: (r.key || "?:Unknown").substring(2),
+                location: _.thru(r.key || "??", (key) => {
+                  if (key.startsWith("H:")) {
+                    return "Home";
+                  } else if (key.startsWith("A:")) {
+                    return "Away";
+                  } else {
+                    return "Neutral";
+                  }
+                }),
+              };
+            })
+          );
+          console.log(results.map((r) => JSON.stringify(r)));
+        },
+        dataLastUpdated,
+        isDebug
+      );
+    }
+  }, [team, year, gender]);
 
   // Validation, this currently only supports once case:
   const [showInvalidQuery, setShowInvalidQuery] = useState(false as boolean);
@@ -795,6 +839,12 @@ const CommonFilter: CommonFilterI = ({
         }
         onHide={() => setShowDateRangeModal(false)}
         year={startingState.year}
+      />
+      <GamesModal
+        games={games}
+        show={showGamesModal}
+        onClose={() => setShowGamesModal(false)}
+        onSubmit={() => setShowGamesModal(false)}
       />
       <Form>
         <Form.Group as={Row}>
