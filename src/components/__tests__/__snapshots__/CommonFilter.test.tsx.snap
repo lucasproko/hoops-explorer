@@ -1216,8 +1216,8 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "Sacred Heart",
               },
               Object {
-                "label": "Saint Francis (PA)",
-                "value": "Saint Francis (PA)",
+                "label": "Saint Francis",
+                "value": "Saint Francis",
               },
               Object {
                 "label": "Saint Joseph's",
