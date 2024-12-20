@@ -4,6 +4,7 @@ import React, {
   useEffect,
   createRef,
   ChangeEventHandler,
+  ReactNode,
 } from "react";
 
 // Lodash
@@ -24,6 +25,7 @@ type Props = {
   placeholder: string;
   value: string;
   autocomplete: string[];
+  richTextReplacements?: Record<string, { renderTo: ReactNode }>;
   onChange: (ev: any) => void;
   onKeyUp: (ev: any) => void;
   onKeyDown: (ev: any) => void;
@@ -33,6 +35,7 @@ const AdvancedFilterAutoSuggestText: React.FunctionComponent<Props> = ({
   placeholder,
   value,
   autocomplete,
+  richTextReplacements,
   onChange,
   onKeyUp,
   onKeyDown,
@@ -64,6 +67,7 @@ const AdvancedFilterAutoSuggestText: React.FunctionComponent<Props> = ({
       placeholder={placeholder}
       requestOnlyIfNoOptions={true} //(only requests if empty)
       options={autocomplete}
+      richTextReplacements={richTextReplacements}
       trigger=""
       regex='^[A-Za-z0-9\\_.":-]+$'
       matchAny={true}

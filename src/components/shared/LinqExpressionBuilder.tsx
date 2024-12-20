@@ -1,5 +1,5 @@
 // React imports:
-import React, { useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 
 // Next imports:
 import { NextPage } from "next";
@@ -31,6 +31,7 @@ type Props = {
   readonly value: string;
   readonly error?: string;
   readonly autocomplete: string[];
+  readonly richTextReplacements?: Record<string, { renderTo: ReactNode }>;
   readonly presets?: Array<[string, string]>;
   readonly presetsIcon?: IconDefinition;
   readonly syncEvent?: number; //(1-up this to apply the temp contents)
@@ -44,6 +45,7 @@ const LinqExpressionBuilder: React.FunctionComponent<Props> = ({
   value,
   error,
   autocomplete,
+  richTextReplacements,
   presets,
   presetsIcon,
   syncEvent,
@@ -164,6 +166,7 @@ const LinqExpressionBuilder: React.FunctionComponent<Props> = ({
           readOnly={false}
           placeholder={prompt}
           autocomplete={autocomplete}
+          richTextReplacements={richTextReplacements}
           value={tmpAdvancedFilterStr}
           onChange={(ev: any) => setTmpAdvancedFilterStr(ev.target.value)}
           onKeyUp={(ev: any) => setTmpAdvancedFilterStr(ev.target.value)}

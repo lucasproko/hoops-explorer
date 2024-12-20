@@ -160,6 +160,9 @@ export class AdvancedFilterUtils {
       "off_rtg_pred",
       "off_usage_pred",
       "adj_rapm_margin_pred",
+
+      // Regional views:
+      "hs_region_dmv",
     ]);
 
   static playerSeasonComparisonAutocomplete = _.flatMap(
@@ -273,12 +276,19 @@ export class AdvancedFilterUtils {
   static removeAscDesc(s: string) {
     return s.replace(/(ASC|DESC)/g, "");
   }
+  static convertRegionalBounds(s: string) {
+    return s.replace(
+      "hs_region_dmv",
+      "(roster.lat >= 38.3201 && roster.lat <= 39.6395 && roster.lon >= -78.5330 && roster.lon <= -75.4816)"
+    );
+  }
 
   static readonly tidyClauses: (s: string, multiYear: boolean) => string = (
     s: string,
     multiYear: boolean
   ) =>
     _.flow([
+      AdvancedFilterUtils.convertRegionalBounds,
       AdvancedFilterUtils.fixBoolOps,
       AdvancedFilterUtils.avoidAssigmentOperator,
       AdvancedFilterUtils.fieldReplacements,

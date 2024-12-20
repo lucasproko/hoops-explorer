@@ -127,6 +127,15 @@ const HeaderBar: React.FunctionComponent<Props> = ({
       filter: trackingList,
     });
   }
+  function getPlayerLeaderboardRegionalUrl(regionId: string) {
+    return UrlRouting.getPlayerLeaderboardUrl({
+      ...(getCommonLboardFilterParams(common) as PlayerLeaderboardParams),
+      gender: "Men",
+      tier: "All",
+      year: DateUtils.mostRecentYearWithLboardData,
+      advancedFilter: regionId,
+    });
+  }
   function getTeamLeaderboardUrl(allowOffseasonOverride: Boolean = true) {
     const currYear = common.year || DateUtils.mostRecentYearWithData;
     if (
@@ -283,6 +292,12 @@ const HeaderBar: React.FunctionComponent<Props> = ({
     <Tooltip id="playerLeaderboardTooltipMdDmv2017">
       Go to the (luck adjusted) Player Leaderboard page (Men), filtered for
       Md/DMV-area players class of 2017-2023/24
+    </Tooltip>
+  );
+  const playerLeaderboardTooltipMdDmv2023 = (
+    <Tooltip id="playerLeaderboardTooltipMdDmv2023">
+      Go to the (luck adjusted) Player Leaderboard page (Men), filtered for
+      Md/DMV-area players class of 2023+
     </Tooltip>
   );
   const playerLeaderboardTooltipNyNj2017 = (
@@ -609,6 +624,15 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               </span>
             </Dropdown.Toggle>
             <Dropdown.Menu>
+              <Dropdown.Item>
+                {buildNavItem(
+                  "Md/DMV-area players (HS 2023+)",
+                  playerLeaderboardTooltipMdDmv2023,
+                  getPlayerLeaderboardRegionalUrl("hs_region_dmv"),
+                  `${ParamPrefixes.player}_leaderboard`
+                )}
+              </Dropdown.Item>
+              <Dropdown.Divider />
               <Dropdown.Item>
                 {buildNavItem(
                   "Md/DMV-area players (HS 2017-2024)",

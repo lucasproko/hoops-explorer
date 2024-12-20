@@ -1,5 +1,5 @@
 // React imports:
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ReactNode } from "react";
 
 // Lodash:
 import _ from "lodash";
@@ -71,6 +71,7 @@ import { AvailableTeams } from "../utils/internal-data/AvailableTeams";
 
 // Geo:
 import dynamic from "next/dynamic";
+import { Badge } from "react-bootstrap";
 const PlayerGeoMapNoSsr = dynamic(() => import("./diags/PlayerGeoMap"), {
   ssr: false,
 });
@@ -220,6 +221,20 @@ const advancedFilterPresets = [
 
 /** When showing across multiple data sets, don't show intra-year rankings unless it's a full data set */
 const fullDataSetSeasons = new Set(DateUtils.coreYears);
+
+/** This would ideally live in AdvancedFilterUtils but that is currently ts */
+const playerLeaderboardRichTextReplacements: Record<
+  string,
+  { renderTo: ReactNode }
+> = {
+  hs_region_dmv: {
+    renderTo: (
+      <Badge variant="info">
+        <div style={{ fontSize: "0.95rem" }}>hs_region_dmv</div>
+      </Badge>
+    ),
+  },
+};
 
 // Functional component
 
@@ -2124,6 +2139,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 value={advancedFilterStr}
                 error={advancedFilterError}
                 autocomplete={AdvancedFilterUtils.playerLeaderBoardAutocomplete}
+                richTextReplacements={playerLeaderboardRichTextReplacements}
                 callback={(newVal: string) =>
                   friendlyChange(() => setAdvancedFilterStr(newVal), true)
                 }

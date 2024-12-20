@@ -25,7 +25,6 @@ import {
 import { dataLastUpdated } from "../../utils/internal-data/dataLastUpdated";
 import { ClientRequestCache } from "../../utils/ClientRequestCache";
 import { QueryUtils } from "../../utils/QueryUtils";
-import { FeatureFlags } from "../../utils/stats/FeatureFlags";
 
 /** The keydown event does not come from AutoSuggestText element */
 export const notFromAutoSuggest = (event: any) => {
