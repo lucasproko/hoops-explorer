@@ -16,6 +16,8 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
+import styles from "./HeaderBar.module.css";
+
 // Utils:
 import {
   getCommonFilterParams,
@@ -592,30 +594,47 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               `${ParamPrefixes.player}_leaderboard_geo`
             )}
           </Dropdown.Item>
-          <Dropdown.Item>
-            {buildNavItem(
-              "Md/DMV-area players (HS 2017-2024)",
-              playerLeaderboardTooltipMdDmv2017,
-              getPlayerLeaderboardTrackingUrl("__DMV_2017__"),
-              `${ParamPrefixes.player}_leaderboard`
-            )}
-          </Dropdown.Item>
-          <Dropdown.Item>
-            {buildNavItem(
-              "European players (HS 2017-2023)",
-              playerLeaderboardTooltipEuro2017,
-              getPlayerLeaderboardTrackingUrl("__EURO_2017__"),
-              `${ParamPrefixes.player}_leaderboard`
-            )}
-          </Dropdown.Item>
-          <Dropdown.Item>
-            {buildNavItem(
-              "Canadian players (HS 2017-2023)",
-              playerLeaderboardTooltipCanada2017,
-              getPlayerLeaderboardTrackingUrl("__CANADA_2017__"),
-              `${ParamPrefixes.player}_leaderboard`
-            )}
-          </Dropdown.Item>
+          <Dropdown drop="right" as="div" className="dropdown-submenu">
+            <Dropdown.Toggle
+              as="div"
+              className={styles["dropdown-toggle"]}
+              style={{ position: "relative" }}
+            >
+              <span
+                className="small"
+                style={{ display: "block", padding: "0.25rem 1.5rem" }}
+              >
+                Regional Player Leaderboards&nbsp;&nbsp;
+                <FontAwesomeIcon icon={faAngleDown} />
+              </span>
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item>
+                {buildNavItem(
+                  "Md/DMV-area players (HS 2017-2024)",
+                  playerLeaderboardTooltipMdDmv2017,
+                  getPlayerLeaderboardTrackingUrl("__DMV_2017__"),
+                  `${ParamPrefixes.player}_leaderboard`
+                )}
+              </Dropdown.Item>
+              <Dropdown.Item>
+                {buildNavItem(
+                  "European players (HS 2017-2023)",
+                  playerLeaderboardTooltipEuro2017,
+                  getPlayerLeaderboardTrackingUrl("__EURO_2017__"),
+                  `${ParamPrefixes.player}_leaderboard`
+                )}
+              </Dropdown.Item>
+              <Dropdown.Item>
+                {buildNavItem(
+                  "Canadian players (HS 2017-2023)",
+                  playerLeaderboardTooltipCanada2017,
+                  getPlayerLeaderboardTrackingUrl("__CANADA_2017__"),
+                  `${ParamPrefixes.player}_leaderboard`
+                )}
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
           <Dropdown.Divider />
           <Dropdown.Item>
             {buildNavItem(
@@ -627,7 +646,12 @@ const HeaderBar: React.FunctionComponent<Props> = ({
           </Dropdown.Item>
           <Dropdown.Divider />
           <Dropdown.Item>
-            {buildNavItem("Player Positions", chartTooltip, "/Charts", "chart")}
+            {buildNavItem(
+              "Player Positional Analysis",
+              chartTooltip,
+              "/Charts",
+              "chart"
+            )}
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
