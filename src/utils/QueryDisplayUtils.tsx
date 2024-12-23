@@ -3,7 +3,12 @@ import _ from "lodash";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 
-import { QueryUtils, CommonFilterType } from "./QueryUtils";
+import {
+  QueryUtils,
+  CommonFilterType,
+  isCommonFilterCustomDate,
+  isCommonFilterGameSelector,
+} from "./QueryUtils";
 import { format } from "date-fns";
 
 import { efficiencyAverages } from "./public-data/efficiencyAverages";
@@ -137,23 +142,50 @@ export class QueryDisplayUtils {
               for different date queries.
             </Tooltip>
           );
-        default: // all the object types, currently just CommonFilterCustomDate
-          return (
-            <Tooltip id={`qf${QueryUtils.asString(t)}`}>
-              Games in this data range. Use{" "}
-              <b>
-                date:[{format(t.start, "yyyy-MM-dd")} TO{" "}
-                {format(t.end, "yyyy-MM-dd")}]
-              </b>{" "}
-              directly in query fields(s).
-            </Tooltip>
-          );
+        default: // all the object types, currently just CommonFilterCustomDate/CommonFilterGameSelector
+          if (isCommonFilterCustomDate(t)) {
+            return (
+              <Tooltip id={`qf${QueryUtils.asString(t)}`}>
+                Games in this data range. Use{" "}
+                <b>
+                  date:[{format(t.start, "yyyy-MM-dd")} TO{" "}
+                  {format(t.end, "yyyy-MM-dd")}]
+                </b>{" "}
+                directly in query fields(s).
+              </Tooltip>
+            );
+          } else if (isCommonFilterGameSelector(t)) {
+            return (
+              <Tooltip id={`qf${QueryUtils.asString(t)}`}>
+                Only the following games: [
+                {t.gameIds
+                  .map((g) =>
+                    g
+                      .replaceAll(":H:", " ")
+                      .replaceAll(":A:", " @ ")
+                      .replaceAll(":N:", " vs ")
+                  )
+                  .join(", ")}
+                ]. Games selected in the game selector.
+                <br />
+                <br />
+                Use eg <b>opponent.Home|Away|Neutral:"OPPONENT_NAME"</b>{" "}
+                directly in query fields(s).
+              </Tooltip>
+            );
+          } else {
+            return (
+              <Tooltip id={`qf${QueryUtils.asString(t)}`}>
+                (Unknown filter type)
+              </Tooltip>
+            );
+          }
       }
     };
     return (
       <OverlayTrigger placement="auto" overlay={toolTip()}>
         <span className="badge badge-pill badge-secondary">
-          {maybeInvert(QueryUtils.asString(t))}
+          {maybeInvert(QueryUtils.asString(t, true))}
         </span>
       </OverlayTrigger>
     );

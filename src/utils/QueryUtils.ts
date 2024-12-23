@@ -33,14 +33,50 @@ export type CommonFilterCustomDate = {
   end: Date;
 };
 
+export type CommonFilterGameSelector = {
+  kind: GameSelectorAlias;
+  gameIds: string[]; //(format "YYYYMMDD:[HNA]:team")
+};
+
+/** The internal model */
+export type GameSelection = {
+  date: string; // YYYY-MM-DD
+  opponent: string;
+  location: string;
+  score: string;
+  selected?: boolean;
+};
+
 /** All the different supported filters */
-export type CommonFilterType = CommonFilterTypeSimple | CommonFilterCustomDate;
-//(NOTE: currently only one non-string type supported, need to start using kind)
+export type CommonFilterType =
+  | CommonFilterTypeSimple
+  | CommonFilterCustomDate
+  | CommonFilterGameSelector;
+
+export function isCommonFilterCustomDate(
+  filter: CommonFilterType
+): filter is CommonFilterCustomDate {
+  return (
+    (filter as CommonFilterCustomDate).kind == QueryUtils.customDateAliasName
+  );
+}
+
+export function isCommonFilterGameSelector(
+  filter: CommonFilterType
+): filter is CommonFilterGameSelector {
+  return (
+    (filter as CommonFilterGameSelector).kind == QueryUtils.customGamesAliasName
+  );
+}
 
 // Note name has to match customDateAliasName below
 type CustomDateAlias = "Custom-Date";
+type GameSelectorAlias = "Custom-Games";
 
-type CommonFilterKeyType = CommonFilterTypeSimple | CustomDateAlias;
+type CommonFilterKeyType =
+  | CommonFilterTypeSimple
+  | CustomDateAlias
+  | GameSelectorAlias;
 
 export class QueryUtils {
   private static readonly legacyQueryField = "lineupQuery";
@@ -50,6 +86,10 @@ export class QueryUtils {
   static readonly customDateAliasName = "Custom-Date";
   private static readonly customDateFormat = "MM.dd";
   static readonly customDatePrefix = "Date:";
+
+  // Note name has to match GameSelectorAlias above
+  static readonly customGamesAliasName = "Custom-Games";
+  static readonly customGamesPrefix = "Opponents:";
 
   /** Wraps QueryUtils.parse but with luck/baseQuery/lineupQuery handling */
   static parse(str: string): any {
@@ -250,24 +290,35 @@ export class QueryUtils {
 
   /** Allows having objects (eg custom dates) as common filters also - all (eg) custom dates have the same name */
   private static byName(
-    filter: CommonFilterType | CustomDateAlias
+    filter: CommonFilterType | CustomDateAlias | GameSelectorAlias
   ): CommonFilterKeyType {
-    return typeof filter == "string"
-      ? (filter as CommonFilterKeyType)
-      : QueryUtils.customDateAliasName;
-    //(NOTE: currently only one non-string type supported, need to start using kind)
+    if (typeof filter == "string") {
+      return filter as CommonFilterKeyType;
+    } else if (isCommonFilterCustomDate(filter)) {
+      return QueryUtils.customDateAliasName;
+    } else if (isCommonFilterGameSelector(filter)) {
+      return QueryUtils.customGamesAliasName;
+    } else {
+      return filter as unknown as CommonFilterKeyType;
+    }
   }
 
-  static asString(filter: CommonFilterType) {
-    if (typeof filter == "string") {
-      return filter as string;
-    } else {
+  static asString(filter: CommonFilterType, forDisplay: boolean = false) {
+    if (isCommonFilterCustomDate(filter)) {
       // must be a custom date
-      //(NOTE: currently only one non-string type supported, need to start using kind)
       return `${QueryUtils.customDatePrefix}${dateFormat(
         filter.start,
         QueryUtils.customDateFormat
       )}-${dateFormat(filter.end, QueryUtils.customDateFormat)}`;
+    } else if (isCommonFilterGameSelector(filter)) {
+      if (forDisplay) {
+        const gameSuffix = filter.gameIds.length > 1 ? "s" : "";
+        return `${QueryUtils.customGamesPrefix}${filter.gameIds.length}-game${gameSuffix}`;
+      } else {
+        return `${QueryUtils.customGamesPrefix}${filter.gameIds.join("|")}`;
+      }
+    } else {
+      return filter as string;
     }
   }
 
@@ -294,20 +345,50 @@ export class QueryUtils {
           return [typed("1st-Half"), typed("2nd-Half")];
 
         case "Vs-Good":
-          return [typed("Good-Off"), typed("Good-Def")];
+          return [typed("Good-Off"), typed("Good-Def"), typed("Custom-Games")];
         case "Good-Off":
-          return [typed("Vs-Good")];
+          return [typed("Vs-Good"), typed("Custom-Games")];
         case "Good-Def":
-          return [typed("Vs-Good")];
+          return [typed("Vs-Good"), typed("Custom-Games")];
+        case "Custom-Games":
+          return [
+            typed("Vs-Good"),
+            typed("Good-Off"),
+            typed("Good-Def"),
+            typed("Last-30d"),
+            typed("Nov-Dec"),
+            typed("Jan-Apr"),
+            typed("Custom-Date"),
+          ];
 
         case "Last-30d":
-          return [typed("Nov-Dec"), typed("Jan-Apr"), typed("Custom-Date")];
+          return [
+            typed("Nov-Dec"),
+            typed("Jan-Apr"),
+            typed("Custom-Date"),
+            typed("Custom-Games"),
+          ];
         case "Nov-Dec":
-          return [typed("Last-30d"), typed("Jan-Apr"), typed("Custom-Date")];
+          return [
+            typed("Last-30d"),
+            typed("Jan-Apr"),
+            typed("Custom-Date"),
+            typed("Custom-Games"),
+          ];
         case "Jan-Apr":
-          return [typed("Last-30d"), typed("Nov-Dec"), typed("Custom-Date")];
+          return [
+            typed("Last-30d"),
+            typed("Nov-Dec"),
+            typed("Custom-Date"),
+            typed("Custom-Games"),
+          ];
         case "Custom-Date":
-          return [typed("Last-30d"), typed("Nov-Dec"), typed("Jan-Apr")];
+          return [
+            typed("Last-30d"),
+            typed("Nov-Dec"),
+            typed("Jan-Apr"),
+            typed("Custom-Games"),
+          ];
 
         default:
           return [];
@@ -325,6 +406,7 @@ export class QueryUtils {
       .map((filter) => [filter, true])
       .fromPairs()
       .value();
+
     return _.filter(
       curr,
       (filter) =>
@@ -388,6 +470,23 @@ export class QueryUtils {
     return maybeItem ? (maybeItem as CommonFilterCustomDate) : undefined;
   }
 
+  /** Builds a game filter from the URL parameter */
+  static parseGameSelector(gameStr: string): CommonFilterGameSelector {
+    const gameIds = gameStr.split("|").filter((s) => s != "");
+    return { kind: QueryUtils.customGamesAliasName, gameIds };
+  }
+
+  /** Returns the custom game selector if it exists in the current filter set */
+  static extractGameSelector(
+    queryFilters: CommonFilterType[]
+  ): CommonFilterGameSelector | undefined {
+    const maybeItem = _.find(
+      queryFilters,
+      (f) => QueryUtils.byName(f) == QueryUtils.customGamesAliasName
+    );
+    return maybeItem ? (maybeItem as CommonFilterGameSelector) : undefined;
+  }
+
   /** Switches between string and array formulation */
   static parseFilter(queryFilters: string, year: string): CommonFilterType[] {
     return queryFilters
@@ -401,6 +500,11 @@ export class QueryUtils {
             year
           );
           return parsedDataObj ? [parsedDataObj] : [];
+        } else if (trimmed.startsWith(QueryUtils.customGamesPrefix)) {
+          const parsedDataObj = QueryUtils.parseGameSelector(
+            trimmed.substring(QueryUtils.customGamesPrefix.length)
+          );
+          return parsedDataObj ? [parsedDataObj] : [];
         } else {
           return [trimmed] as CommonFilterType[];
         }
@@ -409,7 +513,7 @@ export class QueryUtils {
 
   /** Converts the CommonFilterTypr into a string, deduplicating if necessary */
   static buildFilterStr(curr: CommonFilterType[]) {
-    const currByName = curr.map(QueryUtils.asString);
+    const currByName = curr.map((qf) => QueryUtils.asString(qf));
     return _.join(_.uniq(currByName), ",");
   }
 
@@ -437,6 +541,26 @@ export class QueryUtils {
   ) {
     return QueryUtils.filterWith(
       QueryUtils.filterWithout(curr, [QueryUtils.customDateAliasName]),
+      setOrUnset ? [setOrUnset] : []
+    );
+  }
+
+  static buildGameSelectionFilter(
+    games: GameSelection[]
+  ): CommonFilterGameSelector {
+    return {
+      kind: QueryUtils.customGamesAliasName,
+      gameIds: games.map((g) => `${g.date}:${g.location[0]}:${g.opponent}`),
+    };
+  }
+
+  /** Adds a new custom date (overwrite the current one if it exists), or removes the custom date */
+  static setCustomGameSelection(
+    curr: CommonFilterType[],
+    setOrUnset: CommonFilterGameSelector | undefined
+  ) {
+    return QueryUtils.filterWith(
+      QueryUtils.filterWithout(curr, [QueryUtils.customGamesAliasName]),
       setOrUnset ? [setOrUnset] : []
     );
   }

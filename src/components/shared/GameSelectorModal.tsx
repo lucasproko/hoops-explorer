@@ -1,21 +1,20 @@
 import React, { useState } from "react";
 import { Modal, Button, Table } from "react-bootstrap";
-
-type Game = {
-  date: string; // YYYY-MM-DD
-  opponent: string;
-  location: string;
-  score: string;
-};
+import { GameSelection } from "../../utils/QueryUtils";
 
 type Props = {
-  games: Game[];
+  games: GameSelection[];
   show: boolean;
   onClose: () => void;
-  onSubmit: (selectedGames: Game[]) => void;
+  onSubmit: (selectedGames: GameSelection[]) => void;
 };
 
-const GamesModal: React.FC<Props> = ({ games, show, onClose, onSubmit }) => {
+const GameSelectorModal: React.FC<Props> = ({
+  games,
+  show,
+  onClose,
+  onSubmit,
+}) => {
   const [selectedIndexes, setSelectedIndexes] = useState<number[]>([]);
   const [lastSelectedIndex, setLastSelectedIndex] = useState<number | null>(
     null
@@ -59,7 +58,13 @@ const GamesModal: React.FC<Props> = ({ games, show, onClose, onSubmit }) => {
       <Modal.Body
         style={{ maxHeight: "70vh", overflowY: "auto", userSelect: "none" }}
       >
-        <Table bordered hover>
+        <small>
+          <i>
+            (Select teams using standard click/shift-click/command-click
+            conventions)
+          </i>
+        </small>
+        <Table bordered hover className="mt-2">
           <thead>
             <tr>
               <th>Date</th>
@@ -96,7 +101,6 @@ const GamesModal: React.FC<Props> = ({ games, show, onClose, onSubmit }) => {
         </Table>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={onClose}>Cancel</Button>
         <Button className="primary" onClick={handleSubmit}>
           Submit
         </Button>
@@ -105,4 +109,4 @@ const GamesModal: React.FC<Props> = ({ games, show, onClose, onSubmit }) => {
   );
 };
 
-export default GamesModal;
+export default GameSelectorModal;

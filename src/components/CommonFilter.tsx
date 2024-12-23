@@ -58,7 +58,11 @@ import {
 } from "../utils/FilterModels";
 import { HistoryManager } from "../utils/HistoryManager";
 import { UrlRouting } from "../utils/UrlRouting";
-import { QueryUtils, CommonFilterCustomDate } from "../utils/QueryUtils";
+import {
+  QueryUtils,
+  CommonFilterCustomDate,
+  GameSelection,
+} from "../utils/QueryUtils";
 
 // Library imports:
 import fetch from "isomorphic-unfetch";
@@ -68,7 +72,7 @@ import { QueryDisplayUtils } from "../utils/QueryDisplayUtils";
 import DateRangeModal from "./shared/DateRangeModal";
 import { DateUtils } from "../utils/DateUtils";
 import { Badge } from "react-bootstrap";
-import GamesModal from "./shared/GamesModal";
+import GameSelectorModal from "./shared/GameSelectorModal";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
 
 interface Props<PARAMS> {
@@ -173,9 +177,7 @@ const CommonFilter: CommonFilterI = ({
   );
 
   const [showDateRangeModal, setShowDateRangeModal] = useState(false);
-  const [games, setGames] = useState<
-    { date: string; opponent: string; location: string; score: string }[]
-  >([]);
+  const [games, setGames] = useState<GameSelection[]>([]);
   const [showGamesModal, setShowGamesModal] = useState<boolean>(
     FeatureFlags.isActiveWindow(FeatureFlags.gamesModal) &&
       team &&
@@ -212,7 +214,6 @@ const CommonFilter: CommonFilterI = ({
               };
             })
           );
-          console.log(results.map((r) => JSON.stringify(r)));
         },
         dataLastUpdated,
         isDebug
@@ -840,11 +841,21 @@ const CommonFilter: CommonFilterI = ({
         onHide={() => setShowDateRangeModal(false)}
         year={startingState.year}
       />
-      <GamesModal
+      <GameSelectorModal
         games={games}
         show={showGamesModal}
         onClose={() => setShowGamesModal(false)}
-        onSubmit={() => setShowGamesModal(false)}
+        onSubmit={(selectedGame) => {
+          setQueryFilters(
+            QueryUtils.setCustomGameSelection(
+              queryFilters,
+              games.length > 0
+                ? QueryUtils.buildGameSelectionFilter(selectedGame)
+                : undefined
+            )
+          );
+          setShowGamesModal(false);
+        }}
       />
       <Form>
         <Form.Group as={Row}>
