@@ -25,12 +25,14 @@ type Props = {
   queryFilters: CommonFilterType[];
   setQueryFilters: (newQueryFilter: CommonFilterType[]) => void;
   showCustomRangeFilter: () => void;
+  showGameSelectorModal?: () => void;
 };
 
 const QueryFilterDropdown: React.FunctionComponent<Props> = ({
   queryFilters,
   setQueryFilters,
   showCustomRangeFilter,
+  showGameSelectorModal,
 }) => {
   const filterMenuItem = (item: CommonFilterTypeSimple, text: String) => {
     return (
@@ -64,6 +66,17 @@ const QueryFilterDropdown: React.FunctionComponent<Props> = ({
             <span>Clear all query filters</span>
           </div>
         </Dropdown.Item>
+        {showGameSelectorModal ? <Dropdown.Divider /> : undefined}
+        {showGameSelectorModal ? (
+          <GenericTogglingMenuItem
+            text="Select Games..."
+            truthVal={QueryUtils.filterHas(
+              queryFilters,
+              QueryUtils.customGamesAliasName
+            )}
+            onSelect={() => showGameSelectorModal()}
+          />
+        ) : undefined}
         <Dropdown.Divider />
         {filterMenuItem("Conf", "Conference games only")}
         <Dropdown.Divider />

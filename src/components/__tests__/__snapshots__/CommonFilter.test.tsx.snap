@@ -82,6 +82,13 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
     queryType="Baseline Query"
     show={false}
   />
+  <GameSelectorModal
+    games={Array []}
+    onClose={[Function]}
+    onSubmit={[Function]}
+    selectedGames={Array []}
+    show={false}
+  />
   <Form
     inline={false}
   >
@@ -1883,6 +1890,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                   queryFilters={Array []}
                   setQueryFilters={[Function]}
                   showCustomRangeFilter={[Function]}
+                  showGameSelectorModal={[Function]}
                 />
               </InputGroupAppend>
             </InputGroup>
@@ -2127,6 +2135,13 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
     queryType="Baseline Query"
     show={false}
     year="2018/9"
+  />
+  <GameSelectorModal
+    games={Array []}
+    onClose={[Function]}
+    onSubmit={[Function]}
+    selectedGames={Array []}
+    show={false}
   />
   <Form
     inline={false}
@@ -2904,6 +2919,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
                   }
                   setQueryFilters={[Function]}
                   showCustomRangeFilter={[Function]}
+                  showGameSelectorModal={[Function]}
                 />
               </InputGroupAppend>
             </InputGroup>
@@ -3264,6 +3280,13 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
     queryType="Baseline Query"
     show={false}
     year="2018/9"
+  />
+  <GameSelectorModal
+    games={Array []}
+    onClose={[Function]}
+    onSubmit={[Function]}
+    selectedGames={Array []}
+    show={false}
   />
   <Form
     inline={false}
@@ -4036,6 +4059,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
                   queryFilters={Array []}
                   setQueryFilters={[Function]}
                   showCustomRangeFilter={[Function]}
+                  showGameSelectorModal={[Function]}
                 />
               </InputGroupAppend>
             </InputGroup>
@@ -4320,6 +4344,13 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
     queryType="Baseline Query"
     show={false}
     year="2018/9"
+  />
+  <GameSelectorModal
+    games={Array []}
+    onClose={[Function]}
+    onSubmit={[Function]}
+    selectedGames={Array []}
+    show={false}
   />
   <Form
     inline={false}
@@ -5096,6 +5127,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
                   }
                   setQueryFilters={[Function]}
                   showCustomRangeFilter={[Function]}
+                  showGameSelectorModal={[Function]}
                 />
               </InputGroupAppend>
             </InputGroup>

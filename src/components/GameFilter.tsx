@@ -175,6 +175,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
   );
   const [showOnDateRangeModal, setOnShowDateRangeModal] = useState(false);
   const [showOffDateRangeModal, setOffShowDateRangeModal] = useState(false);
+  const [showOnGameSelectorModal, setOnShowGameSelectorModal] = useState(false);
+  const [showOffGameSelectorModal, setOffShowGameSelectorModal] =
+    useState(false);
 
   /** Used to differentiate between the different implementations of the CommonFilter */
   const cacheKeyPrefix = ParamPrefixes.game;
@@ -745,6 +748,12 @@ const GameFilter: React.FunctionComponent<Props> = ({
                           showCustomRangeFilter={() =>
                             setOnShowDateRangeModal(true)
                           }
+                          showGameSelectorModal={
+                            undefined
+                            //   () => {
+                            //   setOnShowGameSelectorModal(true);
+                            // }
+                          }
                         />
                       </InputGroup.Append>
                     </InputGroup>
@@ -800,6 +809,12 @@ const GameFilter: React.FunctionComponent<Props> = ({
                                 setQueryFilters={setOffQueryFilters}
                                 showCustomRangeFilter={() =>
                                   setOffShowDateRangeModal(true)
+                                }
+                                showGameSelectorModal={
+                                  undefined
+                                  //   () => {
+                                  //   setOnShowGameSelectorModal(true);
+                                  // }
                                 }
                               />
                             </InputGroup.Append>

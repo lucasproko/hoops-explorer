@@ -27,7 +27,4 @@ export class FeatureFlags {
 
   /** For work in progress on short charts */
   static readonly shotCharts = true;
-
-  /** Provide the ability to easily select games */
-  static readonly gamesModal = true;
 }

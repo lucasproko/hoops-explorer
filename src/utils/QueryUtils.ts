@@ -43,8 +43,7 @@ export type GameSelection = {
   date: string; // YYYY-MM-DD
   opponent: string;
   location: string;
-  score: string;
-  selected?: boolean;
+  score?: string;
 };
 
 /** All the different supported filters */
@@ -520,7 +519,7 @@ export class QueryUtils {
   /** Checks if a filter item is enabled */
   static filterHas(
     curr: CommonFilterType[],
-    item: CommonFilterType | CustomDateAlias
+    item: CommonFilterType | CustomDateAlias | GameSelectorAlias
   ) {
     return Boolean(
       _.find(curr, (f) => QueryUtils.byName(f) == QueryUtils.byName(item))
@@ -545,6 +544,7 @@ export class QueryUtils {
     );
   }
 
+  /** Goes from game selection to a query filter */
   static buildGameSelectionFilter(
     games: GameSelection[]
   ): CommonFilterGameSelector {
@@ -552,6 +552,26 @@ export class QueryUtils {
       kind: QueryUtils.customGamesAliasName,
       gameIds: games.map((g) => `${g.date}:${g.location[0]}:${g.opponent}`),
     };
+  }
+
+  static buildGameSelectionModel(
+    queryFilters: CommonFilterType[]
+  ): GameSelection[] {
+    return _.thru(
+      QueryUtils.extractGameSelector(queryFilters),
+      (gameSelector) => {
+        return (gameSelector?.gameIds || []).map((gameId) => {
+          const [date, locationTmp, opponent] = gameId.split(":");
+          const location =
+            locationTmp == "H"
+              ? "Home"
+              : locationTmp == "A"
+              ? "Away"
+              : "Nuetral";
+          return { date, location, opponent, score: "" };
+        });
+      }
+    );
   }
 
   /** Adds a new custom date (overwrite the current one if it exists), or removes the custom date */

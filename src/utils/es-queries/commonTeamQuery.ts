@@ -139,6 +139,7 @@ export const buildQueryFiltersBoolArray = (
     yearStr || ParamDefaults.defaultYear
   );
   const customDate = QueryUtils.extractCustomDate(queryFilters);
+  const gameSelector = QueryUtils.buildGameSelectionModel(queryFilters);
 
   const genderYear = `${genderStr || ""}_${yearStr || ""}`;
   const avgEff = efficiencyAverages[genderYear] || efficiencyAverages.fallback!;
@@ -200,6 +201,21 @@ export const buildQueryFiltersBoolArray = (
                 customDate.start,
                 "yyyy-MM-dd"
               )} TO ${format(customDate.end, "yyyy-MM-dd")}]`,
+            },
+          },
+        ]
+      : [],
+    gameSelector && !_.isEmpty(gameSelector)
+      ? [
+          {
+            query_string: {
+              //(no "opponentMode" if we're using queryFilters)
+              query: `${gameSelector
+                .map(
+                  (g) =>
+                    `(date:(${g.date}) AND opponent.team.keyword:"${g.opponent}")`
+                )
+                .join(" OR ")}`,
             },
           },
         ]

@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Modal, Button, Table } from "react-bootstrap";
 import { GameSelection } from "../../utils/QueryUtils";
+import { ga } from "react-ga";
 
 type Props = {
   games: GameSelection[];
+  selectedGames: GameSelection[];
   show: boolean;
   onClose: () => void;
   onSubmit: (selectedGames: GameSelection[]) => void;
@@ -11,6 +13,7 @@ type Props = {
 
 const GameSelectorModal: React.FC<Props> = ({
   games,
+  selectedGames,
   show,
   onClose,
   onSubmit,
@@ -19,6 +22,20 @@ const GameSelectorModal: React.FC<Props> = ({
   const [lastSelectedIndex, setLastSelectedIndex] = useState<number | null>(
     null
   );
+
+  useEffect(() => {
+    const selectedGameLookup = new Set(
+      selectedGames.map((g) => `${g.date}:${g.opponent}`)
+    );
+    const selectedIndices = _.flatMap(games, (game, index) => {
+      if (selectedGameLookup.has(`${game.date}:${game.opponent}`)) {
+        return [index];
+      } else {
+        return [];
+      }
+    });
+    setSelectedIndexes(selectedIndices);
+  }, [selectedGames, games]);
 
   const handleRowClick = (index: number, event: React.MouseEvent) => {
     const isShift = event.shiftKey;

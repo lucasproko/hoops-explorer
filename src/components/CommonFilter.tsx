@@ -178,20 +178,10 @@ const CommonFilter: CommonFilterI = ({
 
   const [showDateRangeModal, setShowDateRangeModal] = useState(false);
   const [games, setGames] = useState<GameSelection[]>([]);
-  const [showGamesModal, setShowGamesModal] = useState<boolean>(
-    FeatureFlags.isActiveWindow(FeatureFlags.gamesModal) &&
-      team &&
-      year &&
-      gender
-  );
+  const [showGamesModal, setShowGamesModal] = useState<boolean>(false);
   useEffect(() => {
     setGames([]); //(changes to team season so unset games)
-    if (
-      team &&
-      year &&
-      gender &&
-      FeatureFlags.isActiveWindow(FeatureFlags.gamesModal)
-    ) {
+    if (team && year && gender) {
       // Fetch the team's set of games
       RequestUtils.fetchOpponents(
         { team, year, gender },
@@ -843,6 +833,7 @@ const CommonFilter: CommonFilterI = ({
       />
       <GameSelectorModal
         games={games}
+        selectedGames={QueryUtils.buildGameSelectionModel(queryFilters)}
         show={showGamesModal}
         onClose={() => setShowGamesModal(false)}
         onSubmit={(selectedGame) => {
@@ -953,6 +944,7 @@ const CommonFilter: CommonFilterI = ({
                       <QueryFilterDropdown
                         queryFilters={queryFilters}
                         setQueryFilters={setQueryFilters}
+                        showGameSelectorModal={() => setShowGamesModal(true)}
                         showCustomRangeFilter={() =>
                           setShowDateRangeModal(true)
                         }
