@@ -45,6 +45,14 @@ export type GameSelection = {
   location: string;
   score?: string;
 };
+export type FilteredGameSelection = {
+  filter?: {
+    team: string;
+    year: string;
+    gender: string;
+  };
+  games: GameSelection[];
+};
 
 /** All the different supported filters */
 export type CommonFilterType =

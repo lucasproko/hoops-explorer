@@ -8,6 +8,7 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
   forceReload1Up={0}
   onChangeCommonState={[Function]}
   onChangeState={[Function]}
+  onGameSelectionChange={[Function]}
   startingState={Object {}}
   tablePrefix="game-"
 >

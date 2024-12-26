@@ -4,6 +4,7 @@ import { GameSelection } from "../../utils/QueryUtils";
 import Form from "react-bootstrap/Form";
 
 type Props = {
+  queryType: string;
   games: GameSelection[];
   selectedGames: GameSelection[];
   show: boolean;
@@ -12,6 +13,7 @@ type Props = {
 };
 
 const GameSelectorModal: React.FC<Props> = ({
+  queryType,
   games,
   selectedGames,
   show,
@@ -70,7 +72,7 @@ const GameSelectorModal: React.FC<Props> = ({
   return (
     <Modal size="lg" show={show} onHide={onClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Select Games</Modal.Title>
+        <Modal.Title>Select Games for {queryType}</Modal.Title>
       </Modal.Header>
       <Modal.Body
         style={{ maxHeight: "70vh", overflowY: "auto", userSelect: "none" }}
@@ -141,7 +143,15 @@ const GameSelectorModal: React.FC<Props> = ({
         </Table>
       </Modal.Body>
       <Modal.Footer>
-        <Button className="primary" onClick={handleSubmit}>
+        <Button
+          variant="warning"
+          onClick={() => {
+            setSelectedIndexes([]);
+          }}
+        >
+          Clear
+        </Button>
+        <Button variant="primary" onClick={handleSubmit}>
           Save
         </Button>
       </Modal.Footer>

@@ -1,10 +1,6 @@
 // React imports:
 import React, { useState, useEffect } from "react";
 
-// Next imports:
-import { NextPage } from "next";
-import Router from "next/router";
-
 // Lodash
 import _ from "lodash";
 
@@ -62,6 +58,7 @@ import {
   QueryUtils,
   CommonFilterCustomDate,
   GameSelection,
+  FilteredGameSelection,
 } from "../utils/QueryUtils";
 
 // Library imports:
@@ -73,7 +70,6 @@ import DateRangeModal from "./shared/DateRangeModal";
 import { DateUtils } from "../utils/DateUtils";
 import { Badge } from "react-bootstrap";
 import GameSelectorModal from "./shared/GameSelectorModal";
-import { FeatureFlags } from "../utils/stats/FeatureFlags";
 
 interface Props<PARAMS> {
   startingState: PARAMS;
@@ -95,6 +91,7 @@ interface Props<PARAMS> {
   forceReload1Up?: number; //force submits a new set of parameters if true
   matchupMode?: boolean;
   blockSubmit?: boolean;
+  onGameSelectionChange?: (gameSelection: FilteredGameSelection) => void;
 }
 
 /** Used to pass the submitListener to child components */
@@ -124,6 +121,7 @@ const CommonFilter: CommonFilterI = ({
   forceReload1Up,
   matchupMode,
   blockSubmit,
+  onGameSelectionChange,
 }) => {
   //console.log("Loading CommonFilter " + JSON.stringify(startingState));
 
@@ -177,17 +175,35 @@ const CommonFilter: CommonFilterI = ({
   );
 
   const [showDateRangeModal, setShowDateRangeModal] = useState(false);
-  const [games, setGames] = useState<GameSelection[]>([]);
+  const [gameSelection, setGameSelection] = useState<FilteredGameSelection>({
+    games: [],
+  });
   const [showGamesModal, setShowGamesModal] = useState<boolean>(false);
   useEffect(() => {
-    setGames([]); //(changes to team season so unset games)
+    setGameSelection({ games: [] }); //(changes to team season so unset games)
     if (team && year && gender) {
       // Fetch the team's set of games
       RequestUtils.fetchOpponents(
         { team, year, gender },
         (results) => {
-          setGames(
-            results.map((r) => {
+          // Reset any game-based filters if needed:
+          if (
+            gameSelection.filter &&
+            (gameSelection.filter.team != team ||
+              gameSelection.filter.year != year ||
+              gameSelection.filter.gender != gender)
+          ) {
+            setQueryFilters(
+              QueryUtils.setCustomGameSelection(queryFilters, undefined)
+            );
+          }
+          setGameSelection({
+            filter: {
+              team,
+              year,
+              gender,
+            },
+            games: results.map((r) => {
               return {
                 date: RequestUtils.buildDateStr(r),
                 score: RequestUtils.buildScoreInfo(r),
@@ -202,14 +218,20 @@ const CommonFilter: CommonFilterI = ({
                   }
                 }),
               };
-            })
-          );
+            }),
+          });
         },
         dataLastUpdated,
         isDebug
       );
     }
   }, [team, year, gender]);
+  /** Notify child filter elements when the games change */
+  useEffect(() => {
+    onGameSelectionChange &&
+      gameSelection.filter &&
+      onGameSelectionChange(gameSelection);
+  }, [gameSelection]);
 
   // Validation, this currently only supports once case:
   const [showInvalidQuery, setShowInvalidQuery] = useState(false as boolean);
@@ -832,7 +854,8 @@ const CommonFilter: CommonFilterI = ({
         year={startingState.year}
       />
       <GameSelectorModal
-        games={games}
+        queryType="Baseline Query"
+        games={gameSelection.games}
         selectedGames={QueryUtils.buildGameSelectionModel(queryFilters)}
         show={showGamesModal}
         onClose={() => setShowGamesModal(false)}
@@ -840,7 +863,7 @@ const CommonFilter: CommonFilterI = ({
           setQueryFilters(
             QueryUtils.setCustomGameSelection(
               queryFilters,
-              games.length > 0
+              gameSelection.games.length > 0
                 ? QueryUtils.buildGameSelectionFilter(selectedGame)
                 : undefined
             )
@@ -936,7 +959,7 @@ const CommonFilter: CommonFilterI = ({
                       year={year}
                       gender={gender}
                       team={team}
-                      games={games}
+                      games={gameSelection.games}
                       onChange={(ev: any) => setBaseQuery(ev.target.value)}
                       onKeyUp={(ev: any) => setBaseQuery(ev.target.value)}
                       onKeyDown={submitListenerFactory(true)}

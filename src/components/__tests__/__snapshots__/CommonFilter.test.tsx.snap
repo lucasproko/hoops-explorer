@@ -86,6 +86,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
     games={Array []}
     onClose={[Function]}
     onSubmit={[Function]}
+    queryType="Baseline Query"
     selectedGames={Array []}
     show={false}
   />
@@ -2141,6 +2142,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
     games={Array []}
     onClose={[Function]}
     onSubmit={[Function]}
+    queryType="Baseline Query"
     selectedGames={Array []}
     show={false}
   />
@@ -3287,6 +3289,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
     games={Array []}
     onClose={[Function]}
     onSubmit={[Function]}
+    queryType="Baseline Query"
     selectedGames={Array []}
     show={false}
   />
@@ -4352,6 +4355,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
     games={Array []}
     onClose={[Function]}
     onSubmit={[Function]}
+    queryType="Baseline Query"
     selectedGames={Array []}
     show={false}
   />

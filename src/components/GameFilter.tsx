@@ -36,12 +36,18 @@ import LineupQueryAutoSuggestText from "./shared/LineupQueryAutoSuggestText";
 
 // Utils
 import { ShotStatsModel, StatModels } from "../utils/StatModels";
-import { QueryUtils, CommonFilterCustomDate } from "../utils/QueryUtils";
+import {
+  QueryUtils,
+  CommonFilterCustomDate,
+  GameSelection,
+  FilteredGameSelection,
+} from "../utils/QueryUtils";
 import { QueryDisplayUtils } from "../utils/QueryDisplayUtils";
 import QueryFilterDropdown from "./shared/QueryFilterDropdown";
 import DateRangeModal from "./shared/DateRangeModal";
 import { UrlRouting } from "../utils/UrlRouting";
 import { Badge } from "react-bootstrap";
+import GameSelectorModal from "./shared/GameSelectorModal";
 
 type Props = {
   onStats: (
@@ -115,6 +121,11 @@ const GameFilter: React.FunctionComponent<Props> = ({
   const [internalForceReload1Up, setInternalForceReload1Up] =
     useState(forceReload1Up);
 
+  /** Duplicate from CommonFilter */
+  const [gameSelection, setGameSelection] = useState<FilteredGameSelection>({
+    games: [],
+  });
+
   useEffect(() => {
     // Whenever forceReload1Up is incremented, reset common params:
     if (forceReload1Up != internalForceReload1Up) {
@@ -156,7 +167,6 @@ const GameFilter: React.FunctionComponent<Props> = ({
   const [onQuery, setOnQuery] = useState(startOnQuery || "");
   const [offQuery, setOffQuery] = useState(startOffQuery || "");
 
-  //TODO: need to plumb
   const [onQueryFilters, setOnQueryFilters] = useState(
     QueryUtils.parseFilter(
       _.isNil(startOnQueryFilters)
@@ -696,6 +706,24 @@ const GameFilter: React.FunctionComponent<Props> = ({
           ]);
       }}
       forceReload1Up={internalForceReload1Up}
+      onGameSelectionChange={(newGameSelection) => {
+        // Reset any game-based filters:
+        if (
+          gameSelection.filter &&
+          newGameSelection.filter &&
+          (gameSelection.filter.team != newGameSelection.filter.team ||
+            gameSelection.filter.year != newGameSelection.filter.year ||
+            gameSelection.filter.gender != newGameSelection.filter.gender)
+        ) {
+          setOnQueryFilters(
+            QueryUtils.setCustomGameSelection(onQueryFilters, undefined)
+          );
+          setOffQueryFilters(
+            QueryUtils.setCustomGameSelection(offQueryFilters, undefined)
+          );
+        }
+        setGameSelection(newGameSelection);
+      }}
     >
       <GlobalKeypressManager.Consumer>
         {(globalKeypressHandler) => (
@@ -722,6 +750,44 @@ const GameFilter: React.FunctionComponent<Props> = ({
               onHide={() => setOffShowDateRangeModal(false)}
               year={startingState.year || ParamDefaults.defaultYear}
             />
+            <GameSelectorModal
+              queryType="On/'A' Query"
+              games={gameSelection.games}
+              selectedGames={QueryUtils.buildGameSelectionModel(onQueryFilters)}
+              show={showOnGameSelectorModal}
+              onClose={() => setOnShowGameSelectorModal(false)}
+              onSubmit={(selectedGame) => {
+                setOnQueryFilters(
+                  QueryUtils.setCustomGameSelection(
+                    onQueryFilters,
+                    gameSelection.games.length > 0
+                      ? QueryUtils.buildGameSelectionFilter(selectedGame)
+                      : undefined
+                  )
+                );
+                setOnShowGameSelectorModal(false);
+              }}
+            />
+            <GameSelectorModal
+              queryType="Off/'B' Query"
+              games={gameSelection.games}
+              selectedGames={QueryUtils.buildGameSelectionModel(
+                offQueryFilters
+              )}
+              show={showOffGameSelectorModal}
+              onClose={() => setOffShowGameSelectorModal(false)}
+              onSubmit={(selectedGame) => {
+                setOffQueryFilters(
+                  QueryUtils.setCustomGameSelection(
+                    offQueryFilters,
+                    gameSelection.games.length > 0
+                      ? QueryUtils.buildGameSelectionFilter(selectedGame)
+                      : undefined
+                  )
+                );
+                setOffShowGameSelectorModal(false);
+              }}
+            />
             <Form.Group as={Row}>
               <Form.Label column sm="2">
                 {maybeOn} Query
@@ -737,6 +803,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                         year={commonParams.year}
                         gender={commonParams.gender}
                         team={commonParams.team}
+                        games={gameSelection.games}
                         onKeyUp={handleOnQueryChange}
                         onChange={handleOnQueryChange}
                         onKeyDown={globalKeypressHandler}
@@ -748,12 +815,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
                           showCustomRangeFilter={() =>
                             setOnShowDateRangeModal(true)
                           }
-                          showGameSelectorModal={
-                            undefined
-                            //   () => {
-                            //   setOnShowGameSelectorModal(true);
-                            // }
-                          }
+                          showGameSelectorModal={() => {
+                            setOnShowGameSelectorModal(true);
+                          }}
                         />
                       </InputGroup.Append>
                     </InputGroup>
@@ -798,6 +862,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                             year={commonParams.year}
                             gender={commonParams.gender}
                             team={commonParams.team}
+                            games={gameSelection.games}
                             onKeyUp={(ev: any) => setOffQuery(ev.target.value)}
                             onChange={(ev: any) => setOffQuery(ev.target.value)}
                             onKeyDown={globalKeypressHandler}
@@ -810,12 +875,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
                                 showCustomRangeFilter={() =>
                                   setOffShowDateRangeModal(true)
                                 }
-                                showGameSelectorModal={
-                                  undefined
-                                  //   () => {
-                                  //   setOnShowGameSelectorModal(true);
-                                  // }
-                                }
+                                showGameSelectorModal={() => {
+                                  setOffShowGameSelectorModal(true);
+                                }}
                               />
                             </InputGroup.Append>
                           )}
