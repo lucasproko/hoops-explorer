@@ -936,6 +936,7 @@ const CommonFilter: CommonFilterI = ({
                       year={year}
                       gender={gender}
                       team={team}
+                      games={games}
                       onChange={(ev: any) => setBaseQuery(ev.target.value)}
                       onKeyUp={(ev: any) => setBaseQuery(ev.target.value)}
                       onKeyDown={submitListenerFactory(true)}

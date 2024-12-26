@@ -24,7 +24,7 @@ import {
 } from "../../utils/FilterModels";
 import { dataLastUpdated } from "../../utils/internal-data/dataLastUpdated";
 import { ClientRequestCache } from "../../utils/ClientRequestCache";
-import { QueryUtils } from "../../utils/QueryUtils";
+import { GameSelection, QueryUtils } from "../../utils/QueryUtils";
 
 /** The keydown event does not come from AutoSuggestText element */
 export const notFromAutoSuggest = (event: any) => {
@@ -38,6 +38,7 @@ type Props = {
   team?: string;
   gender?: string;
   year?: string;
+  games?: GameSelection[];
   onChange: (ev: any) => void;
   onKeyUp: (ev: any) => void;
   onKeyDown: (ev: any) => void;
@@ -49,6 +50,7 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
   team,
   year,
   gender,
+  games,
   onChange,
   onKeyUp,
   onKeyDown,
@@ -66,9 +68,6 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
     "players.id:",
     "players.code:",
     "opponent.team:",
-    "opponent.Home:",
-    "opponent.Away:",
-    "opponent.Neutral:",
     "start_min:",
     "end_min:",
     "location_type:",
@@ -220,7 +219,13 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
       options={
         //  Used to be predicated on [] but now we always support the advanced options
         //(initValue && ('[' == initValue[0])) ? advOptions : basicOptions
-        advOptions
+        advOptions.concat(
+          _.isEmpty(games)
+            ? ["opponent.Home:", "opponent.Away:", "opponent.Neutral:"]
+            : (games || []).map(
+                (game) => `opponent.${game.location}:"${game.opponent}"`
+              )
+        )
       }
       richTextReplacements={{
         ..._.chain(basicOptions)
@@ -244,6 +249,26 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
                 <Badge variant="secondary">
                   <div style={{ fontSize: "0.85rem" }}>{s}</div>
                 </Badge>
+              ),
+            },
+          ])
+          .fromPairs()
+          .value(),
+        ..._.chain(games || [])
+          .map((g) => [
+            `opponent.${g.location}:"${g.opponent}"`,
+            {
+              renderTo: (
+                <span>
+                  <Badge variant="secondary">
+                    <div style={{ fontSize: "0.85rem" }}>
+                      opponent.{g.location}:
+                    </div>
+                  </Badge>
+                  <Badge variant="success">
+                    <div style={{ fontSize: "0.85rem" }}>"{g.opponent}"</div>
+                  </Badge>
+                </span>
               ),
             },
           ])
