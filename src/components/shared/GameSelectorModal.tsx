@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Button, Table } from "react-bootstrap";
 import { GameSelection } from "../../utils/QueryUtils";
-import { ga } from "react-ga";
+import Form from "react-bootstrap/Form";
 
 type Props = {
   games: GameSelection[];
@@ -68,7 +68,7 @@ const GameSelectorModal: React.FC<Props> = ({
   };
 
   return (
-    <Modal show={show} onHide={onClose}>
+    <Modal size="lg" show={show} onHide={onClose}>
       <Modal.Header closeButton>
         <Modal.Title>Select Games</Modal.Title>
       </Modal.Header>
@@ -78,16 +78,23 @@ const GameSelectorModal: React.FC<Props> = ({
         <small>
           <i>
             (Select teams using standard click/shift-click/command-click
-            conventions)
+            conventions. On touchscreens, use the checkboxes.)
           </i>
         </small>
         <Table bordered hover className="mt-2">
           <thead>
             <tr>
-              <th>Date</th>
-              <th>Opponent</th>
+              <th></th>
+              <th>
+                Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </th>
+              <th>
+                Opponent&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </th>
               <th>Location</th>
-              <th>Score</th>
+              <th>
+                Score&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </th>
             </tr>
           </thead>
           <tbody
@@ -108,6 +115,22 @@ const GameSelectorModal: React.FC<Props> = ({
                   cursor: "pointer",
                 }}
               >
+                <td
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    setSelectedIndexes((prev) =>
+                      prev.includes(index)
+                        ? prev.filter((i) => i !== index)
+                        : [...prev, index]
+                    );
+                    setLastSelectedIndex(index);
+                  }}
+                >
+                  <Form.Check
+                    aria-label={`option ${index}`}
+                    checked={selectedIndexes.includes(index)}
+                  />
+                </td>
                 <td>{game.date}</td>
                 <td>{game.opponent}</td>
                 <td>{game.location}</td>
@@ -119,7 +142,7 @@ const GameSelectorModal: React.FC<Props> = ({
       </Modal.Body>
       <Modal.Footer>
         <Button className="primary" onClick={handleSubmit}>
-          Submit
+          Save
         </Button>
       </Modal.Footer>
     </Modal>
