@@ -31,6 +31,7 @@ import {
   ParamPrefixesType,
   ParamDefaults,
   LineupFilterParams,
+  QueryWithFilters,
 } from "../utils/FilterModels";
 import LineupQueryAutoSuggestText from "./shared/LineupQueryAutoSuggestText";
 
@@ -41,6 +42,7 @@ import {
   CommonFilterCustomDate,
   GameSelection,
   FilteredGameSelection,
+  CommonFilterType,
 } from "../utils/QueryUtils";
 import { QueryDisplayUtils } from "../utils/QueryDisplayUtils";
 import QueryFilterDropdown from "./shared/QueryFilterDropdown";
@@ -109,6 +111,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
     offQuery: startOffQuery,
     onQueryFilters: startOnQueryFilters,
     offQueryFilters: startOffQueryFilters,
+    otherQueries: startOtherQueries,
     ...startingCommonFilterParams
   } = startingState;
 
@@ -166,7 +169,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
   );
   const [onQuery, setOnQuery] = useState(startOnQuery || "");
   const [offQuery, setOffQuery] = useState(startOffQuery || "");
-
+  const [otherQueries, setOtherQueries] = useState<(string | undefined)[]>(
+    (startOtherQueries || []).map((q) => q.query)
+  );
   const [onQueryFilters, setOnQueryFilters] = useState(
     QueryUtils.parseFilter(
       _.isNil(startOnQueryFilters)
@@ -183,6 +188,19 @@ const GameFilter: React.FunctionComponent<Props> = ({
       startingState.year || ParamDefaults.defaultYear
     )
   );
+  const [otherQueryFilters, setOtherQueryFilters] = useState<
+    (CommonFilterType[] | undefined)[]
+  >(
+    (startOtherQueries || []).map((q) =>
+      QueryUtils.parseFilter(
+        _.isNil(q.queryFilters)
+          ? ParamDefaults.defaultQueryFilters
+          : q.queryFilters,
+        startingState.year || ParamDefaults.defaultYear
+      )
+    )
+  );
+
   const [showOnDateRangeModal, setOnShowDateRangeModal] = useState(false);
   const [showOffDateRangeModal, setOffShowDateRangeModal] = useState(false);
   const [showOnGameSelectorModal, setOnShowGameSelectorModal] = useState(false);
@@ -203,6 +221,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
   function buildLineupQueriesFromOnOffQueries(): {
     on?: CommonFilterParams;
     off?: CommonFilterParams;
+    others?: CommonFilterParams[];
   } {
     //TODO: should tidy this up so can just make get lineups back from on/off query
     //      but for now we'll just hack a workaround
@@ -272,6 +291,21 @@ const GameFilter: React.FunctionComponent<Props> = ({
           }
         }
       ),
+
+      others: _.isEmpty(otherQueries)
+        ? undefined
+        : otherQueries.map((query, index) => ({
+            baseQuery: getLineupQuery(query || "*"),
+            queryFilters: QueryUtils.buildFilterStr(
+              (otherQueryFilters[index] || []).concat(
+                QueryUtils.parseFilter(
+                  commonParams.queryFilters ||
+                    ParamDefaults.defaultQueryFilters,
+                  commonParams.year || ParamDefaults.defaultYear
+                )
+              )
+            ),
+          })),
     };
   }
 
@@ -397,14 +431,22 @@ const GameFilter: React.FunctionComponent<Props> = ({
 
     const makeGlobalRequest = !_.isEqual(entireSeasonRequest, primaryRequest);
 
+    // New format, so duplicate primaryRequest and everything has a tag
     return [
       primaryRequest,
       [
         {
+          tag: "team",
+          context: ParamPrefixes.game as ParamPrefixesType,
+          paramsObj: primaryRequest,
+        },
+        {
+          tag: "roster",
           context: ParamPrefixes.roster as ParamPrefixesType,
           paramsObj: primaryRequest,
         },
         {
+          tag: "players",
           context: ParamPrefixes.player as ParamPrefixesType,
           paramsObj: primaryRequest,
           includeRoster: !makeGlobalRequest,
@@ -414,6 +456,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
           startTeamShotCharts
             ? [
                 {
+                  tag: "shots",
                   context: ParamPrefixes.shots as ParamPrefixesType,
                   paramsObj: primaryRequest, //(makes exactly the on/off request we make for the teams stats)
                 },
@@ -425,6 +468,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
             ? [
                 {
                   //(don't make a spurious call)
+                  tag: "globalPlayers",
                   context: ParamPrefixes.player as ParamPrefixesType,
                   paramsObj: entireSeasonRequest,
                   includeRoster: true,
@@ -433,8 +477,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
             : []
         )
         .concat(
-          lineupRequests.map((req) => {
+          lineupRequests.map((req, reqIndex) => {
             return {
+              tag: `lineups${reqIndex}`,
               context: ParamPrefixes.lineup as ParamPrefixesType,
               paramsObj: req,
             };
@@ -444,68 +489,45 @@ const GameFilter: React.FunctionComponent<Props> = ({
   }
 
   /** Handles the response from ES to a stats calc request */
-  function handleResponse(jsonResps: any[], wasError: Boolean) {
-    const jsonStatuses = jsonResps.map((j) => j.status);
-    const teamJson = jsonResps?.[0]?.responses?.[0] || {}; //(from primary request)
-    const rosterCompareJson = jsonResps?.[1]?.responses?.[0] || {}; //(from roster request)
-    const rosterStatsJson = jsonResps?.[2]?.responses?.[0] || {}; //(from player request #1)
+  function handleResponse(jsonResps: Record<string, any>, wasError: Boolean) {
+    const jsonStatuses = _.mapValues(jsonResps, (j) => j.status);
 
-    // 3, [4, 5] can be lineups ... or they might be 4, [5, 6]
-    // depends on whether jsonResps?.[3]?.responses?.[0] has "aggregations.tri_filter"
+    const teamJson = jsonResps?.["team"]?.responses?.[0] || {};
 
-    //(optionally, from player request #2)
+    const rosterCompareJson = jsonResps?.["roster"]?.responses?.[0] || {};
+    const rosterStatsJson = jsonResps?.["players"]?.responses?.[0] || {};
 
-    const {
-      lineupsStart,
-      shotChartStatsJson,
-      hasGlobalRosterStats,
-      globalRosterStatsJson,
-    } = _.thru(jsonResps, (__) => {
-      const hasShotChartStats = !_.isNil(
-        jsonResps?.[3]?.responses?.[0]?.aggregations?.tri_filter?.buckets
-          ?.baseline?.off_def
-      );
+    const shotChartStatsJson = jsonResps?.["shots"]?.responses?.[0] || {};
 
-      const maybeGlobalRosterStatsIndex = hasShotChartStats ? 4 : 3;
-      const hasGlobalRosterStats =
-        jsonResps?.[maybeGlobalRosterStatsIndex]?.responses?.[0]?.aggregations
-          ?.tri_filter;
-
-      return {
-        lineupsStart:
-          maybeGlobalRosterStatsIndex + (hasGlobalRosterStats ? 1 : 0),
-        shotChartStatsJson: hasShotChartStats
-          ? jsonResps?.[3]?.responses?.[0]
-          : undefined,
-        hasGlobalRosterStats,
-        globalRosterStatsJson:
-          (hasGlobalRosterStats
-            ? jsonResps?.[maybeGlobalRosterStatsIndex]?.responses?.[0]
-            : undefined) || _.cloneDeep(rosterStatsJson),
-        //(need to clone it so that changes to baseline don't overwrite global)
-      };
-    });
+    const globalRosterStatsJson =
+      jsonResps?.["globalPlayers"]?.responses?.[0] ||
+      _.cloneDeep(rosterStatsJson);
 
     const globalTeam =
       teamJson?.aggregations?.global?.only?.buckets?.team ||
       StatModels.emptyTeam();
     const rosterInfo =
-      jsonResps?.[hasGlobalRosterStats ? lineupsStart - 1 : 2]?.roster;
+      jsonResps?.["globalPlayers"]?.roster || jsonResps?.["players"]?.roster;
     if (rosterInfo) {
       globalTeam.roster = rosterInfo;
     }
 
-    /** For RAPM, from lineup requests */
-    const lineupResponses = _.drop(jsonResps, lineupsStart).map(
-      (lineupJson) => {
-        return {
-          lineups: lineupJson?.responses?.[0]?.aggregations?.lineups?.buckets,
-          error_code: wasError
-            ? lineupJson?.status || jsonStatuses?.[0] || "Unknown"
-            : undefined,
-        };
-      }
-    );
+    /** For RAPM, from lineup requests - for now at most 20 requests, TODO make arbitrary*/
+    const lineupResponses = _.takeWhile(
+      _.range(0, 20).map((i) => {
+        const lineupKey = `lineups${i}`;
+        const lineupJson = jsonResps?.[lineupKey]?.responses?.[0];
+        return lineupJson
+          ? {
+              lineups: lineupJson?.aggregations?.lineups?.buckets,
+              error_code: wasError
+                ? lineupJson?.status || jsonStatuses?.[lineupKey] || "Unknown"
+                : undefined,
+            }
+          : undefined;
+      }),
+      (q: any) => q != undefined
+    ) as LineupStatsModel[];
 
     onStats(
       {

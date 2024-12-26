@@ -54,6 +54,11 @@ export type CommonFilterParams = {
   invertBaseQueryFilters?: string;
 };
 
+export type QueryWithFilters = {
+  query?: string;
+  queryFilters?: string;
+};
+
 /** Extracts the common params from a superset */
 export function getCommonFilterParams(p: CommonFilterParams) {
   return {
@@ -119,6 +124,7 @@ export type GameFilterParams = {
   offQuery?: string;
   onQueryFilters?: string; //(missing iff empty)
   offQueryFilters?: string; //(missing iff empty)
+  otherQueries?: QueryWithFilters[]; // In addition to A-on/B-off, allows for C+ queries
   autoOffQuery?: boolean;
   showGrades?: string;
   // Team view

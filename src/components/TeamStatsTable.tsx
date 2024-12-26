@@ -52,6 +52,7 @@ import { UserChartOpts } from "./diags/ShotChartDiagView";
 export type TeamStatsModel = {
   on: TeamStatSet;
   off: TeamStatSet;
+  other?: TeamStatSet[];
   baseline: TeamStatSet;
   global: TeamStatSet;
 } & {
