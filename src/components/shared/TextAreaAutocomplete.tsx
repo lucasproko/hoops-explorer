@@ -293,10 +293,10 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
       passedOptions: NonNullable<Props<any>["options"]>,
       makeRequest = true
     ) => {
-      const input = refInput.current!;
+      const input = refInput.current;
       const slug = getMatch(str, caret, passedOptions);
 
-      if (slug) {
+      if (input && slug) {
         const caretPos = getCaretCoordinates(input, caret);
         const { top, left, width } = input.getBoundingClientRect();
 
