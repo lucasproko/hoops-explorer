@@ -274,6 +274,24 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
           ])
           .fromPairs()
           .value(),
+        ..._.chain(games || [])
+          .map((g) => [
+            `opponent.team:"${g.opponent}"`,
+            {
+              renderTo: (
+                <span>
+                  <Badge variant="secondary">
+                    <div style={{ fontSize: "0.85rem" }}>opponent.team:</div>
+                  </Badge>
+                  <Badge variant="success">
+                    <div style={{ fontSize: "0.85rem" }}>"{g.opponent}"</div>
+                  </Badge>
+                </span>
+              ),
+            },
+          ])
+          .fromPairs()
+          .value(),
         OR: {
           renderTo: (
             <Badge pill variant="primary">

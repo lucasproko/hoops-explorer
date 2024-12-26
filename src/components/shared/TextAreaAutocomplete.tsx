@@ -671,7 +671,9 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
               }
             }
           )
-          .find((key) => key != undefined)
+          .filter((key) => key != undefined)
+          .sortBy((key) => key?.length || 0)
+          .last() //(pick longest match)
           .value();
       };
 
