@@ -1,16 +1,14 @@
-
 import { commonOnOffBaseQuery } from "../commonOnOffBaseQuery";
-import { GameFilterParams } from '../../FilterModels';
+import { GameFilterParams } from "../../FilterModels";
 
 describe("commonOnOffBaseQuery", () => {
   test("commonOnOffBaseQuery", () => {
-
     const query1: GameFilterParams = {};
 
     const query2: GameFilterParams = {
       onQuery: "query1a",
       offQuery: "[query1b]",
-      baseQuery: "query1c"
+      baseQuery: "query1c",
     };
 
     const query3: GameFilterParams = {
@@ -29,44 +27,58 @@ describe("commonOnOffBaseQuery", () => {
       baseQuery: "",
     };
 
+    const query5: GameFilterParams = {
+      onQuery: "query1a",
+      onQueryFilters: "Home,Conf",
+      offQuery: "[query1b]",
+      offQueryFilters: "Away",
+      baseQuery: "query1c",
+      otherQueries: [
+        {
+          query: "queryO1",
+          queryFilters: "Not-Home",
+        },
+      ],
+    };
+
     expect(commonOnOffBaseQuery(query1, 0)).toEqual({
       filters: {
         off: {
           query_string: {
-            query: `(players.id:(NOT *)) AND (players.id:(*))`
-          }
+            query: `(players.id:(NOT *)) AND (players.id:(*))`,
+          },
         },
         on: {
           query_string: {
-            query: `(players.id:(NOT *)) AND (players.id:(*))`
-          }
+            query: `(players.id:(NOT *)) AND (players.id:(*))`,
+          },
         },
         baseline: {
           query_string: {
-            query: `players.id:(*)`
-          }
+            query: `players.id:(*)`,
+          },
         },
-      }
+      },
     });
 
     expect(commonOnOffBaseQuery(query2, 0)).toEqual({
       filters: {
         off: {
           query_string: {
-            query: `(query1b) AND (players.id:(query1c))`
-          }
+            query: `(query1b) AND (players.id:(query1c))`,
+          },
         },
         on: {
           query_string: {
-            query: `(players.id:(query1a)) AND (players.id:(query1c))`
-          }
+            query: `(players.id:(query1a)) AND (players.id:(query1c))`,
+          },
         },
         baseline: {
           query_string: {
-            query: `players.id:(query1c)`
-          }
+            query: `players.id:(query1c)`,
+          },
         },
-      }
+      },
     });
     expect(commonOnOffBaseQuery(query3, 0)).toEqual({
       filters: {
@@ -75,46 +87,46 @@ describe("commonOnOffBaseQuery", () => {
             must: [
               {
                 query_string: {
-                  query: `(query1b) AND (players.id:(query1c))`
-                }      
+                  query: `(query1b) AND (players.id:(query1c))`,
+                },
               },
               {
                 term: {
-                  "location_type.keyword": "Away"
-                }
-              }
+                  "location_type.keyword": "Away",
+                },
+              },
             ],
-            must_not: []
-          }
+            must_not: [],
+          },
         },
         on: {
           bool: {
             must: [
               {
                 query_string: {
-                  query: `(players.id:(query1a)) AND (players.id:(query1c))`
-                }
+                  query: `(players.id:(query1a)) AND (players.id:(query1c))`,
+                },
               },
               {
                 query_string: {
-                  query: `in_conf:true`
-                }
+                  query: `in_conf:true`,
+                },
               },
               {
                 term: {
-                  "location_type.keyword": "Home"
-                }
-              }
+                  "location_type.keyword": "Home",
+                },
+              },
             ],
-            must_not: []
-          }
+            must_not: [],
+          },
         },
         baseline: {
           query_string: {
-            query: `players.id:(query1c)`
-          }
+            query: `players.id:(query1c)`,
+          },
         },
-      }
+      },
     });
     expect(commonOnOffBaseQuery(query4, 0)).toEqual({
       filters: {
@@ -124,53 +136,118 @@ describe("commonOnOffBaseQuery", () => {
             must: [
               {
                 query_string: {
-                  query: `players.id:(*)`
-                }      
+                  query: `players.id:(*)`,
+                },
               },
             ],
             should: [
               {
                 query_string: {
-                  query: `players.id:(NOT *)`
-                }      
+                  query: `players.id:(NOT *)`,
+                },
               },
               {
                 bool: {
                   must_not: [
                     {
                       query_string: {
-                        query: `location_type.keyword:(Away OR Neutral)`
-                      }
-                    }
-                  ]
-                }
-              }
+                        query: `location_type.keyword:(Away OR Neutral)`,
+                      },
+                    },
+                  ],
+                },
+              },
             ],
-          }
+          },
         },
         on: {
           bool: {
             must: [
               {
                 query_string: {
-                  query: `(players.id:(*)) AND (players.id:(*))`
-                }
+                  query: `(players.id:(*)) AND (players.id:(*))`,
+                },
               },
               {
                 query_string: {
-                  query: `location_type.keyword:(Away OR Neutral)`
-                }
-              }
+                  query: `location_type.keyword:(Away OR Neutral)`,
+                },
+              },
             ],
-            must_not: []
-          }
+            must_not: [],
+          },
         },
         baseline: {
           query_string: {
-            query: `players.id:(*)`
-          }
+            query: `players.id:(*)`,
+          },
         },
-      }
+      },
+    });
+    expect(commonOnOffBaseQuery(query5, 0)).toEqual({
+      filters: {
+        off: {
+          bool: {
+            must: [
+              {
+                query_string: {
+                  query: `(query1b) AND (players.id:(query1c))`,
+                },
+              },
+              {
+                term: {
+                  "location_type.keyword": "Away",
+                },
+              },
+            ],
+            must_not: [],
+          },
+        },
+        on: {
+          bool: {
+            must: [
+              {
+                query_string: {
+                  query: `(players.id:(query1a)) AND (players.id:(query1c))`,
+                },
+              },
+              {
+                query_string: {
+                  query: `in_conf:true`,
+                },
+              },
+              {
+                term: {
+                  "location_type.keyword": "Home",
+                },
+              },
+            ],
+            must_not: [],
+          },
+        },
+        baseline: {
+          query_string: {
+            query: `players.id:(query1c)`,
+          },
+        },
+        other_0: {
+          bool: {
+            must: [
+              {
+                query_string: {
+                  query: `(players.id:(queryO1)) AND (players.id:(query1c))`,
+                },
+              },
+              {
+                query_string: {
+                  query: `location_type.keyword:(Away OR Neutral)`,
+                },
+              },
+            ],
+            must_not: [],
+          },
+        },
+      },
     });
   });
 });

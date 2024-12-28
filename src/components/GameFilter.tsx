@@ -50,6 +50,7 @@ import DateRangeModal from "./shared/DateRangeModal";
 import { UrlRouting } from "../utils/UrlRouting";
 import { Badge } from "react-bootstrap";
 import GameSelectorModal from "./shared/GameSelectorModal";
+import { FeatureFlags } from "../utils/stats/FeatureFlags";
 
 type Props = {
   onStats: (
@@ -114,6 +115,12 @@ const GameFilter: React.FunctionComponent<Props> = ({
     otherQueries: startOtherQueries,
     ...startingCommonFilterParams
   } = startingState;
+
+  const extraRows = _.isEmpty(startingState.otherQueries)
+    ? FeatureFlags.isActiveWindow(FeatureFlags.advancedOnOffMode)
+      ? 2
+      : 0
+    : startingState.otherQueries?.length;
 
   /** The state managed by the CommonFilter element */
   const [commonParams, setCommonParams] = useState(
@@ -241,6 +248,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
         ? `(${onOffToUse}) AND (${baseToUse})`
         : onOffToUse;
     };
+
     return {
       on: QueryUtils.nonEmptyQuery(onQuery, onQueryFilters)
         ? {
@@ -512,9 +520,20 @@ const GameFilter: React.FunctionComponent<Props> = ({
       globalTeam.roster = rosterInfo;
     }
 
-    /** For RAPM, from lineup requests - for now at most 20 requests, TODO make arbitrary*/
+    // Can get additional rows of data
+    // For now, just take the first 20 others, TODO make arbitrary
+    const MAX_OTHERS = 20;
+    const otherTeamStats = _.takeWhile(
+      _.range(0, MAX_OTHERS).map((i) => {
+        return teamJson?.aggregations?.tri_filter?.buckets?.[`other_${i}`];
+      }),
+      (q: any) => q != undefined
+    );
+    const numOthers = otherTeamStats.length;
+
+    /** For RAPM, from lineup requests (at most 3 + N) */
     const lineupResponses = _.takeWhile(
-      _.range(0, 20).map((i) => {
+      _.range(0, 3 + numOthers).map((i) => {
         const lineupKey = `lineups${i}`;
         const lineupJson = jsonResps?.[lineupKey]?.responses?.[0];
         return lineupJson
@@ -537,6 +556,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
         off:
           teamJson?.aggregations?.tri_filter?.buckets?.off ||
           StatModels.emptyTeam(),
+        other: otherTeamStats,
         onOffMode: autoOffQuery,
         baseline:
           teamJson?.aggregations?.tri_filter?.buckets?.baseline ||
@@ -630,8 +650,8 @@ const GameFilter: React.FunctionComponent<Props> = ({
     }
   };
 
-  const maybeOn = autoOffQuery ? "On ('A')" : "'A'";
-  const maybeOff = autoOffQuery ? "Off ('B')" : "'B'";
+  const maybeOn = autoOffQuery && extraRows == 0 ? "On ('A')" : "'A'";
+  const maybeOff = autoOffQuery && extraRows == 0 ? "Off ('B')" : "'B'";
 
   // Link building:
 
@@ -970,6 +990,90 @@ const GameFilter: React.FunctionComponent<Props> = ({
                 />
               </Col>
             </Form.Group>
+            {_.range(0, extraRows).map((extraQueryIndex) => (
+              <Form.Group as={Row}>
+                <Form.Label column sm="2">
+                  '{String.fromCharCode(67 + extraQueryIndex)}' Query
+                </Form.Label>
+                <Col sm="8">
+                  {
+                    typeof window !== `undefined` ? (
+                      <Container>
+                        <Row>
+                          <InputGroup>
+                            <LineupQueryAutoSuggestText
+                              readOnly={false}
+                              placeholder="eg 'NOT (Player1 AND (Player2 OR Player3))'"
+                              initValue={otherQueries[extraQueryIndex] || ""}
+                              year={commonParams.year}
+                              gender={commonParams.gender}
+                              team={commonParams.team}
+                              games={gameSelection.games}
+                              onKeyUp={(ev: any) =>
+                                setOtherQueries((curr) => {
+                                  curr[extraQueryIndex] = ev.target.value;
+                                  return curr;
+                                })
+                              }
+                              onChange={(ev: any) =>
+                                setOtherQueries((curr) => {
+                                  curr[extraQueryIndex] = ev.target.value;
+                                  return curr;
+                                })
+                              }
+                              onKeyDown={globalKeypressHandler}
+                            />
+                            {
+                              <InputGroup.Append>
+                                <QueryFilterDropdown
+                                  queryFilters={
+                                    otherQueryFilters?.[extraQueryIndex] || []
+                                  }
+                                  setQueryFilters={(newQueryFilters) => {
+                                    setOtherQueryFilters((curr) => {
+                                      curr[extraQueryIndex] = newQueryFilters;
+                                      return curr;
+                                    });
+                                  }}
+                                  showCustomRangeFilter={() =>
+                                    setOffShowDateRangeModal(true)
+                                  }
+                                  showGameSelectorModal={() => {
+                                    setOffShowGameSelectorModal(true);
+                                  }}
+                                />
+                              </InputGroup.Append>
+                            }
+                          </InputGroup>
+                        </Row>
+                        {otherQueryFilters?.[extraQueryIndex]?.length ? (
+                          <Row>
+                            &nbsp;
+                            {(otherQueryFilters?.[extraQueryIndex] || []).map(
+                              (p, i) => (
+                                <span key={`conf${i}`}>
+                                  {i > 0 ? null : (
+                                    <span>
+                                      <Badge variant="primary">AND</Badge>{" "}
+                                    </span>
+                                  )}
+                                  {QueryDisplayUtils.showQueryFilter(
+                                    p,
+                                    commonParams.gender || "",
+                                    commonParams.year || ""
+                                  )}
+                                  &nbsp;
+                                </span>
+                              )
+                            )}
+                          </Row>
+                        ) : null}
+                      </Container>
+                    ) : null //(this construct needed to address SSR/readonly issue)
+                  }
+                </Col>
+              </Form.Group>
+            ))}
           </div>
         )}
       </GlobalKeypressManager.Consumer>

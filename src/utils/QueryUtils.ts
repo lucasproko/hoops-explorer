@@ -108,15 +108,26 @@ export class QueryUtils {
       parsed[QueryUtils.newQueryField] = parsed[QueryUtils.legacyQueryField];
       delete parsed[QueryUtils.legacyQueryField];
     }
-    // Handle nested luck + manual overrides:
+    // Handle nested luck + manual overrides + other queries:
     const luck = {} as any;
     const manualTmp = {} as any; //(start as map of arrays, will convert to array of maps later)
+    const otherQueriesTmp = {} as any;
     _.forEach(parsed, (value: any, key: string) => {
       if (_.startsWith(key, "luck.")) {
         luck[key.substring(5)] = value;
         delete parsed[key];
       } else if (_.startsWith(key, "manual.")) {
         manualTmp[key.substring(7)] = _.isArray(value) ? value : [value];
+        delete parsed[key];
+      } else if (_.startsWith(key, "otherQueries.")) {
+        const otherQueryArr = key.substring(13).split(".");
+        const otherQueryKeyIndex = parseInt(otherQueryArr[0]);
+        if (otherQueryKeyIndex >= 0) {
+          //(eg otherQueries.0.query|queryFilters)
+          const tmpObj = otherQueriesTmp[otherQueryArr[0]] || {};
+          tmpObj[otherQueryArr[1]] = value;
+          otherQueriesTmp[otherQueryArr[0]] = tmpObj;
+        }
         delete parsed[key];
       }
     });
@@ -130,6 +141,9 @@ export class QueryUtils {
           use: manualTmp.use?.[index] || false,
         };
       });
+    }
+    if (!_.isEmpty(otherQueriesTmp)) {
+      parsed.otherQueries = _.values(otherQueriesTmp);
     }
 
     // (Extra annoyance: handle bwc in change of onOffLuck becoming a boolean)
@@ -159,6 +173,15 @@ export class QueryUtils {
       delete objCopy.manual;
       _.forEach(manualOverrides[0], (value: any, key: string) => {
         objCopy["manual." + key] = manualOverrides.map((m) => m[key]);
+      });
+    }
+    if (objCopy.otherQueries && objCopy.otherQueries.length > 0) {
+      const otherQueries = objCopy.otherQueries as any[];
+      delete objCopy.otherQueries;
+      _.forEach(otherQueries, (queryObj, index) => {
+        _.forEach(queryObj, (value: any, key: string) => {
+          objCopy[`otherQueries.${index}.${key}`] = value;
+        });
       });
     }
     // Handle baseQuery/lineupQuery
