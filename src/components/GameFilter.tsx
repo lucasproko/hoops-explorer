@@ -374,10 +374,15 @@ const GameFilter: React.FunctionComponent<Props> = ({
           ...onQueryFiltersObj,
           offQuery: offQuery,
           ...offQueryFiltersObj, //(not possible to specify if auto-off)
-          otherQueries: _.zip(otherQueries, otherQueryFilters).map((qZipQ) => ({
-            query: qZipQ[0],
-            queryFilters: QueryUtils.buildFilterStr(qZipQ[1] || []),
-          })),
+          otherQueries: _.thru(
+            _.zip(otherQueries, otherQueryFilters).map((qZipQ) => ({
+              query: qZipQ[0],
+              queryFilters: QueryUtils.buildFilterStr(qZipQ[1] || []),
+            })),
+            (
+              maybeOtherQueries //(if it's empty remove it)
+            ) => (_.isEmpty(maybeOtherQueries) ? undefined : maybeOtherQueries)
+          ),
         };
     //(another ugly hack to be fixed - remove default optional fields)
     QueryUtils.cleanseQuery(primaryRequest);
