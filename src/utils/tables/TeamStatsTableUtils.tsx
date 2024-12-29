@@ -24,6 +24,7 @@ import {
   IndivStatSet,
   LineupStatSet,
   OnOffBaselineEnum,
+  OnOffBaselineOtherEnum,
   PlayerId,
   ShotStats,
   ShotStatsModel,
@@ -80,7 +81,7 @@ export type TeamStatsChangeState = {
 
 /** Get the right roster stats for on/off/etc  */
 const getRosterStats = (
-  key: OnOffBaselineEnum,
+  key: OnOffBaselineOtherEnum,
   rosterModel: RosterStatsModel,
   otherIndex?: number
 ): Array<IndivStatSet> => {
@@ -94,7 +95,7 @@ const getRosterStats = (
 
 /** Get the right roster stats for on/off/etc  */
 const getTeamStats = (
-  key: OnOffBaselineEnum,
+  key: OnOffBaselineOtherEnum,
   teamModel: TeamStatsModel,
   otherIndex?: number
 ): TeamStatSet => {
@@ -107,7 +108,7 @@ const getTeamStats = (
 
 /** Get the right roster stats for on/off/etc  */
 const getShotStats = (
-  key: OnOffBaselineEnum,
+  key: OnOffBaselineOtherEnum,
   shotModel: ShotStatsModel,
   otherIndex?: number
 ): {
@@ -198,18 +199,18 @@ export class TeamStatsTableUtils {
     const baselineOnOffKeys: OnOffBaselineEnum[] = ["baseline", "on", "off"];
 
     /** List all the query keys */
-    const getModelKeys = (): [OnOffBaselineEnum, number][] => {
+    const getModelKeys = (): [OnOffBaselineOtherEnum, number][] => {
       return (
         [
           ["baseline", 0],
           ["on", 0],
           ["off", 0],
-        ] as [OnOffBaselineEnum, number][]
+        ] as [OnOffBaselineOtherEnum, number][]
       ).concat((teamStats.other || []).map((__, ii) => ["other", ii]));
     };
 
     /** Turn one of the model keys into associative index */
-    const modelKey = (k: OnOffBaselineEnum, otherQueryIndex: number) => {
+    const modelKey = (k: OnOffBaselineOtherEnum, otherQueryIndex: number) => {
       return k == "other" ? `other_${otherQueryIndex}` : k;
     };
 
@@ -315,7 +316,7 @@ export class TeamStatsTableUtils {
             getTeamStats(k, teamStats, otherQueryIndex)
           );
 
-          if (adjustForLuck) {
+          if (adjustForLuck && k != "other") {
             //(calculate expected numbers which then get incorporated into luck calcs)
             OverrideUtils.applyPlayerOverridesToTeam(
               k,
@@ -327,27 +328,28 @@ export class TeamStatsTableUtils {
             );
           }
 
-          const luckAdj = adjustForLuck
-            ? ([
-                LuckUtils.calcOffTeamLuckAdj(
-                  getTeamStats(k, teamStats, otherQueryIndex),
-                  getRosterStats(k, rosterStats, otherQueryIndex),
-                  baseOrSeasonTeamStats,
-                  baseOrSeason3PMap,
-                  avgEfficiency,
-                  undefined,
-                  OverrideUtils.filterManualOverrides(
-                    k,
-                    gameFilterParams.manual
-                  )
-                ),
-                LuckUtils.calcDefTeamLuckAdj(
-                  getTeamStats(k, teamStats, otherQueryIndex),
-                  baseOrSeasonTeamStats,
-                  avgEfficiency
-                ),
-              ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags])
-            : undefined;
+          const luckAdj =
+            adjustForLuck && k != "other"
+              ? ([
+                  LuckUtils.calcOffTeamLuckAdj(
+                    getTeamStats(k, teamStats, otherQueryIndex),
+                    getRosterStats(k, rosterStats, otherQueryIndex),
+                    baseOrSeasonTeamStats,
+                    baseOrSeason3PMap,
+                    avgEfficiency,
+                    undefined,
+                    OverrideUtils.filterManualOverrides(
+                      k,
+                      gameFilterParams.manual
+                    )
+                  ),
+                  LuckUtils.calcDefTeamLuckAdj(
+                    getTeamStats(k, teamStats, otherQueryIndex),
+                    baseOrSeasonTeamStats,
+                    avgEfficiency
+                  ),
+                ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags])
+              : undefined;
 
           // Extra mutable set, build net margin column:
           LineupUtils.buildEfficiencyMargins(
@@ -361,7 +363,7 @@ export class TeamStatsTableUtils {
             luckAdj?.[1]
           );
 
-          if (!adjustForLuck) {
+          if (!adjustForLuck && k != "other") {
             //(else called above and incorporated into the luck adjustments)
             OverrideUtils.applyPlayerOverridesToTeam(
               k,
@@ -379,7 +381,7 @@ export class TeamStatsTableUtils {
         }
       })
     ) as {
-      [P in OnOffBaselineEnum]:
+      [P in OnOffBaselineOtherEnum]:
         | [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags]
         | undefined;
     };
@@ -464,7 +466,7 @@ export class TeamStatsTableUtils {
       })
       .fromPairs()
       .value() as {
-      [P in OnOffBaselineEnum]: LineupStatSet;
+      [P in OnOffBaselineOtherEnum]: LineupStatSet;
     };
     //(end show game info logic)
 
@@ -490,7 +492,7 @@ export class TeamStatsTableUtils {
       })
       .fromPairs()
       .value() as {
-      [P in OnOffBaselineEnum]: any;
+      [P in OnOffBaselineOtherEnum]: any;
     };
 
     /** If true, then repeat the table headers */
@@ -558,7 +560,7 @@ export class TeamStatsTableUtils {
 
     /** Builds the basic info and all the optional diags/enrichment for a single lineup set (on/off/baseline) */
     const buildTableEntries = (
-      queryKey: OnOffBaselineEnum,
+      queryKey: OnOffBaselineOtherEnum,
       displayKey: string,
       otherQueryIndex?: number
     ): TeamStatsBreakdown | undefined => {

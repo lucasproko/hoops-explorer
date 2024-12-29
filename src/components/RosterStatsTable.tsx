@@ -629,6 +629,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         return "B";
       case "baseline":
         return "Base";
+      default:
+        return "unknown";
     }
   };
 

@@ -100,13 +100,13 @@ export type RosterEntry = {
   lon?: number;
 };
 
-export type OnOffBaselineEnum = "on" | "off" | "baseline" | "other";
-export type OnOffBaselineGlobalEnum =
-  | "on"
-  | "off"
-  | "baseline"
-  | "other"
-  | "global";
+/** TODO: this doesn't yet support other */
+export type OnOffBaselineEnum = "on" | "off" | "baseline";
+
+export type OnOffBaselineOtherEnum = OnOffBaselineEnum | "other";
+
+/** TODO: this doesn't yet support other */
+export type OnOffBaselineGlobalEnum = "on" | "off" | "baseline" | "global";
 
 //////////////////////////////////////
 
