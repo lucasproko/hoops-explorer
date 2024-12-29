@@ -228,7 +228,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
   function buildLineupQueriesFromOnOffQueries(): {
     on?: CommonFilterParams;
     off?: CommonFilterParams;
-    others?: CommonFilterParams[];
+    others?: (CommonFilterParams | undefined)[];
   } {
     //TODO: should tidy this up so can just make get lineups back from on/off query
     //      but for now we'll just hack a workaround
@@ -302,18 +302,23 @@ const GameFilter: React.FunctionComponent<Props> = ({
 
       others: _.isEmpty(otherQueries)
         ? undefined
-        : otherQueries.map((query, index) => ({
-            baseQuery: getLineupQuery(query || "*"),
-            queryFilters: QueryUtils.buildFilterStr(
-              (otherQueryFilters[index] || []).concat(
-                QueryUtils.parseFilter(
-                  commonParams.queryFilters ||
-                    ParamDefaults.defaultQueryFilters,
-                  commonParams.year || ParamDefaults.defaultYear
-                )
-              )
-            ),
-          })),
+        : _.zip(otherQueries, otherQueryFilters).map(
+            ([otherQuery, otherQueryFilter], index) =>
+              QueryUtils.nonEmptyQuery(otherQuery, otherQueryFilter || [])
+                ? {
+                    baseQuery: getLineupQuery(otherQuery || "*"),
+                    queryFilters: QueryUtils.buildFilterStr(
+                      (otherQueryFilter || []).concat(
+                        QueryUtils.parseFilter(
+                          commonParams.queryFilters ||
+                            ParamDefaults.defaultQueryFilters,
+                          commonParams.year || ParamDefaults.defaultYear
+                        )
+                      )
+                    ),
+                  }
+                : undefined
+          ),
     };
   }
 
@@ -407,17 +412,19 @@ const GameFilter: React.FunctionComponent<Props> = ({
     // Lineups (eg for RAPM) calculations:
     //TODO: should tidy this up so can just make get lineups back from on/off query
     //      but for now we'll just hack a workaround
-    const lineupRequests: LineupFilterParams[] = alsoPullLineups
+    const lineupRequests: (LineupFilterParams | undefined)[] = alsoPullLineups
       ? _.thru(alsoPullLineups, (__) => {
           const lineupQueriesAndFilters = buildLineupQueriesFromOnOffQueries();
-          return [
-            QueryUtils.cleanseQuery({
-              ...commonParams,
-            }),
-          ]
+          return (
+            [
+              QueryUtils.cleanseQuery({
+                ...commonParams,
+              }),
+            ] as (LineupFilterParams | undefined)[]
+          )
             .concat(
               _.isEmpty(lineupQueriesAndFilters.on)
-                ? []
+                ? [undefined]
                 : [
                     QueryUtils.cleanseQuery({
                       ...commonParams,
@@ -427,7 +434,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
             )
             .concat(
               _.isEmpty(lineupQueriesAndFilters.off)
-                ? []
+                ? [undefined]
                 : [
                     QueryUtils.cleanseQuery({
                       ...commonParams,
@@ -436,13 +443,26 @@ const GameFilter: React.FunctionComponent<Props> = ({
                   ]
             )
             .map((l) => {
-              return startShowGameInfo
+              return l
                 ? {
                     ...l,
                     showGameInfo: startShowGameInfo,
                   }
-                : l;
-            });
+                : undefined;
+            })
+            .concat(
+              (lineupQueriesAndFilters.others || []).map((l) => {
+                return l
+                  ? {
+                      ...QueryUtils.cleanseQuery({
+                        ...commonParams,
+                        ...l,
+                      }),
+                      showGameInfo: startShowGameInfo,
+                    }
+                  : undefined;
+              })
+            );
         })
       : [];
 
@@ -494,12 +514,16 @@ const GameFilter: React.FunctionComponent<Props> = ({
             : []
         )
         .concat(
-          lineupRequests.map((req, reqIndex) => {
-            return {
-              tag: `lineups${reqIndex}`,
-              context: ParamPrefixes.lineup as ParamPrefixesType,
-              paramsObj: req,
-            };
+          lineupRequests.flatMap((req, reqIndex) => {
+            return req //(the index ensures we now about jumps in other queries)
+              ? [
+                  {
+                    tag: `lineups${reqIndex}`,
+                    context: ParamPrefixes.lineup as ParamPrefixesType,
+                    paramsObj: req,
+                  },
+                ]
+              : [];
           })
         ),
     ];
@@ -532,30 +556,27 @@ const GameFilter: React.FunctionComponent<Props> = ({
     // Can get additional rows of data
     // For now, just take the first 20 others, TODO make arbitrary
     const MAX_OTHERS = 20;
-    const otherTeamStats = _.takeWhile(
-      _.range(0, MAX_OTHERS).map((i) => {
-        return teamJson?.aggregations?.tri_filter?.buckets?.[`other_${i}`];
-      }),
-      (q: any) => q != undefined
-    );
-    const numOthers = otherTeamStats.length;
+    var varNumOthers = -1;
+    const otherTeamStats = _.range(0, MAX_OTHERS).map((i) => {
+      const q = teamJson?.aggregations?.tri_filter?.buckets?.[`other_${i}`];
+      if (q) varNumOthers = i;
+      return q || StatModels.emptyTeam();
+    });
+    const numOthers = 1 + varNumOthers; //the actual number
 
     /** For RAPM, from lineup requests (at most 3 + N) */
-    const lineupResponses = _.takeWhile(
-      _.range(0, 3 + numOthers).map((i) => {
-        const lineupKey = `lineups${i}`;
-        const lineupJson = jsonResps?.[lineupKey]?.responses?.[0];
-        return lineupJson
-          ? {
-              lineups: lineupJson?.aggregations?.lineups?.buckets,
-              error_code: wasError
-                ? lineupJson?.status || jsonStatuses?.[lineupKey] || "Unknown"
-                : undefined,
-            }
-          : undefined;
-      }),
-      (q: any) => q != undefined
-    ) as LineupStatsModel[];
+    const lineupResponses = _.range(0, 3 + numOthers).map((i) => {
+      const lineupKey = `lineups${i}`;
+      const lineupJson = jsonResps?.[lineupKey]?.responses?.[0];
+      return lineupJson
+        ? {
+            lineups: lineupJson?.aggregations?.lineups?.buckets,
+            error_code: wasError
+              ? lineupJson?.status || jsonStatuses?.[lineupKey] || "Unknown"
+              : undefined,
+          }
+        : StatModels.emptyLineup();
+    }) as LineupStatsModel[];
 
     onStats(
       {
@@ -565,7 +586,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
         off:
           teamJson?.aggregations?.tri_filter?.buckets?.off ||
           StatModels.emptyTeam(),
-        other: otherTeamStats,
+        other: _.take(otherTeamStats, numOthers),
         onOffMode: autoOffQuery,
         baseline:
           teamJson?.aggregations?.tri_filter?.buckets?.baseline ||
