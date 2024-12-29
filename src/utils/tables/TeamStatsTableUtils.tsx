@@ -25,6 +25,7 @@ import {
   LineupStatSet,
   OnOffBaselineEnum,
   PlayerId,
+  ShotStats,
   ShotStatsModel,
   StatModels,
   TeamStatSet,
@@ -48,6 +49,7 @@ export type TeamStatsOnOffBase = {
   baseline?: TeamStatsBreakdown;
   on?: TeamStatsBreakdown;
   off?: TeamStatsBreakdown;
+  other: (TeamStatsBreakdown | undefined)[];
   diffs: GenericTableRow[];
 };
 
@@ -74,6 +76,50 @@ export type TeamStatsReadOnlyState = {
 export type TeamStatsChangeState = {
   setShowGrades: (showGradesCfg: string) => void;
   setShotChartConfig: (opts: UserChartOpts) => void;
+};
+
+/** Get the right roster stats for on/off/etc  */
+const getRosterStats = (
+  key: OnOffBaselineEnum,
+  rosterModel: RosterStatsModel,
+  otherIndex?: number
+): Array<IndivStatSet> => {
+  if (key == "other") {
+    //TODO: once we have "other" keys plumbed in, handled this
+    return [];
+  } else {
+    return rosterModel[key] || [];
+  }
+};
+
+/** Get the right roster stats for on/off/etc  */
+const getTeamStats = (
+  key: OnOffBaselineEnum,
+  teamModel: TeamStatsModel,
+  otherIndex?: number
+): TeamStatSet => {
+  if (key == "other") {
+    return teamModel.other?.[otherIndex || 0] || StatModels.emptyTeam();
+  } else {
+    return teamModel[key] || StatModels.emptyTeam();
+  }
+};
+
+/** Get the right roster stats for on/off/etc  */
+const getShotStats = (
+  key: OnOffBaselineEnum,
+  shotModel: ShotStatsModel,
+  otherIndex?: number
+): {
+  off: ShotStats;
+  def: ShotStats;
+} => {
+  if (key == "other") {
+    //TODO: once we have "other" keys plumbed in, handled this
+    return { off: {}, def: {} };
+  } else {
+    return shotModel[key] || { off: {}, def: {} };
+  }
 };
 
 // Business logic:
@@ -110,7 +156,7 @@ export class TeamStatsTableUtils {
       showHelp,
     } = readOnlyState;
 
-    //TODO: copy/paste
+    // Some handy strings
     const offPrefixFn = (key: string) => "off_" + key;
     const offCellMetaFn = (key: string, val: any) => "off";
     const defPrefixFn = (key: string) => "def_" + key;
@@ -148,7 +194,24 @@ export class TeamStatsTableUtils {
       teamSeasonLookup
     ); //TODO: which set do I actually want to use for positional calcs here?
 
-    const baselineOnOffKeys = ["baseline", "on", "off"] as OnOffBaselineEnum[];
+    /** List all the normal query keys */
+    const baselineOnOffKeys: OnOffBaselineEnum[] = ["baseline", "on", "off"];
+
+    /** List all the query keys */
+    const getModelKeys = (): [OnOffBaselineEnum, number][] => {
+      return (
+        [
+          ["baseline", 0],
+          ["on", 0],
+          ["off", 0],
+        ] as [OnOffBaselineEnum, number][]
+      ).concat((teamStats.other || []).map((__, ii) => ["other", ii]));
+    };
+
+    /** Turn one of the model keys into associative index */
+    const modelKey = (k: OnOffBaselineEnum, otherQueryIndex: number) => {
+      return k == "other" ? `other_${otherQueryIndex}` : k;
+    };
 
     //TODO: need to do a better job of deciding which one to use (or possibly a blend?)
     const positionFromPlayerIdGlobal = showRoster
@@ -158,13 +221,13 @@ export class TeamStatsTableUtils {
         )
       : {};
 
-    const positionFromPlayerId = _.chain(baselineOnOffKeys)
-      .map((k) => {
-        const retVal: [OnOffBaselineEnum, Record<string, IndivPosInfo>] = [
-          k,
-          showRoster && rosterStats[k]?.length
+    const positionFromPlayerId = _.chain(getModelKeys())
+      .map(([k, otherQueryIndex]) => {
+        const retVal: [string, Record<string, IndivPosInfo>] = [
+          modelKey(k, otherQueryIndex),
+          showRoster && getRosterStats(k, rosterStats, otherQueryIndex).length
             ? LineupTableUtils.buildPositionPlayerMap(
-                rosterStats[k],
+                getRosterStats(k, rosterStats, otherQueryIndex),
                 teamSeasonLookup,
                 globalRosterInfo
               )
@@ -174,14 +237,6 @@ export class TeamStatsTableUtils {
       })
       .fromPairs()
       .value();
-    const positionFromPlayerIdOff =
-      showRoster && rosterStats.off?.length
-        ? LineupTableUtils.buildPositionPlayerMap(
-            rosterStats.off,
-            teamSeasonLookup,
-            globalRosterInfo
-          )
-        : {};
 
     // If manual overrides specified we have some more work to do:
     const manualOverridesAsMap = _.isNil(gameFilterParams.manual)
@@ -191,16 +246,23 @@ export class TeamStatsTableUtils {
     // If building roster info then enrich player stats:
     const playerInfoByIdBy0AB =
       showRoster || manualOverridesAsMap
-        ? baselineOnOffKeys.map((queryKey) => {
-            const playerStatsBy0AB = rosterStats[queryKey] || [];
-            const teamStatsBy0AB =
-              teamStats[queryKey] || StatModels.emptyTeam();
-            if (teamStatsBy0AB.doc_count) {
+        ? getModelKeys().map(([queryKey, otherQueryIndex]) => {
+            const playerStatsFor0AB = getRosterStats(
+              queryKey,
+              rosterStats,
+              otherQueryIndex
+            );
+            const teamStatsFor0AB = getTeamStats(
+              queryKey,
+              teamStats,
+              otherQueryIndex
+            );
+            if (teamStatsFor0AB.doc_count) {
               /** Need player info for tooltip view/lineup decoration */
               const playerInfo = LineupTableUtils.buildBaselinePlayerInfo(
-                playerStatsBy0AB,
+                playerStatsFor0AB,
                 globalRosterStatsByCode,
-                teamStatsBy0AB,
+                teamStatsFor0AB,
                 avgEfficiency,
                 adjustForLuck,
                 luckConfig.base,
@@ -244,12 +306,14 @@ export class TeamStatsTableUtils {
 
     // Create luck adjustments, inject luck into mutable stat sets, and calculate efficiency margins
     const luckAdjustment = _.fromPairs(
-      baselineOnOffKeys.map((k, ii) => {
-        if (teamStats[k]?.doc_count) {
+      getModelKeys().map(([k, otherQueryIndex], ii) => {
+        if (getTeamStats(k, teamStats, otherQueryIndex).doc_count) {
           const playerStats = playerInfoByIdBy0AB[ii] || {};
 
           // Before applying luck, reset any changes due to manual player overrides or earlier iterations of luck
-          OverrideUtils.clearTeamManualOrLuckOverrides(teamStats[k]);
+          OverrideUtils.clearTeamManualOrLuckOverrides(
+            getTeamStats(k, teamStats, otherQueryIndex)
+          );
 
           if (adjustForLuck) {
             //(calculate expected numbers which then get incorporated into luck calcs)
@@ -257,7 +321,7 @@ export class TeamStatsTableUtils {
               k,
               gameFilterParams.manual || [],
               playerStats,
-              teamStats[k] || {},
+              getTeamStats(k, teamStats, otherQueryIndex),
               avgEfficiency,
               adjustForLuck
             );
@@ -266,8 +330,8 @@ export class TeamStatsTableUtils {
           const luckAdj = adjustForLuck
             ? ([
                 LuckUtils.calcOffTeamLuckAdj(
-                  teamStats[k]!,
-                  rosterStats[k] || [],
+                  getTeamStats(k, teamStats, otherQueryIndex),
+                  getRosterStats(k, rosterStats, otherQueryIndex),
                   baseOrSeasonTeamStats,
                   baseOrSeason3PMap,
                   avgEfficiency,
@@ -278,7 +342,7 @@ export class TeamStatsTableUtils {
                   )
                 ),
                 LuckUtils.calcDefTeamLuckAdj(
-                  teamStats[k]!,
+                  getTeamStats(k, teamStats, otherQueryIndex),
                   baseOrSeasonTeamStats,
                   avgEfficiency
                 ),
@@ -286,10 +350,16 @@ export class TeamStatsTableUtils {
             : undefined;
 
           // Extra mutable set, build net margin column:
-          LineupUtils.buildEfficiencyMargins(teamStats[k]);
+          LineupUtils.buildEfficiencyMargins(
+            getTeamStats(k, teamStats, otherQueryIndex)
+          );
 
           // Mutate stats object to inject luck
-          LuckUtils.injectLuck(teamStats[k]!, luckAdj?.[0], luckAdj?.[1]);
+          LuckUtils.injectLuck(
+            getTeamStats(k, teamStats, otherQueryIndex),
+            luckAdj?.[0],
+            luckAdj?.[1]
+          );
 
           if (!adjustForLuck) {
             //(else called above and incorporated into the luck adjustments)
@@ -297,15 +367,15 @@ export class TeamStatsTableUtils {
               k,
               gameFilterParams.manual || [],
               playerStats,
-              teamStats[k] || {},
+              getTeamStats(k, teamStats, otherQueryIndex),
               avgEfficiency,
               adjustForLuck
             );
           }
-          return [k, luckAdj];
+          return [modelKey(k, otherQueryIndex), luckAdj];
         } else {
           //(no docs)
-          return [k, undefined];
+          return [modelKey(k, otherQueryIndex), undefined];
         }
       })
     ) as {
@@ -357,9 +427,9 @@ export class TeamStatsTableUtils {
         })()
       : ([undefined, undefined, undefined] as [any, any, any]);
 
-    baselineOnOffKeys.forEach((k) => {
+    getModelKeys().forEach(([k, otherQueryIndex]) => {
       TableDisplayUtils.injectPlayTypeInfo(
-        teamStats[k] || StatModels.emptyTeam(),
+        getTeamStats(k, teamStats, otherQueryIndex),
         false,
         false,
         teamSeasonLookup
@@ -368,8 +438,8 @@ export class TeamStatsTableUtils {
 
     // Show game info logic:
     const orderedMutableOppoList: Record<string, GameInfoStatSet> = {};
-    const totalLineupsByQueryKey = _.chain(baselineOnOffKeys)
-      .map((k, ii) => {
+    const totalLineupsByQueryKey = _.chain(getModelKeys())
+      .map(([k, otherQueryIndex], ii) => {
         if (showGameInfo) {
           const lineups = lineupStats?.[ii]?.lineups || [];
           const totalLineup = _.assign(
@@ -387,9 +457,9 @@ export class TeamStatsTableUtils {
             (g) => g.date
           );
           orderedMutableOppoList[k] = {};
-          return [k, totalLineup];
+          return [modelKey(k, otherQueryIndex), totalLineup];
         } else {
-          return [k, {}];
+          return [modelKey(k, otherQueryIndex), {}];
         }
       })
       .fromPairs()
@@ -489,10 +559,13 @@ export class TeamStatsTableUtils {
     /** Builds the basic info and all the optional diags/enrichment for a single lineup set (on/off/baseline) */
     const buildTableEntries = (
       queryKey: OnOffBaselineEnum,
-      displayKey: string
+      displayKey: string,
+      otherQueryIndex?: number
     ): TeamStatsBreakdown | undefined => {
+      //TODO: for lineups, handle "other query" lineups
       const queryIndex = queryKey == "baseline" ? 0 : queryKey == "on" ? 1 : 2;
-      const hasData = (teamStats[queryKey]?.doc_count || 0) > 0;
+      const hasData =
+        (getTeamStats(queryKey, teamStats, otherQueryIndex).doc_count || 0) > 0;
 
       const showExtraHeader =
         queryKey == "off"
@@ -538,7 +611,7 @@ export class TeamStatsTableUtils {
                   mediumTier: divisionStatsCache.Medium,
                   lowTier: divisionStatsCache.Low,
                 },
-                team: teamStats[queryKey],
+                team: getTeamStats(queryKey, teamStats, otherQueryIndex),
               })
             : [],
           showShotCharts
@@ -546,8 +619,8 @@ export class TeamStatsTableUtils {
                 GenericTableOps.buildTextRow(
                   <ShotChartDiagView
                     title={displayKey}
-                    off={shotStats[queryKey].off}
-                    def={shotStats[queryKey].def}
+                    off={getShotStats(queryKey, shotStats).off}
+                    def={getShotStats(queryKey, shotStats).def}
                     gender={gameFilterParams.gender as "Men" | "Women"}
                     quickSwitchOptions={shotChartQuickSwitchOptions.filter(
                       (opt) => opt.title != displayKey
@@ -566,7 +639,7 @@ export class TeamStatsTableUtils {
                 GenericTableOps.buildTextRow(
                   <TeamPlayTypeDiagView
                     title={displayKey}
-                    players={rosterStats[queryKey] || []}
+                    players={getRosterStats(queryKey, rosterStats)}
                     rosterStatsByCode={globalRosterStatsByCode}
                     teamStats={teamStatsByQuery[queryKey]}
                     avgEfficiency={avgEfficiency}
@@ -587,7 +660,11 @@ export class TeamStatsTableUtils {
                   <span>
                     <TeamExtraStatsInfoView
                       name={displayKey}
-                      teamStatSet={teamStats[queryKey]}
+                      teamStatSet={getTeamStats(
+                        queryKey,
+                        teamStats,
+                        otherQueryIndex
+                      )}
                       showGrades={showGrades}
                       grades={
                         showGrades
@@ -619,8 +696,8 @@ export class TeamStatsTableUtils {
                         teamSeasonLookup
                       )}
                       positionInfoSample={
-                        teamStats[queryKey].doc_count <
-                        teamStats.global.doc_count
+                        getTeamStats(queryKey, teamStats, otherQueryIndex)
+                          .doc_count < teamStats.global.doc_count
                           ? LineupTableUtils.getPositionalInfo(
                               lineupStats[queryIndex]?.lineups || [],
                               positionFromPlayerId[queryKey],
@@ -695,7 +772,15 @@ export class TeamStatsTableUtils {
       baseline: buildTableEntries("baseline", "Baseline"),
       on: buildTableEntries("on", "On ('A')"),
       off: buildTableEntries("off", "Off ('B')"),
+      other: (teamStats.other || []).map((__, queryIndex) => {
+        return buildTableEntries(
+          "other",
+          `'${String.fromCharCode(67 + queryIndex)}'`,
+          queryIndex
+        );
+      }),
       diffs: _.flatten([
+        //(note diffs not supported when showing multiple queries)
         aMinusB
           ? _.flatten([
               [

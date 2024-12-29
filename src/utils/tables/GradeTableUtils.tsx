@@ -49,7 +49,7 @@ export type PositionStatsCache = Record<string, StatsCaches>;
 
 type TeamProps = {
   isFullSelection?: boolean;
-  selectionType: "on" | "off" | "baseline";
+  selectionType: "on" | "off" | "baseline" | "other";
   config: string;
   setConfig: (newConfig: string) => void;
   teamStats: StatsCaches;

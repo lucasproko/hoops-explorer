@@ -29,5 +29,5 @@ export class FeatureFlags {
   static readonly shotCharts = true;
 
   /** Show some extra rows in on/off mode */
-  static readonly advancedOnOffMode = true;
+  static readonly advancedOnOffMode = false;
 }

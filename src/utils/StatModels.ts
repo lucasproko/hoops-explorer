@@ -100,8 +100,13 @@ export type RosterEntry = {
   lon?: number;
 };
 
-export type OnOffBaselineEnum = "on" | "off" | "baseline";
-export type OnOffBaselineGlobalEnum = "on" | "off" | "baseline" | "global";
+export type OnOffBaselineEnum = "on" | "off" | "baseline" | "other";
+export type OnOffBaselineGlobalEnum =
+  | "on"
+  | "off"
+  | "baseline"
+  | "other"
+  | "global";
 
 //////////////////////////////////////
 
