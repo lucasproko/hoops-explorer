@@ -86,8 +86,7 @@ const getRosterStats = (
   otherIndex?: number
 ): Array<IndivStatSet> => {
   if (key == "other") {
-    //TODO: once we have "other" keys plumbed in, handled this
-    return [];
+    return rosterModel.other?.[otherIndex || 0] || [];
   } else {
     return rosterModel[key] || [];
   }
@@ -290,6 +289,7 @@ export class TeamStatsTableUtils {
     // Create luck adjustments, inject luck into mutable stat sets, and calculate efficiency margins
     const luckAdjustment = _.fromPairs(
       getModelKeys().map(([k, otherQueryIndex], ii) => {
+        const compositeKey = modelKey(k, otherQueryIndex);
         if (getTeamStats(k, teamStats, otherQueryIndex).doc_count) {
           const playerStats = playerInfoByIdBy0AB[ii] || {};
 
@@ -299,6 +299,7 @@ export class TeamStatsTableUtils {
           );
 
           if (adjustForLuck && k != "other") {
+            //(currently don't support manual overrides for "other" queries)
             //(calculate expected numbers which then get incorporated into luck calcs)
             OverrideUtils.applyPlayerOverridesToTeam(
               k,
@@ -310,28 +311,31 @@ export class TeamStatsTableUtils {
             );
           }
 
-          const luckAdj =
-            adjustForLuck && k != "other"
-              ? ([
-                  LuckUtils.calcOffTeamLuckAdj(
-                    getTeamStats(k, teamStats, otherQueryIndex),
-                    getRosterStats(k, rosterStats, otherQueryIndex),
-                    baseOrSeasonTeamStats,
-                    baseOrSeason3PMap,
-                    avgEfficiency,
-                    undefined,
-                    OverrideUtils.filterManualOverrides(
-                      k,
-                      gameFilterParams.manual
-                    )
-                  ),
-                  LuckUtils.calcDefTeamLuckAdj(
-                    getTeamStats(k, teamStats, otherQueryIndex),
-                    baseOrSeasonTeamStats,
-                    avgEfficiency
-                  ),
-                ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags])
-              : undefined;
+          //TODO: some (k != "other") to fix here
+          const luckAdj = adjustForLuck
+            ? ([
+                LuckUtils.calcOffTeamLuckAdj(
+                  getTeamStats(k, teamStats, otherQueryIndex),
+                  getRosterStats(k, rosterStats, otherQueryIndex),
+                  baseOrSeasonTeamStats,
+                  baseOrSeason3PMap,
+                  avgEfficiency,
+                  undefined,
+                  k != "other"
+                    ? //(currently don't support manual overrides for "other" queries)
+                      OverrideUtils.filterManualOverrides(
+                        k,
+                        gameFilterParams.manual
+                      )
+                    : []
+                ),
+                LuckUtils.calcDefTeamLuckAdj(
+                  getTeamStats(k, teamStats, otherQueryIndex),
+                  baseOrSeasonTeamStats,
+                  avgEfficiency
+                ),
+              ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags])
+            : undefined;
 
           // Extra mutable set, build net margin column:
           LineupUtils.buildEfficiencyMargins(
@@ -346,6 +350,7 @@ export class TeamStatsTableUtils {
           );
 
           if (!adjustForLuck && k != "other") {
+            //(currently don't support manual overrides for "other" queries)
             //(else called above and incorporated into the luck adjustments)
             OverrideUtils.applyPlayerOverridesToTeam(
               k,
@@ -356,17 +361,16 @@ export class TeamStatsTableUtils {
               adjustForLuck
             );
           }
-          return [modelKey(k, otherQueryIndex), luckAdj];
+          return [compositeKey, luckAdj];
         } else {
           //(no docs)
-          return [modelKey(k, otherQueryIndex), undefined];
+          return [compositeKey, undefined];
         }
       })
-    ) as {
-      [P in OnOffBaselineOtherEnum]:
-        | [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags]
-        | undefined;
-    };
+    ) as Record<
+      string,
+      [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags] | undefined
+    >;
 
     //(end luck/manual overrides calcs)
 
@@ -424,6 +428,7 @@ export class TeamStatsTableUtils {
     const orderedMutableOppoList: Record<string, GameInfoStatSet> = {};
     const totalLineupsByQueryKey = _.chain(getModelKeys())
       .map(([k, otherQueryIndex], ii) => {
+        const compositeKey = modelKey(k, otherQueryIndex);
         if (showGameInfo) {
           const lineups = lineupStats?.[ii]?.lineups || [];
           const totalLineup = _.assign(
@@ -440,16 +445,14 @@ export class TeamStatsTableUtils {
             (totalLineup.game_info as Array<GameInfoStatSet>) || [],
             (g) => g.date
           );
-          orderedMutableOppoList[k] = {};
-          return [modelKey(k, otherQueryIndex), totalLineup];
+          orderedMutableOppoList[compositeKey] = {};
+          return [compositeKey, totalLineup];
         } else {
-          return [modelKey(k, otherQueryIndex), {}];
+          return [compositeKey, {}];
         }
       })
       .fromPairs()
-      .value() as {
-      [P in OnOffBaselineOtherEnum]: LineupStatSet;
-    };
+      .value();
     //(end show game info logic)
 
     // Last stage before building the table: inject titles into the stats:
@@ -581,6 +584,7 @@ export class TeamStatsTableUtils {
       displayKey: string,
       otherQueryIndex?: number
     ): TeamStatsBreakdown | undefined => {
+      const compositeQueryKey = modelKey(queryKey, otherQueryIndex || 0);
       const queryIndex = _.thru(queryKey, (k) => {
         switch (k) {
           case "baseline":
@@ -668,7 +672,11 @@ export class TeamStatsTableUtils {
                 GenericTableOps.buildTextRow(
                   <TeamPlayTypeDiagView
                     title={displayKey}
-                    players={getRosterStats(queryKey, rosterStats)}
+                    players={getRosterStats(
+                      queryKey,
+                      rosterStats,
+                      otherQueryIndex
+                    )}
                     rosterStatsByCode={globalRosterStatsByCode}
                     teamStats={teamStatsByCombinedQuery(
                       queryKey,
@@ -732,9 +740,7 @@ export class TeamStatsTableUtils {
                           .doc_count < teamStats.global.doc_count
                           ? LineupTableUtils.getPositionalInfo(
                               lineupStats[queryIndex]?.lineups || [],
-                              positionFromPlayerId[
-                                modelKey(queryKey, otherQueryIndex || 0)
-                              ],
+                              positionFromPlayerId[compositeQueryKey],
                               teamSeasonLookup
                             )
                           : undefined
@@ -753,7 +759,6 @@ export class TeamStatsTableUtils {
             : [],
         ]);
 
-        //TODO: lots more queryKey uses to fix here:
         const teamDiagRows = _.flatten([
           showGameInfo
             ? [
@@ -761,15 +766,18 @@ export class TeamStatsTableUtils {
                   <GameInfoDiagView
                     oppoList={
                       LineupUtils.isGameInfoStatSet(
-                        totalLineupsByQueryKey[queryKey].game_info
+                        totalLineupsByQueryKey[compositeQueryKey].game_info
                       )
                         ? LineupUtils.getGameInfo(
-                            totalLineupsByQueryKey[queryKey].game_info || {}
+                            totalLineupsByQueryKey[compositeQueryKey]
+                              .game_info || {}
                           )
-                        : (totalLineupsByQueryKey[queryKey]
+                        : (totalLineupsByQueryKey[compositeQueryKey]
                             .game_info as GameInfoStatSet[])
                     }
-                    orderedOppoList={_.clone(orderedMutableOppoList[queryKey])}
+                    orderedOppoList={_.clone(
+                      orderedMutableOppoList[compositeQueryKey]
+                    )}
                     params={{}}
                     maxOffPoss={-1}
                   />,
@@ -777,13 +785,13 @@ export class TeamStatsTableUtils {
                 ),
               ]
             : [],
-          showLuckAdjDiags && luckAdjustment[queryKey]
+          showLuckAdjDiags && luckAdjustment[compositeQueryKey]
             ? [
                 GenericTableOps.buildTextRow(
                   <LuckAdjDiagView
                     name={displayKey}
-                    offLuck={luckAdjustment[queryKey]![0]}
-                    defLuck={luckAdjustment[queryKey]![1]}
+                    offLuck={luckAdjustment[compositeQueryKey]![0]}
+                    defLuck={luckAdjustment[compositeQueryKey]![1]}
                     baseline={luckConfig.base}
                     showHelp={showHelp}
                   />,

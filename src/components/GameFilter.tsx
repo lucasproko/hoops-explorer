@@ -599,6 +599,8 @@ const GameFilter: React.FunctionComponent<Props> = ({
           : undefined,
       },
       {
+        //(we don't support "other" additional queries for roster compare)
+        //TODO: in fact we should remove it from the UI when "other" queries are specified
         on: rosterCompareJson?.aggregations?.tri_filter?.buckets?.on || {},
         off: rosterCompareJson?.aggregations?.tri_filter?.buckets?.off || {},
         onOffMode: autoOffQuery,
@@ -615,6 +617,12 @@ const GameFilter: React.FunctionComponent<Props> = ({
         off:
           rosterStatsJson?.aggregations?.tri_filter?.buckets?.off?.player
             ?.buckets || [],
+        other: _.range(0, numOthers).map((i) => {
+          const q =
+            rosterStatsJson?.aggregations?.tri_filter?.buckets?.[`other_${i}`]
+              ?.player?.buckets;
+          return q || [];
+        }),
         onOffMode: autoOffQuery,
         baseline:
           rosterStatsJson?.aggregations?.tri_filter?.buckets?.baseline?.player

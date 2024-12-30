@@ -99,6 +99,7 @@ import { UrlRouting } from "../utils/UrlRouting";
 export type RosterStatsModel = {
   on: Array<IndivStatSet>;
   off: Array<IndivStatSet>;
+  other: Array<Array<IndivStatSet>>;
   baseline: Array<IndivStatSet>;
   global: Array<IndivStatSet>;
 } & {
