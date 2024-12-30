@@ -124,6 +124,68 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
         gameFilterParams={Object {}}
         navigationRefs={
           Object {
+            "otherRefs": Array [
+              Object {
+                "current": null,
+              },
+              Object {
+                "current": null,
+              },
+              Object {
+                "current": null,
+              },
+              Object {
+                "current": null,
+              },
+              Object {
+                "current": null,
+              },
+              Object {
+                "current": null,
+              },
+              Object {
+                "current": null,
+              },
+              Object {
+                "current": null,
+              },
+              Object {
+                "current": null,
+              },
+              Object {
+                "current": null,
+              },
+              Object {
+                "current": null,
+              },
+              Object {
+                "current": null,
+              },
+              Object {
+                "current": null,
+              },
+              Object {
+                "current": null,
+              },
+              Object {
+                "current": null,
+              },
+              Object {
+                "current": null,
+              },
+              Object {
+                "current": null,
+              },
+              Object {
+                "current": null,
+              },
+              Object {
+                "current": null,
+              },
+              Object {
+                "current": null,
+              },
+            ],
             "refA": Object {
               "current": null,
             },

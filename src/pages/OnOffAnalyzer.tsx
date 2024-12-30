@@ -60,6 +60,9 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
   const teamAnalysisRef = useRef<HTMLDivElement>(null);
   const teamAnalysisRefA = useRef<HTMLTableRowElement>(null);
   const teamAnalysisRefB = useRef<HTMLTableRowElement>(null);
+  const teamAnalysisOtherRefs = _.range(20).map(() =>
+    useRef<HTMLTableRowElement>(null)
+  );
   const teamAnalysisRefBase = useRef<HTMLTableRowElement>(null);
   const teamAnalysisRefDiffs = useRef<HTMLTableRowElement>(null);
   const indivAnalysisRef = useRef<HTMLDivElement>(null);
@@ -71,7 +74,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     "Roster Comp.": { ref: lineupComparisonRef },
   };
   const complexNavigationsRefs = (params: GameFilterParams) => {
-    const onOffMode = params.autoOffQuery;
+    const onOffMode = params.autoOffQuery && !_.isEmpty(params.otherQueries);
     const onKey = onOffMode ? "On" : "A";
     const offKey = onOffMode ? "Off" : "B";
     return {
@@ -87,6 +90,16 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
           !params.autoOffQuery &&
           _.isEmpty(params.offQueryFilters),
       },
+      ..._.chain(params.otherQueries || [])
+        .map((_, idx) => [
+          `${String.fromCharCode(67 + idx)}`,
+          {
+            ref: teamAnalysisOtherRefs[idx]!,
+            offset: 75,
+          },
+        ])
+        .fromPairs()
+        .value(),
       Diffs: params.teamDiffs
         ? { ref: teamAnalysisRefDiffs, offset: 75 }
         : { skip: true },
@@ -104,7 +117,8 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       (!_.isEmpty(params.onQuery) || // Have multiple queries
         !_.isEmpty(params.offQuery) ||
         !_.isEmpty(params.onQueryFilters) ||
-        !_.isEmpty(params.offQueryFilters))
+        !_.isEmpty(params.offQueryFilters) ||
+        !_.isEmpty(params.otherQueries))
     ) {
       return complexNavigationsRefs(params);
     } else {
@@ -339,6 +353,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
           navigationRefs={{
             refA: teamAnalysisRefA,
             refB: teamAnalysisRefB,
+            otherRefs: teamAnalysisOtherRefs,
             refBase: teamAnalysisRefBase,
             refDiffs: teamAnalysisRefDiffs,
           }}

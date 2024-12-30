@@ -73,6 +73,7 @@ type Props = {
   navigationRefs: {
     refA: React.RefObject<HTMLTableRowElement>;
     refB: React.RefObject<HTMLTableRowElement>;
+    otherRefs: React.RefObject<HTMLTableRowElement>[];
     refBase: React.RefObject<HTMLTableRowElement>;
     refDiffs: React.RefObject<HTMLTableRowElement>;
   };
@@ -293,8 +294,8 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   const tableData = _.flatten([
     buildRows(tableInfo.on, navigationRefs.refA, true),
     buildRows(tableInfo.off, navigationRefs.refB, true),
-    (tableInfo.other || []).flatMap((other) =>
-      other ? buildRows(other, navigationRefs.refBase, true) : []
+    (tableInfo.other || []).flatMap((other, idx) =>
+      other ? buildRows(other, navigationRefs.otherRefs[idx]!, true) : []
     ),
     buildRows(tableInfo.baseline, navigationRefs.refBase, false),
     // Diffs if showing:

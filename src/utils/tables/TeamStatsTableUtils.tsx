@@ -521,7 +521,7 @@ export class TeamStatsTableUtils {
       showRoster ||
       showGameInfo ||
       showPlayTypes ||
-      showLuckAdjDiags;
+      (showLuckAdjDiags && adjustForLuck);
     const showingOn = teamStats.on?.doc_count ? true : false;
     const showingOnOrOff =
       showingOn || (teamStats.off?.doc_count ? true : false);
@@ -629,6 +629,8 @@ export class TeamStatsTableUtils {
           ? showingSomeDiags && showingOn
           : queryKey == "baseline"
           ? showingSomeDiags && showingOnOrOff
+          : queryKey == "other"
+          ? showingSomeDiags
           : false;
 
       if (hasData) {
