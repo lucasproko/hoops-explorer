@@ -763,6 +763,17 @@ const GameFilter: React.FunctionComponent<Props> = ({
         return [
           <a
             target="_blank"
+            href={UrlRouting.getMatchupUrl({
+              gender: params.gender,
+              year: params.year,
+              team: params.team,
+            })}
+          >
+            Game Reports
+          </a>,
+          "Lineups: ",
+          <a
+            target="_blank"
             href={UrlRouting.getLineupUrl(
               buildLineups(params, {
                 baseQuery: params.baseQuery,
@@ -771,7 +782,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
               {}
             )}
           >
-            Base Lineups
+            Base
           </a>,
         ]
           .concat(
@@ -784,7 +795,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                       {}
                     )}
                   >
-                    'A' Lineups
+                    'A'
                   </a>,
                 ]
               : []
@@ -799,23 +810,28 @@ const GameFilter: React.FunctionComponent<Props> = ({
                       {}
                     )}
                   >
-                    'B' Lineups
+                    'B'
                   </a>,
                 ]
               : []
           )
-          .concat([
-            <a
-              target="_blank"
-              href={UrlRouting.getMatchupUrl({
-                gender: params.gender,
-                year: params.year,
-                team: params.team,
-              })}
-            >
-              Game Reports
-            </a>,
-          ]);
+          .concat(
+            _.flatMap(lineupOnOffQueries.others || [], (l, idx) => {
+              return l
+                ? [
+                    <a
+                      target="_blank"
+                      href={UrlRouting.getLineupUrl(
+                        buildLineups(params, l),
+                        {}
+                      )}
+                    >
+                      '{String.fromCharCode(67 + idx)}'
+                    </a>,
+                  ]
+                : [];
+            })
+          );
       }}
       forceReload1Up={internalForceReload1Up}
       onGameSelectionChange={(newGameSelection) => {
@@ -833,6 +849,15 @@ const GameFilter: React.FunctionComponent<Props> = ({
           setOffQueryFilters(
             QueryUtils.setCustomGameSelection(offQueryFilters, undefined)
           );
+          setOtherQueryFilters((curr) => {
+            const newOtherQueryFilters = [...curr];
+            curr.forEach(
+              (q, queryIndex) =>
+                (newOtherQueryFilters[queryIndex] =
+                  QueryUtils.setCustomGameSelection(q || [], undefined))
+            );
+            return newOtherQueryFilters;
+          });
         }
         setGameSelection(newGameSelection);
       }}

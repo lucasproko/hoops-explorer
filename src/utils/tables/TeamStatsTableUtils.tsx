@@ -556,7 +556,7 @@ export class TeamStatsTableUtils {
           };
         })
       )
-      .filter((opt) => (opt.off.doc_count || 0) > 0);
+      .filter((opt) => (opt.off?.doc_count || 0) > 0);
 
     const teamPlayTypeQuickSwitchOptions = [
       {

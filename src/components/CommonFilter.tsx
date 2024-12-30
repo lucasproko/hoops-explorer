@@ -1123,7 +1123,11 @@ const CommonFilter: CommonFilterI = ({
                     {links.map((l, i) => (
                       <span>
                         {l}
-                        {i < links.length - 1 ? <span> | </span> : ""}
+                        {i < links.length - 1 && !_.isString(l) ? (
+                          <span> | </span>
+                        ) : (
+                          ""
+                        )}
                       </span>
                     ))}
                   </small>
