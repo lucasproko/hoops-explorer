@@ -163,24 +163,6 @@ export class TeamStatsTableUtils {
     const defPrefixFn = (key: string) => "def_" + key;
     const defCellMetaFn = (key: string, val: any) => "def";
 
-    const maybeOnStr = teamStats.onOffMode ? "On ('A')" : "'A'";
-    const maybeOn = TableDisplayUtils.addQueryInfo(
-      maybeOnStr,
-      gameFilterParams,
-      "on"
-    );
-    const maybeOffStr = teamStats.onOffMode ? "Off ('B')" : "'B'";
-    const maybeOff = TableDisplayUtils.addQueryInfo(
-      maybeOffStr,
-      gameFilterParams,
-      "off"
-    );
-    const maybeBase = TableDisplayUtils.addQueryInfo(
-      "Baseline",
-      gameFilterParams,
-      "baseline"
-    );
-
     const genderYearLookup = `${gameFilterParams.gender}_${gameFilterParams.year}`;
     const teamSeasonLookup = `${gameFilterParams.gender}_${gameFilterParams.team}_${gameFilterParams.year}`;
     const avgEfficiency =
@@ -472,9 +454,17 @@ export class TeamStatsTableUtils {
 
     // Last stage before building the table: inject titles into the stats:
     const teamStatsKeys = _.zip(baselineOnOffKeys, [
-      maybeBase,
-      maybeOn,
-      maybeOff,
+      TableDisplayUtils.addQueryInfo("Baseline", gameFilterParams, "baseline"),
+      TableDisplayUtils.addQueryInfo(
+        teamStats.onOffMode ? "On ('A')" : "'A'",
+        gameFilterParams,
+        "on"
+      ),
+      TableDisplayUtils.addQueryInfo(
+        teamStats.onOffMode ? "Off ('B')" : "'B'",
+        gameFilterParams,
+        "off"
+      ),
     ]);
     const teamStatsByQuery = _.chain(teamStatsKeys)
       .map((keyDesc) => {
@@ -493,6 +483,33 @@ export class TeamStatsTableUtils {
       .fromPairs()
       .value() as {
       [P in OnOffBaselineOtherEnum]: any;
+    };
+    const teamStatsByOtherQuery = _.chain(teamStats.other || [])
+      .map((other, idx) => {
+        const attachedQueryInfo = TableDisplayUtils.addQueryInfo(
+          `'${String.fromCharCode(67 + idx)}'`,
+          gameFilterParams,
+          "baseline" //TODO fix this
+        );
+        const retVal: [string, any] = [
+          modelKey("other", idx),
+          {
+            off_title: <b>{attachedQueryInfo} Offense</b>,
+            def_title: <b>{attachedQueryInfo} Defense</b>,
+            ...other,
+          },
+        ];
+        return retVal;
+      })
+      .fromPairs()
+      .value();
+    const teamStatsByCombinedQuery = (
+      queryKey: OnOffBaselineOtherEnum,
+      otherQueryIndex?: number
+    ) => {
+      return queryKey == "other"
+        ? teamStatsByOtherQuery[modelKey("other", otherQueryIndex || 0)]
+        : teamStatsByQuery[queryKey];
     };
 
     /** If true, then repeat the table headers */
@@ -588,14 +605,14 @@ export class TeamStatsTableUtils {
             : [],
           [
             GenericTableOps.buildDataRow(
-              teamStatsByQuery[queryKey],
+              teamStatsByCombinedQuery(queryKey, otherQueryIndex),
               offPrefixFn,
               offCellMetaFn
             ),
           ],
           [
             GenericTableOps.buildDataRow(
-              teamStatsByQuery[queryKey],
+              teamStatsByCombinedQuery(queryKey, otherQueryIndex),
               defPrefixFn,
               defCellMetaFn
             ),
@@ -643,7 +660,10 @@ export class TeamStatsTableUtils {
                     title={displayKey}
                     players={getRosterStats(queryKey, rosterStats)}
                     rosterStatsByCode={globalRosterStatsByCode}
-                    teamStats={teamStatsByQuery[queryKey]}
+                    teamStats={teamStatsByCombinedQuery(
+                      queryKey,
+                      otherQueryIndex
+                    )}
                     avgEfficiency={avgEfficiency}
                     quickSwitchOptions={teamPlayTypeQuickSwitchOptions.filter(
                       (opt) => opt.title != displayKey
@@ -702,7 +722,9 @@ export class TeamStatsTableUtils {
                           .doc_count < teamStats.global.doc_count
                           ? LineupTableUtils.getPositionalInfo(
                               lineupStats[queryIndex]?.lineups || [],
-                              positionFromPlayerId[queryKey],
+                              positionFromPlayerId[
+                                modelKey(queryKey, otherQueryIndex || 0)
+                              ],
                               teamSeasonLookup
                             )
                           : undefined
@@ -721,6 +743,7 @@ export class TeamStatsTableUtils {
             : [],
         ]);
 
+        //TODO: lots more queryKey uses to fix here:
         const teamDiagRows = _.flatten([
           showGameInfo
             ? [

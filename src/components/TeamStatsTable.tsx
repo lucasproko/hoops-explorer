@@ -289,6 +289,9 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   const tableData = _.flatten([
     buildRows(tableInfo.on, navigationRefs.refA, true),
     buildRows(tableInfo.off, navigationRefs.refB, true),
+    (tableInfo.other || []).flatMap((other) =>
+      other ? buildRows(other, navigationRefs.refBase, true) : []
+    ),
     buildRows(tableInfo.baseline, navigationRefs.refBase, false),
     // Diffs if showing:
     showDiffs ? [GenericTableOps.buildRowSeparator()] : [],
