@@ -229,31 +229,31 @@ const apPollMen_2023_24: () => Record<string, number> = () =>
 const apPollMen_2024_25: () => Record<string, number> = () =>
   _.chain(
     `
-1	Tennessee (41)	11-0	1528	1								
-2	Auburn (21)	11-1	1505	2								
-3	Iowa State	10-1	1415	3								
-4	Duke	10-2	1344	5								
-5	Alabama	10-2	1258	6								
-6	Florida	12-0	1239	7								
-7	Kansas	9-2	1097	8								
-8	Marquette	11-2	1038	9								
-9	Oregon	11-1	970	10								
-10	Kentucky	10-2	959	4								
-11	UConn	10-3	903	11								
-12	Oklahoma	12-0	850	14								
-13	Texas A&M	10-2	811	12								
-14	Gonzaga	9-3	757	13								
-15	Houston	8-3	615	15								
-16	Ole Miss	11-1	506	17								
-17	Cincinnati	10-1	494	19								
-18	Michigan State	10-2	426	20								
-19	Mississippi State	11-1	423	19								
-20	San Diego State	8-2	319	23								
-21	Purdue	8-4	270	16								
-22	UCLA	10-2	246	18								
-23	Arkansas	10-2	158	23								
-24	Illinois	8-3	135	24								
-25	Baylor	7-3	123	25
+1	Tennessee (41)	12-0	1504	1								
+2	Auburn (20)	11-1	1481	2								
+3	Iowa State	10-1	1392	3								
+4	Duke	10-2	1321	4								
+5	Alabama	11-2	1238	5								
+6	Florida	13-0	1202	6								
+7	Kansas	9-2	1084	7								
+8	Marquette	11-2	1037	8								
+9	Oregon	12-1	979	9								
+10	Kentucky	10-2	958	10								
+11	UConn	10-3	904	11								
+12	Oklahoma	13-0	863	12								
+13	Texas A&M	11-2	812	13								
+14	Houston	8-3	626	15								
+15	UCLA	11-2	571	22								
+16	Cincinnati	10-1	551	17								
+17	Mississippi State	11-1	483	19								
+18	Michigan State	10-2	473	18								
+19	Gonzaga	9-4	383	14								
+20	Purdue	9-4	281	21								
+21	Memphis	10-3	213	21								
+22	Illinois	9-3	193	24								
+23	Arkansas	10-2	174	23								
+24	Ole Miss	11-2	165	16								
+25	Baylor	8-3	139	25
 `
   )
     .split("\n")
@@ -268,7 +268,7 @@ const apPollMen_2024_25: () => Record<string, number> = () =>
     })
     .fromPairs()
     .assign({
-      __week__: 8,
+      __week__: 9,
     })
     .value();
 
