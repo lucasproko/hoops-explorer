@@ -115,8 +115,7 @@ const getShotStats = (
   def: ShotStats;
 } => {
   if (key == "other") {
-    //TODO: once we have "other" keys plumbed in, handled this
-    return { off: {}, def: {} };
+    return shotModel.other?.[otherIndex || 0] || { off: {}, def: {} };
   } else {
     return shotModel[key] || { off: {}, def: {} };
   }
@@ -652,8 +651,8 @@ export class TeamStatsTableUtils {
                 GenericTableOps.buildTextRow(
                   <ShotChartDiagView
                     title={displayKey}
-                    off={getShotStats(queryKey, shotStats).off}
-                    def={getShotStats(queryKey, shotStats).def}
+                    off={getShotStats(queryKey, shotStats, otherQueryIndex).off}
+                    def={getShotStats(queryKey, shotStats, otherQueryIndex).def}
                     gender={gameFilterParams.gender as "Men" | "Women"}
                     quickSwitchOptions={shotChartQuickSwitchOptions.filter(
                       (opt) => opt.title != displayKey

@@ -77,6 +77,7 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
     rosterStats: {
       on: [],
       off: [],
+      other: [],
       baseline: [],
       global: [],
     } as RosterStatsModel,

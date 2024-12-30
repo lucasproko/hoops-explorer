@@ -125,6 +125,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     rosterStats: {
       on: [],
       off: [],
+      other: [],
       baseline: [],
       global: [],
     } as RosterStatsModel,

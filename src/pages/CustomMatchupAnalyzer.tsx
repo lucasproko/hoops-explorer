@@ -76,6 +76,7 @@ const CustomMatchupAnalyzerPage: NextPage<{}> = () => {
     rosterStatsA: {
       on: [],
       off: [],
+      other: [],
       baseline: [],
       global: [],
     } as RosterStatsModel,
@@ -90,6 +91,7 @@ const CustomMatchupAnalyzerPage: NextPage<{}> = () => {
     rosterStatsB: {
       on: [],
       off: [],
+      other: [],
       baseline: [],
       global: [],
     } as RosterStatsModel,
@@ -611,6 +613,7 @@ const CustomMatchupAnalyzerPage: NextPage<{}> = () => {
                   shotStats: {
                     on: { off: {}, def: {} },
                     off: { off: {}, def: {} },
+                    other: [],
                     baseline: { off: {}, def: {} },
                   },
                   lineupStats: [],
@@ -657,6 +660,7 @@ const CustomMatchupAnalyzerPage: NextPage<{}> = () => {
                   shotStats: {
                     on: { off: {}, def: {} },
                     off: { off: {}, def: {} },
+                    other: [],
                     baseline: { off: {}, def: {} },
                   },
                   lineupStats: [],

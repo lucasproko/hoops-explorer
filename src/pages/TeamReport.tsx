@@ -1,43 +1,59 @@
 // Google analytics:
-import { initGA, logPageView } from '../utils/GoogleAnalytics';
+import { initGA, logPageView } from "../utils/GoogleAnalytics";
 
 // React imports:
-import React, { useState, useEffect, useRef } from 'react';
-import Router, { useRouter } from 'next/router';
-import Link from 'next/link';
+import React, { useState, useEffect, useRef } from "react";
+import Router, { useRouter } from "next/router";
+import Link from "next/link";
 
 // Next imports:
-import { NextPage } from 'next';
+import { NextPage } from "next";
 
 // Lodash:
 import _ from "lodash";
 
 // Bootstrap imports:
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import "bootstrap/dist/css/bootstrap.min.css";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 // App components:
-import TeamReportFilter from '../components/TeamReportFilter';
-import { ParamPrefixes, GameFilterParams, LineupFilterParams, TeamReportFilterParams, ParamDefaults } from '../utils/FilterModels';
-import { HistoryManager } from '../utils/HistoryManager';
-import TeamReportStatsTable from '../components/TeamReportStatsTable';
-import { LineupStatsModel } from '../components/LineupStatsTable';
-import { RosterStatsModel } from '../components/RosterStatsTable';
-import { TeamStatsModel } from '../components/TeamStatsTable';
-import GenericCollapsibleCard from '../components/shared/GenericCollapsibleCard';
-import Footer from '../components/shared/Footer';
-import HeaderBar from '../components/shared/HeaderBar';
+import TeamReportFilter from "../components/TeamReportFilter";
+import {
+  ParamPrefixes,
+  GameFilterParams,
+  LineupFilterParams,
+  TeamReportFilterParams,
+  ParamDefaults,
+} from "../utils/FilterModels";
+import { HistoryManager } from "../utils/HistoryManager";
+import TeamReportStatsTable from "../components/TeamReportStatsTable";
+import { LineupStatsModel } from "../components/LineupStatsTable";
+import { RosterStatsModel } from "../components/RosterStatsTable";
+import { TeamStatsModel } from "../components/TeamStatsTable";
+import GenericCollapsibleCard from "../components/shared/GenericCollapsibleCard";
+import Footer from "../components/shared/Footer";
+import HeaderBar from "../components/shared/HeaderBar";
 
 // Utils:
-import { StatModels, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from "../utils/StatModels";
+import {
+  StatModels,
+  OnOffBaselineEnum,
+  OnOffBaselineGlobalEnum,
+  PlayerCode,
+  PlayerId,
+  Statistic,
+  IndivStatSet,
+  TeamStatSet,
+  LineupStatSet,
+} from "../utils/StatModels";
 import { UrlRouting } from "../utils/UrlRouting";
 
 const TeamReportPage: NextPage<{}> = () => {
-
-  useEffect(() => { // Set up GA
-    if ((process.env.NODE_ENV === 'production') && (typeof window !== undefined)) {
+  useEffect(() => {
+    // Set up GA
+    if (process.env.NODE_ENV === "production" && typeof window !== undefined) {
       if (!gaInited) {
         initGA();
         setGaInited(true);
@@ -48,28 +64,47 @@ const TeamReportPage: NextPage<{}> = () => {
 
   // Team Stats interface
 
-  const [ gaInited, setGaInited ] = useState(false);
-  const [ dataEvent, setDataEvent ] = useState({
+  const [gaInited, setGaInited] = useState(false);
+  const [dataEvent, setDataEvent] = useState({
     lineupStats: {} as LineupStatsModel,
-    teamStats: {on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), baseline: StatModels.emptyTeam(), global: StatModels.emptyTeam()} as TeamStatsModel,
-    rosterStats: {on: [], off: [], baseline: [], global: []} as RosterStatsModel
+    teamStats: {
+      on: StatModels.emptyTeam(),
+      off: StatModels.emptyTeam(),
+      baseline: StatModels.emptyTeam(),
+      global: StatModels.emptyTeam(),
+    } as TeamStatsModel,
+    rosterStats: {
+      on: [],
+      off: [],
+      other: [],
+      baseline: [],
+      global: [],
+    } as RosterStatsModel,
   });
 
-  const injectStats = (lineupStats: LineupStatsModel, teamStats: TeamStatsModel, rosterStats: RosterStatsModel) => {
+  const injectStats = (
+    lineupStats: LineupStatsModel,
+    teamStats: TeamStatsModel,
+    rosterStats: RosterStatsModel
+  ) => {
     setDataEvent({ lineupStats, teamStats, rosterStats });
-  }
+  };
 
   // Game filter
 
-  const allParams = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
-    "" : window.location.search;
+  const allParams =
+    typeof window === `undefined` //(ensures SSR code still compiles)
+      ? ""
+      : window.location.search;
 
-  const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
-    "server" : window.location.hostname
+  const server =
+    typeof window === `undefined` //(ensures SSR code still compiles)
+      ? "server"
+      : window.location.hostname;
 
-  const [ teamReportFilterParams, setTeamReportFilterParams ] = useState(
+  const [teamReportFilterParams, setTeamReportFilterParams] = useState(
     UrlRouting.removedSavedKeys(allParams) as TeamReportFilterParams
-  )
+  );
   const teamReportFilterParamsRef = useRef<TeamReportFilterParams>();
   teamReportFilterParamsRef.current = teamReportFilterParams;
 
@@ -77,19 +112,42 @@ const TeamReportPage: NextPage<{}> = () => {
     return UrlRouting.getTeamReportUrl(params);
   }
 
-  const onTeamReportFilterParamsChange = (rawParams: TeamReportFilterParams) => {
-    const params = _.omit(rawParams, _.flatten([ // omit all defaults
-      (rawParams.showComps == ParamDefaults.defaultShowComps) ? [ 'showComps' ] : [],
-      (rawParams.repOnOffDiagMode == ParamDefaults.defaultTeamReportRepOnOffDiagMode) ? [ 'repOnOffDiagMode' ] : [],
-      (rawParams.rapmDiagMode == ParamDefaults.defaultTeamReportRapmDiagMode) ? [ 'rapmDiagMode' ] : [],
-      (rawParams.rapmPriorMode == ParamDefaults.defaultTeamReportRapmPriorMode) ? [ 'rapmPriorMode' ] : [],
-      (rawParams.rapmRegressMode == ParamDefaults.defaultTeamReportRapmRegressMode) ? [ 'rapmRegressMode' ] : [],
-      (rawParams.regressDiffs == ParamDefaults.defaultTeamReportRegressDiffs) ? [ 'regressDiffs' ] : [],
-      _.isEqual(rawParams.luck, ParamDefaults.defaultLuckConfig) ? [ 'luck' ] : [],
-      !rawParams.teamLuck ? [ 'teamLuck' ] : [],
-    ]));
+  const onTeamReportFilterParamsChange = (
+    rawParams: TeamReportFilterParams
+  ) => {
+    const params = _.omit(
+      rawParams,
+      _.flatten([
+        // omit all defaults
+        rawParams.showComps == ParamDefaults.defaultShowComps
+          ? ["showComps"]
+          : [],
+        rawParams.repOnOffDiagMode ==
+        ParamDefaults.defaultTeamReportRepOnOffDiagMode
+          ? ["repOnOffDiagMode"]
+          : [],
+        rawParams.rapmDiagMode == ParamDefaults.defaultTeamReportRapmDiagMode
+          ? ["rapmDiagMode"]
+          : [],
+        rawParams.rapmPriorMode == ParamDefaults.defaultTeamReportRapmPriorMode
+          ? ["rapmPriorMode"]
+          : [],
+        rawParams.rapmRegressMode ==
+        ParamDefaults.defaultTeamReportRapmRegressMode
+          ? ["rapmRegressMode"]
+          : [],
+        rawParams.regressDiffs == ParamDefaults.defaultTeamReportRegressDiffs
+          ? ["regressDiffs"]
+          : [],
+        _.isEqual(rawParams.luck, ParamDefaults.defaultLuckConfig)
+          ? ["luck"]
+          : [],
+        !rawParams.teamLuck ? ["teamLuck"] : [],
+      ])
+    );
 
-    if (!_.isEqual(params, teamReportFilterParamsRef.current)) { //(to avoid recursion)
+    if (!_.isEqual(params, teamReportFilterParamsRef.current)) {
+      //(to avoid recursion)
       const href = getRootUrl(params);
       const as = href;
       //TODO: this doesn't work if it's the same page (#91)
@@ -100,15 +158,17 @@ const TeamReportPage: NextPage<{}> = () => {
       Router.replace(href, as, { shallow: true });
       setTeamReportFilterParams(params); // (to ensure the new params are included in links)
     }
-  }
+  };
 
   /** Only rebuild the table if the data changes */
   const table = React.useMemo(() => {
-    return <TeamReportStatsTable
-      startingState={teamReportFilterParamsRef.current || {}}
-      dataEvent={dataEvent}
-      onChangeState={onTeamReportFilterParamsChange}
-    />
+    return (
+      <TeamReportStatsTable
+        startingState={teamReportFilterParamsRef.current || {}}
+        dataEvent={dataEvent}
+        onChangeState={onTeamReportFilterParamsChange}
+      />
+    );
   }, [dataEvent]);
 
   // View
@@ -121,37 +181,52 @@ const TeamReportPage: NextPage<{}> = () => {
     }
   }
 
-  return <Container>
-    <Row>
-      <Col xs={12} className="text-center">
-        <h3>CBB Team On/Off Report Tool <span className="badge badge-pill badge-info">BETA!</span></h3>
-      </Col>
-    </Row>
-    <Row>
-      <HeaderBar
-        common={teamReportFilterParams}
-        thisPage={ParamPrefixes.report}
+  return (
+    <Container>
+      <Row>
+        <Col xs={12} className="text-center">
+          <h3>
+            CBB Team On/Off Report Tool{" "}
+            <span className="badge badge-pill badge-info">BETA!</span>
+          </h3>
+        </Col>
+      </Row>
+      <Row>
+        <HeaderBar
+          common={teamReportFilterParams}
+          thisPage={ParamPrefixes.report}
         />
-    </Row>
-    <Row>
-      <GenericCollapsibleCard
-        minimizeMargin={false}
-        title="Team Report Filter"
-        summary={HistoryManager.teamReportFilterSummary(teamReportFilterParams)}
-      >
-        <TeamReportFilter
-          onStats={injectStats}
-          startingState={teamReportFilterParams}
-          onChangeState={onTeamReportFilterParamsChange}
-        />
-      </GenericCollapsibleCard>
-    </Row>
-    <Row>
-      <GenericCollapsibleCard minimizeMargin={true} title="Team Analysis" helpLink={maybeShowDocs()}>
-        {table}
-      </GenericCollapsibleCard>
-    </Row>
-    <Footer year={teamReportFilterParams.year} gender={teamReportFilterParams.gender} server={server}/>
-  </Container>;
-}
+      </Row>
+      <Row>
+        <GenericCollapsibleCard
+          minimizeMargin={false}
+          title="Team Report Filter"
+          summary={HistoryManager.teamReportFilterSummary(
+            teamReportFilterParams
+          )}
+        >
+          <TeamReportFilter
+            onStats={injectStats}
+            startingState={teamReportFilterParams}
+            onChangeState={onTeamReportFilterParamsChange}
+          />
+        </GenericCollapsibleCard>
+      </Row>
+      <Row>
+        <GenericCollapsibleCard
+          minimizeMargin={true}
+          title="Team Analysis"
+          helpLink={maybeShowDocs()}
+        >
+          {table}
+        </GenericCollapsibleCard>
+      </Row>
+      <Footer
+        year={teamReportFilterParams.year}
+        gender={teamReportFilterParams.gender}
+        server={server}
+      />
+    </Container>
+  );
+};
 export default TeamReportPage;

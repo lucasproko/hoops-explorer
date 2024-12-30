@@ -295,6 +295,10 @@ export type ShotStatsModel = {
     off: ShotStats;
     def: ShotStats;
   };
+  other: {
+    off: ShotStats;
+    def: ShotStats;
+  }[];
   baseline: {
     off: ShotStats;
     def: ShotStats;

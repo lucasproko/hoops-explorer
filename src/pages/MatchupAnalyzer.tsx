@@ -75,6 +75,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
     rosterStatsA: {
       on: [],
       off: [],
+      other: [],
       baseline: [],
       global: [],
     } as RosterStatsModel,
@@ -89,6 +90,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
     rosterStatsB: {
       on: [],
       off: [],
+      other: [],
       baseline: [],
       global: [],
     } as RosterStatsModel,

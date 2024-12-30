@@ -547,6 +547,7 @@ const CustomMatchupFilter: React.FunctionComponent<Props> = ({
     const fromRoster = (rosterStatsJson: any, globalRosterStatsJson: any) => ({
       on: [],
       off: [],
+      other: [],
       baseline:
         rosterStatsJson?.aggregations?.tri_filter?.buckets?.baseline?.player
           ?.buckets || [],

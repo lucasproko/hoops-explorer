@@ -618,10 +618,10 @@ const GameFilter: React.FunctionComponent<Props> = ({
           rosterStatsJson?.aggregations?.tri_filter?.buckets?.off?.player
             ?.buckets || [],
         other: _.range(0, numOthers).map((i) => {
-          const q =
+          return (
             rosterStatsJson?.aggregations?.tri_filter?.buckets?.[`other_${i}`]
-              ?.player?.buckets;
-          return q || [];
+              ?.player?.buckets || []
+          );
         }),
         onOffMode: autoOffQuery,
         baseline:
@@ -651,6 +651,16 @@ const GameFilter: React.FunctionComponent<Props> = ({
           def: shotChartStatsJson?.aggregations?.tri_filter?.buckets?.off
             ?.off_def?.buckets?.def,
         },
+        other: _.range(0, numOthers).map((i) => {
+          return {
+            off: shotChartStatsJson?.aggregations?.tri_filter?.buckets?.[
+              `other_${i}`
+            ]?.off_def?.buckets?.off || { doc_count: 0 },
+            def: shotChartStatsJson?.aggregations?.tri_filter?.buckets?.[
+              `other_${i}`
+            ]?.off_def?.buckets?.def || { doc_count: 0 },
+          };
+        }),
         baseline: {
           off: shotChartStatsJson?.aggregations?.tri_filter?.buckets?.baseline
             ?.off_def?.buckets?.off,
