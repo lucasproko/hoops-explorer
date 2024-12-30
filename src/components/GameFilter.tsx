@@ -169,11 +169,6 @@ const GameFilter: React.FunctionComponent<Props> = ({
 
   // Game Filter - custom queries and filters:
 
-  const [autoOffQuery, toggleAutoOffQuery] = useState(
-    _.isNil(startAutoOffQuery)
-      ? ParamDefaults.defaultAutoOffQuery
-      : startAutoOffQuery
-  );
   const [onQuery, setOnQuery] = useState(startOnQuery || "");
   const [offQuery, setOffQuery] = useState(startOffQuery || "");
   const [otherQueries, setOtherQueries] = useState<(string | undefined)[]>(
@@ -206,6 +201,13 @@ const GameFilter: React.FunctionComponent<Props> = ({
         startingState.year || ParamDefaults.defaultYear
       )
     )
+  );
+  const [autoOffQuery, toggleAutoOffQuery] = useState(
+    otherQueries.length == 0
+      ? _.isNil(startAutoOffQuery)
+        ? ParamDefaults.defaultAutoOffQuery
+        : startAutoOffQuery
+      : false
   );
 
   const [showOnDateRangeModal, setOnShowDateRangeModal] = useState(false);
@@ -1007,6 +1009,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
               <Col sm="2" className="mt-1">
                 <Form.Check
                   type="switch"
+                  disabled={otherQueries.length > 0}
                   id="autoOffQuery"
                   checked={autoOffQuery}
                   onChange={() => {

@@ -124,7 +124,11 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   );
 
   const [showDiffs, setShowDiffs] = useState(
-    _.isNil(gameFilterParams.teamDiffs) ? false : gameFilterParams.teamDiffs
+    (gameFilterParams.otherQueries?.length || 0) == 0
+      ? _.isNil(gameFilterParams.teamDiffs)
+        ? false
+        : gameFilterParams.teamDiffs
+      : false
   );
 
   const [showExtraInfo, setShowExtraInfo] = useState(
@@ -322,6 +326,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
         },
         {
           label: "Diffs",
+          disabled: (gameFilterParams.otherQueries?.length || 0) > 0,
           tooltip: "Show hide diffs between A/B/Baseline stats",
           toggled: showDiffs,
           onClick: () => setShowDiffs(!showDiffs),
@@ -399,6 +404,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       <GenericTogglingMenuItem
         text="Show Stat Differences"
         truthVal={showDiffs}
+        disabled={(gameFilterParams.otherQueries?.length || 0) > 0}
         onSelect={() => setShowDiffs(!showDiffs)}
       />
       <GenericTogglingMenuItem

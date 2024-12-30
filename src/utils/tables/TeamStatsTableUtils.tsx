@@ -581,8 +581,18 @@ export class TeamStatsTableUtils {
       displayKey: string,
       otherQueryIndex?: number
     ): TeamStatsBreakdown | undefined => {
-      //TODO: for lineups, handle "other query" lineups
-      const queryIndex = queryKey == "baseline" ? 0 : queryKey == "on" ? 1 : 2;
+      const queryIndex = _.thru(queryKey, (k) => {
+        switch (k) {
+          case "baseline":
+            return 0;
+          case "on":
+            return 1;
+          case "off":
+            return 2;
+          case "other":
+            return 3 + (otherQueryIndex || 0);
+        }
+      });
       const hasData =
         (getTeamStats(queryKey, teamStats, otherQueryIndex).doc_count || 0) > 0;
 
