@@ -452,26 +452,53 @@ const CommonFilter: CommonFilterI = ({
     const moreSpecialCaseKeys = ["onQueryFilters", "offQueryFilters"];
     //(we remove these GameFilterParams from the query if they are null, handle that here)
     //TODO: really need to tidy up all these "missing if empty" special case clauses...
-    const paramsUnchanged = _.keys(newParams)
-      .concat(moreSpecialCaseKeys)
-      .filter((key) => {
-        return key != "filterGarbage" && key != "queryFilters";
-      })
-      .every(
-        (key: string) => (newParams as any)[key] == (currState as any)[key]
-      );
-    const garbageSpecialCase =
-      (newParams?.filterGarbage || ParamDefaults.defaultFilterGarbage) ==
-      (currState?.filterGarbage || ParamDefaults.defaultFilterGarbage);
-    const queryFiltersSpecialCase =
-      (newParams?.queryFilters || ParamDefaults.defaultQueryFilters) ==
-      (currState?.queryFilters || ParamDefaults.defaultQueryFilters);
+    const checkParamsUnchanged = (newParamsObj: any, currStateObj: any) => {
+      const paramsUnchanged = _.keys(newParamsObj)
+        .concat(moreSpecialCaseKeys)
+        .filter((key) => {
+          return (
+            key != "filterGarbage" &&
+            key != "queryFilters" &&
+            key != "otherQueries"
+          );
+        })
+        .every(
+          (key: string) =>
+            (newParamsObj as any)[key] == (currStateObj as any)[key]
+        );
+      const garbageSpecialCase =
+        (newParamsObj?.filterGarbage || ParamDefaults.defaultFilterGarbage) ==
+        (currStateObj?.filterGarbage || ParamDefaults.defaultFilterGarbage);
+      const queryFiltersSpecialCase =
+        (newParamsObj?.queryFilters || ParamDefaults.defaultQueryFilters) ==
+        (currStateObj?.queryFilters || ParamDefaults.defaultQueryFilters);
+
+      // Handy debug print:
+      // console.log(
+      //   `shouldSubmitBeDisabled: ${JSON.stringify(
+      //     newParamsObj
+      //   )} ${JSON.stringify(
+      //     currStateObj
+      //   )} ... ${paramsUnchanged} ${garbageSpecialCase} ${queryFiltersSpecialCase}`
+      // );
+
+      return paramsUnchanged && garbageSpecialCase && queryFiltersSpecialCase;
+    };
+
+    const allParamsUnchanged =
+      checkParamsUnchanged(newParams, currState) &&
+      _.every(newParams.otherQueries || [], (otherQuery, otherQueryIndex) => {
+        return checkParamsUnchanged(
+          otherQuery,
+          currState.otherQueries?.[otherQueryIndex] || {
+            query: "",
+            queryFilters: ParamDefaults.defaultQueryFilters,
+          }
+        );
+      });
 
     return (
-      (atLeastOneQueryMade &&
-        paramsUnchanged &&
-        garbageSpecialCase &&
-        queryFiltersSpecialCase) ||
+      (atLeastOneQueryMade && allParamsUnchanged) ||
       team == "" ||
       year == AvailableTeams.extraTeamName
     );

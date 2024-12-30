@@ -634,9 +634,9 @@ export const TextAreaAutocomplete = forwardRef<HTMLInputElement, Props<any>>(
     };
 
     const val =
-      typeof value !== "undefined" && value !== null
+      typeof value !== "undefined" && value !== null //(afaict value is always null)
         ? value
-        : stateValue
+        : stateValue != null //(note i fixed a bug(?) here where it was treating "" and null the same)
         ? stateValue
         : defaultValue;
 

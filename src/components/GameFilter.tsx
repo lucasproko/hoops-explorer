@@ -164,6 +164,21 @@ const GameFilter: React.FunctionComponent<Props> = ({
       //(leave toggleAutoOffQuery since it seems harmless, and weird stuff happened when I tried to set it
       // which I don't have time to investigate):
       //toggleAutoOffQuery(startAutoOffQuery);
+
+      // Other queries:
+      if (!_.isEmpty(startOtherQueries)) {
+        setOtherQueries((startOtherQueries || []).map((q) => q.query));
+        setOtherQueryFilters(
+          (startOtherQueries || []).map((q) =>
+            QueryUtils.parseFilter(
+              _.isNil(q.queryFilters)
+                ? ParamDefaults.defaultQueryFilters
+                : q.queryFilters,
+              startingState.year || ParamDefaults.defaultYear
+            )
+          )
+        );
+      }
     }
   }, [forceReload1Up]);
 
@@ -1031,11 +1046,14 @@ const GameFilter: React.FunctionComponent<Props> = ({
                   id="autoOffQuery"
                   checked={autoOffQuery}
                   onChange={() => {
-                    setOffQueryFilters([]);
-                    if (!autoOffQuery) {
-                      setAutoOffQuery(onQuery);
-                    } //(TODO: note clearing offQuery in the else doesn't work due to limitations of AutoSuggestText)
-                    toggleAutoOffQuery(!autoOffQuery);
+                    if (otherQueries.length == 0) {
+                      //(for some reason the disabled/readOnly attributes do nothing so just disable)
+                      setOffQueryFilters([]);
+                      if (!autoOffQuery) {
+                        setAutoOffQuery(onQuery);
+                      } //(TODO: note clearing offQuery in the else doesn't work due to limitations of AutoSuggestText)
+                      toggleAutoOffQuery(!autoOffQuery);
+                    }
                   }}
                   label="Auto"
                 />
@@ -1063,13 +1081,13 @@ const GameFilter: React.FunctionComponent<Props> = ({
                               onKeyUp={(ev: any) =>
                                 setOtherQueries((curr) => {
                                   curr[extraQueryIndex] = ev.target.value;
-                                  return curr;
+                                  return [...curr];
                                 })
                               }
                               onChange={(ev: any) =>
                                 setOtherQueries((curr) => {
                                   curr[extraQueryIndex] = ev.target.value;
-                                  return curr;
+                                  return [...curr];
                                 })
                               }
                               onKeyDown={globalKeypressHandler}
@@ -1083,7 +1101,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                                   setQueryFilters={(newQueryFilters) => {
                                     setOtherQueryFilters((curr) => {
                                       curr[extraQueryIndex] = newQueryFilters;
-                                      return curr;
+                                      return [...curr];
                                     });
                                   }}
                                   showCustomRangeFilter={() =>
