@@ -12,7 +12,8 @@ exports[`TeamReportPage TeamReportPage - should create snapshot 1`] = `
       xs={12}
     >
       <h3>
-        CBB Team On/Off Report Tool 
+        CBB Team On/Off Report Tool
+         
         <span
           className="badge badge-pill badge-info"
         >
@@ -61,6 +62,7 @@ exports[`TeamReportPage TeamReportPage - should create snapshot 1`] = `
               "global": Array [],
               "off": Array [],
               "on": Array [],
+              "other": Array [],
             },
             "teamStats": Object {
               "baseline": Object {

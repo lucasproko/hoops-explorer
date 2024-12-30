@@ -89,6 +89,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
               "global": Array [],
               "off": Array [],
               "on": Array [],
+              "other": Array [],
             },
             "shotStats": Object {
               "baseline": Object {
@@ -158,6 +159,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
               "global": Array [],
               "off": Array [],
               "on": Array [],
+              "other": Array [],
             },
             "shotStats": Object {
               "baseline": Object {

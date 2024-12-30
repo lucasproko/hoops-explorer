@@ -179,18 +179,18 @@ export class TeamStatsTableUtils {
     const baselineOnOffKeys: OnOffBaselineEnum[] = ["baseline", "on", "off"];
 
     /** List all the query keys */
-    const getModelKeys = (): [OnOffBaselineOtherEnum, number][] => {
-      return (
-        [
-          ["baseline", 0],
-          ["on", 0],
-          ["off", 0],
-        ] as [OnOffBaselineOtherEnum, number][]
-      ).concat((teamStats.other || []).map((__, ii) => ["other", ii]));
-    };
-
+    const modelKeys: [OnOffBaselineOtherEnum, number][] = (
+      [
+        ["baseline", 0],
+        ["on", 0],
+        ["off", 0],
+      ] as [OnOffBaselineOtherEnum, number][]
+    ).concat((teamStats.other || []).map((__, ii) => ["other", ii]));
     /** Turn one of the model keys into associative index */
-    const modelKey = (k: OnOffBaselineOtherEnum, otherQueryIndex: number) => {
+    const getModelKey = (
+      k: OnOffBaselineOtherEnum,
+      otherQueryIndex: number
+    ) => {
       return k == "other" ? `other_${otherQueryIndex}` : k;
     };
 
@@ -202,10 +202,10 @@ export class TeamStatsTableUtils {
         )
       : {};
 
-    const positionFromPlayerId = _.chain(getModelKeys())
+    const positionFromPlayerId = _.chain(modelKeys)
       .map(([k, otherQueryIndex]) => {
         const retVal: [string, Record<string, IndivPosInfo>] = [
-          modelKey(k, otherQueryIndex),
+          getModelKey(k, otherQueryIndex),
           showRoster && getRosterStats(k, rosterStats, otherQueryIndex).length
             ? LineupTableUtils.buildPositionPlayerMap(
                 getRosterStats(k, rosterStats, otherQueryIndex),
@@ -227,7 +227,7 @@ export class TeamStatsTableUtils {
     // If building roster info then enrich player stats:
     const playerInfoByIdBy0AB =
       showRoster || manualOverridesAsMap
-        ? getModelKeys().map(([queryKey, otherQueryIndex]) => {
+        ? modelKeys.map(([queryKey, otherQueryIndex]) => {
             const playerStatsFor0AB = getRosterStats(
               queryKey,
               rosterStats,
@@ -287,8 +287,8 @@ export class TeamStatsTableUtils {
 
     // Create luck adjustments, inject luck into mutable stat sets, and calculate efficiency margins
     const luckAdjustment = _.fromPairs(
-      getModelKeys().map(([k, otherQueryIndex], ii) => {
-        const compositeKey = modelKey(k, otherQueryIndex);
+      modelKeys.map(([k, otherQueryIndex], ii) => {
+        const compositeKey = getModelKey(k, otherQueryIndex);
         if (getTeamStats(k, teamStats, otherQueryIndex).doc_count) {
           const playerStats = playerInfoByIdBy0AB[ii] || {};
 
@@ -414,7 +414,7 @@ export class TeamStatsTableUtils {
         })()
       : ([undefined, undefined, undefined] as [any, any, any]);
 
-    getModelKeys().forEach(([k, otherQueryIndex]) => {
+    modelKeys.forEach(([k, otherQueryIndex]) => {
       TableDisplayUtils.injectPlayTypeInfo(
         getTeamStats(k, teamStats, otherQueryIndex),
         false,
@@ -425,9 +425,9 @@ export class TeamStatsTableUtils {
 
     // Show game info logic:
     const orderedMutableOppoList: Record<string, GameInfoStatSet> = {};
-    const totalLineupsByQueryKey = _.chain(getModelKeys())
+    const totalLineupsByQueryKey = _.chain(modelKeys)
       .map(([k, otherQueryIndex], ii) => {
-        const compositeKey = modelKey(k, otherQueryIndex);
+        const compositeKey = getModelKey(k, otherQueryIndex);
         if (showGameInfo) {
           const lineups = lineupStats?.[ii]?.lineups || [];
           const totalLineup = _.assign(
@@ -458,12 +458,12 @@ export class TeamStatsTableUtils {
     const teamStatsKeys = _.zip(baselineOnOffKeys, [
       TableDisplayUtils.addQueryInfo("Baseline", gameFilterParams, "baseline"),
       TableDisplayUtils.addQueryInfo(
-        teamStats.onOffMode ? "On ('A')" : "'A'",
+        teamStats.onOffMode && _.isEmpty(teamStats.other) ? "On ('A')" : "'A'",
         gameFilterParams,
         "on"
       ),
       TableDisplayUtils.addQueryInfo(
-        teamStats.onOffMode ? "Off ('B')" : "'B'",
+        teamStats.onOffMode && _.isEmpty(teamStats.other) ? "Off ('B')" : "'B'",
         gameFilterParams,
         "off"
       ),
@@ -494,7 +494,7 @@ export class TeamStatsTableUtils {
           "baseline" //TODO fix this
         );
         const retVal: [string, any] = [
-          modelKey("other", idx),
+          getModelKey("other", idx),
           {
             off_title: <b>{attachedQueryInfo} Offense</b>,
             def_title: <b>{attachedQueryInfo} Defense</b>,
@@ -510,7 +510,7 @@ export class TeamStatsTableUtils {
       otherQueryIndex?: number
     ) => {
       return queryKey == "other"
-        ? teamStatsByOtherQuery[modelKey("other", otherQueryIndex || 0)]
+        ? teamStatsByOtherQuery[getModelKey("other", otherQueryIndex || 0)]
         : teamStatsByQuery[queryKey];
     };
 
@@ -528,44 +528,37 @@ export class TeamStatsTableUtils {
 
     const shotChartQuickSwitchOptions = [
       {
-        title: "On ('A')",
-        off: shotStats.on.off,
-        def: shotStats.on.def,
-        gender: gameFilterParams.gender as "Men" | "Women",
-      },
-      {
-        title: "Off ('B')",
-        off: shotStats.off.off,
-        def: shotStats.off.def,
-        gender: gameFilterParams.gender as "Men" | "Women",
-      },
-      {
         title: "Baseline",
         off: shotStats.baseline.off,
         def: shotStats.baseline.def,
         gender: gameFilterParams.gender as "Men" | "Women",
       },
-    ];
+      {
+        title: _.isEmpty(teamStats.other) ? "On ('A')" : "'A'",
+        off: shotStats.on.off,
+        def: shotStats.on.def,
+        gender: gameFilterParams.gender as "Men" | "Women",
+      },
+      {
+        title: _.isEmpty(teamStats.other) ? "Off ('B')" : "'B'",
+        off: shotStats.off.off,
+        def: shotStats.off.def,
+        gender: gameFilterParams.gender as "Men" | "Women",
+      },
+    ]
+      .concat(
+        (shotStats.other || []).map((opt, idx) => {
+          return {
+            title: `'${String.fromCharCode(67 + idx)}'`,
+            off: opt.off,
+            def: opt.def,
+            gender: gameFilterParams.gender as "Men" | "Women",
+          };
+        })
+      )
+      .filter((opt) => (opt.off.doc_count || 0) > 0);
 
     const teamPlayTypeQuickSwitchOptions = [
-      {
-        title: "On ('A')",
-        players: rosterStats["on"] || [],
-        rosterStatsByCode: globalRosterStatsByCode,
-        teamStats: teamStatsByQuery["on"],
-        showGrades: showGrades,
-        avgEfficiency,
-        showHelp,
-      },
-      {
-        title: "Off ('B')",
-        players: rosterStats["off"] || [],
-        rosterStatsByCode: globalRosterStatsByCode,
-        teamStats: teamStatsByQuery["off"],
-        showGrades: showGrades,
-        avgEfficiency,
-        showHelp,
-      },
       {
         title: "Baseline",
         players: rosterStats["baseline"] || [],
@@ -575,7 +568,39 @@ export class TeamStatsTableUtils {
         avgEfficiency,
         showHelp,
       },
-    ].filter((opt) => (opt.teamStats.doc_count || 0) > 0);
+      {
+        title: _.isEmpty(teamStats.other) ? "On ('A')" : "'A'",
+        players: rosterStats["on"] || [],
+        rosterStatsByCode: globalRosterStatsByCode,
+        teamStats: teamStatsByQuery["on"],
+        showGrades: showGrades,
+        avgEfficiency,
+        showHelp,
+      },
+      {
+        title: _.isEmpty(teamStats.other) ? "Off ('B')" : "'B'",
+        players: rosterStats["off"] || [],
+        rosterStatsByCode: globalRosterStatsByCode,
+        teamStats: teamStatsByQuery["off"],
+        showGrades: showGrades,
+        avgEfficiency,
+        showHelp,
+      },
+    ]
+      .concat(
+        (teamStats.other || []).map((__, idx) => {
+          return {
+            title: `'${String.fromCharCode(67 + idx)}'`,
+            players: getRosterStats("other", rosterStats, idx),
+            rosterStatsByCode: globalRosterStatsByCode,
+            teamStats: getTeamStats("other", teamStats, idx),
+            showGrades: showGrades,
+            avgEfficiency,
+            showHelp,
+          };
+        })
+      )
+      .filter((opt) => (opt.teamStats.doc_count || 0) > 0);
 
     /** Builds the basic info and all the optional diags/enrichment for a single lineup set (on/off/baseline) */
     const buildTableEntries = (
@@ -583,7 +608,7 @@ export class TeamStatsTableUtils {
       displayKey: string,
       otherQueryIndex?: number
     ): TeamStatsBreakdown | undefined => {
-      const compositeQueryKey = modelKey(queryKey, otherQueryIndex || 0);
+      const compositeQueryKey = getModelKey(queryKey, otherQueryIndex || 0);
       const queryIndex = _.thru(queryKey, (k) => {
         switch (k) {
           case "baseline":
@@ -812,8 +837,14 @@ export class TeamStatsTableUtils {
 
     return {
       baseline: buildTableEntries("baseline", "Baseline"),
-      on: buildTableEntries("on", "On ('A')"),
-      off: buildTableEntries("off", "Off ('B')"),
+      on: buildTableEntries(
+        "on",
+        _.isEmpty(teamStats.other) ? "On ('A')" : "'A'"
+      ),
+      off: buildTableEntries(
+        "off",
+        _.isEmpty(teamStats.other) ? "Off ('B')" : "'B'"
+      ),
       other: (teamStats.other || []).map((__, queryIndex) => {
         return buildTableEntries(
           "other",

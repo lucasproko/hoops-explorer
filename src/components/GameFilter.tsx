@@ -230,6 +230,11 @@ const GameFilter: React.FunctionComponent<Props> = ({
   const [showOnGameSelectorModal, setOnShowGameSelectorModal] = useState(false);
   const [showOffGameSelectorModal, setOffShowGameSelectorModal] =
     useState(false);
+  const [showOtherDateRangeModals, setShowOtherDateRangeModals] = useState<
+    boolean[]
+  >((startOtherQueries || []).map((q) => false));
+  const [showOtherGameSelectorModals, setShowOtherGameSelectorModals] =
+    useState<boolean[]>((startOtherQueries || []).map((q) => false));
 
   /** Used to differentiate between the different implementations of the CommonFilter */
   const cacheKeyPrefix = ParamPrefixes.game;
@@ -837,7 +842,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
           <div>
             <DateRangeModal
               show={showOnDateRangeModal}
-              queryType="On/'A' Query"
+              queryType={extraRows ? "'A' Query" : "On/'A' Query"}
               onSave={(filter: CommonFilterCustomDate | undefined) =>
                 setOnQueryFilters(
                   QueryUtils.setCustomDate(onQueryFilters, filter)
@@ -848,7 +853,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
             />
             <DateRangeModal
               show={showOffDateRangeModal}
-              queryType="Off/'B' Query"
+              queryType={extraRows ? "'B' Query" : "Off/'B' Query"}
               onSave={(filter: CommonFilterCustomDate | undefined) =>
                 setOffQueryFilters(
                   QueryUtils.setCustomDate(offQueryFilters, filter)
@@ -858,7 +863,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
               year={startingState.year || ParamDefaults.defaultYear}
             />
             <GameSelectorModal
-              queryType="On/'A' Query"
+              queryType={extraRows ? "'A' Query" : "On/'A' Query"}
               games={gameSelection.games}
               selectedGames={QueryUtils.buildGameSelectionModel(onQueryFilters)}
               show={showOnGameSelectorModal}
@@ -876,7 +881,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
               }}
             />
             <GameSelectorModal
-              queryType="Off/'B' Query"
+              queryType={extraRows ? "'B' Query" : "Off/'B' Query"}
               games={gameSelection.games}
               selectedGames={QueryUtils.buildGameSelectionModel(
                 offQueryFilters
@@ -895,6 +900,71 @@ const GameFilter: React.FunctionComponent<Props> = ({
                 setOffShowGameSelectorModal(false);
               }}
             />
+            {_.range(0, extraRows).map((extraQueryIndex) => (
+              <DateRangeModal
+                show={showOtherDateRangeModals[extraQueryIndex]}
+                queryType={`'${String.fromCharCode(
+                  67 + extraQueryIndex
+                )}' Query`}
+                onSave={(filter: CommonFilterCustomDate | undefined) => {
+                  setOtherQueryFilters((curr) => {
+                    const newOtherDateRangeModals = [...curr];
+                    newOtherDateRangeModals[extraQueryIndex] =
+                      QueryUtils.setCustomDate(
+                        newOtherDateRangeModals[extraQueryIndex] || [],
+                        filter
+                      );
+                    return newOtherDateRangeModals;
+                  });
+                }}
+                onHide={() =>
+                  setShowOtherDateRangeModals((curr) => {
+                    const newShowOtherDateRangeModals = [...curr];
+                    newShowOtherDateRangeModals[extraQueryIndex] = false;
+                    return newShowOtherDateRangeModals;
+                  })
+                }
+                year={startingState.year || ParamDefaults.defaultYear}
+              />
+            ))}
+            {_.range(0, extraRows).map((extraQueryIndex) => (
+              <GameSelectorModal
+                queryType={`'${String.fromCharCode(
+                  67 + extraQueryIndex
+                )}' Query`}
+                games={gameSelection.games}
+                selectedGames={QueryUtils.buildGameSelectionModel(
+                  otherQueryFilters[extraQueryIndex] || []
+                )}
+                show={showOtherGameSelectorModals[extraQueryIndex]}
+                onClose={() =>
+                  setShowOtherGameSelectorModals((curr) => {
+                    const newShowOtherGameSelectorModals = [...curr];
+                    newShowOtherGameSelectorModals[extraQueryIndex] = false;
+                    return newShowOtherGameSelectorModals;
+                  })
+                }
+                onSubmit={(selectedGame) => {
+                  setOtherQueryFilters((curr) => {
+                    const newOtherQueryFilters = [...curr];
+                    newOtherQueryFilters[extraQueryIndex] =
+                      QueryUtils.setCustomGameSelection(
+                        newOtherQueryFilters[extraQueryIndex] || [],
+                        gameSelection.games.length > 0
+                          ? QueryUtils.buildGameSelectionFilter(selectedGame)
+                          : undefined
+                      );
+                    return newOtherQueryFilters;
+                  });
+                  setShowOtherGameSelectorModals((curr) => {
+                    const newShowOtherGameSelectorModals = [...curr];
+                    newShowOtherGameSelectorModals[extraQueryIndex] = false;
+                    return newShowOtherGameSelectorModals;
+                  });
+                }}
+              />
+            ))}
+
             <Form.Group as={Row}>
               <Form.Label column sm="2">
                 {maybeOn} Query
@@ -1105,10 +1175,26 @@ const GameFilter: React.FunctionComponent<Props> = ({
                                     });
                                   }}
                                   showCustomRangeFilter={() =>
-                                    setOffShowDateRangeModal(true)
+                                    setShowOtherDateRangeModals((curr) => {
+                                      const newShowOtherDateRangeModals = [
+                                        ...curr,
+                                      ];
+                                      newShowOtherDateRangeModals[
+                                        extraQueryIndex
+                                      ] = true;
+                                      return newShowOtherDateRangeModals;
+                                    })
                                   }
                                   showGameSelectorModal={() => {
-                                    setOffShowGameSelectorModal(true);
+                                    setShowOtherGameSelectorModals((curr) => {
+                                      const newShowOtherGameSelectorModals = [
+                                        ...curr,
+                                      ];
+                                      newShowOtherGameSelectorModals[
+                                        extraQueryIndex
+                                      ] = true;
+                                      return newShowOtherGameSelectorModals;
+                                    });
                                   }}
                                 />
                               </InputGroup.Append>
