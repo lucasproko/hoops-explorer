@@ -502,12 +502,12 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
   /** For a given lineup set, calculate RAPM as quickly as possible */
   const buildRapm = (
-    lineupStats: LineupStatsModel,
+    lineupStats: LineupStatsModel | undefined,
     playerInfo: Record<PlayerId, IndivStatSet>
   ) => {
     const preRapmTableData = LineupTableUtils.buildEnrichedLineups(
       //(calcs for both luck and non-luck versions)
-      lineupStats.lineups || [],
+      lineupStats?.lineups || [],
       teamStats.global,
       rosterStats.global,
       teamStats.baseline,
@@ -661,15 +661,22 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     return _.find(arr, (p) => _.startsWith(p.onOffKey, str));
   };
 
-  /** Show baseline unless both on and off are present */
+  /** Show baseline unless both on and off are present (or in "other" mode) */
   const skipBaseline =
-    !alwaysShowBaseline && rosterStats?.on?.length && rosterStats?.off?.length;
+    !alwaysShowBaseline &&
+    ((rosterStats?.on?.length && rosterStats?.off?.length) ||
+      !_.isEmpty(rosterStats?.other));
 
   const baselineIsOnlyLine = !(
-    rosterStats?.on?.length || rosterStats?.off?.length
+    rosterStats?.on?.length ||
+    rosterStats?.off?.length ||
+    _.some(rosterStats.other, (o) => o?.length)
   );
 
-  const onOffBaseToPhrase = (type: OnOffBaselineEnum) => {
+  const onOffBaseToPhrase = (
+    type: OnOffBaselineOtherEnum,
+    otherIndex?: number
+  ) => {
     switch (type) {
       case "on":
         return "A";
@@ -677,6 +684,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         return "B";
       case "baseline":
         return "Base";
+      case "other":
+        return `${String.fromCharCode(67 + (otherIndex || 0))}`;
       default:
         return "unknown";
     }
@@ -685,12 +694,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
   /** Utility function to build the title for the player stats */
   const insertTitle = (
     playerName: string,
-    type: OnOffBaselineEnum,
-    pos: string
+    type: OnOffBaselineOtherEnum,
+    pos: string,
+    otherIndex?: number
   ) => {
     const singleLineCase = type == "baseline" && baselineIsOnlyLine;
     //^ (if this is set we only show it together with on/off)
-    const sub = onOffBaseToPhrase(type);
+    const sub = onOffBaseToPhrase(type, otherIndex);
 
     const posIfNotExpanded1 = expandedView ? null : (
       <OverlayTrigger
@@ -711,7 +721,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     );
 
     const numTeamPoss = possAsPct
-      ? teamStats[type]?.off_poss?.value
+      ? type == "other"
+        ? (teamStats.other || [])[otherIndex || 0]?.off_poss?.value
+        : teamStats[type]?.off_poss?.value
       : undefined;
 
     return singleLineCase ? (
@@ -736,6 +748,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             </span>,
             gameFilterParams,
             type,
+            0,
             numTeamPoss
           )}
         </span>
@@ -786,6 +799,15 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
           onOffKey: "Global",
         }) as IndivStatSet
     ),
+    ...(rosterStats.other?.map((o, oIdx) =>
+      _.map(
+        o || [],
+        (p) =>
+          _.assign(p, {
+            onOffKey: `Other${oIdx}`,
+          }) as IndivStatSet
+      )
+    ) || []),
   ])
     .flatten()
     .groupBy("key")
@@ -798,6 +820,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         off: onOffBasePicker("Off", key_onOffBase[1]),
         baseline: onOffBasePicker("Baseline", key_onOffBase[1]),
         global: onOffBasePicker("Global", key_onOffBase[1]),
+        other: _.chain(key_onOffBase[1])
+          .filter((p) => (p?.onOffKey || "").startsWith("Other"))
+          .sortBy((p) => parseInt((p?.onOffKey || "").substring(5)))
+          .value(),
       };
       return player;
     })

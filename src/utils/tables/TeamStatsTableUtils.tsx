@@ -491,7 +491,8 @@ export class TeamStatsTableUtils {
         const attachedQueryInfo = TableDisplayUtils.addQueryInfo(
           `'${String.fromCharCode(67 + idx)}'`,
           gameFilterParams,
-          "baseline" //TODO fix this
+          "other",
+          idx
         );
         const retVal: [string, any] = [
           getModelKey("other", idx),

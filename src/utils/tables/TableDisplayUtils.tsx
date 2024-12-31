@@ -22,6 +22,7 @@ import {
   LineupEnrichment,
   TeamEnrichment,
   OnOffBaselineEnum,
+  OnOffBaselineOtherEnum,
 } from "../StatModels";
 import { DerivedStatsUtils } from "../stats/DerivedStatsUtils";
 import { CommonFilterParams, GameFilterParams } from "../FilterModels";
@@ -35,11 +36,15 @@ export class TableDisplayUtils {
   static addQueryInfo(
     n: React.ReactNode,
     gameFilterParams: GameFilterParams,
-    type: OnOffBaselineEnum,
+    type: OnOffBaselineOtherEnum,
+    otherIndex?: number,
     numPoss: number | undefined = undefined
   ) {
     const queryDisplayInfo = QueryUtils.queryDisplayStrs(gameFilterParams);
-    const queryForType = queryDisplayInfo[type];
+    const queryForType =
+      type == "other"
+        ? queryDisplayInfo.other[otherIndex || 0]
+        : queryDisplayInfo[type];
     const baselineQuery = type == "baseline" ? "" : queryDisplayInfo.baseline;
     const query = baselineQuery
       ? `${queryForType}${queryForType ? " AND " : ""}BASE:[${baselineQuery}]`
@@ -48,7 +53,9 @@ export class TableDisplayUtils {
     if (query) {
       //(don't display possInfo unless there is a query)
       const tooltip = (
-        <Tooltip id={`${type}QueryInfo`}>{query + possInfo}</Tooltip>
+        <Tooltip id={`${type}${otherIndex || 0}QueryInfo`}>
+          {query + possInfo}
+        </Tooltip>
       );
       return (
         <OverlayTrigger placement="auto" overlay={tooltip}>

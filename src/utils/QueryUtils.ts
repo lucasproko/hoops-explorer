@@ -622,6 +622,7 @@ export class QueryUtils {
     off: string;
     on: string;
     baseline: string;
+    other: string[];
   } {
     const queryFilterSummary = (
       query: string | undefined,
@@ -644,7 +645,14 @@ export class QueryUtils {
       params.queryFilters
     );
 
-    return { on: onQuery, off: offQuery, baseline: baselineQuery };
+    return {
+      on: onQuery,
+      off: offQuery,
+      baseline: baselineQuery,
+      other: (params.otherQueries || []).map((oq) =>
+        queryFilterSummary(oq.query, oq.queryFilters)
+      ),
+    };
   }
 
   // A bunch of utils to handle some of the logic surrounding combined query strings and filters
