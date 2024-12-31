@@ -27,7 +27,4 @@ export class FeatureFlags {
 
   /** For work in progress on short charts (currently: player shot charts) */
   static readonly shotCharts = true;
-
-  /** Show some extra rows in on/off mode */
-  static readonly advancedOnOffMode = false;
 }

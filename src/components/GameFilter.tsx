@@ -15,6 +15,10 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import InputGroup from "react-bootstrap/InputGroup";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
+
 // Component imports:
 import { TeamStatsModel } from "../components/TeamStatsTable";
 import { RosterCompareModel } from "../components/RosterCompareTable";
@@ -31,7 +35,6 @@ import {
   ParamPrefixesType,
   ParamDefaults,
   LineupFilterParams,
-  QueryWithFilters,
 } from "../utils/FilterModels";
 import LineupQueryAutoSuggestText from "./shared/LineupQueryAutoSuggestText";
 
@@ -40,7 +43,6 @@ import { ShotStatsModel, StatModels } from "../utils/StatModels";
 import {
   QueryUtils,
   CommonFilterCustomDate,
-  GameSelection,
   FilteredGameSelection,
   CommonFilterType,
 } from "../utils/QueryUtils";
@@ -48,9 +50,16 @@ import { QueryDisplayUtils } from "../utils/QueryDisplayUtils";
 import QueryFilterDropdown from "./shared/QueryFilterDropdown";
 import DateRangeModal from "./shared/DateRangeModal";
 import { UrlRouting } from "../utils/UrlRouting";
-import { Badge } from "react-bootstrap";
+import {
+  Badge,
+  Button,
+  ButtonGroup,
+  OverlayTrigger,
+  Tooltip,
+} from "react-bootstrap";
 import GameSelectorModal from "./shared/GameSelectorModal";
-import { FeatureFlags } from "../utils/stats/FeatureFlags";
+import GenericTogglingMenu from "./shared/GenericTogglingMenu";
+import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
 
 type Props = {
   onStats: (
@@ -115,12 +124,6 @@ const GameFilter: React.FunctionComponent<Props> = ({
     otherQueries: startOtherQueries,
     ...startingCommonFilterParams
   } = startingState;
-
-  const extraRows = _.isEmpty(startingState.otherQueries)
-    ? FeatureFlags.isActiveWindow(FeatureFlags.advancedOnOffMode)
-      ? 2
-      : 0
-    : startingState.otherQueries?.length;
 
   /** The state managed by the CommonFilter element */
   const [commonParams, setCommonParams] = useState(
@@ -224,6 +227,33 @@ const GameFilter: React.FunctionComponent<Props> = ({
         : startAutoOffQuery
       : false
   );
+  const removeOtherQuery = () => {
+    const clearingOtherQueries = otherQueries.length == 1;
+    setOtherQueries((curr) => [..._.dropRight(curr)]);
+    setOtherQueryFilters((curr) => [..._.dropRight(curr)]);
+    if (clearingOtherQueries && !offQuery && _.isEmpty(offQueryFilters)) {
+      setAutoOffQuery(onQuery);
+      toggleAutoOffQuery(true);
+    }
+  };
+  const removeAllOtherQueries = () => {
+    setOtherQueries([]);
+    setOtherQueryFilters([]);
+    if (!offQuery && _.isEmpty(offQueryFilters)) {
+      setAutoOffQuery(onQuery);
+      toggleAutoOffQuery(true);
+    }
+  };
+  const addOtherQuery = () => {
+    if (_.isEmpty(otherQueries) && autoOffQuery) {
+      //(remove auto off query terms and turn off)
+      toggleAutoOffQuery(false);
+      setOffQuery("");
+      setOffQueryFilters([]);
+    }
+    setOtherQueries((curr) => [...curr, ""]);
+    setOtherQueryFilters((curr) => [...curr, []]);
+  };
 
   const [showOnDateRangeModal, setOnShowDateRangeModal] = useState(false);
   const [showOffDateRangeModal, setOffShowDateRangeModal] = useState(false);
@@ -720,8 +750,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
     }
   };
 
-  const maybeOn = autoOffQuery && extraRows == 0 ? "On ('A')" : "'A'";
-  const maybeOff = autoOffQuery && extraRows == 0 ? "Off ('B')" : "'B'";
+  const maybeOn = autoOffQuery && _.isEmpty(otherQueries) ? "On ('A')" : "'A'";
+  const maybeOff =
+    autoOffQuery && _.isEmpty(otherQueries) ? "Off ('B')" : "'B'";
 
   // Link building:
 
@@ -748,6 +779,15 @@ const GameFilter: React.FunctionComponent<Props> = ({
   };
 
   // Visual components:
+
+  const queryPlusTooltip = (
+    <Tooltip id="queryPlusTooltip">Add another query row</Tooltip>
+  );
+  const queryMinusTooltip = (
+    <Tooltip id="queryMinusTooltip">
+      Remove the last query row (cannot be undone)
+    </Tooltip>
+  );
 
   return (
     <CommonFilter //(generic type inferred)
@@ -867,7 +907,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
           <div>
             <DateRangeModal
               show={showOnDateRangeModal}
-              queryType={extraRows ? "'A' Query" : "On/'A' Query"}
+              queryType={
+                !_.isEmpty(otherQueries) ? "'A' Query" : "On/'A' Query"
+              }
               onSave={(filter: CommonFilterCustomDate | undefined) =>
                 setOnQueryFilters(
                   QueryUtils.setCustomDate(onQueryFilters, filter)
@@ -878,7 +920,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
             />
             <DateRangeModal
               show={showOffDateRangeModal}
-              queryType={extraRows ? "'B' Query" : "Off/'B' Query"}
+              queryType={
+                !_.isEmpty(otherQueries) ? "'B' Query" : "Off/'B' Query"
+              }
               onSave={(filter: CommonFilterCustomDate | undefined) =>
                 setOffQueryFilters(
                   QueryUtils.setCustomDate(offQueryFilters, filter)
@@ -888,7 +932,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
               year={startingState.year || ParamDefaults.defaultYear}
             />
             <GameSelectorModal
-              queryType={extraRows ? "'A' Query" : "On/'A' Query"}
+              queryType={
+                !_.isEmpty(otherQueries) ? "'A' Query" : "On/'A' Query"
+              }
               games={gameSelection.games}
               selectedGames={QueryUtils.buildGameSelectionModel(onQueryFilters)}
               show={showOnGameSelectorModal}
@@ -906,7 +952,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
               }}
             />
             <GameSelectorModal
-              queryType={extraRows ? "'B' Query" : "Off/'B' Query"}
+              queryType={
+                !_.isEmpty(otherQueries) ? "'B' Query" : "Off/'B' Query"
+              }
               games={gameSelection.games}
               selectedGames={QueryUtils.buildGameSelectionModel(
                 offQueryFilters
@@ -925,7 +973,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                 setOffShowGameSelectorModal(false);
               }}
             />
-            {_.range(0, extraRows).map((extraQueryIndex) => (
+            {_.range(0, otherQueries.length).map((extraQueryIndex) => (
               <DateRangeModal
                 show={showOtherDateRangeModals[extraQueryIndex]}
                 queryType={`'${String.fromCharCode(
@@ -952,7 +1000,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                 year={startingState.year || ParamDefaults.defaultYear}
               />
             ))}
-            {_.range(0, extraRows).map((extraQueryIndex) => (
+            {_.range(0, otherQueries.length).map((extraQueryIndex) => (
               <GameSelectorModal
                 queryType={`'${String.fromCharCode(
                   67 + extraQueryIndex
@@ -1045,6 +1093,19 @@ const GameFilter: React.FunctionComponent<Props> = ({
                     </Row>
                   ) : null}
                 </Container>
+              </Col>
+              <Col sm="2" className="mt-1">
+                <GenericTogglingMenu size="sm">
+                  <GenericTogglingMenuItem
+                    text="Extra Query Mode"
+                    truthVal={otherQueries.length > 0}
+                    onSelect={() =>
+                      _.isEmpty(otherQueries)
+                        ? addOtherQuery()
+                        : removeAllOtherQueries()
+                    }
+                  />
+                </GenericTogglingMenu>
               </Col>
             </Form.Group>
             <Form.Group as={Row}>
@@ -1154,7 +1215,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                 />
               </Col>
             </Form.Group>
-            {_.range(0, extraRows).map((extraQueryIndex) => (
+            {_.range(0, otherQueries.length).map((extraQueryIndex) => (
               <Form.Group as={Row}>
                 <Form.Label column sm="2">
                   '{String.fromCharCode(67 + extraQueryIndex)}' Query
@@ -1252,6 +1313,34 @@ const GameFilter: React.FunctionComponent<Props> = ({
                     ) : null //(this construct needed to address SSR/readonly issue)
                   }
                 </Col>
+                {extraQueryIndex + 1 == otherQueries.length ? (
+                  <Col sm="2" className="mt-1">
+                    <ButtonGroup size="sm">
+                      <Button
+                        variant="outline-secondary"
+                        onClick={() => addOtherQuery()}
+                      >
+                        <OverlayTrigger
+                          placement="auto"
+                          overlay={queryPlusTooltip}
+                        >
+                          <FontAwesomeIcon icon={faPlusCircle} />
+                        </OverlayTrigger>
+                      </Button>
+                      <Button
+                        variant="outline-secondary"
+                        onClick={() => removeOtherQuery()}
+                      >
+                        <OverlayTrigger
+                          placement="auto"
+                          overlay={queryMinusTooltip}
+                        >
+                          <FontAwesomeIcon icon={faMinusCircle} />
+                        </OverlayTrigger>
+                      </Button>
+                    </ButtonGroup>
+                  </Col>
+                ) : undefined}
               </Form.Group>
             ))}
           </div>
