@@ -521,6 +521,7 @@ export class TeamStatsTableUtils {
       showRoster ||
       showGameInfo ||
       showPlayTypes ||
+      showShotCharts ||
       (showLuckAdjDiags && adjustForLuck);
     const showingOn = teamStats.on?.doc_count ? true : false;
     const showingOnOrOff =

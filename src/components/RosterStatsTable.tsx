@@ -58,6 +58,8 @@ import {
   LineupStatSet,
   PureStatSet,
   RosterStatsByCode,
+  OnOffBaselineGlobalOtherEnum,
+  OnOffBaselineOtherEnum,
 } from "../utils/StatModels";
 import { CbbColors } from "../utils/CbbColors";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
@@ -440,22 +442,38 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
   type OnOffRosterStatsByCode = {
     [key in OnOffBaselineGlobalEnum]: RosterStatsByCode;
+  } & {
+    other: RosterStatsByCode[];
   };
   const rosterStatsByCode: OnOffRosterStatsByCode = _.chain([
     "on",
     "off",
     "global",
     "baseline",
-  ] as OnOffBaselineGlobalEnum[])
+    "other",
+  ] as OnOffBaselineGlobalOtherEnum[])
     .transform(
       (acc, key) => {
-        if (teamStats[key]?.doc_count) {
-          acc[key] = RosterTableUtils.buildRosterTableByCode(
-            rosterStats[key] || [],
-            teamStats.global?.roster,
-            key == "global" && showPlayTypes,
-            teamSeasonLookup
-          );
+        if (key == "other") {
+          acc.other = (teamStats.other || []).map((team, otherIdx) => {
+            return team?.doc_count
+              ? RosterTableUtils.buildRosterTableByCode(
+                  rosterStats.other?.[otherIdx] || [],
+                  teamStats.global?.roster,
+                  showPlayTypes,
+                  teamSeasonLookup
+                )
+              : {};
+          });
+        } else {
+          if (teamStats[key]?.doc_count) {
+            acc[key] = RosterTableUtils.buildRosterTableByCode(
+              rosterStats[key] || [],
+              teamStats.global?.roster,
+              key == "global" && showPlayTypes,
+              teamSeasonLookup
+            );
+          }
         }
       },
       {
@@ -463,6 +481,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         off: {},
         global: {},
         baseline: {},
+        other: [],
       } as OnOffRosterStatsByCode
     )
     .value();
@@ -527,33 +546,59 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
   const buildAllRapm = () => {
     if (calcRapm && _.isEmpty(cachedRapm)) {
-      const hasOnResponse = QueryUtils.nonEmptyQueryObj(gameFilterParams, "on");
-      const onIndex = hasOnResponse ? 1 : 3;
-      const offIndex = hasOnResponse ? 2 : 1;
-      const rapmInfos = (lineupStats || []).map((lineupStat, i) => {
-        try {
-          const key = 0 == i ? "baseline" : onIndex == i ? "on" : "off";
-          const rapmPriorsBaseline = LineupTableUtils.buildBaselinePlayerInfo(
-            rosterStats[key]!,
-            rosterStatsByCode.global,
-            teamStats[key]!,
-            avgEfficiency,
-            adjustForLuck,
-            luckConfig.base,
-            manualOverridesAsMap,
-            onBallDefenseByCode
-          );
-          return buildRapm(lineupStat, rapmPriorsBaseline);
-        } catch (err: unknown) {
-          //(data not ready, ignore for now)
-          return {};
-        }
-      });
-      setCachedRapm({
-        baseline: rapmInfos?.[0],
-        on: rapmInfos?.[onIndex],
-        off: rapmInfos?.[offIndex],
-      });
+      const buildSingleRapm = (
+        teamStatSet: TeamStatSet,
+        rosterStatSet: Array<IndivStatSet>,
+        lineupStatSet: LineupStatsModel
+      ) => {
+        const rapmPriorsBaseline = LineupTableUtils.buildBaselinePlayerInfo(
+          rosterStatSet,
+          rosterStatsByCode.global,
+          teamStatSet,
+          avgEfficiency,
+          adjustForLuck,
+          luckConfig.base,
+          manualOverridesAsMap,
+          onBallDefenseByCode
+        );
+        return buildRapm(lineupStatSet, rapmPriorsBaseline);
+      };
+      const rapmInfos = _.chain([
+        "baseline",
+        "on",
+        "off",
+        "other",
+      ] as OnOffBaselineOtherEnum[])
+        .transform(
+          (acc, key, keyIdx) => {
+            if (key == "other") {
+              acc.other = (teamStats.other || []).map(
+                (teamStatSet, otherIdx) => {
+                  return buildSingleRapm(
+                    teamStatSet || StatModels.emptyTeam(),
+                    rosterStats.other?.[otherIdx] || [],
+                    lineupStats[3 + otherIdx] || StatModels.emptyLineup()
+                  );
+                }
+              );
+            } else {
+              acc[key] = buildSingleRapm(
+                teamStats[key] || StatModels.emptyTeam(),
+                rosterStats[key] || [],
+                lineupStats[keyIdx]
+              );
+            }
+          },
+          {
+            baseline: undefined,
+            on: undefined,
+            off: undefined,
+            other: [],
+          } as Record<string, any>
+        )
+        .value();
+
+      setCachedRapm(rapmInfos);
     }
   };
 
@@ -570,6 +615,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     key: string;
   } & {
     [key in OnOffBaselineGlobalEnum]: IndivStatSet | undefined;
+  } & {
+    other?: Array<IndivStatSet | undefined>;
   };
 
   /** Handles the various sorting combos */

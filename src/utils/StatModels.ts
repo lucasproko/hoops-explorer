@@ -100,13 +100,17 @@ export type RosterEntry = {
   lon?: number;
 };
 
-/** TODO: this doesn't yet support other */
+/** (For legacy code - doesn't support other) */
 export type OnOffBaselineEnum = "on" | "off" | "baseline";
 
+/** For indexing the different row-pair types in the TeamStatsTable */
 export type OnOffBaselineOtherEnum = OnOffBaselineEnum | "other";
 
-/** TODO: this doesn't yet support other */
+/** (For legacy code - doesn't support other) */
 export type OnOffBaselineGlobalEnum = "on" | "off" | "baseline" | "global";
+
+/** For indexing the different row-pair types in the RosterStatsTable */
+export type OnOffBaselineGlobalOtherEnum = OnOffBaselineGlobalEnum | "other";
 
 //////////////////////////////////////
 
