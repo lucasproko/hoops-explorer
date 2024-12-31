@@ -783,7 +783,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             </span>,
             gameFilterParams,
             type,
-            0,
+            otherIndex,
             numTeamPoss
           )}
         </span>
@@ -793,7 +793,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               <b>{sub}</b> set
             </span>,
             gameFilterParams,
-            type
+            type,
+            otherIndex
           )}
         </span>
       </span>
@@ -841,7 +842,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         o || [],
         (p) =>
           _.assign(p, {
-            onOffKey: `Other${oIdx.toString().padStart(3, "0")}`, //(ensure sort works)
+            onOffKey: `Other${oIdx}`,
           }) as IndivStatSet
       )
     ) || []),
@@ -859,8 +860,19 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         global: onOffBasePicker("Global", key_onOffBase[1]),
         other: _.chain(key_onOffBase[1])
           .filter((p) => (p?.onOffKey || "").startsWith("Other"))
-          .sortBy((p) => parseInt((p?.onOffKey || "").substring(5)))
-          .value(),
+          .transform(
+            (acc, p) => {
+              const index = parseInt((p?.onOffKey || "").substring(5));
+              if (_.isNumber(index)) acc.other[index] = p;
+            },
+            {
+              other: (teamStats.other || []).map((__) => undefined) as (
+                | IndivStatSet
+                | undefined
+              )[],
+            }
+          )
+          .value().other,
       };
       return player;
     })
@@ -1329,6 +1341,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       return _.flatten([
         buildRowSet(p, "on", 0, firstRowIsOn, tenthRowIsOn),
         buildRowSet(p, "off", 0, firstRowIsOff, tenthRowIsOff),
+        ...(rosterStats?.other || []).map((_, otherIdx) => {
+          return buildRowSet(p, "other", otherIdx, false, false);
+        }),
         skipBaseline
           ? []
           : buildRowSet(
