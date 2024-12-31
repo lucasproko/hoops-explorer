@@ -417,6 +417,7 @@ describe("QueryUtils", () => {
       baseline: ``,
       off: `NOT [query: 'OQ1']`,
       on: `query: 'OQ1'`,
+      other: [],
     });
     const test1b: GameFilterParams = {
       onQuery: `OQ1`,
@@ -427,6 +428,7 @@ describe("QueryUtils", () => {
       baseline: ``,
       off: `NOT [query: 'OQ1']`,
       on: `query: 'OQ1'`,
+      other: [],
     });
     const test1c: GameFilterParams = {
       onQuery: `OQ1`,
@@ -438,6 +440,7 @@ describe("QueryUtils", () => {
       baseline: ``,
       off: `NOT [query: 'OQ1']`,
       on: `query: 'OQ1'`,
+      other: [],
     });
     const test1d: GameFilterParams = {
       onQueryFilters: `OF1`,
@@ -449,6 +452,7 @@ describe("QueryUtils", () => {
       baseline: ``,
       off: `NOT [query: 'OQ1']`,
       on: `query: 'OQ1'`,
+      other: [],
     });
     const test1e: GameFilterParams = {
       onQuery: `OQ1`,
@@ -459,6 +463,7 @@ describe("QueryUtils", () => {
       baseline: ``,
       off: `NOT [query: 'OQ1', filters: 'OF1']`,
       on: `query: 'OQ1', filters: 'OF1'`,
+      other: [],
     });
     const test1f: GameFilterParams = {
       onQuery: `OQ1`,
@@ -470,6 +475,7 @@ describe("QueryUtils", () => {
       baseline: `query: 'BQ1'`,
       off: `NOT [query: 'OQ1', filters: 'OF1']`,
       on: `query: 'OQ1', filters: 'OF1'`,
+      other: [],
     });
 
     const test2: GameFilterParams = { onQuery: `OQ2`, offQuery: "OffQ2" };
@@ -477,6 +483,7 @@ describe("QueryUtils", () => {
       baseline: ``,
       off: `query: 'OffQ2'`,
       on: `query: 'OQ2'`,
+      other: [],
     });
     const test2a: GameFilterParams = {
       baseQuery: "BQ2",
@@ -487,6 +494,7 @@ describe("QueryUtils", () => {
       baseline: `query: 'BQ2'`,
       off: `query: 'OffQ2'`,
       on: `query: 'OQ2'`,
+      other: [],
     });
     const test2b: GameFilterParams = {
       queryFilters: "BF2",
@@ -497,6 +505,7 @@ describe("QueryUtils", () => {
       baseline: `filters: 'BF2'`,
       off: `query: 'OffQ2'`,
       on: `query: 'OQ2'`,
+      other: [],
     });
     const test2c: GameFilterParams = {
       baseQuery: "BQ2",
@@ -508,6 +517,7 @@ describe("QueryUtils", () => {
       baseline: `query: 'BQ2', filters: 'BF2'`,
       off: `query: 'OffQ2'`,
       on: `query: 'OQ2'`,
+      other: [],
     });
 
     const test3: GameFilterParams = {
@@ -518,6 +528,7 @@ describe("QueryUtils", () => {
       baseline: ``,
       off: `filters: 'OffF3'`,
       on: `filters: 'OF3'`,
+      other: [],
     });
     const test3b: GameFilterParams = {
       baseQuery: "BQ3",
@@ -528,6 +539,7 @@ describe("QueryUtils", () => {
       baseline: `query: 'BQ3'`,
       off: `filters: 'OffF3'`,
       on: `filters: 'OF3'`,
+      other: [],
     });
 
     const test4: GameFilterParams = {
@@ -540,6 +552,7 @@ describe("QueryUtils", () => {
       baseline: ``,
       off: `query: 'OffQ4', filters: 'OffF4'`,
       on: `query: 'OQ4', filters: 'OF4'`,
+      other: [],
     });
     const test4b: GameFilterParams = {
       baseQuery: "BQ4",
@@ -553,6 +566,35 @@ describe("QueryUtils", () => {
       baseline: `query: 'BQ4', filters: 'BF4'`,
       off: `query: 'OffQ4', filters: 'OffF4'`,
       on: `query: 'OQ4', filters: 'OF4'`,
+      other: [],
     });
+  });
+  const test5: GameFilterParams = {
+    onQuery: "OQ5",
+    onQueryFilters: `OF5`,
+    offQuery: "OffQ5",
+    offQueryFilters: "OffF5",
+    otherQueries: [
+      {
+        query: "otherQ1",
+        queryFilters: "otherQF1",
+      },
+      {
+        query: "otherQ2",
+      },
+      {
+        queryFilters: "otherQF3",
+      },
+    ],
+  };
+  expect(QueryUtils.queryDisplayStrs(test5)).toEqual({
+    baseline: ``,
+    off: `query: 'OffQ5', filters: 'OffF5'`,
+    on: `query: 'OQ5', filters: 'OF5'`,
+    other: [
+      `query: 'otherQ1', filters: 'otherQF1'`,
+      `query: 'otherQ2'`,
+      `filters: 'otherQF3'`,
+    ],
   });
 });

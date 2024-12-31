@@ -120,6 +120,40 @@ type Props = {
   testMode?: boolean; //(if set, the initial processing occurs synchronously)
 };
 
+////////
+
+// Some utils for building the table
+
+/** Get the right roster stats for on/off/etc  */
+const getRosterStats = (
+  key: OnOffBaselineOtherEnum,
+  rosterModel: RosterStatsModel,
+  otherIndex?: number
+): Array<IndivStatSet> => {
+  if (key == "other") {
+    return rosterModel.other?.[otherIndex || 0] || [];
+  } else {
+    return rosterModel[key] || [];
+  }
+};
+
+/** Get the right roster stats for on/off/etc  */
+const getTeamStats = (
+  key: OnOffBaselineOtherEnum,
+  teamModel: TeamStatsModel,
+  otherIndex?: number
+): TeamStatSet => {
+  if (key == "other") {
+    return teamModel.other?.[otherIndex || 0] || StatModels.emptyTeam();
+  } else {
+    return teamModel[key] || StatModels.emptyTeam();
+  }
+};
+
+////////
+
+// The main component (currently contains lots of static logic that should be moved to RosterStatsTableUtils)
+
 const RosterStatsTable: React.FunctionComponent<Props> = ({
   gameFilterParams,
   dataEvent,
@@ -240,8 +274,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       : gameFilterParams.showPlayerManual
   );
 
+  const fragmentDelimiter = filterStr.includes(";") ? ";" : ",";
   const filterFragments = filterStr
-    .split(",")
+    .split(fragmentDelimiter)
     .map((fragment) => _.trim(fragment))
     .filter((fragment) => (fragment ? true : false));
   const filterFragmentsPve = filterFragments.filter(
@@ -770,6 +805,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
   // (Always just use A/B here because it's too confusing to say
   // "On <Player name>" meaning ""<Player Name> when <Other other player> is on")
+  // (NOTE: This already dubious logic is now even worse since I added "Other", but will live with it
+  //  to avoid a complete rewrite)
   const allPlayers = _.chain([
     _.map(
       rosterStats.on || [],
@@ -804,7 +841,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         o || [],
         (p) =>
           _.assign(p, {
-            onOffKey: `Other${oIdx}`,
+            onOffKey: `Other${oIdx.toString().padStart(3, "0")}`, //(ensure sort works)
           }) as IndivStatSet
       )
     ) || []),
@@ -833,12 +870,25 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
   // First enrich with (luck, on-ball defense, manual overrides and...) ORtg etc
 
-  (["on", "off", "baseline"] as OnOffBaselineEnum[]).forEach((key) => {
-    const playerList = allPlayers
-      .filter((triple) => triple[key])
-      .map((triple) => triple[key]!);
+  const modelKeys: [OnOffBaselineOtherEnum, number][] = (
+    [
+      ["baseline", 0],
+      ["on", 0],
+      ["off", 0],
+    ] as [OnOffBaselineOtherEnum, number][]
+  ).concat((teamStats.other || []).map((__, ii) => ["other", ii]));
 
-    const teamStat = teamStats[key] || StatModels.emptyTeam();
+  modelKeys.forEach(([queryKey, otherQueryIndex]) => {
+    const playerList = allPlayers
+      .map((triple) =>
+        queryKey == "other" ? triple.other?.[otherQueryIndex] : triple[queryKey]
+      )
+      .flatMap(
+        (maybePlayer: IndivStatSet | undefined) =>
+          maybePlayer ? [maybePlayer] : [] //(remove undefined and assert type)
+      );
+
+    const teamStat = getTeamStats(queryKey, teamStats, otherQueryIndex);
 
     LineupTableUtils.buildBaselinePlayerInfo(
       playerList,
@@ -854,17 +904,39 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
   // Then some final overrides for table display purposes
 
+  const getPlayerStats = (
+    queryKey: OnOffBaselineOtherEnum,
+    player: OnOffPlayerStatSet,
+    otherQueryIndex: number
+  ) => {
+    if (queryKey == "other") {
+      return player.other?.[otherQueryIndex || 0];
+    } else {
+      return player[queryKey];
+    }
+  };
+  const getRapmFromCache = (
+    queryKey: OnOffBaselineOtherEnum,
+    rapmInfo: Record<string, any>,
+    otherQueryIndex: number
+  ) => {
+    if (queryKey == "other") {
+      return rapmInfo.other?.[otherQueryIndex || 0];
+    } else {
+      return rapmInfo[queryKey];
+    }
+  };
   allPlayers.forEach((player) => {
     /** (ugly hack so that we only render the roster info for one of the rows per player)*/
     var varFirstRowKey: string | undefined = undefined;
 
     // Inject ORtg and DRB and Poss% (ie mutate player idempotently)
-    (["on", "off", "baseline"] as OnOffBaselineEnum[]).forEach((key) => {
-      const stat = player[key];
-      const teamStat = teamStats[key] || StatModels.emptyTeam();
+    modelKeys.forEach(([queryKey, otherQueryIndex]) => {
+      const stat = getPlayerStats(queryKey, player, otherQueryIndex);
+      const teamStat = getTeamStats(queryKey, teamStats, otherQueryIndex);
 
       if (stat) {
-        if (!varFirstRowKey) varFirstRowKey = key;
+        if (!varFirstRowKey) varFirstRowKey = queryKey;
 
         const rosterEntry = stat.roster || {};
         const height = rosterEntry.height;
@@ -876,7 +948,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         }${rosterNum ? ` / #${rosterNum}` : ""}`;
 
         const rosterVisibility =
-          key == varFirstRowKey ||
+          queryKey == varFirstRowKey ||
           showPositionDiags ||
           showLuckAdjDiags ||
           showPlayTypes
@@ -919,7 +991,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             placement="auto"
             overlay={TableDisplayUtils.buildPositionTooltip(
               pos,
-              onOffBaseToPhrase(key)
+              onOffBaseToPhrase(queryKey, otherQueryIndex)
             )}
           >
             <small>{pos}</small>
@@ -950,7 +1022,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             stat.off_adj_rapm_prod = rapmPlaceholder;
             stat.def_adj_rapm_prod = rapmPlaceholder;
           } else {
-            const rapm = cachedRapm?.[key]?.[stat.key] || {};
+            const rapm =
+              getRapmFromCache(queryKey, cachedRapm, otherQueryIndex)?.[
+                stat.key
+              ] || {};
             stat.off_adj_rapm = rapm.off_adj_rapm;
             stat.off_adj_rapm_prod = rapm.off_adj_rapm
               ? {
@@ -1002,7 +1077,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         }
 
         // Now we have the position we can build the titles:
-        stat.off_title = insertTitle(stat.key, key, pos);
+        stat.off_title = insertTitle(stat.key, queryKey, pos, otherQueryIndex);
 
         // Create a table for the mutable overrides:
 
@@ -1022,6 +1097,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       " " +
       (player.baseline?.player_array?.hits?.hits?.[0]?._source?.player?.code ||
         "");
+    //(don't bother with the "other" queries here, on/off/baseline is sufficient to give us a searchable string)
 
     return (
       (filterFragmentsPve.length == 0 ||
@@ -1094,11 +1170,32 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       } else {
         currentRowCount = currentRowCount + currentRowInc;
       }
-      return _.flatten([
-        _.isNil(p.on?.off_title)
+
+      const buildRowSet = (
+        p: OnOffPlayerStatSet,
+        queryKey: OnOffBaselineOtherEnum,
+        otherQueryIndex: number,
+        firstRowIsThisSet: boolean,
+        tenthRowIsThisSet: boolean
+      ) => {
+        const player = getPlayerStats(queryKey, p, otherQueryIndex);
+        const isBaseline = queryKey == "baseline";
+        const rowLetter = _.thru(queryKey, (__) => {
+          switch (queryKey) {
+            case "on":
+              return "A";
+            case "off":
+              return "B";
+            case "baseline":
+              return "Base";
+            case "other":
+              return String.fromCharCode(67 + otherQueryIndex);
+          }
+        });
+        return _.isNil(player?.off_title)
           ? []
           : _.flatten([
-              !firstRowIsOn && showEveryLine
+              !firstRowIsThisSet && showEveryLine
                 ? [
                     GenericTableOps.buildHeaderRepeatRow(
                       CommonTableDefs.repeatingOnOffIndivHeaderFields,
@@ -1106,227 +1203,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                     ),
                   ]
                 : [],
-              tenthRowIsOn
-                ? [
-                    GenericTableOps.buildHeaderRepeatRow(
-                      CommonTableDefs.repeatingOnOffIndivHeaderFields,
-                      "small"
-                    ),
-                    GenericTableOps.buildRowSeparator(),
-                  ]
-                : [],
-              [GenericTableOps.buildDataRow(p.on, offPrefixFn, offCellMetaFn)],
-              expandedView
-                ? [
-                    GenericTableOps.buildDataRow(
-                      p.on,
-                      defPrefixFn,
-                      defCellMetaFn,
-                      undefined,
-                      rosterInfoSpanCalculator
-                    ),
-                  ]
-                : [],
-              showGrades && p.on
-                ? GradeTableUtils.buildPlayerGradeTableRows({
-                    selectionTitle: `A Lineups Grades`,
-                    config: showGrades,
-                    setConfig: (newConfig: string) => {
-                      setShowGrades(newConfig);
-                    },
-                    playerStats: {
-                      comboTier: divisionStatsCache.Combo,
-                      highTier: divisionStatsCache.High,
-                      mediumTier: divisionStatsCache.Medium,
-                      lowTier: divisionStatsCache.Low,
-                    },
-                    playerPosStats: positionalStatsCache,
-                    player: p.on,
-                    expandedView,
-                    possAsPct,
-                    factorMins,
-                    includeRapm: calcRapm,
-                  })
-                : [],
-              showDiagMode && p.on?.diag_off_rtg && p.on?.diag_def_rtg
-                ? [
-                    GenericTableOps.buildTextRow(
-                      <RosterStatsDiagView
-                        ortgDiags={p.on?.diag_off_rtg}
-                        drtgDiags={p.on?.diag_def_rtg}
-                      />,
-                      "small"
-                    ),
-                  ]
-                : [],
-              showPositionDiags
-                ? [
-                    GenericTableOps.buildTextRow(
-                      <PositionalDiagView
-                        player={p.on!}
-                        teamSeason={teamSeasonLookup}
-                        showHelp={showHelp}
-                      />,
-                      "small"
-                    ),
-                  ]
-                : [],
-              showLuckAdjDiags && p.on?.off_luck && p.on?.def_luck
-                ? [
-                    GenericTableOps.buildTextRow(
-                      <LuckAdjDiagView
-                        name="A Lineups"
-                        offLuck={p.on?.off_luck}
-                        defLuck={p.on?.def_luck}
-                        baseline={luckConfig.base}
-                        individualMode={true}
-                        showHelp={showHelp}
-                      />,
-                      "small pt-2"
-                    ),
-                  ]
-                : [],
-              showPlayTypes
-                ? [
-                    GenericTableOps.buildTextRow(
-                      <PlayerPlayTypeDiagView
-                        player={
-                          {
-                            ...p.on,
-                            posClass: p.global?.posClass || "??",
-                          } as IndivStatSet
-                        }
-                        rosterStatsByCode={rosterStatsByCode.global}
-                        teamStats={teamStats.on}
-                        showHelp={showHelp}
-                      />,
-                      "small"
-                    ),
-                  ]
-                : [],
-            ]),
-        _.isNil(p.off?.off_title)
-          ? []
-          : _.flatten([
-              !firstRowIsOff && showEveryLine
-                ? [
-                    GenericTableOps.buildHeaderRepeatRow(
-                      CommonTableDefs.repeatingOnOffIndivHeaderFields,
-                      "small"
-                    ),
-                  ]
-                : [],
-              tenthRowIsOff
-                ? [
-                    GenericTableOps.buildHeaderRepeatRow(
-                      CommonTableDefs.repeatingOnOffIndivHeaderFields,
-                      "small"
-                    ),
-                    GenericTableOps.buildRowSeparator(),
-                  ]
-                : [],
-              [GenericTableOps.buildDataRow(p.off, offPrefixFn, offCellMetaFn)],
-              expandedView
-                ? [
-                    GenericTableOps.buildDataRow(
-                      p.off,
-                      defPrefixFn,
-                      defCellMetaFn,
-                      undefined,
-                      rosterInfoSpanCalculator
-                    ),
-                  ]
-                : [],
-              showGrades && p.off
-                ? GradeTableUtils.buildPlayerGradeTableRows({
-                    selectionTitle: `B Lineups Grades`,
-                    config: showGrades,
-                    setConfig: (newConfig: string) => {
-                      setShowGrades(newConfig);
-                    },
-                    playerStats: {
-                      comboTier: divisionStatsCache.Combo,
-                      highTier: divisionStatsCache.High,
-                      mediumTier: divisionStatsCache.Medium,
-                      lowTier: divisionStatsCache.Low,
-                    },
-                    playerPosStats: positionalStatsCache,
-                    player: p.off,
-                    expandedView,
-                    possAsPct,
-                    factorMins,
-                    includeRapm: calcRapm,
-                  })
-                : [],
-              showDiagMode && p.off?.diag_off_rtg && p.off?.diag_def_rtg
-                ? [
-                    GenericTableOps.buildTextRow(
-                      <RosterStatsDiagView
-                        ortgDiags={p.off?.diag_off_rtg}
-                        drtgDiags={p.off?.diag_def_rtg}
-                      />,
-                      "small"
-                    ),
-                  ]
-                : [],
-              showPositionDiags
-                ? [
-                    GenericTableOps.buildTextRow(
-                      <PositionalDiagView
-                        player={p.off!}
-                        teamSeason={teamSeasonLookup}
-                        showHelp={showHelp}
-                      />,
-                      "small"
-                    ),
-                  ]
-                : [],
-              showLuckAdjDiags && p.off?.off_luck && p.off?.def_luck
-                ? [
-                    GenericTableOps.buildTextRow(
-                      <LuckAdjDiagView
-                        name="B Lineups"
-                        offLuck={p.off?.off_luck}
-                        defLuck={p.off?.def_luck}
-                        baseline={luckConfig.base}
-                        individualMode={true}
-                        showHelp={showHelp}
-                      />,
-                      "small pt-2"
-                    ),
-                  ]
-                : [],
-              showPlayTypes
-                ? [
-                    GenericTableOps.buildTextRow(
-                      <PlayerPlayTypeDiagView
-                        player={
-                          {
-                            ...p.off,
-                            posClass: p.global?.posClass || "??",
-                          } as IndivStatSet
-                        }
-                        rosterStatsByCode={rosterStatsByCode.global}
-                        teamStats={teamStats.off}
-                        showHelp={showHelp}
-                      />,
-                      "small"
-                    ),
-                  ]
-                : [],
-            ]),
-        skipBaseline || _.isNil(p.baseline?.off_title)
-          ? []
-          : _.flatten([
-              !firstRowIsBaseline && showEveryLine
-                ? [
-                    GenericTableOps.buildHeaderRepeatRow(
-                      CommonTableDefs.repeatingOnOffIndivHeaderFields,
-                      "small"
-                    ),
-                  ]
-                : [],
-              tenthRowIsBaseline
+              tenthRowIsThisSet
                 ? [
                     GenericTableOps.buildHeaderRepeatRow(
                       CommonTableDefs.repeatingOnOffIndivHeaderFields,
@@ -1337,7 +1214,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                 : [],
               [
                 GenericTableOps.buildDataRow(
-                  p.baseline,
+                  player,
                   offPrefixFn,
                   offCellMetaFn
                 ),
@@ -1345,7 +1222,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               expandedView
                 ? [
                     GenericTableOps.buildDataRow(
-                      p.baseline,
+                      player,
                       defPrefixFn,
                       defCellMetaFn,
                       undefined,
@@ -1353,12 +1230,16 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                     ),
                   ]
                 : [],
-              showGrades && p.baseline
+
+              showGrades && player
                 ? GradeTableUtils.buildPlayerGradeTableRows({
-                    isFullSelection:
-                      !gameFilterParams.baseQuery &&
-                      !gameFilterParams.queryFilters,
-                    selectionTitle: `Baseline Grades`,
+                    isFullSelection: isBaseline
+                      ? !gameFilterParams.baseQuery &&
+                        !gameFilterParams.queryFilters
+                      : undefined,
+                    selectionTitle: isBaseline
+                      ? "Baseline Grades"
+                      : `${rowLetter} Lineups Grades`,
                     config: showGrades,
                     setConfig: (newConfig: string) => {
                       setShowGrades(newConfig);
@@ -1370,31 +1251,30 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                       lowTier: divisionStatsCache.Low,
                     },
                     playerPosStats: positionalStatsCache,
-                    player: p.baseline,
+                    player: player,
                     expandedView,
                     possAsPct,
                     factorMins,
                     includeRapm: calcRapm,
                   })
                 : [],
-              showDiagMode &&
-              p.baseline?.diag_off_rtg &&
-              p.baseline?.diag_def_rtg
+              showDiagMode && player?.diag_off_rtg && player?.diag_def_rtg
                 ? [
                     GenericTableOps.buildTextRow(
                       <RosterStatsDiagView
-                        ortgDiags={p.baseline?.diag_off_rtg}
-                        drtgDiags={p.baseline?.diag_def_rtg}
+                        ortgDiags={player?.diag_off_rtg}
+                        drtgDiags={player?.diag_def_rtg}
                       />,
                       "small"
                     ),
                   ]
                 : [],
+
               showPositionDiags
                 ? [
                     GenericTableOps.buildTextRow(
                       <PositionalDiagView
-                        player={p.baseline!}
+                        player={player!}
                         teamSeason={teamSeasonLookup}
                         showHelp={showHelp}
                       />,
@@ -1402,13 +1282,16 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                     ),
                   ]
                 : [],
-              showLuckAdjDiags && p.baseline?.off_luck && p.baseline?.def_luck
+
+              showLuckAdjDiags && player?.off_luck && player?.def_luck
                 ? [
                     GenericTableOps.buildTextRow(
                       <LuckAdjDiagView
-                        name="Player Base"
-                        offLuck={p.baseline?.off_luck}
-                        defLuck={p.baseline?.def_luck}
+                        name={
+                          isBaseline ? `Player Base` : `${rowLetter} Lineups`
+                        }
+                        offLuck={player?.off_luck}
+                        defLuck={player?.def_luck}
                         baseline={luckConfig.base}
                         individualMode={true}
                         showHelp={showHelp}
@@ -1417,31 +1300,50 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                     ),
                   ]
                 : [],
+
               showPlayTypes
                 ? [
                     GenericTableOps.buildTextRow(
                       <PlayerPlayTypeDiagView
                         player={
                           {
-                            ...p.baseline,
+                            ...player,
                             posClass: p.global?.posClass || "??",
                           } as IndivStatSet
                         }
                         rosterStatsByCode={rosterStatsByCode.global}
-                        teamStats={teamStats.baseline}
+                        teamStats={getTeamStats(
+                          queryKey,
+                          teamStats,
+                          otherQueryIndex
+                        )}
                         showHelp={showHelp}
                       />,
                       "small"
                     ),
                   ]
                 : [],
-            ]),
+            ]);
+      };
+
+      return _.flatten([
+        buildRowSet(p, "on", 0, firstRowIsOn, tenthRowIsOn),
+        buildRowSet(p, "off", 0, firstRowIsOff, tenthRowIsOff),
+        skipBaseline
+          ? []
+          : buildRowSet(
+              p,
+              "baseline",
+              0,
+              firstRowIsBaseline,
+              tenthRowIsBaseline
+            ),
         [GenericTableOps.buildRowSeparator()],
       ]);
     })
     .value();
 
-  /** A list of all the players in poss count order */
+  /** A list of all the players in poss count order - doesn't support other */
   const playersAsList = _.flatMap(allPlayers, (p) => {
     return _.flatten([
       p.on?.off_team_poss ? [p.on] : [],

@@ -193,9 +193,8 @@ describe("TableDisplayUtils", () => {
     //(note order of tests matters because of snapshotting)
     // does nothing if no query
     expect(
-      TableDisplayUtils.addQueryInfo(<div />, {}, "baseline", 100)
+      TableDisplayUtils.addQueryInfo(<div />, {}, "baseline", 0, 100)
     ).toMatchSnapshot();
-    //TODO
 
     // only baseline query - baseline view
     expect(
@@ -203,6 +202,7 @@ describe("TableDisplayUtils", () => {
         <div />,
         { baseQuery: "BQ", queryFilters: "QF" },
         "baseline",
+        0,
         100
       )
     ).toMatchSnapshot();
@@ -212,13 +212,14 @@ describe("TableDisplayUtils", () => {
         <div />,
         { baseQuery: "BQ", queryFilters: "QF" },
         "on",
+        0,
         100
       )
     ).toMatchSnapshot();
 
     // on view - no baseline
     expect(
-      TableDisplayUtils.addQueryInfo(<div />, { onQuery: "OQ" }, "on", 100)
+      TableDisplayUtils.addQueryInfo(<div />, { onQuery: "OQ" }, "on", 0, 100)
     ).toMatchSnapshot();
     // on view - baseline
     expect(
@@ -235,6 +236,7 @@ describe("TableDisplayUtils", () => {
         <div />,
         { offQuery: "OffQ", offQueryFilters: "OffF" },
         "off",
+        0,
         200
       )
     ).toMatchSnapshot();
@@ -244,6 +246,25 @@ describe("TableDisplayUtils", () => {
         <div />,
         { offQuery: "OffQ", queryFilters: "QF" },
         "off"
+      )
+    ).toMatchSnapshot();
+
+    // other view - no baseline
+    expect(
+      TableDisplayUtils.addQueryInfo(
+        <div />,
+        { otherQueries: [{ query: "OffQ", queryFilters: "OffF" }] },
+        "other",
+        0,
+        200
+      )
+    ).toMatchSnapshot();
+    // other view - baseline
+    expect(
+      TableDisplayUtils.addQueryInfo(
+        <div />,
+        { otherQueries: [{ query: "OffQ" }], queryFilters: "QF" },
+        "other"
       )
     ).toMatchSnapshot();
   });

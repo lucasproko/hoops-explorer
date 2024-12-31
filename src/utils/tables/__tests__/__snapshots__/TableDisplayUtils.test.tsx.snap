@@ -6,7 +6,7 @@ exports[`TableDisplayUtils addQueryInfo 2`] = `
 <OverlayTrigger
   overlay={
     <Tooltip
-      id="baselineQueryInfo"
+      id="baseline0QueryInfo"
       placement="right"
     >
       query: 'BQ', filters: 'QF' ([100] team possessions)
@@ -30,7 +30,7 @@ exports[`TableDisplayUtils addQueryInfo 3`] = `
 <OverlayTrigger
   overlay={
     <Tooltip
-      id="onQueryInfo"
+      id="on0QueryInfo"
       placement="right"
     >
       BASE:[query: 'BQ', filters: 'QF'] ([100] team possessions)
@@ -54,7 +54,7 @@ exports[`TableDisplayUtils addQueryInfo 4`] = `
 <OverlayTrigger
   overlay={
     <Tooltip
-      id="onQueryInfo"
+      id="on0QueryInfo"
       placement="right"
     >
       query: 'OQ' ([100] team possessions)
@@ -78,7 +78,7 @@ exports[`TableDisplayUtils addQueryInfo 5`] = `
 <OverlayTrigger
   overlay={
     <Tooltip
-      id="onQueryInfo"
+      id="on0QueryInfo"
       placement="right"
     >
       filters: 'OF' AND BASE:[query: 'BQ']
@@ -102,7 +102,7 @@ exports[`TableDisplayUtils addQueryInfo 6`] = `
 <OverlayTrigger
   overlay={
     <Tooltip
-      id="offQueryInfo"
+      id="off0QueryInfo"
       placement="right"
     >
       query: 'OffQ', filters: 'OffF' ([200] team possessions)
@@ -126,7 +126,55 @@ exports[`TableDisplayUtils addQueryInfo 7`] = `
 <OverlayTrigger
   overlay={
     <Tooltip
-      id="offQueryInfo"
+      id="off0QueryInfo"
+      placement="right"
+    >
+      query: 'OffQ' AND BASE:[filters: 'QF']
+    </Tooltip>
+  }
+  placement="auto"
+>
+  <u
+    style={
+      Object {
+        "textDecorationStyle": "dotted",
+      }
+    }
+  >
+    <div />
+  </u>
+</OverlayTrigger>
+`;
+
+exports[`TableDisplayUtils addQueryInfo 8`] = `
+<OverlayTrigger
+  overlay={
+    <Tooltip
+      id="other0QueryInfo"
+      placement="right"
+    >
+      query: 'OffQ', filters: 'OffF' ([200] team possessions)
+    </Tooltip>
+  }
+  placement="auto"
+>
+  <u
+    style={
+      Object {
+        "textDecorationStyle": "dotted",
+      }
+    }
+  >
+    <div />
+  </u>
+</OverlayTrigger>
+`;
+
+exports[`TableDisplayUtils addQueryInfo 9`] = `
+<OverlayTrigger
+  overlay={
+    <Tooltip
+      id="other0QueryInfo"
       placement="right"
     >
       query: 'OffQ' AND BASE:[filters: 'QF']

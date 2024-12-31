@@ -208,7 +208,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                           <OverlayTrigger
                             overlay={
                               <Tooltip
-                                id="onQueryInfo"
+                                id="on0QueryInfo"
                                 placement="right"
                               >
                                 query: 'testQon'
@@ -260,7 +260,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                           <OverlayTrigger
                             overlay={
                               <Tooltip
-                                id="onQueryInfo"
+                                id="on0QueryInfo"
                                 placement="right"
                               >
                                 query: 'testQon'
@@ -488,7 +488,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                           <OverlayTrigger
                             overlay={
                               <Tooltip
-                                id="offQueryInfo"
+                                id="off0QueryInfo"
                                 placement="right"
                               >
                                 query: 'testQoff'
@@ -540,7 +540,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                           <OverlayTrigger
                             overlay={
                               <Tooltip
-                                id="offQueryInfo"
+                                id="off0QueryInfo"
                                 placement="right"
                               >
                                 query: 'testQoff'
@@ -1008,7 +1008,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                           <OverlayTrigger
                             overlay={
                               <Tooltip
-                                id="onQueryInfo"
+                                id="on0QueryInfo"
                                 placement="right"
                               >
                                 query: 'testQon'
@@ -1060,7 +1060,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                           <OverlayTrigger
                             overlay={
                               <Tooltip
-                                id="onQueryInfo"
+                                id="on0QueryInfo"
                                 placement="right"
                               >
                                 query: 'testQon'
@@ -1528,7 +1528,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                           <OverlayTrigger
                             overlay={
                               <Tooltip
-                                id="offQueryInfo"
+                                id="off0QueryInfo"
                                 placement="right"
                               >
                                 query: 'testQoff'
@@ -1580,7 +1580,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                           <OverlayTrigger
                             overlay={
                               <Tooltip
-                                id="offQueryInfo"
+                                id="off0QueryInfo"
                                 placement="right"
                               >
                                 query: 'testQoff'
@@ -2317,7 +2317,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                   <OverlayTrigger
                                     overlay={
                                       <Tooltip
-                                        id="offQueryInfo"
+                                        id="off0QueryInfo"
                                         placement="right"
                                       >
                                         query: 'testQoff'
@@ -2369,7 +2369,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                   <OverlayTrigger
                                     overlay={
                                       <Tooltip
-                                        id="offQueryInfo"
+                                        id="off0QueryInfo"
                                         placement="right"
                                       >
                                         query: 'testQoff'
@@ -2604,7 +2604,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                   <OverlayTrigger
                                     overlay={
                                       <Tooltip
-                                        id="offQueryInfo"
+                                        id="off0QueryInfo"
                                         placement="right"
                                       >
                                         query: 'testQoff'
@@ -2656,7 +2656,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                   <OverlayTrigger
                                     overlay={
                                       <Tooltip
-                                        id="offQueryInfo"
+                                        id="off0QueryInfo"
                                         placement="right"
                                       >
                                         query: 'testQoff'
@@ -2893,7 +2893,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                   <OverlayTrigger
                                     overlay={
                                       <Tooltip
-                                        id="onQueryInfo"
+                                        id="on0QueryInfo"
                                         placement="right"
                                       >
                                         query: 'testQon'
@@ -2945,7 +2945,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                   <OverlayTrigger
                                     overlay={
                                       <Tooltip
-                                        id="onQueryInfo"
+                                        id="on0QueryInfo"
                                         placement="right"
                                       >
                                         query: 'testQon'
@@ -3180,7 +3180,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                   <OverlayTrigger
                                     overlay={
                                       <Tooltip
-                                        id="onQueryInfo"
+                                        id="on0QueryInfo"
                                         placement="right"
                                       >
                                         query: 'testQon'
@@ -3232,7 +3232,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                   <OverlayTrigger
                                     overlay={
                                       <Tooltip
-                                        id="onQueryInfo"
+                                        id="on0QueryInfo"
                                         placement="right"
                                       >
                                         query: 'testQon'
@@ -3469,7 +3469,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                   <OverlayTrigger
                                     overlay={
                                       <Tooltip
-                                        id="offQueryInfo"
+                                        id="off0QueryInfo"
                                         placement="right"
                                       >
                                         query: 'testQoff'
@@ -3521,7 +3521,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                   <OverlayTrigger
                                     overlay={
                                       <Tooltip
-                                        id="offQueryInfo"
+                                        id="off0QueryInfo"
                                         placement="right"
                                       >
                                         query: 'testQoff'
@@ -3756,7 +3756,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                   <OverlayTrigger
                                     overlay={
                                       <Tooltip
-                                        id="offQueryInfo"
+                                        id="off0QueryInfo"
                                         placement="right"
                                       >
                                         query: 'testQoff'
@@ -3808,7 +3808,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                   <OverlayTrigger
                                     overlay={
                                       <Tooltip
-                                        id="offQueryInfo"
+                                        id="off0QueryInfo"
                                         placement="right"
                                       >
                                         query: 'testQoff'
@@ -4541,7 +4541,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                   <OverlayTrigger
                                     overlay={
                                       <Tooltip
-                                        id="onQueryInfo"
+                                        id="on0QueryInfo"
                                         placement="right"
                                       >
                                         query: 'testQon'
@@ -4593,7 +4593,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                   <OverlayTrigger
                                     overlay={
                                       <Tooltip
-                                        id="onQueryInfo"
+                                        id="on0QueryInfo"
                                         placement="right"
                                       >
                                         query: 'testQon'
@@ -4828,7 +4828,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                   <OverlayTrigger
                                     overlay={
                                       <Tooltip
-                                        id="onQueryInfo"
+                                        id="on0QueryInfo"
                                         placement="right"
                                       >
                                         query: 'testQon'
@@ -4880,7 +4880,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                   <OverlayTrigger
                                     overlay={
                                       <Tooltip
-                                        id="onQueryInfo"
+                                        id="on0QueryInfo"
                                         placement="right"
                                       >
                                         query: 'testQon'
@@ -6426,7 +6426,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                       <OverlayTrigger
                                         overlay={
                                           <Tooltip
-                                            id="onQueryInfo"
+                                            id="on0QueryInfo"
                                             placement="right"
                                           >
                                             query: 'testQon'
@@ -6478,7 +6478,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                       <OverlayTrigger
                                         overlay={
                                           <Tooltip
-                                            id="onQueryInfo"
+                                            id="on0QueryInfo"
                                             placement="right"
                                           >
                                             query: 'testQon'
@@ -6713,7 +6713,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                       <OverlayTrigger
                                         overlay={
                                           <Tooltip
-                                            id="offQueryInfo"
+                                            id="off0QueryInfo"
                                             placement="right"
                                           >
                                             query: 'testQoff'
@@ -6765,7 +6765,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                       <OverlayTrigger
                                         overlay={
                                           <Tooltip
-                                            id="offQueryInfo"
+                                            id="off0QueryInfo"
                                             placement="right"
                                           >
                                             query: 'testQoff'
@@ -7003,7 +7003,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                       <OverlayTrigger
                                         overlay={
                                           <Tooltip
-                                            id="onQueryInfo"
+                                            id="on0QueryInfo"
                                             placement="right"
                                           >
                                             query: 'testQon'
@@ -7055,7 +7055,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                       <OverlayTrigger
                                         overlay={
                                           <Tooltip
-                                            id="onQueryInfo"
+                                            id="on0QueryInfo"
                                             placement="right"
                                           >
                                             query: 'testQon'
@@ -7293,7 +7293,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                       <OverlayTrigger
                                         overlay={
                                           <Tooltip
-                                            id="offQueryInfo"
+                                            id="off0QueryInfo"
                                             placement="right"
                                           >
                                             query: 'testQoff'
@@ -7345,7 +7345,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                       <OverlayTrigger
                                         overlay={
                                           <Tooltip
-                                            id="offQueryInfo"
+                                            id="off0QueryInfo"
                                             placement="right"
                                           >
                                             query: 'testQoff'
