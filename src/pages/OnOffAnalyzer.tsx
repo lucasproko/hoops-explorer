@@ -113,6 +113,8 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     if (
       (params.teamShotCharts || // Showing extra charts
         params.showTeamPlayTypes ||
+        params.showGameInfo ||
+        params.showRoster ||
         params.showExtraInfo) &&
       (!_.isEmpty(params.onQuery) || // Have multiple queries
         !_.isEmpty(params.offQuery) ||
