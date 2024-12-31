@@ -622,6 +622,7 @@ const CustomMatchupAnalyzerPage: NextPage<{}> = () => {
                 navigationRefs={{
                   refA: refA,
                   refB: refB,
+                  otherRefs: [],
                   refBase: refBase,
                   refDiffs: refDiffs,
                 }}
@@ -669,6 +670,7 @@ const CustomMatchupAnalyzerPage: NextPage<{}> = () => {
                 navigationRefs={{
                   refA: refA,
                   refB: refB,
+                  otherRefs: [],
                   refBase: refBase,
                   refDiffs: refDiffs,
                 }}
