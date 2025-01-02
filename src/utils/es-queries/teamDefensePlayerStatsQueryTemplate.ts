@@ -20,7 +20,13 @@ export const teamDefensePlayerStatsQuery = function (
   hca: number
 ) {
   return {
-    ...commonRuntimeMappings(params, lastDate, publicEfficiency, lookup),
+    ...commonRuntimeMappings(
+      params,
+      lastDate,
+      publicEfficiency,
+      lookup,
+      !seasonVsGameAverageDebugMode
+    ),
     _source: {
       includes: [],
       excludes: [],

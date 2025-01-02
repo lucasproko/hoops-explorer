@@ -7,7 +7,8 @@ export const commonRuntimeMappings = function (
   params: CommonFilterParams,
   lastDate: number,
   publicEfficiency: any,
-  lookup: any
+  lookup: any,
+  opponentMode: boolean = false
 ) {
   return {
     runtime_mappings: {
@@ -56,9 +57,9 @@ export const commonRuntimeMappings = function (
         script: {
           source: `
             if (!params.kp_info.isEmpty()) {
-              def kp_name = params.pbp_to_kp[doc["opponent.team.keyword"].value];
+              def kp_name = params.pbp_to_kp[doc[params.field_name].value];
               if (kp_name == null) {
-                 kp_name = doc["opponent.team.keyword"].value;
+                 kp_name = doc[params.field_name].value;
               } else {
                  kp_name = kp_name.pbp_kp_team;
               }
@@ -95,6 +96,9 @@ export const commonRuntimeMappings = function (
           lang: "painless",
           params: {
             pbp_to_kp: lookup,
+            field_name: opponentMode
+              ? "team.team.keyword"
+              : "opponent.team.keyword",
             kp_info: publicEfficiency, //(if empty then the query auto-returns true)
             conf:
               QueryUtils.getConference(
