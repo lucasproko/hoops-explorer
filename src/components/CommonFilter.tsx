@@ -89,7 +89,7 @@ interface Props<PARAMS> {
   majorParamsDisabled?: boolean; //(not currently used but would allow you to block changing team/seeason/gender)
   /** Note there needs to be an intermediate 1-up in the parent filter, see LineupFilter for an example */
   forceReload1Up?: number; //force submits a new set of parameters if true
-  matchupMode?: boolean;
+  matchupMode?: "game" | "preview";
   blockSubmit?: boolean;
   onGameSelectionChange?: (gameSelection: FilteredGameSelection) => void;
 }

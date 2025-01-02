@@ -24,7 +24,6 @@ import CommonFilter, {
 import {
   ParamPrefixesType,
   ParamPrefixes,
-  CommonFilterParams,
   LineupFilterParams,
   FilterRequestInfo,
   MatchupFilterParams,
@@ -43,7 +42,7 @@ import { QueryUtils } from "../utils/QueryUtils";
 import { UrlRouting } from "../utils/UrlRouting";
 import { AvailableTeams } from "../utils/internal-data/AvailableTeams";
 import { DateUtils } from "../utils/DateUtils";
-import { FilterParamsType } from "../utils/FilterModels";
+import { FilterParamsType, CommonFilterParams } from "../utils/FilterModels";
 
 type Props = {
   onStats: (
@@ -451,6 +450,43 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
     return game == "" ? { label: "Choose Game..." } : stringToOption(game);
   }
 
+  function getCurrentGameFilter() {
+    const objToCheck =
+      (commonParams.minRank || "1") + "-" + (commonParams.maxRank || "400");
+    const key = _.findKey(
+      gameFilterOptions,
+      (v, k) => v.minRank + "-" + v.maxRank == objToCheck
+    );
+    return key || "Based On All Games";
+  }
+
+  const gameFilterOptions = {
+    "Based On All Games": {
+      minRank: "1",
+      maxRank: "400",
+    },
+    "Based on T50 Games": {
+      minRank: "1",
+      maxRank: "50",
+    },
+    "Based on T100 Games": {
+      minRank: "1",
+      maxRank: "100",
+    },
+    "Based on T150 Games": {
+      minRank: "1",
+      maxRank: "150",
+    },
+    "Based on T200 Games": {
+      minRank: "1",
+      maxRank: "200",
+    },
+    "Based on Weak Opponents": {
+      minRank: "200",
+      maxRank: "400",
+    },
+  } as Record<string, { minRank: string; maxRank: string }>;
+
   // Link building
   const gameParams = (
     params: MatchupFilterParams,
@@ -496,7 +532,7 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
       tablePrefixForPrimaryRequest={ParamPrefixes.lineup}
       buildParamsFromState={buildParamsFromState}
       childHandleResponse={handleResponse}
-      matchupMode={true}
+      matchupMode={"preview"}
       blockSubmit={game == ""}
       buildLinks={(params) => {
         const opponentName = game;
@@ -551,7 +587,26 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
         {(globalKeypressHandler) => (
           <div>
             <Form.Group as={Row}>
-              <Col xs={0} sm={0} md={0} lg={4} />
+              <Col xs={0} sm={0} md={0} lg={4}>
+                <Select
+                  isClearable={false}
+                  styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
+                  value={stringToOption(getCurrentGameFilter())}
+                  options={_.keys(gameFilterOptions).map((r) =>
+                    stringToOption(r)
+                  )}
+                  onChange={(option: any) => {
+                    const chosenFilter = gameFilterOptions[option.value];
+                    if (chosenFilter) {
+                      setCommonParams({
+                        ...commonParams,
+                        minRank: gameFilterOptions[option.value]?.minRank,
+                        maxRank: gameFilterOptions[option.value]?.maxRank,
+                      });
+                    }
+                  }}
+                />
+              </Col>
               <Col xs={12} sm={12} md={12} lg={6}>
                 <Select
                   isClearable={false}

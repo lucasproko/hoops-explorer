@@ -551,7 +551,7 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
       tablePrefixForPrimaryRequest={ParamPrefixes.lineup}
       buildParamsFromState={buildParamsFromState}
       childHandleResponse={handleResponse}
-      matchupMode={true}
+      matchupMode={"game"}
       blockSubmit={game == ""}
       buildLinks={(params) => {
         const opponentName = buildOppoFilter(params.oppoTeam || "")?.team;
