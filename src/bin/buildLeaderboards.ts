@@ -1146,6 +1146,23 @@ export async function main() {
 
                 if (injectAllRapmForNbaFolks && !cutdownMode) {
                   player.rapm = rapmP.rapm;
+                  // Also let's create an on/off net inside "rapm" since someone asked for that
+                  player.on = _.chain(rapmP.on)
+                    .toPairs()
+                    .filter(
+                      ([key, val]) =>
+                        _.startsWith(key, "off_") || _.startsWith(key, "def")
+                    )
+                    .fromPairs()
+                    .value();
+                  player.off = _.chain(rapmP.off)
+                    .toPairs()
+                    .filter(
+                      ([key, val]) =>
+                        _.startsWith(key, "off_") || _.startsWith(key, "def")
+                    )
+                    .fromPairs()
+                    .value();
                 }
 
                 if (cutdownMode) {
@@ -1317,25 +1334,29 @@ export async function main() {
             return lineup;
           });
 
-          switch (label) {
-            case "all":
-              savedLineups.push(...tableData);
-              savedPlayers.push(...enrichedAndFilteredPlayers);
-              savedLowVolumePlayers.push(
-                ...cutdownEnrichedPlayers.filter(lowVolumePlayerCheck)
-              );
-              break;
-            case "conf":
-              savedConfOnlyLineups.push(...tableData);
-              savedConfOnlyPlayers.push(...enrichedAndFilteredPlayers);
-              break;
-            case "t100":
-              savedT100Lineups.push(...tableData);
-              savedT100Players.push(...enrichedAndFilteredPlayers);
-              break;
+          if (inNaturalTier || !injectAllRapmForNbaFolks) {
+            //(if building bigger table for sharing then discard duplicates)
 
-            default:
-              console.log(`WARNING unexpected label: ${label}`);
+            switch (label) {
+              case "all":
+                savedLineups.push(...tableData);
+                savedPlayers.push(...enrichedAndFilteredPlayers);
+                savedLowVolumePlayers.push(
+                  ...cutdownEnrichedPlayers.filter(lowVolumePlayerCheck)
+                );
+                break;
+              case "conf":
+                savedConfOnlyLineups.push(...tableData);
+                savedConfOnlyPlayers.push(...enrichedAndFilteredPlayers);
+                break;
+              case "t100":
+                savedT100Lineups.push(...tableData);
+                savedT100Players.push(...enrichedAndFilteredPlayers);
+                break;
+
+              default:
+                console.log(`WARNING unexpected label: ${label}`);
+            }
           }
         }
       )
