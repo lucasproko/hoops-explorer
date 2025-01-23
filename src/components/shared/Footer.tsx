@@ -15,6 +15,8 @@ import Col from "react-bootstrap/Col";
 // Data imports:
 import { dataLastUpdated } from "../../utils/internal-data/dataLastUpdated";
 import { DateUtils } from "../../utils/DateUtils";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { ClientRequestCache } from "../../utils/ClientRequestCache";
 
 type Props = {
   readonly server: string;
@@ -92,7 +94,27 @@ const Footer: React.FunctionComponent<Props> = ({
         <Col>
           <i>
             <small>
-              Selected year's data last updated: [{lastUpdated(year, gender)}]
+              Data updated: [{lastUpdated(year, gender)}] [
+              <OverlayTrigger
+                placement="auto"
+                overlay={
+                  <Tooltip id="clearCache">
+                    If the data appears out of date trying clicking here to
+                    clear the cache and refresh the page
+                  </Tooltip>
+                }
+              >
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    ClientRequestCache.clearCache();
+                    window.location.reload();
+                  }}
+                >
+                  Clear Cache
+                </a>
+              </OverlayTrigger>
+              ]
             </small>
           </i>
         </Col>
@@ -113,7 +135,8 @@ const Footer: React.FunctionComponent<Props> = ({
         <Col>
           <i>
             <small>
-              It's a beta, so let me know if you see anything weird:&nbsp;
+              It's a beta(-ish!), so let me know if you see anything
+              weird:&nbsp;
               {publicSite ? (
                 <span>
                   <a
