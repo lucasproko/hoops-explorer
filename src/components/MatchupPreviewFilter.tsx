@@ -115,16 +115,8 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
 
   /** Bridge between the callback in CommonFilter and state management */
   function updateCommonParams(params: CommonFilterParams) {
-    // Need to refetch the list of games a team has played
-    if (
-      params.team != commonParams.team ||
-      params.year != commonParams.year ||
-      params.gender != commonParams.gender
-    ) {
-      if (params.team && params.year && params.gender) {
-        setGame("");
-      }
-    }
+    //(unlike MatchupFilter, don't need to reset the opponent, they won't typically change
+    // year to year and it's a real pain when you have to re-select the dropdown)
     setCommonParams(params);
   }
 
