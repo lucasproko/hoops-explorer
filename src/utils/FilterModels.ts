@@ -231,9 +231,18 @@ export type TeamEditorParams = {
   allEditOpen?: string; //(defaults to undefined, all edit pages open to the tab if true)
 };
 
-export type OffseasonLeaderboardParams = {
+export type TeamStatsExplorerParams = {
+  gender?: string;
   year?: string;
-  teamView?: string;
+  confs?: string;
+  sortBy?: string;
+  queryFilters?: string;
+};
+
+export type OffseasonLeaderboardParams = {
+  gender?: string;
+  year?: string;
+  teamView?: string; //(show details for a specific team)
   confs?: string;
   evalMode?: boolean;
   transferInOutMode?: boolean;

@@ -13,6 +13,7 @@ import {
   PlayerLeaderboardParams,
   TeamEditorParams,
   TeamReportFilterParams,
+  TeamStatsExplorerParams,
 } from "../utils/FilterModels";
 import {
   PlayerSeasonComparisonParams,
@@ -101,6 +102,12 @@ export class UrlRouting {
   /** The URL to use to view the "Team Editor" page */
   static getTeamEditorUrl(params: TeamEditorParams) {
     return `/TeamEditor?${UrlRouting.getUrl({
+      [UrlRouting.noSuffix]: params,
+    })}`;
+  }
+  /** The URL to use to view the "Offseason Leaderboard" page */
+  static getTeamStatsExplorer(params: TeamStatsExplorerParams) {
+    return `/TeamStatsExplorer?${UrlRouting.getUrl({
       [UrlRouting.noSuffix]: params,
     })}`;
   }
