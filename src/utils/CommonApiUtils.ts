@@ -234,8 +234,12 @@ export class CommonApiUtils {
           gender == "Women" ? "" : `${gender}_` || ""
         ).toLowerCase();
 
+        // Use this to get all conference data:
+        //const allConfsIndex = `*_${(team.year || params.year || "xxxx").substring(0, 4)},-women*,-player*,-bad*,-kenpom*,-shot*`;
+
         const body = getBody(
           index,
+          //allConfsIndex,
           genderPrefix,
           params,
           currentJsonEpoch,

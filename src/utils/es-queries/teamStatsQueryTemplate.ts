@@ -18,7 +18,8 @@ export const teamStatsQuery = function (
   avgEfficiency: number,
   hca: number
 ) {
-  // For checking conf results:
+  // For checking conf/D1 results:
+  // see also CommonApiUtils.handleRequest to switch to D1
   //params.team = "*";
 
   return {
