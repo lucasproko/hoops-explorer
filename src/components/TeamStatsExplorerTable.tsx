@@ -40,9 +40,16 @@ import Statistics from "statistics.js";
 import {
   TeamEditorParams,
   OffseasonLeaderboardParams,
+  TeamStatsExplorerParams,
+  ParamDefaults,
 } from "../utils/FilterModels";
 
-import { Statistic, RosterEntry, PlayerCode } from "../utils/StatModels";
+import {
+  Statistic,
+  RosterEntry,
+  PlayerCode,
+  StatModels,
+} from "../utils/StatModels";
 import { AvailableTeams } from "../utils/internal-data/AvailableTeams";
 import { GradeUtils } from "../utils/stats/GradeUtils";
 import { UrlRouting } from "../utils/UrlRouting";
@@ -67,11 +74,20 @@ import {
 import TeamFilterAutoSuggestText, {
   notFromFilterAutoSuggest,
 } from "./shared/TeamFilterAutoSuggestText";
+import { TeamStatsTableUtils } from "../utils/tables/TeamStatsTableUtils";
+import { DivisionStatsCache } from "../utils/tables/GradeTableUtils";
+
+export type TeamStatsExplorerModel = {
+  confs: string[];
+  teams: any[]; //TODO
+  lastUpdated: number;
+  error?: string;
+};
 
 type Props = {
-  startingState: OffseasonLeaderboardParams;
-  dataEvent: TeamEditorStatsModel;
-  onChangeState: (newParams: OffseasonLeaderboardParams) => void;
+  startingState: TeamStatsExplorerParams;
+  dataEvent: TeamStatsExplorerModel;
+  onChangeState: (newParams: TeamStatsExplorerParams) => void;
 };
 
 const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
@@ -142,23 +158,28 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
 
   const [gender, setGender] = useState("Men"); // TODO ignore input just take Men
 
-  const [transferInOutMode, setTransferInOutMode] = useState(
-    startingState.transferInOutMode || false
-  );
-  const [evalMode, setEvalMode] = useState(startingState.evalMode || false);
-  const [showExtraStatsInEvalMode, setShowExtraStatsInEvalMode] =
-    useState<Boolean>(false); //TODO make this display param (this option is mostly for me at the moment, so not a prio)
-
   const [sortBy, setSortBy] = useState(startingState.sortBy || "net");
-
-  const [rostersPerTeam, setRostersPerTeam] = useState(
-    {} as Record<string, Record<string, RosterEntry>>
-  );
 
   const teamList = _.flatMap(AvailableTeams.byName, (teams, __) => {
     const maybeTeam = teams.find((t) => t.year == year && t.gender == gender);
     return maybeTeam ? [maybeTeam.team] : [];
   });
+
+  /** Show team and individual grades */
+  const [showGrades, setShowGrades] = useState(
+    _.isNil(startingState.showGrades) ? "" : startingState.showGrades
+  );
+
+  /** The settings to use for luck adjustment */
+  const [luckConfig, setLuckConfig] = useState(
+    _.isNil(startingState.luck)
+      ? ParamDefaults.defaultLuckConfig
+      : startingState.luck
+  );
+
+  const [divisionStatsCache, setDivisionStatsCache] = useState(
+    {} as DivisionStatsCache
+  );
 
   /** When the params change */
   useEffect(() => {
@@ -168,7 +189,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       sortBy: sortBy,
       queryFilters: queryFilters,
     });
-  }, [confs, year, evalMode, transferInOutMode, sortBy, queryFilters]);
+  }, [confs, year, sortBy, queryFilters]);
 
   /** Set this to be true on expensive operations */
   const [loadingOverride, setLoadingOverride] = useState(false);
@@ -236,7 +257,62 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       );
     };
 
-    return <div />;
+    const rowsForEachTeam = (dataEvent.teams || []).map((team) => {
+      const tableInfo = TeamStatsTableUtils.buildRows(
+        { team: team.team, year, gender },
+        {
+          baseline: team,
+          global: team,
+          on: StatModels.emptyTeam(),
+          off: StatModels.emptyTeam(),
+        },
+        { on: [], off: [], baseline: [], other: [], global: [] },
+
+        {
+          on: { off: {}, def: {} },
+          off: { off: {}, def: {} },
+          other: [],
+          baseline: { off: {}, def: {} },
+        },
+        [],
+
+        // Page control
+        {
+          showPlayTypes: false,
+          showRoster: false,
+          adjustForLuck: false,
+          showDiffs: false,
+          showGameInfo: false,
+          showShotCharts: false,
+          shotChartConfig: undefined,
+          showExtraInfo: false,
+          showGrades: "",
+          showLuckAdjDiags: false,
+          showHelp,
+        },
+        {
+          setShowGrades: (showGrades: string) => setShowGrades(showGrades),
+          setShotChartConfig: (config: any) => {},
+        },
+
+        luckConfig,
+        divisionStatsCache
+      );
+      return tableInfo;
+    });
+
+    const tableRows = _.chain(rowsForEachTeam)
+      .flatMap((rows) => rows.baseline?.teamStatsRows || [])
+      .value();
+
+    return (
+      <GenericTable
+        tableCopyId="teamStatsTable"
+        tableFields={CommonTableDefs.onOffTable}
+        tableData={tableRows}
+        cellTooltipMode="none"
+      />
+    );
   }, [gender, year, confs, dataEvent, sortBy, queryFilters]);
 
   // 3] View
@@ -245,7 +321,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   function needToLoadQuery() {
     return (
       !dataEvent.error &&
-      (loadingOverride || (dataEvent?.players || []).length == 0)
+      (loadingOverride || (dataEvent?.teams || []).length == 0)
     );
   }
 
@@ -310,7 +386,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
                 : `All Teams`
             }
             confStr={confs}
-            confMap={dataEvent?.confMap}
+            confMap={undefined}
             confs={dataEvent?.confs}
             onChangeConf={(confStr) =>
               friendlyChange(() => setConfs(confStr), confs != confStr)

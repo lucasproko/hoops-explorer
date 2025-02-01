@@ -31,6 +31,9 @@ import { UrlRouting } from "../utils/UrlRouting";
 import Head from "next/head";
 import { DateUtils } from "../utils/DateUtils";
 import { LeaderboardUtils } from "../utils/LeaderboardUtils";
+import TeamStatsExplorerTable, {
+  TeamStatsExplorerModel,
+} from "../components/TeamStatsExplorerTable";
 
 type Props = {
   testMode?: boolean; //works around SSR issues, see below
@@ -61,12 +64,6 @@ const TeamStatsExplorerPage: NextPage<Props> = ({ testMode }) => {
       : window.location.hostname;
 
   // Team Stats interface
-
-  type TeamStatsExplorerModel = {
-    confs: string[];
-    teams: any[]; //TODO
-    lastUpdated: number;
-  };
 
   const [gaInited, setGaInited] = useState(false);
   const [dataSubEvent, setDataSubEvent] = useState({
@@ -155,7 +152,13 @@ const TeamStatsExplorerPage: NextPage<Props> = ({ testMode }) => {
 
   /** Only rebuild the table if the data changes */
   const table = React.useMemo(() => {
-    return <div />;
+    return (
+      <TeamStatsExplorerTable
+        startingState={teamStatsExplorerParams}
+        dataEvent={dataSubEvent}
+        onChangeState={teamStatsExplorerParamsChange}
+      />
+    );
   }, [dataSubEvent]);
 
   const gender = teamStatsExplorerParams.gender || ParamDefaults.defaultGender;

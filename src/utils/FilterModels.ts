@@ -237,6 +237,8 @@ export type TeamStatsExplorerParams = {
   confs?: string;
   sortBy?: string;
   queryFilters?: string;
+  showGrades?: string;
+  luck?: LuckParams; //(missing iff default)
 };
 
 export type OffseasonLeaderboardParams = {
