@@ -506,7 +506,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
           <Col style={{ paddingLeft: "5px", paddingRight: "5px" }}>
             <GenericTable
               tableCopyId="teamStatsTable"
-              tableFields={CommonTableDefs.onOffTable}
+              tableFields={CommonTableDefs.onOffTable()}
               tableData={tableData}
               cellTooltipMode="none"
             />

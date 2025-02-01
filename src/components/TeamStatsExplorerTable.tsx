@@ -258,6 +258,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     };
 
     const rowsForEachTeam = (dataEvent.teams || []).map((team) => {
+      team.combo_title = `${team.team_name}`;
       const tableInfo = TeamStatsTableUtils.buildRows(
         { team: team.team, year, gender },
         {
@@ -302,13 +303,24 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     });
 
     const tableRows = _.chain(rowsForEachTeam)
-      .flatMap((rows) => rows.baseline?.teamStatsRows || [])
+      .flatMap((rows, ii) => [
+        ...(ii > 0 && ii % 10 == 0
+          ? [
+              GenericTableOps.buildHeaderRepeatRow(
+                CommonTableDefs.repeatingOnOffHeaderFields,
+                "small"
+              ),
+            ]
+          : []),
+        ...(rows.baseline?.teamStatsRows || []),
+        GenericTableOps.buildRowSeparator(),
+      ])
       .value();
 
     return (
       <GenericTable
         tableCopyId="teamStatsTable"
-        tableFields={CommonTableDefs.onOffTable}
+        tableFields={CommonTableDefs.onOffTable(true)}
         tableData={tableRows}
         cellTooltipMode="none"
       />

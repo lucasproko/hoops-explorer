@@ -12,8 +12,19 @@ exports[`Footer Footer - should create snapshot 1`] = `
     >
       <i>
         <small>
-          Selected year's data last updated: [
+          Data updated: [
           Wed Mar 11 2020 19:18:44 GMT-0400 (EDT)
+          ] [
+          <a
+            href="#"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onMouseOut={[Function]}
+            onMouseOver={[Function]}
+          >
+            Clear Cache
+          </a>
           ]
         </small>
       </i>
@@ -47,7 +58,7 @@ exports[`Footer Footer - should create snapshot 1`] = `
     >
       <i>
         <small>
-          It's a beta, so let me know if you see anything weird: 
+          It's a beta(-ish!), so let me know if you see anything weird: 
           <span>
             <a
               href="aHR0cHM6Ly90d2l0dGVyLmNvbS9JdHNBVGVycF9DQkI="

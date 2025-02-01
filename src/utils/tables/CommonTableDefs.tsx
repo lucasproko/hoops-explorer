@@ -93,12 +93,14 @@ export class CommonTableDefs {
     "2P% rim": "Rim%",
   };
 
-  static readonly onOffTable = {
+  static readonly onOffTable = (titleSpansTwoRows: boolean = false) => ({
     //accessors vs column metadata
     title: GenericTableOps.addTitle(
       "",
       "",
-      GenericTableOps.defaultRowSpanCalculator,
+      titleSpansTwoRows
+        ? CommonTableDefs.rowSpanCalculator
+        : GenericTableOps.defaultRowSpanCalculator,
       "",
       GenericTableOps.htmlFormatter
     ),
@@ -194,7 +196,7 @@ export class CommonTableDefs {
       "Weighted average of the offensive or defensive efficiencies of the lineups' opponents",
       GenericTableOps.defaultColorPicker
     ),
-  };
+  });
 
   // ON/OFF - INDIVIDUAL
 

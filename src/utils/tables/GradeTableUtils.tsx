@@ -557,7 +557,7 @@ export class GradeTableUtils {
       const defPrefixFn = (key: string) => "def_" + key;
       const defCellMetaFn = (key: string, val: any) => "def";
       const tableConfig = buildGradesTable(
-        CommonTableDefs.onOffTable,
+        CommonTableDefs.onOffTable(),
         teamBuilderInfo,
         false
       );

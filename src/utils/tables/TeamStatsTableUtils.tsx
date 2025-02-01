@@ -472,11 +472,22 @@ export class TeamStatsTableUtils {
       .map((keyDesc) => {
         const queryKey = keyDesc[0]!;
         const desc = keyDesc[1];
+        const maybeTitle = teamStats[queryKey]?.combo_title
+          ? {
+              off_title: teamStats[queryKey]?.combo_title,
+            }
+          : {
+              off_title: teamStats[queryKey]?.off_title || (
+                <b>{desc} Offense</b>
+              ),
+              def_title: teamStats[queryKey]?.def_title || (
+                <b>{desc} Defense</b>
+              ),
+            };
         const retVal: [OnOffBaselineEnum, any] = [
           queryKey,
           {
-            off_title: <b>{desc} Offense</b>,
-            def_title: <b>{desc} Defense</b>,
+            ...maybeTitle,
             ...teamStats[queryKey],
           },
         ];
