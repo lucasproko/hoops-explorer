@@ -23,6 +23,138 @@ export class AdvancedFilterUtils {
 
   static readonly operatorsSet = new Set<string>(AdvancedFilterUtils.operators);
 
+  static readonly teamExplorerAutocomplete =
+    AdvancedFilterUtils.operators.concat([
+      // Basic metadata:
+      "team_name",
+      "conf",
+      "conf_nick",
+      "year",
+      "wins",
+      "losses",
+
+      // Advanced metadata:
+      "wab",
+      "wae",
+      "exp_wab",
+      "power",
+
+      // Efficiency:
+      "off_adj_ppp",
+      "def_adj_ppp",
+      "off_ppp",
+      "def_ppp",
+
+      // Four factors
+      "off_efg",
+      "off_to",
+      "off_ftr",
+      "off_orb",
+      "def_efg",
+      "def_to",
+      "def_ftr",
+      "def_orb",
+
+      // Shot creation
+      "off_assist",
+      "off_ast_rim",
+      "off_ast_mid",
+      "off_ast_threep",
+      "off_twoprimr",
+      "off_twopmidr",
+      "off_threepr",
+      "def_assist",
+      "def_ast_rim",
+      "def_ast_mid",
+      "def_ast_threep",
+      "def_twoprimr",
+      "def_twopmidr",
+      "def_threepr",
+
+      // Shot-making
+      "off_threep",
+      "off_twop",
+      "off_twopmid",
+      "off_twoprim",
+      "off_ft",
+      "off_threep_ast",
+      "off_twop_ast",
+      "off_twopmid_ast",
+      "off_twoprim_ast",
+      "def_threep",
+      "def_twop",
+      "def_twopmid",
+      "def_twoprim",
+      "def_ft",
+      "def_threep_ast",
+      "def_twop_ast",
+      "def_twopmid_ast",
+      "def_twoprim_ast",
+
+      // Scramble:
+      "off_scramble_twop",
+      "off_scramble_twop_ast",
+      "off_scramble_threep",
+      "off_scramble_threep_ast",
+      "off_scramble_twoprim",
+      "off_scramble_twoprim_ast",
+      "off_scramble_twopmid",
+      "off_scramble_twopmid_ast",
+      "off_scramble_ft",
+      "off_scramble_ftr",
+      "off_scramble_twoprimr",
+      "off_scramble_twopmidr",
+      "off_scramble_threepr",
+      "off_scramble_assist",
+      "def_scramble_twop",
+      "def_scramble_twop_ast",
+      "def_scramble_threep",
+      "def_scramble_threep_ast",
+      "def_scramble_twoprim",
+      "def_scramble_twoprim_ast",
+      "def_scramble_twopmid",
+      "def_scramble_twopmid_ast",
+      "def_scramble_ft",
+      "def_scramble_ftr",
+      "def_scramble_twoprimr",
+      "def_scramble_twopmidr",
+      "def_scramble_threepr",
+      "def_scramble_assist",
+
+      // Transition:
+      "off_trans_twop",
+      "off_trans_twop_ast",
+      "off_trans_threep",
+      "off_trans_threep_ast",
+      "off_trans_twoprim",
+      "off_trans_twoprim_ast",
+      "off_trans_twopmid",
+      "off_trans_twopmid_ast",
+      "off_trans_ft",
+      "off_trans_ftr",
+      "off_trans_twoprimr",
+      "off_trans_twopmidr",
+      "off_trans_threepr",
+      "off_trans_assist",
+      "def_trans_twop",
+      "def_trans_twop_ast",
+      "def_trans_threep",
+      "def_trans_threep_ast",
+      "def_trans_twoprim",
+      "def_trans_twoprim_ast",
+      "def_trans_twopmid",
+      "def_trans_twopmid_ast",
+      "def_trans_ft",
+      "def_trans_ftr",
+      "def_trans_twoprimr",
+      "def_trans_twopmidr",
+      "def_trans_threepr",
+      "def_trans_assist",
+
+      //TODO: play styles
+      //TODO: others
+    ]);
+
   static readonly playerLeaderBoardAutocomplete =
     AdvancedFilterUtils.operators.concat([
       // Basic metadata:

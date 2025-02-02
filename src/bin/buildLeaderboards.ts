@@ -1818,6 +1818,10 @@ if (!testMode) {
                       confMap: mutableConferenceMap,
                       confs: _.keys(mutableConferenceMap),
 
+                      //(so can build an approximate power ranking without pulling in an extra set of files)
+                      bubbleOffense: bubbleOffenseInfo,
+                      bubbleDefense: bubbleDefenseInfo,
+
                       teams: detailedTeamInfo,
                     },
                     reduceNumberSize

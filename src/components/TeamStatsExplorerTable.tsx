@@ -78,6 +78,8 @@ import { TeamStatsTableUtils } from "../utils/tables/TeamStatsTableUtils";
 import { DivisionStatsCache } from "../utils/tables/GradeTableUtils";
 import { ConferenceToNickname } from "../utils/public-data/ConferenceInfo";
 import { TeamEvalUtils } from "../utils/stats/TeamEvalUtils";
+import LinqExpressionBuilder from "./shared/LinqExpressionBuilder";
+import { AdvancedFilterUtils } from "../utils/AdvancedFilterUtils";
 
 export type TeamStatsExplorerModel = {
   confs: string[];
@@ -113,8 +115,11 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   // Data source
   const [clipboard, setClipboard] = useState(null as null | ClipboardJS);
   const [confs, setConfs] = useState(startingState.confs || "");
-  const hasCustomFilter =
-    confs.indexOf(ConfSelectorConstants.queryFiltersName) >= 0;
+
+  // Basic filter:
+  const manualFilterSelected =
+    confs.indexOf(ConfSelectorConstants.queryFiltersName) >= 0; //(if so this will override the ordering)
+  const showCustomFilter = true; //TODO: get rid of this
   const [queryFilters, setQueryFilters] = useState(
     startingState.queryFilters || ""
   );
@@ -131,7 +136,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       const teamName = _.trim(v);
       if (teamName == separatorKeyword) {
         acc.queryFilterRowBreaks.add(ii - acc.queryFilterRowBreaks.size - 1);
-      } else {
+      } else if (_.trim(teamName) != "") {
         acc.queryFiltersAsMap[teamName] =
           1 + ii - acc.queryFilterRowBreaks.size;
       }
@@ -141,7 +146,6 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       queryFilterRowBreaks: new Set<number>(),
     }
   );
-
   const maybeFilterPromptTooltip = (
     <Tooltip id="maybeFilterPromptTooltip">
       Press Enter to apply this filter (current filter [{queryFilters}])
@@ -154,13 +158,24 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       </OverlayTrigger>
     ) : null;
 
+  // Advanced filter:
+  const [advancedFilterStr, setAdvancedFilterStr] = useState(
+    _.trim(startingState.advancedFilter || "")
+  );
+  const [showAdvancedFilter, setShowAdvancedFilter] = useState(
+    !_.isEmpty(startingState.advancedFilter) //(ie enable if anything specified, within page controlled by toggle)
+  );
+  const [advancedFilterError, setAdvancedFilterError] = useState(
+    undefined as string | undefined
+  );
+
   const [year, setYear] = useState(
     startingState.year || DateUtils.mostRecentYearWithLboardData
   );
 
   const [gender, setGender] = useState("Men"); // TODO ignore input just take Men
 
-  const [sortBy, setSortBy] = useState(startingState.sortBy || "net");
+  const [sortBy, setSortBy] = useState(startingState.sortBy || "power");
 
   const teamList = _.flatMap(AvailableTeams.byName, (teams, __) => {
     const maybeTeam = teams.find((t) => t.year == year && t.gender == gender);
@@ -190,8 +205,9 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       confs,
       sortBy: sortBy,
       queryFilters: queryFilters,
+      advancedFilter: advancedFilterStr,
     });
-  }, [confs, year, sortBy, queryFilters]);
+  }, [confs, year, sortBy, queryFilters, advancedFilterStr]);
 
   /** Set this to be true on expensive operations */
   const [loadingOverride, setLoadingOverride] = useState(false);
@@ -250,18 +266,19 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     setLoadingOverride(false);
 
     const confFilter = (t: { team: string; conf: string }) => {
-      return (
-        confs == "" ||
-        confs.indexOf(t.conf) >= 0 ||
-        (confs.indexOf(ConfSelectorConstants.highMajorConfsNick) >= 0 &&
-          ConfSelectorConstants.powerSixConfsStr.indexOf(t.conf) >= 0) ||
-        (confs.indexOf(ConfSelectorConstants.nonHighMajorConfsNick) >= 0 &&
-          ConfSelectorConstants.powerSixConfsStr.indexOf(t.conf) < 0) ||
-        (hasCustomFilter && !_.isNil(queryFiltersAsMap[t.team]))
-      );
+      const manualFilterInUse =
+        !_.isEmpty(queryFiltersAsMap) && !showAdvancedFilter;
+      return manualFilterInUse
+        ? !_.isNil(queryFiltersAsMap[t.team])
+        : confs == "" ||
+            confs.indexOf(t.conf) >= 0 ||
+            (confs.indexOf(ConfSelectorConstants.highMajorConfsNick) >= 0 &&
+              ConfSelectorConstants.powerSixConfsStr.indexOf(t.conf) >= 0) ||
+            (confs.indexOf(ConfSelectorConstants.nonHighMajorConfsNick) >= 0 &&
+              ConfSelectorConstants.powerSixConfsStr.indexOf(t.conf) < 0);
     };
 
-    const rowsForEachTeam = _.chain(dataEvent.teams || [])
+    const teamsPhase1 = _.chain(dataEvent.teams || [])
       .map((team) => {
         const confNick = ConferenceToNickname[team.conf || ""] || "???";
         const { wab, wins, losses } = _.transform(
@@ -274,14 +291,14 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           },
           { wab: 0.0, wins: 0, losses: 0 }
         );
-        team.confNick = confNick;
+        team.conf_nick = confNick;
         team.wab = wab;
         team.wins = wins;
         team.losses = losses;
 
         const expWinPctVsBubble = TeamEvalUtils.calcWinsAbove(
-          team.adj_off,
-          team.adj_def,
+          team.off_adj_ppp?.value || 100,
+          team.def_adj_ppp?.value || 100,
           //TODO: need to collect these like we do for the simple team stats view,
           // these will do for now
           [
@@ -291,7 +308,9 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           [99.5, 96.9, 98.7, 97.4, 98.4, 98.4, 102.1, 99.2, 100, 98.1],
           0.0
         );
-        team.exp_wab = (expWinPctVsBubble - 0.5) * (wins + losses);
+        const expWab = (expWinPctVsBubble - 0.5) * (wins + losses);
+        team.exp_wab = expWab;
+        team.power = 0.5 * wab + 0.5 * expWab;
         //(to get a proper ranking would need to normalize games played, but this is fine for this power ranking)
 
         team.combo_title = (
@@ -311,54 +330,63 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       .filter((team) => {
         return confFilter({
           team: team.team_name,
-          conf: team.confNick || "???",
+          conf: team.conf_nick || "???",
         });
       })
-      .sortBy((team) => -0.5 * (team.exp_wab || 0) - 0.5 * (team.wab || 0))
-      .map((team) => {
-        const tableInfo = TeamStatsTableUtils.buildRows(
-          { team: team.team, year, gender },
-          {
-            baseline: team,
-            global: team,
-            on: StatModels.emptyTeam(),
-            off: StatModels.emptyTeam(),
-          },
-          { on: [], off: [], baseline: [], other: [], global: [] },
-
-          {
-            on: { off: {}, def: {} },
-            off: { off: {}, def: {} },
-            other: [],
-            baseline: { off: {}, def: {} },
-          },
-          [],
-
-          // Page control
-          {
-            showPlayTypes: false,
-            showRoster: false, //(won't work without more data)
-            adjustForLuck: false, //(won't work without more data)
-            showDiffs: false, //(NA for this view)
-            showGameInfo: false,
-            showShotCharts: false, //(won't work without more data)
-            shotChartConfig: undefined, //(won't work without more data)
-            showExtraInfo: false, //TODO takes a while to render if true maybe only do for "top" 30?
-            showGrades: "", //TODO: need to play with performance
-            showLuckAdjDiags: false, //(won't work without more data)
-            showHelp,
-          },
-          {
-            setShowGrades: (showGrades: string) => setShowGrades(showGrades),
-            setShotChartConfig: (config: any) => {},
-          },
-
-          luckConfig,
-          divisionStatsCache
-        );
-        return tableInfo;
-      })
+      .sortBy((team) => -(team.power || 0))
       .value();
+
+    const [teamsPhase2, tmpAvancedFilterError] =
+      advancedFilterStr.length > 0
+        ? AdvancedFilterUtils.applyFilter(teamsPhase1, advancedFilterStr)
+        : [teamsPhase1, undefined];
+
+    if (advancedFilterStr.length > 0)
+      setAdvancedFilterError(tmpAvancedFilterError);
+
+    const rowsForEachTeam = teamsPhase2.map((team) => {
+      const tableInfo = TeamStatsTableUtils.buildRows(
+        { team: team.team_name, year, gender },
+        {
+          baseline: team,
+          global: team,
+          on: StatModels.emptyTeam(),
+          off: StatModels.emptyTeam(),
+        },
+        { on: [], off: [], baseline: [], other: [], global: [] },
+
+        {
+          on: { off: {}, def: {} },
+          off: { off: {}, def: {} },
+          other: [],
+          baseline: { off: {}, def: {} },
+        },
+        [],
+
+        // Page control
+        {
+          showPlayTypes: false,
+          showRoster: false, //(won't work without more data)
+          adjustForLuck: false, //(won't work without more data)
+          showDiffs: false, //(NA for this view)
+          showGameInfo: false,
+          showShotCharts: false, //(won't work without more data)
+          shotChartConfig: undefined, //(won't work without more data)
+          showExtraInfo: false, //TODO takes a while to render if true maybe only do for "top" 30?
+          showGrades: "", //TODO: need to play with performance
+          showLuckAdjDiags: false, //(won't work without more data)
+          showHelp,
+        },
+        {
+          setShowGrades: (showGrades: string) => setShowGrades(showGrades),
+          setShotChartConfig: (config: any) => {},
+        },
+
+        luckConfig,
+        divisionStatsCache
+      );
+      return tableInfo;
+    });
 
     const tableRows = _.chain(rowsForEachTeam)
       .flatMap((rows, ii) => [
@@ -383,7 +411,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         cellTooltipMode="none"
       />
     );
-  }, [gender, year, confs, dataEvent, sortBy, queryFilters]);
+  }, [gender, year, confs, dataEvent, sortBy, queryFilters, advancedFilterStr]);
 
   // 3] View
 
@@ -417,7 +445,29 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   function stringToOption(s: string) {
     return { label: s, value: s };
   }
-  const sortByOptions: Record<string, { label: string; value: string }> = {};
+  const sortByOptions: Record<string, { label: string; value: string }> = {
+    power: { label: "Default Power Ranking", value: "power" },
+  };
+
+  const linqEnableTooltip = (
+    <Tooltip id="linqEnableTooltip">
+      Enable the Linq filter editor, click on "?" for a guide on using Linq
+    </Tooltip>
+  );
+  const linqEnableText = showHelp ? (
+    <OverlayTrigger placement="auto" overlay={linqEnableTooltip}>
+      <span>
+        Linq
+        <sup>
+          <a target="_blank" href="https://hoop-explorer.blogspot.com/2022/03/">
+            ?
+          </a>
+        </sup>
+      </span>
+    </OverlayTrigger>
+  ) : (
+    <span>Linq</span>
+  );
 
   return (
     <Container>
@@ -442,7 +492,8 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
             isSearchable={false}
             onChange={(option: any) => {
               if ((option as any)?.value) {
-                setYear((option as any)?.value);
+                const newYear = (option as any)?.value;
+                friendlyChange(() => setYear(newYear), newYear != year);
               }
             }}
           />
@@ -470,38 +521,95 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           <GenericTogglingMenu></GenericTogglingMenu>
         </Col>
       </Form.Group>
-      {hasCustomFilter ? (
-        <Form.Group as={Row}>
-          {hasCustomFilter ? (
-            <Col xs={12} sm={12} md={8} lg={8}>
-              <InputGroup>
-                <InputGroup.Prepend>
-                  <InputGroup.Text id="filter">
-                    Filter{maybeFilterPrompt}:
-                  </InputGroup.Text>
-                </InputGroup.Prepend>
-                <div className="flex-fill">
-                  <TeamFilterAutoSuggestText
-                    readOnly={false}
-                    placeholder={`;-separated list of teams, or "BREAK;"`}
-                    autocomplete={teamList
-                      .concat([separatorKeyword])
-                      .map((s) => s + ";")}
-                    value={tmpQueryFilters}
-                    onChange={(ev: any) => setTmpQueryFilters(ev.target.value)}
-                    onSelectionChanged={(newStr: string) =>
-                      friendlyChange(() => {
-                        setQueryFilters(newStr);
-                      }, newStr != queryFilters)
-                    }
-                    onKeyUp={(ev: any) => setTmpQueryFilters(ev.target.value)}
-                  />
-                </div>
-              </InputGroup>
-            </Col>
-          ) : null}
+      <Form.Group as={Row}>
+        {!showAdvancedFilter ? (
+          <Col xs={12} sm={12} md={7} lg={7}>
+            <InputGroup>
+              <InputGroup.Prepend>
+                <InputGroup.Text id="filter">
+                  Filter{maybeFilterPrompt}:
+                </InputGroup.Text>
+              </InputGroup.Prepend>
+              <div className="flex-fill">
+                <TeamFilterAutoSuggestText
+                  readOnly={false}
+                  placeholder={
+                    manualFilterSelected
+                      ? `;-separated list of teams, or "BREAK;"`
+                      : `;-separated list of teams`
+                  }
+                  autocomplete={teamList
+                    .concat([separatorKeyword])
+                    .map((s) => s + ";")}
+                  value={tmpQueryFilters}
+                  onChange={(ev: any) => setTmpQueryFilters(ev.target.value)}
+                  onSelectionChanged={(newStr: string) =>
+                    friendlyChange(() => {
+                      setQueryFilters(newStr);
+                    }, newStr != queryFilters)
+                  }
+                  onKeyUp={(ev: any) => setTmpQueryFilters(ev.target.value)}
+                />
+              </div>
+            </InputGroup>
+          </Col>
+        ) : null}
+        {!showAdvancedFilter ? (
+          <Form.Group as={Col} xs={12} sm={12} md={4} lg={4}>
+            <Select
+              styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
+              value={sortByOptions[sortBy]}
+              options={_.values(sortByOptions)}
+              isSearchable={false}
+              onChange={(option: any) => {
+                if ((option as any)?.value) {
+                  const newSortBy = (option as any)?.value || "net";
+                  friendlyChange(
+                    () => setSortBy(newSortBy),
+                    sortBy != newSortBy
+                  );
+                }
+              }}
+            />
+          </Form.Group>
+        ) : null}
+        {showAdvancedFilter ? (
+          <Form.Group as={Col} xs={12} sm={12} md={11} lg={11}>
+            <LinqExpressionBuilder
+              prompt="eg 'off_adj_ppp > 110.0 SORT_BY def_adj_ppp ASC'"
+              value={advancedFilterStr}
+              error={advancedFilterError}
+              autocomplete={AdvancedFilterUtils.teamExplorerAutocomplete}
+              richTextReplacements={undefined}
+              callback={(newVal: string) =>
+                friendlyChange(() => setAdvancedFilterStr(newVal), true)
+              }
+              showHelp={showHelp}
+            />
+          </Form.Group>
+        ) : null}
+        <Form.Group as={Col} sm="1" className="mt-2">
+          <Form.Check
+            type="switch"
+            id="linq"
+            checked={showAdvancedFilter || advancedFilterStr.length > 0}
+            onChange={() => {
+              const isCurrentlySet =
+                showAdvancedFilter || advancedFilterStr.length > 0;
+              if (!showAdvancedFilter || 0 == advancedFilterStr.length) {
+                // Just enabling/disabling the LINQ query with no implications on filter, so don't need a UX friendly change
+                setShowAdvancedFilter(!isCurrentlySet);
+              } else {
+                friendlyChange(() => {
+                  setAdvancedFilterStr("");
+                  setShowAdvancedFilter(!isCurrentlySet);
+                }, true);
+              }
+            }}
+            label={linqEnableText}
+          />
         </Form.Group>
-      ) : null}
+      </Form.Group>
       <Row>
         <Col>
           <LoadingOverlay

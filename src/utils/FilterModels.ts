@@ -237,6 +237,7 @@ export type TeamStatsExplorerParams = {
   confs?: string;
   sortBy?: string;
   queryFilters?: string;
+  advancedFilter?: string;
   showGrades?: string;
   luck?: LuckParams; //(missing iff default)
 };
