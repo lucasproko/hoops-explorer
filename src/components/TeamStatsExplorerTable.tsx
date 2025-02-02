@@ -76,6 +76,8 @@ import TeamFilterAutoSuggestText, {
 } from "./shared/TeamFilterAutoSuggestText";
 import { TeamStatsTableUtils } from "../utils/tables/TeamStatsTableUtils";
 import { DivisionStatsCache } from "../utils/tables/GradeTableUtils";
+import { ConferenceToNickname } from "../utils/public-data/ConferenceInfo";
+import { TeamEvalUtils } from "../utils/stats/TeamEvalUtils";
 
 export type TeamStatsExplorerModel = {
   confs: string[];
@@ -245,6 +247,8 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   // 2] Processing
 
   const table = React.useMemo(() => {
+    setLoadingOverride(false);
+
     const confFilter = (t: { team: string; conf: string }) => {
       return (
         confs == "" ||
@@ -257,50 +261,104 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       );
     };
 
-    const rowsForEachTeam = (dataEvent.teams || []).map((team) => {
-      team.combo_title = `${team.team_name}`;
-      const tableInfo = TeamStatsTableUtils.buildRows(
-        { team: team.team, year, gender },
-        {
-          baseline: team,
-          global: team,
-          on: StatModels.emptyTeam(),
-          off: StatModels.emptyTeam(),
-        },
-        { on: [], off: [], baseline: [], other: [], global: [] },
+    const rowsForEachTeam = _.chain(dataEvent.teams || [])
+      .map((team) => {
+        const confNick = ConferenceToNickname[team.conf || ""] || "???";
+        const { wab, wins, losses } = _.transform(
+          team.opponents || [],
+          (acc, game) => {
+            const isWin = (game.team_scored || 0) >= (game.oppo_scored || 0);
+            acc.wab += isWin ? game.wab || 0 : (game.wab || 0) - 1;
+            acc.wins += isWin ? 1 : 0;
+            acc.losses += isWin ? 0 : 1;
+          },
+          { wab: 0.0, wins: 0, losses: 0 }
+        );
+        team.confNick = confNick;
+        team.wab = wab;
+        team.wins = wins;
+        team.losses = losses;
 
-        {
-          on: { off: {}, def: {} },
-          off: { off: {}, def: {} },
-          other: [],
-          baseline: { off: {}, def: {} },
-        },
-        [],
+        const expWinPctVsBubble = TeamEvalUtils.calcWinsAbove(
+          team.adj_off,
+          team.adj_def,
+          //TODO: need to collect these like we do for the simple team stats view,
+          // these will do for now
+          [
+            115.9, 113.2, 114.7, 113.4, 114.3, 114.1, 117.8, 114.6, 115.2,
+            113.1,
+          ],
+          [99.5, 96.9, 98.7, 97.4, 98.4, 98.4, 102.1, 99.2, 100, 98.1],
+          0.0
+        );
+        team.exp_wab = (expWinPctVsBubble - 0.5) * (wins + losses);
+        //(to get a proper ranking would need to normalize games played, but this is fine for this power ranking)
 
-        // Page control
-        {
-          showPlayTypes: false,
-          showRoster: false,
-          adjustForLuck: false,
-          showDiffs: false,
-          showGameInfo: false,
-          showShotCharts: false,
-          shotChartConfig: undefined,
-          showExtraInfo: false,
-          showGrades: "",
-          showLuckAdjDiags: false,
-          showHelp,
-        },
-        {
-          setShowGrades: (showGrades: string) => setShowGrades(showGrades),
-          setShotChartConfig: (config: any) => {},
-        },
+        team.combo_title = (
+          <p>
+            <b>{team.team_name}</b>
+            <br />
+            <small>
+              <i>
+                {confNick} / {wins}-{losses} ({wab >= 0 ? "+" : ""}
+                {wab.toFixed(2)})
+              </i>
+            </small>
+          </p>
+        );
+        return team;
+      })
+      .filter((team) => {
+        return confFilter({
+          team: team.team_name,
+          conf: team.confNick || "???",
+        });
+      })
+      .sortBy((team) => -0.5 * (team.exp_wab || 0) - 0.5 * (team.wab || 0))
+      .map((team) => {
+        const tableInfo = TeamStatsTableUtils.buildRows(
+          { team: team.team, year, gender },
+          {
+            baseline: team,
+            global: team,
+            on: StatModels.emptyTeam(),
+            off: StatModels.emptyTeam(),
+          },
+          { on: [], off: [], baseline: [], other: [], global: [] },
 
-        luckConfig,
-        divisionStatsCache
-      );
-      return tableInfo;
-    });
+          {
+            on: { off: {}, def: {} },
+            off: { off: {}, def: {} },
+            other: [],
+            baseline: { off: {}, def: {} },
+          },
+          [],
+
+          // Page control
+          {
+            showPlayTypes: false,
+            showRoster: false, //(won't work without more data)
+            adjustForLuck: false, //(won't work without more data)
+            showDiffs: false, //(NA for this view)
+            showGameInfo: false,
+            showShotCharts: false, //(won't work without more data)
+            shotChartConfig: undefined, //(won't work without more data)
+            showExtraInfo: false, //TODO takes a while to render if true maybe only do for "top" 30?
+            showGrades: "", //TODO: need to play with performance
+            showLuckAdjDiags: false, //(won't work without more data)
+            showHelp,
+          },
+          {
+            setShowGrades: (showGrades: string) => setShowGrades(showGrades),
+            setShotChartConfig: (config: any) => {},
+          },
+
+          luckConfig,
+          divisionStatsCache
+        );
+        return tableInfo;
+      })
+      .value();
 
     const tableRows = _.chain(rowsForEachTeam)
       .flatMap((rows, ii) => [
