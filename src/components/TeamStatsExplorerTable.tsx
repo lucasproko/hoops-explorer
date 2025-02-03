@@ -338,7 +338,10 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
 
     const [teamsPhase2, tmpAvancedFilterError] =
       advancedFilterStr.length > 0
-        ? AdvancedFilterUtils.applyFilter(teamsPhase1, advancedFilterStr)
+        ? AdvancedFilterUtils.applyTeamExplorerFilter(
+            teamsPhase1,
+            advancedFilterStr
+          )
         : [teamsPhase1, undefined];
 
     if (advancedFilterStr.length > 0)

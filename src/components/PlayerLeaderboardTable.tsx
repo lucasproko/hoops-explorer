@@ -834,7 +834,10 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
 
     const [players, tmpAvancedFilterError] =
       advancedFilterStr.length > 0
-        ? AdvancedFilterUtils.applyFilter(playersPhase1, advancedFilterStr)
+        ? AdvancedFilterUtils.applyPlayerFilter(
+            playersPhase1,
+            advancedFilterStr
+          )
         : [playersPhase1, undefined];
 
     if (advancedFilterStr.length > 0)

@@ -385,6 +385,16 @@ export class AdvancedFilterUtils {
       .replace(/roster[.]/g, "roster?.") //(roster not always present)
       .replace(/ALL/g, "($.player_code)");
   }
+  static teamFixObjectFormat(s: string) {
+    return s
+      .replace(
+        /(team_name|conf_nick|conf|year|wins|losses|wab|wae|exp_wab|power)/g,
+        "$.p.$1"
+      )
+      .replace(/((?:off|def)_[0-9a-zA-Z_]+)/g, "$.p.$1?.value")
+      .replace(/(^| |[(!*+/-])(adj_[0-9a-zA-Z_]+)/g, "$1$.$2")
+      .replace(/(off|def)_reb/g, "$1_orb"); //(nicer version of rebound name)
+  }
   static avoidAssigmentOperator(s: string) {
     return s.replace(/([^!<>])=[=]*/g, "$1==");
   }
@@ -415,34 +425,148 @@ export class AdvancedFilterUtils {
     );
   }
 
-  static readonly tidyClauses: (s: string, multiYear: boolean) => string = (
+  /** The Linq to data model pipeline for player expressions */
+  static readonly tidyPlayerClauses: (s: string, multiYear: boolean) => string =
+    (s: string, multiYear: boolean) =>
+      _.flow([
+        AdvancedFilterUtils.convertRegionalBounds,
+        AdvancedFilterUtils.fixBoolOps,
+        AdvancedFilterUtils.avoidAssigmentOperator,
+        AdvancedFilterUtils.fieldReplacements,
+        multiYear
+          ? AdvancedFilterUtils.multiYearfixObjectFormat
+          : AdvancedFilterUtils.singleYearfixObjectFormat,
+        AdvancedFilterUtils.convertPositions,
+        AdvancedFilterUtils.convertPercentages,
+        AdvancedFilterUtils.normHeightInQuotes,
+        AdvancedFilterUtils.removeAscDesc,
+        _.trim,
+      ])(s, multiYear);
+
+  /** The Linq to data model pipeline for team explorer expressions */
+  static readonly tidyTeamExplorerClauses: (
     s: string,
     multiYear: boolean
-  ) =>
+  ) => string = (s: string, multiYear: boolean) =>
     _.flow([
-      AdvancedFilterUtils.convertRegionalBounds,
       AdvancedFilterUtils.fixBoolOps,
       AdvancedFilterUtils.avoidAssigmentOperator,
       AdvancedFilterUtils.fieldReplacements,
-      multiYear
-        ? AdvancedFilterUtils.multiYearfixObjectFormat
-        : AdvancedFilterUtils.singleYearfixObjectFormat,
-      AdvancedFilterUtils.convertPositions,
+      AdvancedFilterUtils.teamFixObjectFormat,
       AdvancedFilterUtils.convertPercentages,
-      AdvancedFilterUtils.normHeightInQuotes,
       AdvancedFilterUtils.removeAscDesc,
       _.trim,
     ])(s, multiYear);
+
+  /** Builds a where/orderBy chain by interpreting the string either side of SORT_BY */
+  static applyTeamExplorerFilter(
+    inData: any[],
+    filterStr: string,
+    extraParams: Record<string, string> = {},
+    multiYear: boolean = false
+  ): [any[], string | undefined] {
+    return AdvancedFilterUtils.applyFilter(
+      inData,
+      filterStr,
+      extraParams,
+      multiYear,
+      AdvancedFilterUtils.tidyTeamExplorerClauses,
+      (p: any, index: number) => ({
+        p,
+      })
+    );
+  }
+
+  /** Builds a where/orderBy chain by interpreting the string either side of SORT_BY */
+  static applyPlayerFilter(
+    inData: any[],
+    filterStr: string,
+    extraParams: Record<string, string> = {},
+    multiYear: boolean = false
+  ): [any[], string | undefined] {
+    const buildSingleYearRetVal = (p: any, index: number) => {
+      const retVal = {
+        p: p,
+        player_name: p.key,
+        player_code: p.code,
+        transfer_src: p.transfer_src || "",
+        transfer_dest: p.transfer_dest || "",
+        // Normalize so can do height comparisons
+        normht: AdvancedFilterUtils.normHeightString(p.roster?.height || ""),
+        // These need to be derived
+        adj_rapm_margin:
+          (p.off_adj_rapm?.value || 0) - (p.def_adj_rapm?.value || 0),
+        adj_rtg_margin:
+          (p.off_adj_rtg?.value || 0) - (p.def_adj_rtg?.value || 0),
+        adj_rapm_prod_margin:
+          (p.off_adj_rapm?.value || 0) * (p.off_team_poss_pct?.value || 0) -
+          (p.def_adj_rapm?.value || 0) * (p.def_team_poss_pct?.value || 0),
+        adj_prod_margin:
+          (p.off_adj_rtg?.value || 0) * (p.off_team_poss_pct?.value || 0) -
+          (p.def_adj_rtg?.value || 0) * (p.def_team_poss_pct?.value || 0),
+        // Already have these but makes the query formatting simpler
+        adj_rapm_margin_rank: p.adj_rapm_margin_rank,
+        adj_rtg_margin_rank: p.adj_rtg_margin_rank,
+        adj_rapm_prod_margin_rank: p.adj_rapm_prod_margin_rank,
+        adj_prod_margin_rank: p.adj_prod_margin_rank,
+        adj_rapm_margin_pred:
+          (p.off_adj_rapm_pred?.value || 0) - (p.def_adj_rapm_pred?.value || 0),
+      };
+      //DIAG:
+      //if (index < 10) console.log(`OBJ ${JSON.stringify({ ...retVal, p: undefined })}`);
+      return retVal;
+    };
+    const buildMultiYearRetVal = (p: any, index: number) => {
+      const retVal = {
+        p: p,
+        player_name: p.orig?.key || p.actualResults?.key,
+        player_code: p.orig?.code || p.actualResults?.code,
+        transfer_src:
+          p.orig?.team != p.actualResults?.team ? p.orig?.team : undefined,
+        transfer_dest:
+          p.orig && p.orig.team != p.actualResults?.team
+            ? p.actualResults?.team
+            : undefined,
+        pred_ok: p.ok ? buildSingleYearRetVal(p.ok, index) : undefined,
+        pred_good: p.good ? buildSingleYearRetVal(p.good, index) : undefined,
+        pred_bad: p.bad ? buildSingleYearRetVal(p.bad, index) : undefined,
+        prev: p.orig ? buildSingleYearRetVal(p.orig, index) : undefined,
+        next: p.actualResults
+          ? buildSingleYearRetVal(p.actualResults, index)
+          : undefined,
+      };
+      //DIAG:
+      //if (index < 10) console.log(`OBJ ${JSON.stringify({ ...retVal, p: undefined })}`);
+      return retVal;
+    };
+
+    const buildRetVal = (p: any, index: number) => {
+      return multiYear
+        ? buildMultiYearRetVal(p, index)
+        : buildSingleYearRetVal(p, index);
+    };
+
+    return AdvancedFilterUtils.applyFilter(
+      inData,
+      filterStr,
+      extraParams,
+      multiYear,
+      AdvancedFilterUtils.tidyPlayerClauses,
+      buildRetVal
+    );
+  }
 
   /** Builds a where/orderBy chain by interpreting the string either side of SORT_BY */
   static applyFilter(
     inData: any[],
     filterStr: string,
     extraParams: Record<string, string> = {},
-    multiYear: boolean = false
+    multiYear: boolean = false,
+    tidyClauses: (s: string, multiYear: boolean) => string,
+    buildRetVal: (p: any, index: number) => any
   ): [any[], string | undefined] {
     const filterFrags = filterStr.split("SORT_BY");
-    const where = AdvancedFilterUtils.tidyClauses(filterFrags[0], multiYear);
+    const where = tidyClauses(filterFrags[0], multiYear);
 
     const wherePlusMaybeInsert = _.isEmpty(extraParams)
       ? where
@@ -451,12 +575,7 @@ export class AdvancedFilterUtils {
           .toPairs()
           .flatMap((kv) => {
             return kv[1]
-              ? [
-                  `($.p.${kv[0]} = ( ${AdvancedFilterUtils.tidyClauses(
-                    kv[1],
-                    multiYear
-                  )} ))`,
-                ]
+              ? [`($.p.${kv[0]} = ( ${tidyClauses(kv[1], multiYear)} ))`]
               : [`(true)`];
           })
           .join(" && ")
@@ -470,7 +589,7 @@ export class AdvancedFilterUtils {
     const sortByFns: Array<EnumToEnum> = sortingFrags.map(
       (sortingFrag, index) => {
         const isAsc = sortingFrag.indexOf("ASC") >= 0;
-        const sortBy = AdvancedFilterUtils.tidyClauses(sortingFrag, multiYear);
+        const sortBy = tidyClauses(sortingFrag, multiYear);
 
         if (index == 0) {
           return (enumerable: Enumerable.IEnumerable<any>) => {
@@ -495,68 +614,9 @@ export class AdvancedFilterUtils {
     );
 
     try {
-      const buildSingleYearRetVal = (p: any, index: number) => {
-        const retVal = {
-          p: p,
-          player_name: p.key,
-          player_code: p.code,
-          transfer_src: p.transfer_src || "",
-          transfer_dest: p.transfer_dest || "",
-          // Normalize so can do height comparisons
-          normht: AdvancedFilterUtils.normHeightString(p.roster?.height || ""),
-          // These need to be derived
-          adj_rapm_margin:
-            (p.off_adj_rapm?.value || 0) - (p.def_adj_rapm?.value || 0),
-          adj_rtg_margin:
-            (p.off_adj_rtg?.value || 0) - (p.def_adj_rtg?.value || 0),
-          adj_rapm_prod_margin:
-            (p.off_adj_rapm?.value || 0) * (p.off_team_poss_pct?.value || 0) -
-            (p.def_adj_rapm?.value || 0) * (p.def_team_poss_pct?.value || 0),
-          adj_prod_margin:
-            (p.off_adj_rtg?.value || 0) * (p.off_team_poss_pct?.value || 0) -
-            (p.def_adj_rtg?.value || 0) * (p.def_team_poss_pct?.value || 0),
-          // Already have these but makes the query formatting simpler
-          adj_rapm_margin_rank: p.adj_rapm_margin_rank,
-          adj_rtg_margin_rank: p.adj_rtg_margin_rank,
-          adj_rapm_prod_margin_rank: p.adj_rapm_prod_margin_rank,
-          adj_prod_margin_rank: p.adj_prod_margin_rank,
-          adj_rapm_margin_pred:
-            (p.off_adj_rapm_pred?.value || 0) -
-            (p.def_adj_rapm_pred?.value || 0),
-        };
-        //DIAG:
-        //if (index < 10) console.log(`OBJ ${JSON.stringify({ ...retVal, p: undefined })}`);
-        return retVal;
-      };
-      const buildMultiYearRetVal = (p: any, index: number) => {
-        const retVal = {
-          p: p,
-          player_name: p.orig?.key || p.actualResults?.key,
-          player_code: p.orig?.code || p.actualResults?.code,
-          transfer_src:
-            p.orig?.team != p.actualResults?.team ? p.orig?.team : undefined,
-          transfer_dest:
-            p.orig && p.orig.team != p.actualResults?.team
-              ? p.actualResults?.team
-              : undefined,
-          pred_ok: p.ok ? buildSingleYearRetVal(p.ok, index) : undefined,
-          pred_good: p.good ? buildSingleYearRetVal(p.good, index) : undefined,
-          pred_bad: p.bad ? buildSingleYearRetVal(p.bad, index) : undefined,
-          prev: p.orig ? buildSingleYearRetVal(p.orig, index) : undefined,
-          next: p.actualResults
-            ? buildSingleYearRetVal(p.actualResults, index)
-            : undefined,
-        };
-        //DIAG:
-        //if (index < 10) console.log(`OBJ ${JSON.stringify({ ...retVal, p: undefined })}`);
-        return retVal;
-      };
-
       const enumData = Enumerable.from(
         inData.map((p, index) => {
-          return multiYear
-            ? buildMultiYearRetVal(p, index)
-            : buildSingleYearRetVal(p, index);
+          return buildRetVal(p, index);
         })
       );
       const filteredData =
@@ -569,6 +629,7 @@ export class AdvancedFilterUtils {
         sortByFns.length > 0
           ? _.flow(sortByFns)(filteredData)
               .thenBy((p: any) => {
+                // (this is all player specific, but it "fails" harmlessly for teams)
                 const sortPoss = multiYear
                   ? p.p?.actualResults?.off_team_poss?.value || 0
                   : p.p?.baseline?.off_team_poss?.value || 0;
@@ -588,7 +649,14 @@ export class AdvancedFilterUtils {
       } else {
         //for error parsing purposes, try without the extra params
         const [filteredSortedData, errorMessage] =
-          AdvancedFilterUtils.applyFilter(inData, filterStr, {}, multiYear);
+          AdvancedFilterUtils.applyFilter(
+            inData,
+            filterStr,
+            {},
+            multiYear,
+            tidyClauses,
+            buildRetVal
+          );
         return [
           filteredSortedData,
           errorMessage ||

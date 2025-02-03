@@ -955,7 +955,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
       ).value();
     });
     const [filteredData, tmpAvancedFilterError] = datasetFilterStr
-      ? AdvancedFilterUtils.applyFilter(
+      ? AdvancedFilterUtils.applyPlayerFilter(
           dataToFilter,
           datasetFilterStr,
           {
@@ -970,7 +970,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
     setAdvancedFilterError(tmpAvancedFilterError);
 
     const [highlightData, tmpHighlightFilterError] = highlightFilterStr
-      ? AdvancedFilterUtils.applyFilter(
+      ? AdvancedFilterUtils.applyPlayerFilter(
           filteredData,
           highlightFilterStr,
           {},
