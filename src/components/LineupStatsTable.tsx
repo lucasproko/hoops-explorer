@@ -115,6 +115,53 @@ function getQuads(ids: Array<string>): Array<string> {
   return triples.concat(getQuads(rest));
 }
 
+/** Builds all combos of from the set of ids being on and off (down to 2) */
+function getStarterOnOff(
+  ids: Array<string>
+): Array<[Set<string>, Set<string>]> {
+  const quads = getQuads(ids);
+  const triples = getTriples(ids);
+  const pairs = getPairs(ids);
+  const all = _.flatten([quads, triples, pairs]);
+  const startingPair: [Set<string>, Set<string>] = [
+    new Set(ids),
+    new Set<string>(),
+  ];
+  return [startingPair].concat(
+    all.map((combo) => {
+      const comboBreakdown = new Set(combo.split(" / "));
+      const missing = ids.filter((id) => !comboBreakdown.has(id));
+      const retVal: [Set<string>, Set<string>] = [
+        comboBreakdown,
+        new Set(missing),
+      ];
+      return retVal;
+    })
+  );
+}
+
+/** For a given lineup, figures out which starter-on-off combos it matches */
+function getStarterOnOffDiff(
+  ids: Array<string>,
+  starterOnOff: Array<[Set<string>, Set<string>]>
+): Array<string> {
+  return starterOnOff
+    .filter(([onSet, offSet]) => {
+      const onCount = _.sumBy(
+        ids,
+        (id) => (onSet.has(id) ? 1 : offSet.has(id) ? 100 : 0) //(any off count his is a disqualifier)
+      );
+      return onCount == onSet.size;
+    })
+    .map(([onSet, offSet]) => {
+      // Turn into a key:
+      return Array.from(onSet.entries())
+        .map((id) => id[0])
+        .concat(Array.from(offSet.entries()).map((id) => `-${id[0]}`))
+        .join(" / ");
+    });
+}
+
 const LineupStatsTable: React.FunctionComponent<Props> = ({
   startingState,
   dataEvent,
@@ -484,13 +531,40 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
       const [filteredLineups, droppedLineups] =
         LineupTableUtils.buildFilteredLineups(
           lineups,
-          filterStr,
+          aggregateByPos == "On-Off" ? "" : filterStr,
           sortBy,
           "0",
           "1000",
           teamSeasonLookup,
           positionFromPlayerKey
         );
+
+      var varStarterOnOffInfo: Array<[Set<string>, Set<string>]> = [];
+      var varStartingLineup: Array<PlayerCodeId> = [];
+      if (aggregateByPos == "On-Off") {
+        const [topLineup, dummyField] = LineupTableUtils.buildFilteredLineups(
+          lineups,
+          filterStr,
+          sortBy,
+          "0",
+          "1",
+          teamSeasonLookup,
+          positionFromPlayerKey
+        );
+        if (topLineup.length > 0) {
+          const codesAndIds = LineupTableUtils.buildCodesAndIds(topLineup[0]!);
+          const sortedCodesAndIds = PositionUtils.orderLineup(
+            codesAndIds,
+            positionFromPlayerKey,
+            teamSeasonLookup
+          );
+
+          varStartingLineup = sortedCodesAndIds;
+          varStarterOnOffInfo = getStarterOnOff(
+            sortedCodesAndIds.map((p) => p.id)
+          );
+        }
+      }
 
       const enrichedLineupsPhase1 = _.chain(
         LineupTableUtils.buildEnrichedLineups(
@@ -562,6 +636,11 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                 return getTriples((sortedCodesAndIds || []).map((p) => p.id));
               case "Quads":
                 return getQuads((sortedCodesAndIds || []).map((p) => p.id));
+              case "On-Off":
+                return getStarterOnOffDiff(
+                  (sortedCodesAndIds || []).map((p) => p.id),
+                  varStarterOnOffInfo
+                );
               default:
                 return [];
             }
@@ -569,12 +648,27 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
         };
 
         return getKeys(lineup).map((key) => {
-          const comboCodeAndIds = key
-            .split(" / ")
-            .flatMap((keyPos) =>
-              (sortedCodesAndIds || []).filter((codeId) => codeId.id == keyPos)
-            );
-
+          const comboCodeAndIds = _.thru(key.split(" / "), (keys) => {
+            if (aggregateByPos == "On-Off") {
+              const keySet = new Set(keys);
+              return varStartingLineup.map((codeId) => {
+                if (keySet.has(codeId.id)) {
+                  return codeId;
+                } else {
+                  return {
+                    ...codeId,
+                    id: `-${codeId.id}`,
+                  };
+                }
+              });
+            } else {
+              return keys.flatMap((keyPos) =>
+                (sortedCodesAndIds || []).filter(
+                  (codeId) => codeId.id == keyPos
+                )
+              );
+            }
+          });
           const stats = {
             ...lineup,
             posKey: key,
@@ -1261,6 +1355,29 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                       () =>
                         setAggregateByPos(
                           aggregateByPos == "Quads" ? "" : "Quads"
+                        ),
+                      true
+                    ),
+                },
+                {
+                  label: "/ ",
+                  tooltip: "Other combination features",
+                  toggled: true,
+                  onClick: () => {},
+                  isLabelOnly: true,
+                },
+                {
+                  label: "On/Off",
+                  tooltip:
+                    aggregateByPos == "On-Off"
+                      ? "Clear combo aggregation"
+                      : "Aggregate lineups by different combinations of the 5 players in the top lineup for this query",
+                  toggled: aggregateByPos == "On-Off",
+                  onClick: () =>
+                    friendlyChange(
+                      () =>
+                        setAggregateByPos(
+                          aggregateByPos == "On-Off" ? "" : "On-Off"
                         ),
                       true
                     ),

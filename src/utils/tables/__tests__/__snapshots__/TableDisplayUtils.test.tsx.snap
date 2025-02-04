@@ -278,7 +278,7 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
 <span>
   <div>
     <a
-      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=p1%2Cp2%2Cp3%2Cp4%2Cp5&offQuery=&onQuery=%7B%22player1%22%3B%22player2%22%3B%22player3%22%3B%22player4%22%3B%22player5%22%7D~5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&teamShotCharts=true&"
+      href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&filter=p1%2Cp2%2Cp3%2Cp4%2Cp5&offQuery=&onQuery=%7B%22player1%22%3B%22player2%22%3B%22player3%22%3B%22player4%22%3B%22player5%22%7D%3D5&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&teamShotCharts=true&"
       onClick={[Function]}
       style={
         Object {

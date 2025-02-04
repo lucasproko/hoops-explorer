@@ -101,16 +101,21 @@ export class TableDisplayUtils {
     sortedLineup: { code: string; id: string }[],
     excludes: { code: string; id: string }[]
   ): string {
+    const [includes, extraExcludes] = _.partition(
+      sortedLineup,
+      (p) => p.id[0] != "-"
+    );
+    const allExcludes = excludes
+      .map((p) => p.id)
+      .concat(extraExcludes.map((p) => p.id.substring(1)));
     return UrlRouting.getGameUrl(
       {
         ...params,
         onQuery:
-          `{${sortedLineup.map((p) => `"${p.id}"`).join(";")}}~${
-            sortedLineup.length
-          }` +
-          (_.isEmpty(excludes)
+          `{${includes.map((p) => `"${p.id}"`).join(";")}}=${includes.length}` +
+          (_.isEmpty(allExcludes)
             ? ""
-            : ` AND NOT (${excludes.map((p) => `"${p.id}"`).join(" OR ")})`),
+            : ` AND NOT (${allExcludes.map((p) => `"${p}"`).join(" OR ")})`),
         offQuery: "",
         autoOffQuery: false,
         showExtraInfo: true,
@@ -209,12 +214,14 @@ export class TableDisplayUtils {
     const tooltipTexts = _.flatMap(
       sortedLineup,
       (cid: { id: string; code: string }) => {
-        return TableDisplayUtils.buildTooltipText(
-          cid,
-          perLineupPlayerMap,
-          positionFromPlayerKey,
-          extendedView
-        );
+        return cid.id[0] == "-"
+          ? []
+          : TableDisplayUtils.buildTooltipText(
+              cid,
+              perLineupPlayerMap,
+              positionFromPlayerKey,
+              extendedView
+            );
       }
     );
     const tooltip = (
@@ -387,7 +394,8 @@ export class TableDisplayUtils {
       );
     };
 
-    const playerInfo = perLineupPlayerMap[cid.id];
+    const playerInfo =
+      cid.id[0] == "-" ? undefined : perLineupPlayerMap[cid.id];
     return (
       <span key={cid.code}>
         <span style={{ whiteSpace: "nowrap" }}>
@@ -396,6 +404,8 @@ export class TableDisplayUtils {
             style={{
               backgroundColor: playerInfo
                 ? singleColorField(playerInfo, colorField)
+                : cid.id[0] == "-"
+                ? "lightblue"
                 : "grey",
               // consider this in the future:
               //          background: `linear-gradient(to right, ${singleColorField(cid.id, colorField)}, white, ${singleColorField(cid.id, "def_adj_rtg")})`
