@@ -80,6 +80,7 @@ import { ConferenceToNickname } from "../utils/public-data/ConferenceInfo";
 import { TeamEvalUtils } from "../utils/stats/TeamEvalUtils";
 import LinqExpressionBuilder from "./shared/LinqExpressionBuilder";
 import { AdvancedFilterUtils } from "../utils/AdvancedFilterUtils";
+import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 
 export type TeamStatsExplorerModel = {
   confs: string[];
@@ -115,6 +116,9 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   // Data source
   const [clipboard, setClipboard] = useState(null as null | ClipboardJS);
   const [confs, setConfs] = useState(startingState.confs || "");
+
+  const [isT100, setIsT100] = useState(startingState.t100 || false);
+  const [isConfOnly, setIsConfOnly] = useState(startingState.confOnly || false);
 
   // Basic filter:
   const manualFilterSelected =
@@ -206,15 +210,57 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       sortBy: sortBy,
       queryFilters: queryFilters,
       advancedFilter: advancedFilterStr,
+      t100: isT100,
+      confOnly: isConfOnly,
     });
-  }, [confs, year, sortBy, queryFilters, advancedFilterStr]);
+  }, [
+    confs,
+    year,
+    sortBy,
+    queryFilters,
+    advancedFilterStr,
+    isT100,
+    isConfOnly,
+  ]);
 
   /** Set this to be true on expensive operations */
   const [loadingOverride, setLoadingOverride] = useState(false);
 
+  /** Keyboard listener - handles global page overrides while supporting individual components */
+  const submitListenerFactory = (inAutoSuggest: boolean) => (event: any) => {
+    const allowKeypress = () => {
+      //(if this logic is run inside AutoSuggestText, we've already processed the special cases so carry on)
+      return inAutoSuggest || notFromFilterAutoSuggest(event);
+    };
+    if (
+      event.code === "Enter" ||
+      event.code === "NumpadEnter" ||
+      event.keyCode == 13 ||
+      event.keyCode == 14
+    ) {
+      if (event && event.preventDefault) {
+        event.preventDefault();
+      }
+    } else if (event.code == "Escape" || event.keyCode == 27) {
+      if (allowKeypress()) {
+        document.body.click(); //closes any overlays (like history) that have rootClick
+      }
+    }
+  };
+
   useEffect(() => {
     // Add and remove clipboard listener
     initClipboard();
+
+    const submitListener = submitListenerFactory(false);
+
+    // Add "enter" to submit page (do on every effect, since removal occurs on every effect, see return below)
+    if (typeof document !== `undefined`) {
+      //(TODO: this actually causes mass complications with AutoSuggestText - see the useContext grovelling
+      // 'cos for some reason preventDefault from AutoSuggestText gets ignored ... needs more investigation
+      // but the grovelling works fine for now!)
+      document.addEventListener("keydown", submitListener);
+    }
 
     if (typeof document !== `undefined`) {
       //(if we added a clipboard listener, then remove it on page close)
@@ -224,6 +270,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           clipboard.destroy();
           setClipboard(null);
         }
+        document.removeEventListener("keydown", submitListener);
       };
     }
   });
@@ -279,7 +326,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     };
 
     const teamsPhase1 = _.chain(dataEvent.teams || [])
-      .map((team) => {
+      .map((team, teamIndex) => {
         const confNick = ConferenceToNickname[team.conf || ""] || "???";
         const { wab, wins, losses } = _.transform(
           team.opponents || [],
@@ -313,13 +360,56 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         team.power = 0.5 * wab + 0.5 * expWab;
         //(to get a proper ranking would need to normalize games played, but this is fine for this power ranking)
 
+        const teamTooltip = (
+          <Tooltip id={`team_${teamIndex}`}>
+            Open new tab with a detailed analysis view (roster, play style info,
+            on/off) for this team
+          </Tooltip>
+        );
+        const teamParams = {
+          team: team.team_name,
+          gender: gender,
+          year: year,
+          minRank: "0",
+          maxRank: isT100 ? "100" : "400",
+          queryFilters: isConfOnly ? "Conf" : undefined,
+          showExpanded: true,
+          calcRapm: true,
+          showTeamPlayTypes: !isT100 && !isConfOnly,
+          showGrades: "rank:Combo",
+          showExtraInfo: true,
+          showRoster: true,
+        };
+        const confTooltip = (
+          <Tooltip id={`teamConf_${teamIndex}`}>
+            Filter the table to only teams from this conference
+          </Tooltip>
+        );
+        const conferenceSelector = (
+          <OverlayTrigger placement="auto" overlay={confTooltip}>
+            <a
+              href="#"
+              onClick={(event) => {
+                event.preventDefault();
+                setConfs(confNick);
+              }}
+            >
+              {confNick}
+            </a>
+          </OverlayTrigger>
+        );
+
         team.combo_title = (
           <p>
-            <b>{team.team_name}</b>
+            <OverlayTrigger placement="auto" overlay={teamTooltip}>
+              <a target="_blank" href={UrlRouting.getGameUrl(teamParams, {})}>
+                <b>{team.team_name}</b>
+              </a>
+            </OverlayTrigger>
             <br />
             <small>
               <i>
-                {confNick} / {wins}-{losses} ({wab >= 0 ? "+" : ""}
+                {conferenceSelector} / {wins}-{losses} ({wab >= 0 ? "+" : ""}
                 {wab.toFixed(2)})
               </i>
             </small>
@@ -613,6 +703,65 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           />
         </Form.Group>
       </Form.Group>
+      <Row className="pb-2">
+        <Col xs={12} sm={12} md={12} lg={8}>
+          <ToggleButtonGroup
+            items={(
+              [
+                {
+                  label: "T100",
+                  tooltip: "Show teams' stats vs T100 opposition",
+                  toggled: isT100,
+                  onClick: () =>
+                    friendlyChange(() => {
+                      setIsT100(!isT100);
+                      setIsConfOnly(false);
+                    }, true),
+                },
+                {
+                  label: "Conf",
+                  tooltip: "Show teams' stats vs conference opposition",
+                  toggled: isConfOnly,
+                  onClick: () =>
+                    friendlyChange(() => {
+                      setIsT100(false);
+                      setIsConfOnly(!isConfOnly);
+                    }, true),
+                },
+              ].concat([
+                //TODO Extra, Grades, Style
+                {
+                  label: "Grades",
+                  tooltip: showGrades
+                    ? "Hide player ranks/percentiles"
+                    : "Show player ranks/percentiles",
+                  toggled: showGrades != "",
+                  onClick: () =>
+                    friendlyChange(
+                      () =>
+                        setShowGrades(
+                          showGrades ? "" : ParamDefaults.defaultEnabledGrade
+                        ),
+                      true
+                    ),
+                },
+              ]) as Array<any>
+            ).concat(
+              showHelp
+                ? [
+                    //TODO: what to show here?
+                    // {
+                    //   label: <a href="https://hoop-explorer.blogspot.com/2020/07/understanding-lineup-analyzer-page.html" target="_blank">?</a>,
+                    //   tooltip: "Open a page that explains some of the elements of this table",
+                    //   toggled: false,
+                    //   onClick: () => {}
+                    // }
+                  ]
+                : []
+            )}
+          />
+        </Col>
+      </Row>
       <Row>
         <Col>
           <LoadingOverlay

@@ -235,6 +235,8 @@ export type TeamStatsExplorerParams = {
   gender?: string;
   year?: string;
   confs?: string;
+  t100?: boolean;
+  confOnly?: boolean;
   sortBy?: string;
   queryFilters?: string;
   advancedFilter?: string;
