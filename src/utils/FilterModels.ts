@@ -187,6 +187,7 @@ export type LineupFilterParams = {
   showLineupLuckDiags?: boolean;
   // Other features:
   aggByPos?: string;
+  onOffPlayerSel?: string;
   showGameInfo?: boolean;
 };
 

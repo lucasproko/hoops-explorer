@@ -23,10 +23,7 @@ import LoadingOverlay from "@ronchalant/react-loading-overlay";
 import Select, { components } from "react-select";
 
 // Component imports
-import GenericTable, {
-  GenericTableOps,
-  GenericTableColProps,
-} from "./GenericTable";
+import GenericTable, { GenericTableOps } from "./GenericTable";
 import { RosterStatsModel } from "./RosterStatsTable";
 import { TeamStatsModel } from "./TeamStatsTable";
 import LuckConfigModal from "./shared/LuckConfigModal";
@@ -45,18 +42,11 @@ import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 // Util imports
 import {
   StatModels,
-  OnOffBaselineEnum,
-  OnOffBaselineGlobalEnum,
   PlayerCodeId,
-  PlayerCode,
   PlayerId,
-  Statistic,
   IndivStatSet,
-  TeamStatSet,
   LineupStatSet,
-  GameInfoStatSet,
 } from "../utils/StatModels";
-import { CbbColors } from "../utils/CbbColors";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { PositionUtils } from "../utils/stats/PositionUtils";
 import { LineupUtils } from "../utils/stats/LineupUtils";
@@ -67,6 +57,7 @@ import {
   LuckParams,
   getCommonFilterParams,
 } from "../utils/FilterModels";
+import PlayerSelector from "./shared/PlayerSelector";
 
 export type LineupStatsModel = {
   lineups: Array<LineupStatSet>;
@@ -122,12 +113,13 @@ function getStarterOnOff(
   const quads = getQuads(ids);
   const triples = getTriples(ids);
   const pairs = getPairs(ids);
-  const all = _.flatten([quads, triples, pairs]);
+  const singles = ids.length <= 4 ? ids : []; //(for full lineup only go down 2 on)
+  const all = _.flatten([quads, triples, pairs, singles]);
   const startingPair: [Set<string>, Set<string>] = [
     new Set(ids),
     new Set<string>(),
   ];
-  return [startingPair].concat(
+  return (ids.length > 4 ? [startingPair] : []).concat(
     all.map((combo) => {
       const comboBreakdown = new Set(combo.split(" / "));
       const missing = ids.filter((id) => !comboBreakdown.has(id));
@@ -256,6 +248,9 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
       ? ParamDefaults.defaultLineupAggByPos
       : startingState.aggByPos
   );
+  const [onOffPlayerSel, setOnOffPlayerSel] = useState(
+    startingState.onOffPlayerSel || ""
+  );
 
   const [showGameInfo, setShowGameInfo] = useState(
     _.isNil(startingState.showGameInfo)
@@ -286,6 +281,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
       maxTableSize: maxTableSize,
       sortBy: sortBy,
       filter: filterStr,
+      onOffPlayerSel,
     };
     onChangeState(newState);
   }, [
@@ -302,6 +298,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
     aggregateByPos,
     showGameInfo,
     showRawPts,
+    onOffPlayerSel,
   ]);
 
   // 3] Utils
@@ -531,7 +528,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
       const [filteredLineups, droppedLineups] =
         LineupTableUtils.buildFilteredLineups(
           lineups,
-          aggregateByPos == "On-Off" ? "" : filterStr,
+          filterStr,
           sortBy,
           "0",
           "1000",
@@ -544,7 +541,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
       if (aggregateByPos == "On-Off") {
         const [topLineup, dummyField] = LineupTableUtils.buildFilteredLineups(
           lineups,
-          filterStr,
+          onOffPlayerSel,
           sortBy,
           "0",
           "1",
@@ -559,11 +556,25 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
             teamSeasonLookup
           );
 
-          varStartingLineup = sortedCodesAndIds;
-          varStarterOnOffInfo = getStarterOnOff(
-            sortedCodesAndIds.map((p) => p.id)
-          );
+          varStartingLineup = sortedCodesAndIds; //TODO: also reduce to just the selected players
+        } else {
+          const allCodes = (rosterStats.global || []).flatMap((p) => {
+            const codeId = p.player_array?.hits?.hits?.[0]?._source?.player;
+            return codeId ? [codeId as PlayerCodeId] : [];
+          });
+          varStartingLineup = allCodes;
         }
+        if (onOffPlayerSel.length > 0) {
+          varStartingLineup = _.chain(varStartingLineup)
+            .filter((codeId) => {
+              return (onOffPlayerSel + ";").includes(codeId.code + ";");
+            })
+            .take(5)
+            .value();
+        }
+        varStarterOnOffInfo = getStarterOnOff(
+          varStartingLineup.map((p) => p.id)
+        );
       }
 
       const enrichedLineupsPhase1 = _.chain(
@@ -877,6 +888,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
     aggregateByPos,
     showGameInfo,
     showRepeatingHeader,
+    onOffPlayerSel,
     dataEvent,
   ]);
 
@@ -1374,18 +1386,58 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                       : "Aggregate lineups by different combinations of the 5 players in the top lineup for this query",
                   toggled: aggregateByPos == "On-Off",
                   onClick: () =>
-                    friendlyChange(
-                      () =>
-                        setAggregateByPos(
-                          aggregateByPos == "On-Off" ? "" : "On-Off"
-                        ),
-                      true
-                    ),
+                    friendlyChange(() => {
+                      setAggregateByPos(
+                        aggregateByPos == "On-Off" ? "" : "On-Off"
+                      );
+                      // If we're turning it on and there is no selection, then inject the top lineup:
+                      if (aggregateByPos != "On-Off" && !onOffPlayerSel) {
+                        setOnOffPlayerSel(
+                          _.thru(
+                            dataEvent?.lineupStats?.lineups?.[0],
+                            (maybeLineup) => {
+                              return maybeLineup
+                                ? LineupTableUtils.buildCodesAndIds(maybeLineup)
+                                    .map((p) => p.code)
+                                    .join(";")
+                                : "";
+                            }
+                          )
+                        );
+                      }
+                      //(otherwise leave player selection so can toggle easily)
+                    }, true),
                 },
               ]}
             />
           </Col>
         </Form.Row>
+        {aggregateByPos == "On-Off" ? (
+          <Form.Group as={Row} className="mt-2">
+            <Form.Group as={Col} xs="10">
+              <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text id="onOff">
+                    <small>On/Off</small>
+                  </InputGroup.Text>
+                </InputGroup.Prepend>
+                <PlayerSelector
+                  className="w-80"
+                  emptyLabel={"Default (Top Unfiltered Lineup)"}
+                  playerSelectionStr={onOffPlayerSel}
+                  players={(rosterStats.global || []).flatMap((p) => {
+                    const codeId =
+                      p.player_array?.hits?.hits?.[0]?._source?.player;
+                    return codeId ? [codeId as PlayerCodeId] : [];
+                  })}
+                  onChangePlayerSelection={(newPlayerSelectionStr: string) => {
+                    setOnOffPlayerSel(newPlayerSelectionStr);
+                  }}
+                />
+              </InputGroup>
+            </Form.Group>
+          </Form.Group>
+        ) : null}
         <Row className="mt-2">
           <Col style={{ paddingLeft: "5px", paddingRight: "5px" }}>{table}</Col>
         </Row>

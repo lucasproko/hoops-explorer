@@ -56,6 +56,7 @@ exports[`PlayerLeaderboardPage PlayerLeaderboardPage - should create snapshot 1`
           "confs": Array [],
           "lastUpdated": 0,
           "players": Array [],
+          "teams": Object {},
         }
       }
       onChangeState={[Function]}

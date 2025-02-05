@@ -142,6 +142,7 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
         rawParams.showGameInfo == ParamDefaults.defaultLineupShowGameInfo
           ? ["showGameInfo"]
           : [],
+        !rawParams.onOffPlayerSel ? ["onOffPlayerSel"] : [],
       ])
     );
     if (!_.isEqual(params, lineupFilterParamsRef.current)) {
