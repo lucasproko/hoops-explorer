@@ -1263,6 +1263,13 @@ export class AvailableTeams {
         index_template: "mac",
         category: "mid",
       },
+      {
+        team: "Ball St.",
+        year: "2024/25",
+        gender: "Women",
+        index_template: "women_misc_conf",
+        category: "midhigh",
+      },
     ],
     Baylor: [
       {
@@ -1429,6 +1436,13 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+      },
+      {
+        team: "Belmont",
+        year: "2024/25",
+        gender: "Women",
+        index_template: "women_misc_conf",
+        category: "midhigh",
       },
     ],
     "Bethune-Cookman": [
@@ -3098,6 +3112,13 @@ export class AvailableTeams {
         index_template: "ivy",
         category: "mid",
       },
+      {
+        team: "Columbia",
+        year: "2024/25",
+        gender: "Women",
+        index_template: "women_misc_conf",
+        category: "midhigh",
+      },
     ],
     "Coppin St.": [
       {
@@ -4372,6 +4393,13 @@ export class AvailableTeams {
         index_template: "maac",
         category: "midlow",
       },
+      {
+        team: "Fairfield",
+        year: "2024/25",
+        gender: "Women",
+        index_template: "women_misc_conf",
+        category: "midhigh",
+      },
     ],
     "Fairleigh Dickinson": [
       {
@@ -4935,6 +4963,13 @@ export class AvailableTeams {
         index_template: "atlanticten",
         category: "midhigh",
       },
+      {
+        team: "George Mason",
+        year: "2024/25",
+        gender: "Women",
+        index_template: "women_misc_conf",
+        category: "midhigh",
+      },
     ],
     "George Washington": [
       {
@@ -5468,6 +5503,13 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "wac",
         category: "midlow",
+      },
+      {
+        team: "Grand Canyon",
+        year: "2024/25",
+        gender: "Women",
+        index_template: "women_misc_conf",
+        category: "midhigh",
       },
     ],
     "Green Bay": [
@@ -6691,6 +6733,13 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "sunbelt",
         category: "mid",
+      },
+      {
+        team: "James Madison",
+        year: "2024/25",
+        gender: "Women",
+        index_template: "women_misc_conf",
+        category: "midhigh",
       },
     ],
     Kansas: [
@@ -8783,6 +8832,13 @@ export class AvailableTeams {
         index_template: "conferenceusa",
         category: "mid",
       },
+      {
+        team: "Middle Tenn.",
+        year: "2024/25",
+        gender: "Women",
+        index_template: "women_misc_conf",
+        category: "midhigh",
+      },
     ],
     Milwaukee: [
       {
@@ -9487,6 +9543,13 @@ export class AvailableTeams {
         gender: "Men",
         index_template: "mvc",
         category: "mid",
+      },
+      {
+        team: "Murray St.",
+        year: "2024/25",
+        gender: "Women",
+        index_template: "women_misc_conf",
+        category: "midhigh",
       },
     ],
     "N.C. A&T": [
@@ -11665,7 +11728,7 @@ export class AvailableTeams {
         team: "Oregon St.",
         year: "2024/25",
         gender: "Women",
-        index_template: "women_wcc",
+        index_template: "women_misc_conf",
         category: "high",
       },
     ],
@@ -12007,6 +12070,13 @@ export class AvailableTeams {
         year: "2024/25",
         gender: "Men",
         index_template: "wcc",
+        category: "midhigh",
+      },
+      {
+        team: "Portland",
+        year: "2024/25",
+        gender: "Women",
+        index_template: "women_misc_conf",
         category: "midhigh",
       },
     ],
@@ -12635,6 +12705,13 @@ export class AvailableTeams {
         year: "2024/25",
         gender: "Men",
         index_template: "atlanticten",
+        category: "midhigh",
+      },
+      {
+        team: "Richmond",
+        year: "2024/25",
+        gender: "Women",
+        index_template: "women_misc_conf",
         category: "midhigh",
       },
     ],
@@ -17060,6 +17137,13 @@ export class AvailableTeams {
         index_template: "mountainwest",
         category: "midhigh",
       },
+      {
+        team: "UNLV",
+        year: "2024/25",
+        gender: "Women",
+        index_template: "women_misc_conf",
+        category: "midhigh",
+      },
     ],
     "USC Upstate": [
       {
@@ -18352,7 +18436,7 @@ export class AvailableTeams {
         team: "Washington St.",
         year: "2024/25",
         gender: "Women",
-        index_template: "women_wcc",
+        index_template: "women_misc_conf",
         category: "high",
       },
     ],
@@ -19032,6 +19116,13 @@ export class AvailableTeams {
         year: "2024/25",
         gender: "Men",
         index_template: "mountainwest",
+        category: "midhigh",
+      },
+      {
+        team: "Wyoming",
+        year: "2024/25",
+        gender: "Women",
+        index_template: "women_misc_conf",
         category: "midhigh",
       },
     ],
