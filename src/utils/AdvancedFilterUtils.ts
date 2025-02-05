@@ -297,6 +297,15 @@ export class AdvancedFilterUtils {
       "hs_region_dmv",
     ]);
 
+  static readonly playerLboardWithTeamStatsAutcomplete =
+    AdvancedFilterUtils.playerLeaderBoardAutocomplete.concat(
+      AdvancedFilterUtils.teamExplorerAutocomplete
+        .filter(
+          (field) => _.startsWith(field, "off_") || _.startsWith(field, "def_")
+        )
+        .map((field) => `team_stats.${field}`)
+    );
+
   static playerSeasonComparisonAutocomplete = _.flatMap(
     ["prev_", "next_"],
     (prefix) => {
@@ -347,7 +356,7 @@ export class AdvancedFilterUtils {
   static singleYearfixObjectFormat(s: string) {
     return s
       .replace(/ALL/g, "($.player_code)")
-      .replace(/((?:off|def)_[0-9a-zA-Z_]+)/g, "$.p.$1?.value")
+      .replace(/((team_stats[.])?(?:off|def)_[0-9a-zA-Z_]+)/g, "$.p.$1?.value")
       .replace(/(^| |[(!*+/-])(adj_[0-9a-zA-Z_]+)/g, "$1$.$2")
       .replace(/roster[.]height/g, "$.normht")
       .replace(/transfer_(src|dest)/g, "$.transfer_$1")

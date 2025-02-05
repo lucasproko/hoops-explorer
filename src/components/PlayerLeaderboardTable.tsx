@@ -78,6 +78,7 @@ const PlayerGeoMapNoSsr = dynamic(() => import("./diags/PlayerGeoMap"), {
 
 export type PlayerLeaderboardStatsModel = {
   players?: Array<any>;
+  teams?: Record<string, any>;
   confs?: Array<string>;
   confMap?: Map<string, Array<string>>;
   transfers?: Record<string, Array<TransferModel>>;
@@ -798,7 +799,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               varNoGeoFilters =
                 varNoGeoFilters && (!playerHasLatLong || geoMatch);
 
-              return (
+              const isMatch =
                 geoMatch &&
                 (_.isEmpty(transferInfoSplit[0]) ||
                   _.isEmpty(dataEvent.transfers) || //(if not specified, don't care about transfers)
@@ -818,8 +819,14 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                     (fragment) => strToTest.indexOf(fragment) >= 0
                   )
                     ? false
-                    : true))
-              );
+                    : true));
+              if (isMatch && !_.isNil(dataEvent?.teams)) {
+                // Add team info:
+                player.team_stats =
+                  dataEvent.teams[`${player.team}_${player.year || year}`] ||
+                  {};
+              }
+              return isMatch;
             })
             .sortBy(
               skipSort
@@ -2141,7 +2148,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 prompt="eg 'def_adj_rapm < -2 && off_3p > 0.35 && off_3pr >= 0.45 SORT_BY adj_rapm_prod_margin'"
                 value={advancedFilterStr}
                 error={advancedFilterError}
-                autocomplete={AdvancedFilterUtils.playerLeaderBoardAutocomplete}
+                autocomplete={
+                  AdvancedFilterUtils.playerLboardWithTeamStatsAutcomplete
+                }
                 richTextReplacements={playerLeaderboardRichTextReplacements}
                 callback={(newVal: string) =>
                   friendlyChange(() => setAdvancedFilterStr(newVal), true)

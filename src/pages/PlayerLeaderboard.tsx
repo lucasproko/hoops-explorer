@@ -73,18 +73,21 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
   const dataEventInit = {
     all: {
       players: [] as any[],
+      teams: {} as Record<string, any>,
       confs: [] as string[],
       transfers: transferInit,
       lastUpdated: 0,
     },
     t100: {
       players: [] as any[],
+      teams: {} as Record<string, any>,
       confs: [] as string[],
       transfers: transferInit,
       lastUpdated: 0,
     },
     conf: {
       players: [] as any[],
+      teams: {} as Record<string, any>,
       confs: [] as string[],
       transfers: transferInit,
       lastUpdated: 0,
@@ -95,12 +98,14 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
   const [dataEvent, setDataEvent] = useState(dataEventInit);
   const [dataSubEvent, setDataSubEvent] = useState({
     players: [],
+    teams: {},
     confs: [],
     lastUpdated: 0,
   } as PlayerLeaderboardStatsModel);
   const [currYear, setCurrYear] = useState("");
   const [currGender, setCurrGender] = useState("");
   const [currTier, setCurrTier] = useState("");
+  const [currNeedTeamStats, setCurrNeedTeamStats] = useState(false);
 
   // Game filter
 
@@ -193,7 +198,12 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
       transferModeUrlParam ||
       nextYear <= DateUtils.yearWithActiveTransferPortal;
 
+    const needsTeamStats = (
+      playerLeaderboardParams.advancedFilter || ""
+    ).includes("team_stats.");
+
     if (year == "All" || tier == "All" || transferModeUrlParam) {
+      //TODO: why aren't I checking before re-fetching all the info here?
       //(note the transferModeUrlParam means we use this slightly less efficient construct with single tier transfers)
 
       //TODO: tidy this up
@@ -220,8 +230,18 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
         transferYearIn,
         []
       );
+      const teamStatsPromise =
+        needsTeamStats && year != "All"
+          ? LeaderboardUtils.getMultiYearTeamDetails(
+              gender,
+              fullYear,
+              tier,
+              [] //TODO: support "All"
+            )
+          : Promise.resolve([]);
 
-      fetchAll.then((jsonsIn: any[]) => {
+      Promise.all([fetchAll, teamStatsPromise]).then((fetchResults) => {
+        const [jsonsIn, teamStats] = fetchResults;
         const jsons = _.dropRight(jsonsIn, transferMode ? 1 : 0);
 
         setDataSubEvent({
@@ -235,6 +255,14 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
             )
             .flatten()
             .value(),
+          teams: needsTeamStats
+            ? _.chain(teamStats)
+                .flatMap((d) => d.teams || [])
+                .flatten()
+                .map((t) => [`${t.team_name}_${t.year}`, t])
+                .fromPairs()
+                .value()
+            : undefined,
           confs: _.chain(jsons)
             .map((d) => d.confs || [])
             .flatten()
@@ -251,27 +279,50 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
         !dataEvent[dataSubEventKey]?.players?.length ||
         currYear != fullYear ||
         currGender != gender ||
-        currTier != tier
+        currTier != tier ||
+        (!currNeedTeamStats && needsTeamStats) //(currNeedTeamStats is a latch)
       ) {
         const oldCurrYear = currYear;
         setCurrYear(fullYear);
         setCurrGender(gender);
         setCurrTier(tier);
+        setCurrNeedTeamStats(needsTeamStats);
         setDataSubEvent({ players: [], confs: [] }); //(set the spinner off)
 
-        LeaderboardUtils.getSingleYearPlayerLboards(
+        const playerLboardPromise = LeaderboardUtils.getSingleYearPlayerLboards(
           dataSubEventKey,
           gender,
           fullYear,
           tier
-        ).then((json: any) => {
-          //(if year has changed then clear saved data events)
-          setDataEvent({
-            ...(oldCurrYear != year ? dataEventInit : dataEvent),
-            [dataSubEventKey]: json,
-          });
-          setDataSubEvent(json);
-        });
+        );
+        const teamStatsPromise = needsTeamStats
+          ? LeaderboardUtils.getMultiYearTeamDetails(
+              gender,
+              fullYear,
+              tier,
+              [] //TODO: support "All"
+            )
+          : Promise.resolve([]);
+
+        Promise.all([playerLboardPromise, teamStatsPromise]).then(
+          (playerAndTeamJsons) => {
+            const [playerJson, teamsJson] = playerAndTeamJsons;
+            if (needsTeamStats) {
+              playerJson.teams = _.chain(teamsJson)
+                .flatMap((d) => d.teams || [])
+                .flatten()
+                .map((t) => [`${t.team_name}_${t.year}`, t])
+                .fromPairs()
+                .value();
+            }
+            //(if year has changed then clear saved data events)
+            setDataEvent({
+              ...(oldCurrYear != year ? dataEventInit : dataEvent),
+              [dataSubEventKey]: playerJson,
+            });
+            setDataSubEvent(playerJson);
+          }
+        );
       } else if (dataSubEvent != dataEvent[dataSubEventKey]) {
         setDataSubEvent(dataEvent[dataSubEventKey]);
       }
