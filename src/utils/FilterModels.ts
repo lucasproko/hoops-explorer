@@ -243,6 +243,7 @@ export type TeamStatsExplorerParams = {
   advancedFilter?: string;
   showGrades?: string;
   luck?: LuckParams; //(missing iff default)
+  maxTableSize?: string;
 };
 
 export type OffseasonLeaderboardParams = {
@@ -396,6 +397,8 @@ export class ParamDefaults {
   static readonly defaultLineupLboardSortBy = "desc:diff_adj_ppp";
   static readonly defaultLineupLboardFilter = "";
   static readonly defaultLineupLboardLuckDiagMode = false;
+  // Team leaderboards
+  static readonly defaultTeamExplorerMaxTableSize = "100";
   // Player leaderboard
   static readonly defaultPlayerLboardMinPos = "20";
   static readonly defaultPlayerLboardMaxTableSize = "100";

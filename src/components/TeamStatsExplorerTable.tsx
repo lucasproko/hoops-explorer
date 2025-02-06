@@ -81,6 +81,7 @@ import { TeamEvalUtils } from "../utils/stats/TeamEvalUtils";
 import LinqExpressionBuilder from "./shared/LinqExpressionBuilder";
 import { AdvancedFilterUtils } from "../utils/AdvancedFilterUtils";
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
+import AsyncFormControl from "./shared/AsyncFormControl";
 
 export type TeamStatsExplorerModel = {
   confs: string[];
@@ -119,6 +120,10 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
 
   const [isT100, setIsT100] = useState(startingState.t100 || false);
   const [isConfOnly, setIsConfOnly] = useState(startingState.confOnly || false);
+
+  const [maxTableSize, setMaxTableSize] = useState(
+    startingState.maxTableSize || ParamDefaults.defaultTeamExplorerMaxTableSize
+  );
 
   // Basic filter:
   const manualFilterSelected =
@@ -209,6 +214,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     onChangeState({
       year,
       gender,
+      maxTableSize,
       confs,
       sortBy: sortBy,
       queryFilters: queryFilters,
@@ -221,6 +227,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     year,
     gender,
     sortBy,
+    maxTableSize,
     queryFilters,
     advancedFilterStr,
     isT100,
@@ -502,7 +509,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     });
 
     const tableRows = _.chain(rowsForEachTeam)
-      .take(100) //TODO: make configurable
+      .take(parseInt(maxTableSize))
       .flatMap((rows, ii) => [
         ...(ii > 0 && ii % 10 == 0
           ? [
@@ -525,7 +532,16 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         cellTooltipMode="none"
       />
     );
-  }, [gender, year, confs, dataEvent, sortBy, queryFilters, advancedFilterStr]);
+  }, [
+    gender,
+    year,
+    confs,
+    dataEvent,
+    sortBy,
+    queryFilters,
+    advancedFilterStr,
+    maxTableSize,
+  ]);
 
   // 3] View
 
@@ -638,7 +654,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           <GenericTogglingMenu></GenericTogglingMenu>
         </Col>
       </Form.Group>
-      <Form.Group as={Row}>
+      <Row>
         {!showAdvancedFilter ? (
           <Col xs={12} sm={12} md={7} lg={7}>
             <InputGroup>
@@ -726,9 +742,9 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
             label={linqEnableText}
           />
         </Form.Group>
-      </Form.Group>
-      <Row className="pb-2">
-        <Col xs={12} sm={12} md={12} lg={8}>
+      </Row>
+      <Row>
+        <Col xs={12} sm={12} md={8} lg={8}>
           <ToggleButtonGroup
             items={_.flatten([
               [
@@ -786,6 +802,25 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
             ])}
           />
         </Col>
+        <Form.Group as={Col} sm="3">
+          <InputGroup>
+            <InputGroup.Prepend>
+              <InputGroup.Text id="maxTeams">Max Teams</InputGroup.Text>
+            </InputGroup.Prepend>
+            <AsyncFormControl
+              startingVal={
+                startingState.maxTableSize ||
+                ParamDefaults.defaultTeamExplorerMaxTableSize
+              }
+              validate={(t: string) => t.match("^[0-9]*$") != null}
+              onChange={(t: string) =>
+                friendlyChange(() => setMaxTableSize(t), t != maxTableSize)
+              }
+              timeout={400}
+              placeholder="eg 100"
+            />
+          </InputGroup>
+        </Form.Group>
       </Row>
       <Row>
         <Col>

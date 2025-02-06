@@ -96,6 +96,9 @@ const TeamStatsExplorerPage: NextPage<Props> = ({ testMode }) => {
         !rawParams.confs ? ["confs"] : [],
         !rawParams.queryFilters ? ["queryFilters"] : [],
         rawParams.sortBy == "net" ? ["sortBy"] : [],
+        rawParams.maxTableSize == ParamDefaults.defaultTeamExplorerMaxTableSize
+          ? ["maxTableSize"]
+          : [],
       ])
     );
     if (!_.isEqual(params, teamStatsExplorerParamsRef.current)) {
