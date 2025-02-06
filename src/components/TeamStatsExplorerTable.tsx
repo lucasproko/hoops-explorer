@@ -177,7 +177,9 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     startingState.year || DateUtils.mostRecentYearWithLboardData
   );
 
-  const [gender, setGender] = useState("Men"); // TODO ignore input just take Men
+  const [gender, setGender] = useState(
+    startingState.gender || ParamDefaults.defaultGender
+  );
 
   const [sortBy, setSortBy] = useState(startingState.sortBy || "power");
 
@@ -205,7 +207,8 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   /** When the params change */
   useEffect(() => {
     onChangeState({
-      year: year,
+      year,
+      gender,
       confs,
       sortBy: sortBy,
       queryFilters: queryFilters,
@@ -216,6 +219,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   }, [
     confs,
     year,
+    gender,
     sortBy,
     queryFilters,
     advancedFilterStr,
@@ -360,61 +364,6 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         team.power = 0.5 * wab + 0.5 * expWab;
         //(to get a proper ranking would need to normalize games played, but this is fine for this power ranking)
 
-        const teamTooltip = (
-          <Tooltip id={`team_${teamIndex}`}>
-            Open new tab with a detailed analysis view (roster, play style info,
-            on/off) for this team
-          </Tooltip>
-        );
-        const teamParams = {
-          team: team.team_name,
-          gender: gender,
-          year: year,
-          minRank: "0",
-          maxRank: isT100 ? "100" : "400",
-          queryFilters: isConfOnly ? "Conf" : undefined,
-          showExpanded: true,
-          calcRapm: true,
-          showTeamPlayTypes: !isT100 && !isConfOnly,
-          showGrades: "rank:Combo",
-          showExtraInfo: true,
-          showRoster: true,
-        };
-        const confTooltip = (
-          <Tooltip id={`teamConf_${teamIndex}`}>
-            Filter the table to only teams from this conference
-          </Tooltip>
-        );
-        const conferenceSelector = (
-          <OverlayTrigger placement="auto" overlay={confTooltip}>
-            <a
-              href="#"
-              onClick={(event) => {
-                event.preventDefault();
-                setConfs(confNick);
-              }}
-            >
-              {confNick}
-            </a>
-          </OverlayTrigger>
-        );
-
-        team.combo_title = (
-          <p>
-            <OverlayTrigger placement="auto" overlay={teamTooltip}>
-              <a target="_blank" href={UrlRouting.getGameUrl(teamParams, {})}>
-                <b>{team.team_name}</b>
-              </a>
-            </OverlayTrigger>
-            <br />
-            <small>
-              <i>
-                {conferenceSelector} / {wins}-{losses} ({wab >= 0 ? "+" : ""}
-                {wab.toFixed(2)})
-              </i>
-            </small>
-          </p>
-        );
         return team;
       })
       .filter((team) => {
@@ -437,7 +386,78 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     if (advancedFilterStr.length > 0)
       setAdvancedFilterError(tmpAvancedFilterError);
 
-    const rowsForEachTeam = teamsPhase2.map((team) => {
+    const rowsForEachTeam = teamsPhase2.map((team, teamIndex) => {
+      const teamTooltip = (
+        <Tooltip id={`team_${teamIndex}`}>
+          Open new tab with a detailed analysis view (roster, play style info,
+          on/off) for this team
+        </Tooltip>
+      );
+      const teamParams = {
+        team: team.team_name,
+        gender: gender,
+        year: year,
+        minRank: "0",
+        maxRank: isT100 ? "100" : "400",
+        queryFilters: isConfOnly ? "Conf" : undefined,
+        showExpanded: true,
+        calcRapm: true,
+        showTeamPlayTypes: !isT100 && !isConfOnly,
+        showGrades: "rank:Combo",
+        showExtraInfo: true,
+        showRoster: true,
+      };
+      const confTooltip = (
+        <Tooltip id={`teamConf_${teamIndex}`}>
+          Filter the table to only teams from this conference
+        </Tooltip>
+      );
+      const conferenceSelector = (
+        <OverlayTrigger placement="auto" overlay={confTooltip}>
+          <a
+            href="#"
+            onClick={(event) => {
+              event.preventDefault();
+              setConfs(team.conf_nick);
+            }}
+          >
+            {team.conf_nick}
+          </a>
+        </OverlayTrigger>
+      );
+
+      const yearSuffix = _.thru(team.year || "??????", (effYear) => {
+        return effYear < "2019/20"
+          ? "1" + effYear.substring(5)
+          : effYear.substring(5);
+      });
+      team.combo_title = (
+        <p>
+          <OverlayTrigger placement="auto" overlay={teamTooltip}>
+            <span>
+              <sup>
+                <small>{teamIndex + 1}</small>
+              </sup>
+              &nbsp;
+              <a target="_blank" href={UrlRouting.getGameUrl(teamParams, {})}>
+                <b>
+                  {team.team_name}
+                  {year == "All" ? ` '${yearSuffix}` : ""}
+                </b>
+              </a>
+            </span>
+          </OverlayTrigger>
+          <br />
+          <small>
+            <i>
+              {conferenceSelector} / {team.wins}-{team.losses} (
+              {team.wab >= 0 ? "+" : ""}
+              {team.wab.toFixed(2)})
+            </i>
+          </small>
+        </p>
+      );
+
       const tableInfo = TeamStatsTableUtils.buildRows(
         { team: team.team_name, year, gender },
         {
@@ -482,6 +502,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     });
 
     const tableRows = _.chain(rowsForEachTeam)
+      .take(100) //TODO: make configurable
       .flatMap((rows, ii) => [
         ...(ii > 0 && ii % 10 == 0
           ? [
@@ -567,12 +588,13 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       <Form.Group as={Row}>
         <Col xs={6} sm={6} md={3} lg={2} style={{ zIndex: 12 }}>
           <Select
-            value={stringToOption("Men")}
-            options={["Men"].map((gender) => stringToOption(gender))}
+            value={stringToOption(gender)}
+            options={["Men", "Women"].map((g) => stringToOption(g))}
             isSearchable={false}
             onChange={(option: any) => {
               if ((option as any)?.value) {
-                /* currently only support Men */
+                const newGender = (option as any)?.value;
+                friendlyChange(() => setGender(newGender), newGender != gender);
               }
             }}
           />
@@ -581,7 +603,9 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           <Select
             isDisabled={false}
             value={stringToOption(year)}
-            options={DateUtils.coreYears.map((r) => stringToOption(r))}
+            options={DateUtils.coreYears
+              .concat("All")
+              .map((r) => stringToOption(r))}
             isSearchable={false}
             onChange={(option: any) => {
               if ((option as any)?.value) {
@@ -706,29 +730,31 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       <Row className="pb-2">
         <Col xs={12} sm={12} md={12} lg={8}>
           <ToggleButtonGroup
-            items={(
+            items={_.flatten([
               [
-                {
-                  label: "T100",
-                  tooltip: "Show teams' stats vs T100 opposition",
-                  toggled: isT100,
-                  onClick: () =>
-                    friendlyChange(() => {
-                      setIsT100(!isT100);
-                      setIsConfOnly(false);
-                    }, true),
-                },
-                {
-                  label: "Conf",
-                  tooltip: "Show teams' stats vs conference opposition",
-                  toggled: isConfOnly,
-                  onClick: () =>
-                    friendlyChange(() => {
-                      setIsT100(false);
-                      setIsConfOnly(!isConfOnly);
-                    }, true),
-                },
-              ].concat([
+                //TODO: need some work to plumb into getTeamDetails
+                // {
+                //   label: "T100",
+                //   tooltip: "Show teams' stats vs T100 opposition",
+                //   toggled: isT100,
+                //   onClick: () =>
+                //     friendlyChange(() => {
+                //       setIsT100(!isT100);
+                //       setIsConfOnly(false);
+                //     }, true),
+                // },
+                // {
+                //   label: "Conf",
+                //   tooltip: "Show teams' stats vs conference opposition",
+                //   toggled: isConfOnly,
+                //   onClick: () =>
+                //     friendlyChange(() => {
+                //       setIsT100(false);
+                //       setIsConfOnly(!isConfOnly);
+                //     }, true),
+                // },
+              ],
+              [
                 //TODO Extra, Grades, Style
                 {
                   label: "Grades",
@@ -745,8 +771,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
                       true
                     ),
                 },
-              ]) as Array<any>
-            ).concat(
+              ],
               showHelp
                 ? [
                     //TODO: what to show here?
@@ -757,8 +782,8 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
                     //   onClick: () => {}
                     // }
                   ]
-                : []
-            )}
+                : [],
+            ])}
           />
         </Col>
       </Row>

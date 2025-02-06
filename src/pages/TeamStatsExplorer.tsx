@@ -126,9 +126,9 @@ const TeamStatsExplorerPage: NextPage<Props> = ({ testMode }) => {
 
       const fetchTeamStats = LeaderboardUtils.getMultiYearTeamDetails(
         gender,
-        fullYear,
+        fullYear, //(can be All)
         "All",
-        [] //TODO: support "All"
+        []
       );
 
       fetchTeamStats.then((teams: any[]) => {
