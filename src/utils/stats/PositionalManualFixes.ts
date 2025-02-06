@@ -174,6 +174,13 @@ export const absolutePositionFixes: Record<
       position: "CG",
     },
   },
+  "Women_Villanova_2024/25": {
+    //(discussion by email)
+    "Orihel, Kaitlyn": { position: "WF" },
+    "Edmanson, Lara": { position: "S-PF" },
+    "Allen, Ryanne": { position: "WF" },
+    "Webber, Maddie": { position: "CG" },
+  },
 };
 
 export type RelativePositionFixRule = {
