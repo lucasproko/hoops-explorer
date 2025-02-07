@@ -75,7 +75,10 @@ import TeamFilterAutoSuggestText, {
   notFromFilterAutoSuggest,
 } from "./shared/TeamFilterAutoSuggestText";
 import { TeamStatsTableUtils } from "../utils/tables/TeamStatsTableUtils";
-import { DivisionStatsCache } from "../utils/tables/GradeTableUtils";
+import {
+  DivisionStatsCache,
+  GradeTableUtils,
+} from "../utils/tables/GradeTableUtils";
 import { ConferenceToNickname } from "../utils/public-data/ConferenceInfo";
 import { TeamEvalUtils } from "../utils/stats/TeamEvalUtils";
 import LinqExpressionBuilder from "./shared/LinqExpressionBuilder";
@@ -213,9 +216,31 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       : startingState.luck
   );
 
+  /** Show team and individual grades */
+  const [showPlayTypes, setShowPlayTypes] = useState(false); //TODO
+
+  // Grades:
+
   const [divisionStatsCache, setDivisionStatsCache] = useState(
     {} as DivisionStatsCache
   );
+
+  // Events that trigger building or rebuilding the division stats cache
+  useEffect(() => {
+    if (showGrades || showPlayTypes) {
+      if (
+        year != divisionStatsCache.year ||
+        gender != divisionStatsCache.gender ||
+        _.isEmpty(divisionStatsCache)
+      ) {
+        if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
+        GradeTableUtils.populateTeamDivisionStatsCache(
+          { year, gender },
+          setDivisionStatsCache
+        );
+      }
+    }
+  }, [year, gender, showGrades, showPlayTypes]);
 
   /** When the params change */
   useEffect(() => {
@@ -505,7 +530,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           showShotCharts: false, //(won't work without more data)
           shotChartConfig: undefined, //(won't work without more data)
           showExtraInfo: showExtraInfo && teamIndex < MAX_EXTRA_INFO_IN_ROWS,
-          showGrades: "", //TODO: need to play with performance
+          showGrades,
           showLuckAdjDiags: false, //(won't work without more data)
           showHelp,
         },
@@ -556,6 +581,8 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     sortBy,
     queryFilters,
     advancedFilterStr,
+    showGrades,
+    divisionStatsCache,
     maxTableSize,
     showExtraInfo,
   ]);
@@ -787,8 +814,8 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
                 {
                   label: "Grades",
                   tooltip: showGrades
-                    ? "Hide player ranks/percentiles"
-                    : "Show player ranks/percentiles",
+                    ? "Hide team ranks/percentiles"
+                    : "Show team ranks/percentiles",
                   toggled: showGrades != "",
                   onClick: () =>
                     friendlyChange(

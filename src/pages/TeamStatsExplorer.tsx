@@ -100,6 +100,7 @@ const TeamStatsExplorerPage: NextPage<Props> = ({ testMode }) => {
           ? ["maxTableSize"]
           : [],
         !rawParams.showExtraInfo ? ["showExtraInfo"] : [],
+        !rawParams.showGrades ? ["showGrades"] : [],
         _.isNil(rawParams.showAdvancedFilter) || rawParams.showAdvancedFilter
           ? ["showAdvancedFilter"]
           : [], //(true by default)
