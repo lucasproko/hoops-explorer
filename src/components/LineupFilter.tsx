@@ -51,6 +51,7 @@ type Props = {
   ) => void;
   startingState: LineupFilterParams;
   onChangeState: (newParams: LineupFilterParams) => void;
+  startingLineupLinks: (newParams: LineupFilterParams) => React.ReactNode[];
   forceReload1Up: number;
 };
 
@@ -58,6 +59,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
   onStats,
   startingState,
   onChangeState,
+  startingLineupLinks,
   forceReload1Up,
 }) => {
   //console.log("Loading LineupFilter " + JSON.stringify(startingState));
@@ -260,6 +262,9 @@ const LineupFilter: React.FunctionComponent<Props> = ({
       onChangeState={onChangeState}
       onChangeCommonState={updateCommonParams}
       tablePrefix={cacheKeyPrefix}
+      buildLinks={(params) => {
+        return startingLineupLinks(params);
+      }}
       buildParamsFromState={buildParamsFromState}
       childHandleResponse={handleResponse}
       forceReload1Up={internalForceReload1Up}

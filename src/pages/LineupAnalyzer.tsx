@@ -50,6 +50,8 @@ import {
   LineupStatSet,
 } from "../utils/StatModels";
 import { UrlRouting } from "../utils/UrlRouting";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 
 const LineupAnalyzerPage: NextPage<{}> = () => {
   useEffect(() => {
@@ -164,6 +166,69 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
     }
   };
 
+  function startingLineupLinks(params: LineupFilterParams): React.ReactNode[] {
+    const tooltip = (
+      <Tooltip id="showLineups">
+        Show in a new tab a detailed analysis view of the lineup sets comprised
+        of: all 5 players from the most common lineup, exactly 4 of the 5,
+        exactly 3 of the 5, and exactly 2 of the 5. Use the On/Off Combo
+        selector for more granular control over the players to use.
+      </Tooltip>
+    );
+    const playersToUseFromOnOff = (params.onOffPlayerSel || "").split(";");
+    const playersToUse =
+      playersToUseFromOnOff.length > 1
+        ? playersToUseFromOnOff.map((code) => `players.code:"${code}"`)
+        : _.thru(dataEvent.lineupStats?.lineups || [], (maybeLineups) => {
+            if (maybeLineups?.[0]) {
+              return LineupTableUtils.buildCodesAndIds(maybeLineups[0]).map(
+                (codeId) => `"${codeId.id}"`
+              );
+            } else {
+              return [];
+            }
+          });
+    return [
+      <OverlayTrigger placement="auto" overlay={tooltip}>
+        <a
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            if (playersToUse.length < 3) {
+              alert(
+                "Need either 3+ players specified in the On/Off selector in On/Off mode, or a non-empty lineup set"
+              );
+            } else {
+              const baseLinkParams = getCommonFilterParams(params);
+              const basePlayerStr = `{${playersToUse.join(";")}}`;
+              const linkParams = {
+                ...baseLinkParams,
+                onQuery: `${basePlayerStr}=${playersToUse.length}`,
+                offQuery: `${basePlayerStr}=${playersToUse.length - 1}`,
+                otherQueries: _.range(0, playersToUse.length <= 3 ? 1 : 2).map(
+                  (index) => {
+                    return {
+                      query: `${basePlayerStr}=${
+                        playersToUse.length - 2 - index
+                      }`,
+                    };
+                  }
+                ),
+                autoOffQuery: false,
+                showRoster: true,
+                calcRapm: true,
+                showExpanded: true,
+              };
+              window.open(UrlRouting.getGameUrl(linkParams, {}), "_blank");
+            }
+          }}
+        >
+          5/4/3/2 "Starter" Analysis
+        </a>
+      </OverlayTrigger>,
+    ];
+  }
+
   // View
 
   function maybeShowDocs() {
@@ -217,6 +282,7 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
             onStats={injectStats}
             startingState={lineupFilterParams}
             onChangeState={onLineupFilterParamsChange}
+            startingLineupLinks={startingLineupLinks}
             forceReload1Up={shouldForceReload}
           />
         </GenericCollapsibleCard>

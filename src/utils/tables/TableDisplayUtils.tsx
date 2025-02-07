@@ -215,7 +215,7 @@ export class TableDisplayUtils {
       sortedLineup,
       (cid: { id: string; code: string }) => {
         return cid.id[0] == "-"
-          ? []
+          ? [`${cid.id.substring(1)} OFF`, ""]
           : TableDisplayUtils.buildTooltipText(
               cid,
               perLineupPlayerMap,
@@ -394,8 +394,8 @@ export class TableDisplayUtils {
       );
     };
 
-    const playerInfo =
-      cid.id[0] == "-" ? undefined : perLineupPlayerMap[cid.id];
+    const isOffPlayer = cid.id[0] == "-";
+    const playerInfo = isOffPlayer ? undefined : perLineupPlayerMap[cid.id];
     return (
       <span key={cid.code}>
         <span style={{ whiteSpace: "nowrap" }}>
@@ -404,7 +404,7 @@ export class TableDisplayUtils {
             style={{
               backgroundColor: playerInfo
                 ? singleColorField(playerInfo, colorField)
-                : cid.id[0] == "-"
+                : isOffPlayer
                 ? "lightblue"
                 : "grey",
               // consider this in the future:
@@ -414,7 +414,11 @@ export class TableDisplayUtils {
             <span
               style={{
                 fontSize: "small",
-                fontWeight: playerInfo ? fontWeight(playerInfo) : undefined,
+                fontWeight: playerInfo
+                  ? fontWeight(playerInfo)
+                  : isOffPlayer
+                  ? 200
+                  : undefined,
               }}
             >
               {LineupUtils.namePrettifier(cid.code)}

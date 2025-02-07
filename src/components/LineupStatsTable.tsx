@@ -1412,8 +1412,8 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
             />
           </Col>
         </Form.Row>
-        {aggregateByPos == "On-Off" ? (
-          <Form.Group as={Row} className="mt-2">
+        {aggregateByPos == "On-Off" && !_.isEmpty(rosterStats.global) ? (
+          <Form.Group as={Row} className="mt-3">
             <Form.Group as={Col} xs="10">
               <InputGroup>
                 <InputGroup.Prepend>
@@ -1422,7 +1422,6 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                   </InputGroup.Text>
                 </InputGroup.Prepend>
                 <PlayerSelector
-                  className="w-80"
                   emptyLabel={"Default (Top Unfiltered Lineup)"}
                   playerSelectionStr={onOffPlayerSel}
                   players={(rosterStats.global || []).flatMap((p) => {

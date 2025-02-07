@@ -42,6 +42,7 @@ exports[`LineupAnalyzerPage LineupAnalyzerPage - should create snapshot 1`] = `
         forceReload1Up={0}
         onChangeState={[Function]}
         onStats={[Function]}
+        startingLineupLinks={[Function]}
         startingState={Object {}}
       />
     </GenericCollapsibleCard>
