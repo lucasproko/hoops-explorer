@@ -44,6 +44,11 @@ export class AdvancedFilterUtils {
       "def_adj_ppp",
       "off_ppp",
       "def_ppp",
+      "raw_net",
+      "adj_net",
+      "def_3p_opp",
+      "off_adj_opp",
+      "def_adj_opp",
 
       // Four factors
       "off_efg",
@@ -92,6 +97,11 @@ export class AdvancedFilterUtils {
       "def_twoprim_ast",
 
       // Scramble:
+      "off_scramble_pct",
+      "off_scramble_ppp",
+      "off_scramble_delta_ppp",
+      "off_scramble_per_orb",
+      "off_scramble_efg",
       "off_scramble_twop",
       "off_scramble_twop_ast",
       "off_scramble_threep",
@@ -106,6 +116,11 @@ export class AdvancedFilterUtils {
       "off_scramble_twopmidr",
       "off_scramble_threepr",
       "off_scramble_assist",
+      "def_scramble_pct",
+      "def_scramble_ppp",
+      "def_scramble_delta_ppp",
+      "def_scramble_per_orb",
+      "def_scramble_efg",
       "def_scramble_twop",
       "def_scramble_twop_ast",
       "def_scramble_threep",
@@ -122,6 +137,10 @@ export class AdvancedFilterUtils {
       "def_scramble_assist",
 
       // Transition:
+      "off_trans_pct",
+      "off_trans_ppp",
+      "off_trans_delta_ppp",
+      "off_trans_efg",
       "off_trans_twop",
       "off_trans_twop_ast",
       "off_trans_threep",
@@ -136,6 +155,10 @@ export class AdvancedFilterUtils {
       "off_trans_twopmidr",
       "off_trans_threepr",
       "off_trans_assist",
+      "def_trans_pct",
+      "def_trans_ppp",
+      "def_trans_delta_ppp",
+      "def_trans_efg",
       "def_trans_twop",
       "def_trans_twop_ast",
       "def_trans_threep",
@@ -152,7 +175,6 @@ export class AdvancedFilterUtils {
       "def_trans_assist",
 
       //TODO: play styles
-      //TODO: others
     ]);
 
   static readonly playerLeaderBoardAutocomplete =
@@ -401,6 +423,9 @@ export class AdvancedFilterUtils {
         "$.p.$1"
       )
       .replace(/((?:off|def)_[0-9a-zA-Z_]+)/g, "$.p.$1?.value")
+      .replace(/adj_net/g, "$.p.off_net?.value")
+      .replace(/raw_net/g, "$.p.off_raw_net?.value")
+      .replace(/((?:off|def)_(?:scramble|trans))_pct/, "$1")
       .replace(/(^| |[(!*+/-])(adj_[0-9a-zA-Z_]+)/g, "$1$.$2")
       .replace(/(off|def)_reb/g, "$1_orb"); //(nicer version of rebound name)
   }

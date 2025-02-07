@@ -96,6 +96,8 @@ type Props = {
   onChangeState: (newParams: TeamStatsExplorerParams) => void;
 };
 
+const MAX_EXTRA_INFO_IN_ROWS = 30; //Too slow after this
+
 const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   startingState,
   dataEvent,
@@ -123,6 +125,10 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
 
   const [maxTableSize, setMaxTableSize] = useState(
     startingState.maxTableSize || ParamDefaults.defaultTeamExplorerMaxTableSize
+  );
+
+  const [showExtraInfo, setShowExtraInfo] = useState(
+    _.isNil(startingState.showExtraInfo) ? false : startingState.showExtraInfo
   );
 
   // Basic filter:
@@ -216,6 +222,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       gender,
       maxTableSize,
       confs,
+      showExtraInfo,
       sortBy: sortBy,
       queryFilters: queryFilters,
       advancedFilter: advancedFilterStr,
@@ -228,6 +235,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     gender,
     sortBy,
     maxTableSize,
+    showExtraInfo,
     queryFilters,
     advancedFilterStr,
     isT100,
@@ -492,7 +500,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           showGameInfo: false,
           showShotCharts: false, //(won't work without more data)
           shotChartConfig: undefined, //(won't work without more data)
-          showExtraInfo: false, //TODO takes a while to render if true maybe only do for "top" 30?
+          showExtraInfo: showExtraInfo && teamIndex < MAX_EXTRA_INFO_IN_ROWS,
           showGrades: "", //TODO: need to play with performance
           showLuckAdjDiags: false, //(won't work without more data)
           showHelp,
@@ -541,6 +549,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     queryFilters,
     advancedFilterStr,
     maxTableSize,
+    showExtraInfo,
   ]);
 
   // 3] View
@@ -784,6 +793,18 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
                         setShowGrades(
                           showGrades ? "" : ParamDefaults.defaultEnabledGrade
                         ),
+                      true
+                    ),
+                },
+                {
+                  label: "Extra",
+                  tooltip: showExtraInfo
+                    ? "Hide extra stats info"
+                    : `Show extra stats info (first ${MAX_EXTRA_INFO_IN_ROWS} teams)`,
+                  toggled: showExtraInfo,
+                  onClick: () =>
+                    friendlyChange(
+                      () => setShowExtraInfo(!showExtraInfo),
                       true
                     ),
                 },
