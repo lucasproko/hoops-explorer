@@ -178,7 +178,9 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     _.trim(startingState.advancedFilter || "")
   );
   const [showAdvancedFilter, setShowAdvancedFilter] = useState(
-    !_.isEmpty(startingState.advancedFilter) //(ie enable if anything specified, within page controlled by toggle)
+    _.isNil(startingState.showAdvancedFilter)
+      ? true
+      : startingState.showAdvancedFilter
   );
   const [advancedFilterError, setAdvancedFilterError] = useState(
     undefined as string | undefined
@@ -228,6 +230,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       advancedFilter: advancedFilterStr,
       t100: isT100,
       confOnly: isConfOnly,
+      showAdvancedFilter,
     });
   }, [
     confs,
@@ -240,6 +243,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     advancedFilterStr,
     isT100,
     isConfOnly,
+    showAdvancedFilter,
   ]);
 
   /** Set this to be true on expensive operations */
@@ -536,7 +540,11 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       <GenericTable
         tableCopyId="teamStatsTable"
         tableFields={CommonTableDefs.onOffTable(true)}
-        tableData={tableRows}
+        tableData={
+          tableRows.length == 0 && needToLoadQuery() //(make table big enough to render loading script)
+            ? _.range(0, 3).map((__) => GenericTableOps.buildRowSeparator())
+            : tableRows
+        }
         cellTooltipMode="none"
       />
     );
@@ -664,72 +672,50 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         </Col>
       </Form.Group>
       <Row>
-        {!showAdvancedFilter ? (
-          <Col xs={12} sm={12} md={7} lg={7}>
-            <InputGroup>
-              <InputGroup.Prepend>
-                <InputGroup.Text id="filter">
-                  Filter{maybeFilterPrompt}:
-                </InputGroup.Text>
-              </InputGroup.Prepend>
-              <div className="flex-fill">
-                <TeamFilterAutoSuggestText
-                  readOnly={false}
-                  placeholder={
-                    manualFilterSelected
-                      ? `;-separated list of teams, or "BREAK;"`
-                      : `;-separated list of teams`
-                  }
-                  autocomplete={teamList
-                    .concat([separatorKeyword])
-                    .map((s) => s + ";")}
-                  value={tmpQueryFilters}
-                  onChange={(ev: any) => setTmpQueryFilters(ev.target.value)}
-                  onSelectionChanged={(newStr: string) =>
-                    friendlyChange(() => {
-                      setQueryFilters(newStr);
-                    }, newStr != queryFilters)
-                  }
-                  onKeyUp={(ev: any) => setTmpQueryFilters(ev.target.value)}
-                />
-              </div>
-            </InputGroup>
-          </Col>
-        ) : null}
-        {!showAdvancedFilter ? (
-          <Form.Group as={Col} xs={12} sm={12} md={4} lg={4}>
-            <Select
-              styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
-              value={sortByOptions[sortBy]}
-              options={_.values(sortByOptions)}
-              isSearchable={false}
-              onChange={(option: any) => {
-                if ((option as any)?.value) {
-                  const newSortBy = (option as any)?.value || "net";
-                  friendlyChange(
-                    () => setSortBy(newSortBy),
-                    sortBy != newSortBy
-                  );
+        <Col xs={12} sm={12} md={7} lg={7}>
+          <InputGroup>
+            <InputGroup.Prepend>
+              <InputGroup.Text id="filter">
+                Filter{maybeFilterPrompt}:
+              </InputGroup.Text>
+            </InputGroup.Prepend>
+            <div className="flex-fill">
+              <TeamFilterAutoSuggestText
+                readOnly={false}
+                placeholder={
+                  manualFilterSelected
+                    ? `;-separated list of teams, or "BREAK;"`
+                    : `;-separated list of teams`
                 }
-              }}
-            />
-          </Form.Group>
-        ) : null}
-        {showAdvancedFilter ? (
-          <Form.Group as={Col} xs={12} sm={12} md={11} lg={11}>
-            <LinqExpressionBuilder
-              prompt="eg 'off_adj_ppp > 110.0 SORT_BY def_adj_ppp ASC'"
-              value={advancedFilterStr}
-              error={advancedFilterError}
-              autocomplete={AdvancedFilterUtils.teamExplorerAutocomplete}
-              richTextReplacements={undefined}
-              callback={(newVal: string) =>
-                friendlyChange(() => setAdvancedFilterStr(newVal), true)
+                autocomplete={teamList
+                  .concat([separatorKeyword])
+                  .map((s) => s + ";")}
+                value={tmpQueryFilters}
+                onChange={(ev: any) => setTmpQueryFilters(ev.target.value)}
+                onSelectionChanged={(newStr: string) =>
+                  friendlyChange(() => {
+                    setQueryFilters(newStr);
+                  }, newStr != queryFilters)
+                }
+                onKeyUp={(ev: any) => setTmpQueryFilters(ev.target.value)}
+              />
+            </div>
+          </InputGroup>
+        </Col>
+        <Form.Group as={Col} xs={12} sm={12} md={4} lg={4}>
+          <Select
+            styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
+            value={sortByOptions[sortBy]}
+            options={_.values(sortByOptions)}
+            isSearchable={false}
+            onChange={(option: any) => {
+              if ((option as any)?.value) {
+                const newSortBy = (option as any)?.value || "net";
+                friendlyChange(() => setSortBy(newSortBy), sortBy != newSortBy);
               }
-              showHelp={showHelp}
-            />
-          </Form.Group>
-        ) : null}
+            }}
+          />
+        </Form.Group>
         <Form.Group as={Col} sm="1" className="mt-2">
           <Form.Check
             type="switch"
@@ -752,8 +738,25 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           />
         </Form.Group>
       </Row>
+      {showAdvancedFilter ? (
+        <Row>
+          <Form.Group as={Col} xs={12} sm={12} md={12} lg={12}>
+            <LinqExpressionBuilder
+              prompt="eg 'off_adj_ppp > 110.0 SORT_BY def_adj_ppp ASC'"
+              value={advancedFilterStr}
+              error={advancedFilterError}
+              autocomplete={AdvancedFilterUtils.teamExplorerAutocomplete}
+              richTextReplacements={undefined}
+              callback={(newVal: string) =>
+                friendlyChange(() => setAdvancedFilterStr(newVal), true)
+              }
+              showHelp={showHelp}
+            />
+          </Form.Group>
+        </Row>
+      ) : null}
       <Row>
-        <Col xs={12} sm={12} md={8} lg={8}>
+        <Col xs={12} sm={12} md={8} lg={8} className="pt-2 mb-2">
           <ToggleButtonGroup
             items={_.flatten([
               [
@@ -780,7 +783,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
                 // },
               ],
               [
-                //TODO Extra, Grades, Style
+                //TODO Style
                 {
                   label: "Grades",
                   tooltip: showGrades
@@ -823,7 +826,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
             ])}
           />
         </Col>
-        <Form.Group as={Col} sm="3">
+        <Form.Group as={Col} lg="3">
           <InputGroup>
             <InputGroup.Prepend>
               <InputGroup.Text id="maxTeams">Max Teams</InputGroup.Text>

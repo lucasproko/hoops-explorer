@@ -1,5 +1,6 @@
-import _ from "lodash";
+import _, { at } from "lodash";
 import Enumerable from "linq";
+import { transition } from "d3";
 
 /** Library accepts strings. but typescript extension doesn't */
 type TypeScriptWorkaround1 = (element: any, index: number) => boolean;
@@ -174,8 +175,48 @@ export class AdvancedFilterUtils {
       "def_trans_threepr",
       "def_trans_assist",
 
-      //TODO: play styles
+      //Play styles
+      "off_style_rim_attack_pct",
+      "off_style_rim_attack_ppp",
+      "off_style_attack_kick_pct",
+      "off_style_attack_kick_ppp",
+      "off_style_dribble_jumper_pct",
+      "off_style_dribble_jumper_ppp",
+      "off_style_mid_range_pct",
+      "off_style_mid_range_ppp",
+      "off_style_perimeter_cut_pct",
+      "off_style_perimeter_cut_ppp",
+      "off_style_big_cut_roll_pct",
+      "off_style_big_cut_roll_ppp",
+      "off_style_post_up_pct",
+      "off_style_post_up_ppp",
+      "off_style_post_kick_pct",
+      "off_style_post_kick_ppp",
+      "off_style_pick_pop_pct",
+      "off_style_pick_pop_ppp",
+      "off_style_high_low_pct",
+      "off_style_high_low_ppp",
+      "off_style_reb_scramble_pct",
+      "off_style_reb_scramble_ppp",
+      "off_style_transition_pct",
+      "off_style_transition_ppp",
     ]);
+
+  /** Auto-complete names to data model mapping */
+  static readonly styleFromAutocompleteLut: Record<string, string> = {
+    rim_attack: "Rim Attack",
+    attack_kick: "Attack & Kick",
+    dribble_jumper: "Dribble Jumper",
+    mid_range: "Mid-Range",
+    perimeter_cut: "Backdoor Cut",
+    big_cut_roll: "Big Cut & Roll",
+    post_up: "Post-Up",
+    post_kick: "Post & Kick",
+    pick_pop: "Pick & Pop",
+    high_low: "High-Low",
+    reb_scramble: "Put-Back",
+    transition: "Transition",
+  };
 
   static readonly playerLeaderBoardAutocomplete =
     AdvancedFilterUtils.operators.concat([
@@ -416,11 +457,28 @@ export class AdvancedFilterUtils {
       .replace(/roster[.]/g, "roster?.") //(roster not always present)
       .replace(/ALL/g, "($.player_code)");
   }
+
+  /** Creates an accessor into p.style for play type analysis */
+  static readonly styleFromAutocomplete = (str: string, suffix: string) => {
+    return `["${_.thru(
+      str,
+      (__) => AdvancedFilterUtils.styleFromAutocompleteLut[str] || "unknown"
+    )}"]?.${suffix == "pct" ? "possPct" : "pts"}`;
+  };
+
   static teamFixObjectFormat(s: string) {
     return s
       .replace(
         /(team_name|conf_nick|conf|year|wins|losses|wab|wae|exp_wab|power)/g,
         "$.p.$1"
+      )
+      .replace(
+        /(off|def)_style_([0-9a-zA-Z_]+)_(pct|ppp)/g,
+        (substr: string, offDef: string, styleType: string, pctPpp: string) =>
+          `$.p.style?.${AdvancedFilterUtils.styleFromAutocomplete(
+            styleType,
+            pctPpp
+          )}?.value`
       )
       .replace(/((?:off|def)_[0-9a-zA-Z_]+)/g, "$.p.$1?.value")
       .replace(/adj_net/g, "$.p.off_net?.value")

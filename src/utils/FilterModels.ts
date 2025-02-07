@@ -240,6 +240,7 @@ export type TeamStatsExplorerParams = {
   confOnly?: boolean;
   sortBy?: string;
   queryFilters?: string;
+  showAdvancedFilter?: boolean;
   advancedFilter?: string;
   showGrades?: string;
   showExtraInfo?: boolean;
