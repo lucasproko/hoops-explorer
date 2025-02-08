@@ -69,6 +69,8 @@ const TeamStatsExplorerPage: NextPage<Props> = ({ testMode }) => {
   const [dataSubEvent, setDataSubEvent] = useState({
     confs: [],
     teams: [],
+    bubbleOffenses: {},
+    bubbleDefenses: {},
     lastUpdated: 0,
   } as TeamStatsExplorerModel);
   const [currYear, setCurrYear] = useState("");
@@ -139,18 +141,32 @@ const TeamStatsExplorerPage: NextPage<Props> = ({ testMode }) => {
         []
       );
 
-      fetchTeamStats.then((teams: any[]) => {
+      fetchTeamStats.then((seasons: any[]) => {
         setDataSubEvent({
-          confs: _.chain(teams)
+          bubbleOffenses: _.chain(seasons)
+            .flatMap((season) => {
+              const year = season.teams?.[0]?.year;
+              return year ? [[year, season.bubbleOffense]] : [];
+            })
+            .fromPairs()
+            .value(),
+          bubbleDefenses: _.chain(seasons)
+            .flatMap((season) => {
+              const year = season.teams?.[0]?.year;
+              return year ? [[year, season.bubbleDefense]] : [];
+            })
+            .fromPairs()
+            .value(),
+          confs: _.chain(seasons)
             .map((d) => d.confs || [])
             .flatten()
             .uniq()
             .value(),
-          teams: _.chain(teams)
+          teams: _.chain(seasons)
             .flatMap((d) => d.teams || [])
             .flatten()
             .value(),
-          lastUpdated: 0, //TODO use max?
+          lastUpdated: _.maxBy(seasons, (seasons) => seasons.lastUpdated || 0),
         });
       });
     }
@@ -196,7 +212,7 @@ const TeamStatsExplorerPage: NextPage<Props> = ({ testMode }) => {
             gender: currGender,
             year: DateUtils.getLastSeasonWithDataFrom(currYear),
           }}
-          thisPage={`${ParamPrefixes.team}_details_leaderboard`}
+          thisPage={`${ParamPrefixes.team}_statsExplorer`}
         />
       </Row>
       <Row className="mt-3">{table}</Row>

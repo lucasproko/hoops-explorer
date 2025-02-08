@@ -34,6 +34,7 @@ import {
   TeamLeaderboardParams,
   TeamEditorParams,
   OffseasonLeaderboardParams,
+  TeamStatsExplorerParams,
 } from "../../utils/FilterModels";
 import { UrlRouting } from "../../utils/UrlRouting";
 import { HistoryManager } from "../../utils/HistoryManager";
@@ -162,6 +163,10 @@ const HeaderBar: React.FunctionComponent<Props> = ({
   function getTeamBuilderUrl() {
     return UrlRouting.getTeamEditorUrl({} as TeamEditorParams);
   }
+  function getTeamStatsExplorerUrl() {
+    return UrlRouting.getTeamStatsExplorerUrl({} as TeamStatsExplorerParams);
+  }
+
   // Last visited
   function getLastGameUrl(extraParams?: GameFilterParams) {
     return UrlRouting.getGameUrl(
@@ -266,6 +271,11 @@ const HeaderBar: React.FunctionComponent<Props> = ({
     <Tooltip id={"teamBuilderTooltip"}>
       Build your own roster out of returning players, transfers (or steals!),
       and the bench!
+    </Tooltip>
+  );
+  const teamStatsExplorerTooltip = (
+    <Tooltip id={"teamStatsExplorerTooltip"}>
+      Compare, sort, and filter stats for all D1 teams
     </Tooltip>
   );
   // const playerLeaderboardTooltipNba2021 = (
@@ -489,6 +499,15 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               teamBuilderTooltip,
               getTeamBuilderUrl(),
               `${ParamPrefixes.team}_editor`
+            )}
+          </Dropdown.Item>
+          <Dropdown.Divider />
+          <Dropdown.Item>
+            {buildNavItem(
+              "D1 Team Stats Explorer",
+              teamStatsExplorerTooltip,
+              getTeamStatsExplorerUrl(),
+              `${ParamPrefixes.team}_statsExplorer`
             )}
           </Dropdown.Item>
           <Dropdown.Divider />

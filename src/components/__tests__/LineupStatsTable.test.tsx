@@ -40,7 +40,7 @@ describe("LineupStatsTable", () => {
             global: StatModels.emptyTeam(),
             onOffMode: true,
           },
-          rosterStats: { on: [], off: [], baseline: [], global: [] },
+          rosterStats: { on: [], off: [], baseline: [], global: [], other: [] },
           lineupStats: testData,
         }}
         onChangeState={dummyChangeStateCallback}
@@ -65,7 +65,7 @@ describe("LineupStatsTable", () => {
             global: StatModels.emptyTeam(),
             onOffMode: true,
           },
-          rosterStats: { on: [], off: [], baseline: [], global: [] },
+          rosterStats: { on: [], off: [], baseline: [], global: [], other: [] },
           lineupStats: testData,
         }}
         onChangeState={dummyChangeStateCallback}
@@ -93,6 +93,7 @@ describe("LineupStatsTable", () => {
         .buckets.on.player.buckets as unknown as IndivStatSet[],
       global: samplePlayerStatsResponse.responses[0].aggregations.tri_filter
         .buckets.baseline.player.buckets as unknown as IndivStatSet[],
+      other: [],
     };
     const dummyChangeStateCallback = (stats: LineupFilterParams) => {};
     const wrapper = shallow(
@@ -128,6 +129,7 @@ describe("LineupStatsTable", () => {
         .buckets.on.player.buckets as unknown as IndivStatSet[],
       global: samplePlayerStatsResponse.responses[0].aggregations.tri_filter
         .buckets.baseline.player.buckets as unknown as IndivStatSet[],
+      other: [],
     };
     const dummyChangeStateCallback = (stats: LineupFilterParams) => {};
     const wrapper = shallow(
@@ -167,6 +169,7 @@ describe("LineupStatsTable", () => {
         .buckets.on.player.buckets as unknown as IndivStatSet[],
       global: samplePlayerStatsResponse.responses[0].aggregations.tri_filter
         .buckets.baseline.player.buckets as unknown as IndivStatSet[],
+      other: [],
     };
     const dummyChangeStateCallback = (stats: LineupFilterParams) => {};
     const wrapper = shallow(
@@ -207,6 +210,7 @@ describe("LineupStatsTable", () => {
         .buckets.on.player.buckets as unknown as IndivStatSet[],
       global: samplePlayerStatsResponse.responses[0].aggregations.tri_filter
         .buckets.baseline.player.buckets as unknown as IndivStatSet[],
+      other: [],
     };
     const dummyChangeStateCallback = (stats: LineupFilterParams) => {};
     const wrapper = shallow(

@@ -28,6 +28,7 @@ import LoadingOverlay from "@ronchalant/react-loading-overlay";
 import Select from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
+import { faPercent } from "@fortawesome/free-solid-svg-icons";
 import { faThumbtack } from "@fortawesome/free-solid-svg-icons";
 import { faTrashRestore } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -1361,6 +1362,30 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
     );
   };
 
+  const getExploreButton = () => {
+    const tooltip = (
+      <Tooltip id="statsExplorer">Explore team stats in more detail</Tooltip>
+    );
+    return (
+      <OverlayTrigger placement="auto" overlay={tooltip}>
+        <Button
+          variant="outline-secondary"
+          size="sm"
+          onClick={(e) => {
+            window.location.href = UrlRouting.getTeamStatsExplorerUrl({
+              year,
+              gender,
+              confs,
+              queryFilters,
+            });
+          }}
+        >
+          <FontAwesomeIcon icon={faPercent} />
+        </Button>
+      </OverlayTrigger>
+    );
+  };
+
   /** Copy to clipboard button */
   const getCopyLinkButton = () => {
     const tooltip = (
@@ -1640,7 +1665,9 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
         </Col>
         <Col lg={2} className="mt-1">
           {getCopyLinkButton()}
-          &nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;
+          {getExploreButton()}
+          &nbsp;&nbsp;
           {getPreseasonButton()}
         </Col>
       </Form.Group>

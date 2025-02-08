@@ -1,6 +1,7 @@
 import _, { at } from "lodash";
 import Enumerable from "linq";
 import { transition } from "d3";
+import { DivisionStatistics } from "./StatModels";
 
 /** Library accepts strings. but typescript extension doesn't */
 type TypeScriptWorkaround1 = (element: any, index: number) => boolean;
@@ -554,14 +555,21 @@ export class AdvancedFilterUtils {
   static applyTeamExplorerFilter(
     inData: any[],
     filterStr: string,
-    extraParams: Record<string, string> = {},
-    multiYear: boolean = false
+    divStats: DivisionStatistics | undefined,
+    extraParams: Record<string, string> = {}
   ): [any[], string | undefined] {
+    //TODO: fetch all (rank_|pctile_)[a-zA-Z_0-9] from filterStr
+    // Create a mapping into the object to { rank: {...}, pctile: {...} }
+    // calling GradeUtils.buildTeamPercentiles to populate it
+    // by passing in [root-of-each-nested-param]
+    // and then in tidyTeamExplorerClauses rank_ goes to p.rank. etc
+    //TODO: that still leaves style to do
+
     return AdvancedFilterUtils.applyFilter(
       inData,
       filterStr,
       extraParams,
-      multiYear,
+      false, //(multi-year ... not supported for teams)
       AdvancedFilterUtils.tidyTeamExplorerClauses,
       (p: any, index: number) => ({
         p,

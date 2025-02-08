@@ -62,6 +62,7 @@ describe("TeamStatsTable", () => {
     baseline: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter
       ?.buckets?.baseline?.player?.buckets as unknown as IndivStatSet[],
     global: _.cloneDeep(players) as unknown as IndivStatSet[],
+    other: [],
     error_code: undefined,
   };
   const testLineupData = {
@@ -80,16 +81,17 @@ describe("TeamStatsTable", () => {
         gameFilterParams={{}}
         dataEvent={{
           teamStats: testData,
-          rosterStats: { on: [], off: [], baseline: [], global: [] },
+          rosterStats: { on: [], off: [], baseline: [], global: [], other: [] },
           shotStats: {
             on: { off: {}, def: {} },
             off: { off: {}, def: {} },
             baseline: { off: {}, def: {} },
+            other: [],
           },
           lineupStats: [],
         }}
         onChangeState={(newParams: GameFilterParams) => {}}
-        navigationRefs={{ refA, refB, refBase, refDiffs }}
+        navigationRefs={{ refA, refB, refBase, refDiffs, otherRefs: [] }}
       />
     );
     expect(container).toMatchSnapshot();
@@ -149,11 +151,12 @@ describe("TeamStatsTable", () => {
             on: { off: {}, def: {} },
             off: { off: {}, def: {} },
             baseline: { off: {}, def: {} },
+            other: [],
           },
           lineupStats: [], // empty table
         }}
         onChangeState={(newParams: GameFilterParams) => {}}
-        navigationRefs={{ refA, refB, refBase, refDiffs }}
+        navigationRefs={{ refA, refB, refBase, refDiffs, otherRefs: [] }}
       />
     );
 
@@ -217,11 +220,12 @@ describe("TeamStatsTable", () => {
             on: { off: {}, def: {} },
             off: { off: {}, def: {} },
             baseline: { off: {}, def: {} },
+            other: [],
           },
           lineupStats: [], //(can't find lineup that works with this, needs more investigation - in the meantime just show the empty table)
         }}
         onChangeState={(newParams: GameFilterParams) => {}}
-        navigationRefs={{ refA, refB, refBase, refDiffs }}
+        navigationRefs={{ refA, refB, refBase, refDiffs, otherRefs: [] }}
       />
     );
 

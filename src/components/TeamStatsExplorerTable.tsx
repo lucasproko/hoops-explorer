@@ -88,7 +88,9 @@ import AsyncFormControl from "./shared/AsyncFormControl";
 
 export type TeamStatsExplorerModel = {
   confs: string[];
-  teams: any[]; //TODO
+  teams: any[];
+  bubbleOffenses: Record<string, number[]>;
+  bubbleDefenses: Record<string, number[]>;
   lastUpdated: number;
   error?: string;
 };
@@ -100,6 +102,15 @@ type Props = {
 };
 
 const MAX_EXTRA_INFO_IN_ROWS = 30; //Too slow after this
+
+/** A sensible looking set of bubble offenses for the hypo where the actual year is not available */
+const fallbackBubbleOffense = [
+  115.9, 113.2, 114.7, 113.4, 114.3, 114.1, 117.8, 114.6, 115.2, 113.1,
+];
+/** A sensible looking set of bubble offenses for the hypo where the actual year is not available */
+const fallbackBubbleDefense = [
+  99.5, 96.9, 98.7, 97.4, 98.4, 98.4, 102.1, 99.2, 100, 98.1,
+];
 
 const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   startingState,
@@ -394,13 +405,8 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         const expWinPctVsBubble = TeamEvalUtils.calcWinsAbove(
           team.off_adj_ppp?.value || 100,
           team.def_adj_ppp?.value || 100,
-          //TODO: need to collect these like we do for the simple team stats view,
-          // these will do for now
-          [
-            115.9, 113.2, 114.7, 113.4, 114.3, 114.1, 117.8, 114.6, 115.2,
-            113.1,
-          ],
-          [99.5, 96.9, 98.7, 97.4, 98.4, 98.4, 102.1, 99.2, 100, 98.1],
+          dataEvent.bubbleOffenses[team.year] || fallbackBubbleOffense,
+          dataEvent.bubbleDefenses[team.year] || fallbackBubbleDefense,
           0.0
         );
         const expWab = (expWinPctVsBubble - 0.5) * (wins + losses);
@@ -423,7 +429,8 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       advancedFilterStr.length > 0
         ? AdvancedFilterUtils.applyTeamExplorerFilter(
             teamsPhase1,
-            advancedFilterStr
+            advancedFilterStr,
+            divisionStatsCache.Combo //TODO: pick tier based on showGrades
           )
         : [teamsPhase1, undefined];
 
@@ -547,18 +554,27 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
 
     const tableRows = _.chain(rowsForEachTeam)
       .take(parseInt(maxTableSize))
-      .flatMap((rows, ii) => [
-        ...(ii > 0 && ii % 10 == 0
-          ? [
-              GenericTableOps.buildHeaderRepeatRow(
-                CommonTableDefs.repeatingOnOffHeaderFields,
-                "small"
-              ),
-            ]
-          : []),
-        ...(rows.baseline?.teamStatsRows || []),
-        GenericTableOps.buildRowSeparator(),
-      ])
+      .flatMap((rows, ii) => {
+        const repeatingHeader =
+          showExtraInfo && ii < MAX_EXTRA_INFO_IN_ROWS
+            ? 1
+            : showGrades
+            ? 5
+            : 10;
+
+        return [
+          ...(ii > 0 && ii % repeatingHeader == 0
+            ? [
+                GenericTableOps.buildHeaderRepeatRow(
+                  CommonTableDefs.repeatingOnOffHeaderFields,
+                  "small"
+                ),
+              ]
+            : []),
+          ...(rows.baseline?.teamStatsRows || []),
+          GenericTableOps.buildRowSeparator(),
+        ];
+      })
       .value();
 
     return (
@@ -782,8 +798,16 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           </Form.Group>
         </Row>
       ) : null}
-      <Row>
-        <Col xs={12} sm={12} md={8} lg={8} className="pt-2 mb-2">
+      <Row
+        className="sticky-top d-none d-md-flex"
+        style={{
+          position: "sticky",
+          backgroundColor: "white",
+          opacity: "85%",
+          zIndex: 2,
+        }}
+      >
+        <Col xs={12} sm={12} md={8} lg={8} className="pt-1 mb-1">
           <ToggleButtonGroup
             items={_.flatten([
               [
