@@ -1,7 +1,7 @@
 import _, { at } from "lodash";
 import Enumerable from "linq";
 import { transition } from "d3";
-import { DivisionStatistics } from "./StatModels";
+import { DivisionStatistics, Statistic } from "./StatModels";
 import { GradeUtils } from "./stats/GradeUtils";
 
 /** Library accepts strings. but typescript extension doesn't */
@@ -161,6 +161,32 @@ export class AdvancedFilterUtils {
     "def_trans_twopmidr",
     "def_trans_threepr",
     "def_trans_assist",
+
+    //Play styles
+    "off_style_rim_attack_pct",
+    "off_style_rim_attack_ppp",
+    "off_style_attack_kick_pct",
+    "off_style_attack_kick_ppp",
+    "off_style_dribble_jumper_pct",
+    "off_style_dribble_jumper_ppp",
+    "off_style_mid_range_pct",
+    "off_style_mid_range_ppp",
+    "off_style_perimeter_cut_pct",
+    "off_style_perimeter_cut_ppp",
+    "off_style_big_cut_roll_pct",
+    "off_style_big_cut_roll_ppp",
+    "off_style_post_up_pct",
+    "off_style_post_up_ppp",
+    "off_style_post_kick_pct",
+    "off_style_post_kick_ppp",
+    "off_style_pick_pop_pct",
+    "off_style_pick_pop_ppp",
+    "off_style_high_low_pct",
+    "off_style_high_low_ppp",
+    "off_style_reb_scramble_pct",
+    "off_style_reb_scramble_ppp",
+    "off_style_transition_pct",
+    "off_style_transition_ppp",
   ];
 
   static readonly teamExplorerAutocomplete = AdvancedFilterUtils.operators
@@ -189,32 +215,6 @@ export class AdvancedFilterUtils {
       "wae",
       "exp_wab",
       "power",
-
-      //Play styles
-      "off_style_rim_attack_pct",
-      "off_style_rim_attack_ppp",
-      "off_style_attack_kick_pct",
-      "off_style_attack_kick_ppp",
-      "off_style_dribble_jumper_pct",
-      "off_style_dribble_jumper_ppp",
-      "off_style_mid_range_pct",
-      "off_style_mid_range_ppp",
-      "off_style_perimeter_cut_pct",
-      "off_style_perimeter_cut_ppp",
-      "off_style_big_cut_roll_pct",
-      "off_style_big_cut_roll_ppp",
-      "off_style_post_up_pct",
-      "off_style_post_up_ppp",
-      "off_style_post_kick_pct",
-      "off_style_post_kick_ppp",
-      "off_style_pick_pop_pct",
-      "off_style_pick_pop_ppp",
-      "off_style_high_low_pct",
-      "off_style_high_low_ppp",
-      "off_style_reb_scramble_pct",
-      "off_style_reb_scramble_ppp",
-      "off_style_transition_pct",
-      "off_style_transition_ppp",
     ]);
 
   /** Auto-complete names to data model mapping */
@@ -580,28 +580,92 @@ export class AdvancedFilterUtils {
     divStats: DivisionStatistics | undefined,
     extraParams: Record<string, string> = {}
   ): [any[], string | undefined] {
-    const allRankQueries =
-      filterStr.match(/rank_(?:off|def|adj|raw)_[a-zA-Z_0-9]+/g) || [];
-    const rankFields = allRankQueries.map((preField) =>
-      // Converts to the field name in the input object
-      AdvancedFilterUtils.tidyTeamExplorerClauses(
-        preField.substring(5),
-        false
-      ).replace(/[$][.]p[.](?:off_|def_)([a-zA-Z_0-9]+).*/, "$1")
-    );
-    const allPctileQueries =
-      filterStr.match(/pctile_(?:off|def|adj|raw)_[a-zA-Z_0-9]+/g) || [];
-    const pctileFields = allPctileQueries.map((preField) =>
-      // Converts to the field name in the input object
-      AdvancedFilterUtils.tidyTeamExplorerClauses(
-        preField.substring(7),
-        false
-      ).replace(/[$][.]p[.](?:off_|def_)([a-zA-Z_0-9]+).*/, "$1")
+    /** Field manipulation to list the field info for which I need to calc rank/%ile */
+    const buildGradeQueries = (
+      filterStrIn: string,
+      prefix: string
+    ): [string[], string[]] => {
+      const allGradeQueries =
+        filterStrIn.match(
+          new RegExp(`${prefix}_(?:off|def|adj|raw)_[a-zA-Z_0-9]+`, "g")
+        ) || [];
+
+      const gradeFieldsIncStyle = allGradeQueries.map((preField) =>
+        // Converts to the field name in the input object
+        AdvancedFilterUtils.tidyTeamExplorerClauses(
+          preField.substring(prefix == "rank" ? 5 : 7),
+          false
+        ).replace(/[$][.]p[.](?:off_|def_)([a-zA-Z_0-9]+).*/, "$1")
+      );
+
+      const gradeFieldsNotStyle = gradeFieldsIncStyle.filter(
+        (field) => !_.startsWith(field, "$.p.style")
+      );
+      const styleGradesFields = _.chain(gradeFieldsIncStyle)
+        .filter((field) => _.startsWith(field, "$.p.style"))
+        .map((field) =>
+          field
+            .replace(/[$][.]p[.]style.*["]([^"]+)["].*[.]possPct.*/, "$1|Pct")
+            .replace(/[$][.]p[.]style.*["]([^"]+)["].*[.]pts.*/, "$1|Ppp")
+        )
+        .value();
+
+      return [gradeFieldsNotStyle, styleGradesFields];
+    };
+    const pctileToRank = (val: Statistic | undefined) => {
+      if (val) {
+        const pcile = val?.value || 0;
+        const rank = 1 + Math.round((1 - pcile) * (val?.samples || 0)); //(+1, since 100% is rank==1)
+        return { value: rank };
+      } else {
+        return undefined;
+      }
+    };
+    const buildStyleGrades = (
+      p: any,
+      styleGrades: string[],
+      convertToRank: boolean = false
+    ) => {
+      // Going to end with a format like this:
+      // style: { "Dribble Jumper": { possPct|pts: { value: XXX } } }
+      return divStats
+        ? {
+            style: _.chain(styleGrades)
+              .map((styleField) => {
+                const styleDecomp = styleField.split("|");
+                const isPpp = styleDecomp[1] == "Ppp";
+                const nestedField = isPpp ? "pts" : "possPct";
+                const retVal = GradeUtils.getPercentile(
+                  divStats,
+                  styleField,
+                  p.style?.[styleDecomp[0]]?.[nestedField]?.value,
+                  false
+                );
+                return [
+                  styleDecomp[0],
+                  {
+                    [nestedField]: convertToRank
+                      ? pctileToRank(retVal)
+                      : retVal,
+                  },
+                ];
+              })
+              .fromPairs()
+              .value(),
+          }
+        : {};
+    };
+    const [rankFields, styleRankFields] = buildGradeQueries(filterStr, "rank");
+    const [pctileFields, stylePctileFields] = buildGradeQueries(
+      filterStr,
+      "pctile"
     );
 
     // Ranking / Pctile debug
     // console.log(`rank: ${JSON.stringify(rankFields)}`);
+    // console.log(`style rank: ${JSON.stringify(styleRankFields)}`);
     // console.log(`pctile: ${JSON.stringify(pctileFields)}`);
+    // console.log(`style pctile: ${JSON.stringify(stylePctileFields)}`);
 
     return AdvancedFilterUtils.applyFilter(
       inData,
@@ -610,45 +674,41 @@ export class AdvancedFilterUtils {
       false, //(multi-year ... not supported for teams)
       AdvancedFilterUtils.tidyTeamExplorerClauses,
       (p: any, index: number) => {
-        // More debugging:
-        //   if (index < 10 && divStats) {
-        //   console.log(
-        //     `pctile result: ${JSON.stringify(
-        //       GradeUtils.buildTeamPercentiles(divStats, p, pctileFields, false)
-        //     )}`
-        //   );
-        //   console.log(
-        //     `rank result: ${JSON.stringify(
-        //       _.mapValues(
-        //         GradeUtils.buildTeamPercentiles(divStats, p, rankFields, true),
-        //         (val) => {
-        //           const pcile = val?.value || 0;
-        //           const rank =
-        //             1 + Math.round((1 - pcile) * (val?.samples || 0)); //(+1, since 100% is rank==1)
-        //           return rank;
-        //         }
-        //       )
-        //     )}`
-        //   );
-        // }
-        return {
+        const retVal: any = {
           p,
           pctile: divStats
-            ? GradeUtils.buildTeamPercentiles(divStats, p, pctileFields, false)
+            ? _.merge(
+                GradeUtils.buildTeamPercentiles(
+                  divStats,
+                  p,
+                  pctileFields,
+                  false
+                ),
+                buildStyleGrades(p, stylePctileFields)
+              )
             : {},
           rank: divStats
-            ? _.mapValues(
-                GradeUtils.buildTeamPercentiles(divStats, p, rankFields, true),
-                (val) => {
-                  //TODO: make this generic
-                  const pcile = val?.value || 0;
-                  const rank =
-                    1 + Math.round((1 - pcile) * (val?.samples || 0)); //(+1, since 100% is rank==1)
-                  return { value: rank };
-                }
+            ? _.merge(
+                _.mapValues(
+                  GradeUtils.buildTeamPercentiles(
+                    divStats,
+                    p,
+                    rankFields,
+                    true
+                  ),
+                  pctileToRank
+                ),
+                buildStyleGrades(p, styleRankFields, true)
               )
             : {},
         };
+        // More debugging:
+        // if (index < 10 && divStats) {
+        //   console.log(`pctile result: ${JSON.stringify(retVal.pctile)}`);
+        //   console.log(`rank result: ${JSON.stringify(retVal.rank)}`);
+        // }
+
+        return retVal;
       }
     );
   }
