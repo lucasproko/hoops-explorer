@@ -2,6 +2,7 @@ import _, { at } from "lodash";
 import Enumerable from "linq";
 import { transition } from "d3";
 import { DivisionStatistics } from "./StatModels";
+import { GradeUtils } from "./stats/GradeUtils";
 
 /** Library accepts strings. but typescript extension doesn't */
 type TypeScriptWorkaround1 = (element: any, index: number) => boolean;
@@ -25,8 +26,156 @@ export class AdvancedFilterUtils {
 
   static readonly operatorsSet = new Set<string>(AdvancedFilterUtils.operators);
 
-  static readonly teamExplorerAutocomplete =
-    AdvancedFilterUtils.operators.concat([
+  static readonly teamExplorerGradedStats = [
+    // Efficiency:
+    "off_adj_ppp",
+    "def_adj_ppp",
+    "off_ppp",
+    "def_ppp",
+    "raw_net",
+    "adj_net",
+    "def_3p_opp",
+    "off_adj_opp",
+    "def_adj_opp",
+
+    // Four factors
+    "off_efg",
+    "off_to",
+    "off_ftr",
+    "off_orb",
+    "def_efg",
+    "def_to",
+    "def_ftr",
+    "def_orb",
+
+    // Shot creation
+    "off_assist",
+    "off_ast_rim",
+    "off_ast_mid",
+    "off_ast_threep",
+    "off_twoprimr",
+    "off_twopmidr",
+    "off_threepr",
+    "def_assist",
+    "def_ast_rim",
+    "def_ast_mid",
+    "def_ast_threep",
+    "def_twoprimr",
+    "def_twopmidr",
+    "def_threepr",
+
+    // Shot-making
+    "off_threep",
+    "off_twop",
+    "off_twopmid",
+    "off_twoprim",
+    "off_ft",
+    "off_threep_ast",
+    "off_twop_ast",
+    "off_twopmid_ast",
+    "off_twoprim_ast",
+    "def_threep",
+    "def_twop",
+    "def_twopmid",
+    "def_twoprim",
+    "def_ft",
+    "def_threep_ast",
+    "def_twop_ast",
+    "def_twopmid_ast",
+    "def_twoprim_ast",
+
+    // Scramble:
+    "off_scramble_pct",
+    "off_scramble_ppp",
+    "off_scramble_delta_ppp",
+    "off_scramble_per_orb",
+    "off_scramble_efg",
+    "off_scramble_twop",
+    "off_scramble_twop_ast",
+    "off_scramble_threep",
+    "off_scramble_threep_ast",
+    "off_scramble_twoprim",
+    "off_scramble_twoprim_ast",
+    "off_scramble_twopmid",
+    "off_scramble_twopmid_ast",
+    "off_scramble_ft",
+    "off_scramble_ftr",
+    "off_scramble_twoprimr",
+    "off_scramble_twopmidr",
+    "off_scramble_threepr",
+    "off_scramble_assist",
+    "def_scramble_pct",
+    "def_scramble_ppp",
+    "def_scramble_delta_ppp",
+    "def_scramble_per_orb",
+    "def_scramble_efg",
+    "def_scramble_twop",
+    "def_scramble_twop_ast",
+    "def_scramble_threep",
+    "def_scramble_threep_ast",
+    "def_scramble_twoprim",
+    "def_scramble_twoprim_ast",
+    "def_scramble_twopmid",
+    "def_scramble_twopmid_ast",
+    "def_scramble_ft",
+    "def_scramble_ftr",
+    "def_scramble_twoprimr",
+    "def_scramble_twopmidr",
+    "def_scramble_threepr",
+    "def_scramble_assist",
+
+    // Transition:
+    "off_trans_pct",
+    "off_trans_ppp",
+    "off_trans_delta_ppp",
+    "off_trans_efg",
+    "off_trans_twop",
+    "off_trans_twop_ast",
+    "off_trans_threep",
+    "off_trans_threep_ast",
+    "off_trans_twoprim",
+    "off_trans_twoprim_ast",
+    "off_trans_twopmid",
+    "off_trans_twopmid_ast",
+    "off_trans_ft",
+    "off_trans_ftr",
+    "off_trans_twoprimr",
+    "off_trans_twopmidr",
+    "off_trans_threepr",
+    "off_trans_assist",
+    "def_trans_pct",
+    "def_trans_ppp",
+    "def_trans_delta_ppp",
+    "def_trans_efg",
+    "def_trans_twop",
+    "def_trans_twop_ast",
+    "def_trans_threep",
+    "def_trans_threep_ast",
+    "def_trans_twoprim",
+    "def_trans_twoprim_ast",
+    "def_trans_twopmid",
+    "def_trans_twopmid_ast",
+    "def_trans_ft",
+    "def_trans_ftr",
+    "def_trans_twoprimr",
+    "def_trans_twopmidr",
+    "def_trans_threepr",
+    "def_trans_assist",
+  ];
+
+  static readonly teamExplorerAutocomplete = AdvancedFilterUtils.operators
+    .concat(
+      _.flatten([
+        AdvancedFilterUtils.teamExplorerGradedStats,
+        AdvancedFilterUtils.teamExplorerGradedStats.map(
+          (field) => `rank_${field}`
+        ),
+        AdvancedFilterUtils.teamExplorerGradedStats.map(
+          (field) => `pctile_${field}`
+        ),
+      ])
+    )
+    .concat([
       // Basic metadata:
       "team_name",
       "conf",
@@ -40,141 +189,6 @@ export class AdvancedFilterUtils {
       "wae",
       "exp_wab",
       "power",
-
-      // Efficiency:
-      "off_adj_ppp",
-      "def_adj_ppp",
-      "off_ppp",
-      "def_ppp",
-      "raw_net",
-      "adj_net",
-      "def_3p_opp",
-      "off_adj_opp",
-      "def_adj_opp",
-
-      // Four factors
-      "off_efg",
-      "off_to",
-      "off_ftr",
-      "off_orb",
-      "def_efg",
-      "def_to",
-      "def_ftr",
-      "def_orb",
-
-      // Shot creation
-      "off_assist",
-      "off_ast_rim",
-      "off_ast_mid",
-      "off_ast_threep",
-      "off_twoprimr",
-      "off_twopmidr",
-      "off_threepr",
-      "def_assist",
-      "def_ast_rim",
-      "def_ast_mid",
-      "def_ast_threep",
-      "def_twoprimr",
-      "def_twopmidr",
-      "def_threepr",
-
-      // Shot-making
-      "off_threep",
-      "off_twop",
-      "off_twopmid",
-      "off_twoprim",
-      "off_ft",
-      "off_threep_ast",
-      "off_twop_ast",
-      "off_twopmid_ast",
-      "off_twoprim_ast",
-      "def_threep",
-      "def_twop",
-      "def_twopmid",
-      "def_twoprim",
-      "def_ft",
-      "def_threep_ast",
-      "def_twop_ast",
-      "def_twopmid_ast",
-      "def_twoprim_ast",
-
-      // Scramble:
-      "off_scramble_pct",
-      "off_scramble_ppp",
-      "off_scramble_delta_ppp",
-      "off_scramble_per_orb",
-      "off_scramble_efg",
-      "off_scramble_twop",
-      "off_scramble_twop_ast",
-      "off_scramble_threep",
-      "off_scramble_threep_ast",
-      "off_scramble_twoprim",
-      "off_scramble_twoprim_ast",
-      "off_scramble_twopmid",
-      "off_scramble_twopmid_ast",
-      "off_scramble_ft",
-      "off_scramble_ftr",
-      "off_scramble_twoprimr",
-      "off_scramble_twopmidr",
-      "off_scramble_threepr",
-      "off_scramble_assist",
-      "def_scramble_pct",
-      "def_scramble_ppp",
-      "def_scramble_delta_ppp",
-      "def_scramble_per_orb",
-      "def_scramble_efg",
-      "def_scramble_twop",
-      "def_scramble_twop_ast",
-      "def_scramble_threep",
-      "def_scramble_threep_ast",
-      "def_scramble_twoprim",
-      "def_scramble_twoprim_ast",
-      "def_scramble_twopmid",
-      "def_scramble_twopmid_ast",
-      "def_scramble_ft",
-      "def_scramble_ftr",
-      "def_scramble_twoprimr",
-      "def_scramble_twopmidr",
-      "def_scramble_threepr",
-      "def_scramble_assist",
-
-      // Transition:
-      "off_trans_pct",
-      "off_trans_ppp",
-      "off_trans_delta_ppp",
-      "off_trans_efg",
-      "off_trans_twop",
-      "off_trans_twop_ast",
-      "off_trans_threep",
-      "off_trans_threep_ast",
-      "off_trans_twoprim",
-      "off_trans_twoprim_ast",
-      "off_trans_twopmid",
-      "off_trans_twopmid_ast",
-      "off_trans_ft",
-      "off_trans_ftr",
-      "off_trans_twoprimr",
-      "off_trans_twopmidr",
-      "off_trans_threepr",
-      "off_trans_assist",
-      "def_trans_pct",
-      "def_trans_ppp",
-      "def_trans_delta_ppp",
-      "def_trans_efg",
-      "def_trans_twop",
-      "def_trans_twop_ast",
-      "def_trans_threep",
-      "def_trans_threep_ast",
-      "def_trans_twoprim",
-      "def_trans_twoprim_ast",
-      "def_trans_twopmid",
-      "def_trans_twopmid_ast",
-      "def_trans_ft",
-      "def_trans_ftr",
-      "def_trans_twoprimr",
-      "def_trans_twopmidr",
-      "def_trans_threepr",
-      "def_trans_assist",
 
       //Play styles
       "off_style_rim_attack_pct",
@@ -488,6 +502,13 @@ export class AdvancedFilterUtils {
       .replace(/(^| |[(!*+/-])(adj_[0-9a-zA-Z_]+)/g, "$1$.$2")
       .replace(/(off|def)_reb/g, "$1_orb"); //(nicer version of rebound name)
   }
+
+  static gradeConvert(s: string) {
+    return s
+      .replace(/rank_[$][.]p[.]/g, "$.rank.")
+      .replace(/pctile_[$][.]p[.]/g, "$.pctile.");
+  }
+
   static avoidAssigmentOperator(s: string) {
     return s.replace(/([^!<>])=[=]*/g, "$1==");
   }
@@ -546,6 +567,7 @@ export class AdvancedFilterUtils {
       AdvancedFilterUtils.avoidAssigmentOperator,
       AdvancedFilterUtils.fieldReplacements,
       AdvancedFilterUtils.teamFixObjectFormat,
+      AdvancedFilterUtils.gradeConvert,
       AdvancedFilterUtils.convertPercentages,
       AdvancedFilterUtils.removeAscDesc,
       _.trim,
@@ -558,12 +580,28 @@ export class AdvancedFilterUtils {
     divStats: DivisionStatistics | undefined,
     extraParams: Record<string, string> = {}
   ): [any[], string | undefined] {
-    //TODO: fetch all (rank_|pctile_)[a-zA-Z_0-9] from filterStr
-    // Create a mapping into the object to { rank: {...}, pctile: {...} }
-    // calling GradeUtils.buildTeamPercentiles to populate it
-    // by passing in [root-of-each-nested-param]
-    // and then in tidyTeamExplorerClauses rank_ goes to p.rank. etc
-    //TODO: that still leaves style to do
+    const allRankQueries =
+      filterStr.match(/rank_(?:off|def|adj|raw)_[a-zA-Z_0-9]+/g) || [];
+    const rankFields = allRankQueries.map((preField) =>
+      // Converts to the field name in the input object
+      AdvancedFilterUtils.tidyTeamExplorerClauses(
+        preField.substring(5),
+        false
+      ).replace(/[$][.]p[.](?:off_|def_)([a-zA-Z_0-9]+).*/, "$1")
+    );
+    const allPctileQueries =
+      filterStr.match(/pctile_(?:off|def|adj|raw)_[a-zA-Z_0-9]+/g) || [];
+    const pctileFields = allPctileQueries.map((preField) =>
+      // Converts to the field name in the input object
+      AdvancedFilterUtils.tidyTeamExplorerClauses(
+        preField.substring(7),
+        false
+      ).replace(/[$][.]p[.](?:off_|def_)([a-zA-Z_0-9]+).*/, "$1")
+    );
+
+    // Ranking / Pctile debug
+    // console.log(`rank: ${JSON.stringify(rankFields)}`);
+    // console.log(`pctile: ${JSON.stringify(pctileFields)}`);
 
     return AdvancedFilterUtils.applyFilter(
       inData,
@@ -571,9 +609,47 @@ export class AdvancedFilterUtils {
       extraParams,
       false, //(multi-year ... not supported for teams)
       AdvancedFilterUtils.tidyTeamExplorerClauses,
-      (p: any, index: number) => ({
-        p,
-      })
+      (p: any, index: number) => {
+        // More debugging:
+        //   if (index < 10 && divStats) {
+        //   console.log(
+        //     `pctile result: ${JSON.stringify(
+        //       GradeUtils.buildTeamPercentiles(divStats, p, pctileFields, false)
+        //     )}`
+        //   );
+        //   console.log(
+        //     `rank result: ${JSON.stringify(
+        //       _.mapValues(
+        //         GradeUtils.buildTeamPercentiles(divStats, p, rankFields, true),
+        //         (val) => {
+        //           const pcile = val?.value || 0;
+        //           const rank =
+        //             1 + Math.round((1 - pcile) * (val?.samples || 0)); //(+1, since 100% is rank==1)
+        //           return rank;
+        //         }
+        //       )
+        //     )}`
+        //   );
+        // }
+        return {
+          p,
+          pctile: divStats
+            ? GradeUtils.buildTeamPercentiles(divStats, p, pctileFields, false)
+            : {},
+          rank: divStats
+            ? _.mapValues(
+                GradeUtils.buildTeamPercentiles(divStats, p, rankFields, true),
+                (val) => {
+                  //TODO: make this generic
+                  const pcile = val?.value || 0;
+                  const rank =
+                    1 + Math.round((1 - pcile) * (val?.samples || 0)); //(+1, since 100% is rank==1)
+                  return { value: rank };
+                }
+              )
+            : {},
+        };
+      }
     );
   }
 

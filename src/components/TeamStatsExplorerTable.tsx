@@ -238,7 +238,12 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
 
   // Events that trigger building or rebuilding the division stats cache
   useEffect(() => {
-    if (showGrades || showPlayTypes) {
+    if (
+      showGrades ||
+      showPlayTypes ||
+      advancedFilterStr.includes("rank_") ||
+      advancedFilterStr.includes("pctile_")
+    ) {
       if (
         year != divisionStatsCache.year ||
         gender != divisionStatsCache.gender ||
