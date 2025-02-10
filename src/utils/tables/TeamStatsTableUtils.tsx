@@ -43,6 +43,7 @@ import { GradeTableUtils, DivisionStatsCache } from "./GradeTableUtils";
 import { LineupTableUtils } from "./LineupTableUtils";
 import { RosterTableUtils } from "./RosterTableUtils";
 import { TableDisplayUtils } from "./TableDisplayUtils";
+import TeamPlayTypeDiagRadar from "../../components/diags/TeamPlayTypeDiagRadar";
 
 // Data model
 
@@ -709,26 +710,50 @@ export class TeamStatsTableUtils {
           showPlayTypes
             ? [
                 GenericTableOps.buildTextRow(
-                  <TeamPlayTypeDiagView
-                    title={displayKey}
-                    players={getRosterStats(
-                      queryKey,
-                      rosterStats,
-                      otherQueryIndex
-                    )}
-                    rosterStatsByCode={globalRosterStatsByCode}
-                    teamStats={teamStatsByCombinedQuery(
-                      queryKey,
-                      otherQueryIndex
-                    )}
-                    avgEfficiency={avgEfficiency}
-                    quickSwitchOptions={teamPlayTypeQuickSwitchOptions.filter(
-                      (opt) => opt.title != displayKey
-                    )}
-                    showGrades={showGrades}
-                    grades={divisionStatsCache}
-                    showHelp={showHelp}
-                  />,
+                  _.isNil(
+                    // If ".style" is present then use the pre-calcd values
+                    //TODO: this is a bit of a hack, plus also needs to handle defence
+                    teamStatsByCombinedQuery(queryKey, otherQueryIndex).style
+                  ) ? (
+                    <TeamPlayTypeDiagView
+                      title={displayKey}
+                      players={getRosterStats(
+                        queryKey,
+                        rosterStats,
+                        otherQueryIndex
+                      )}
+                      rosterStatsByCode={globalRosterStatsByCode}
+                      teamStats={teamStatsByCombinedQuery(
+                        queryKey,
+                        otherQueryIndex
+                      )}
+                      avgEfficiency={avgEfficiency}
+                      quickSwitchOptions={teamPlayTypeQuickSwitchOptions.filter(
+                        (opt) => opt.title != displayKey
+                      )}
+                      showGrades={showGrades}
+                      grades={divisionStatsCache}
+                      showHelp={showHelp}
+                    />
+                  ) : (
+                    <TeamPlayTypeDiagRadar
+                      players={getRosterStats(
+                        queryKey,
+                        rosterStats,
+                        otherQueryIndex
+                      )}
+                      rosterStatsByCode={globalRosterStatsByCode}
+                      teamStats={teamStatsByCombinedQuery(
+                        queryKey,
+                        otherQueryIndex
+                      )}
+                      avgEfficiency={avgEfficiency}
+                      showGrades={showGrades}
+                      grades={divisionStatsCache}
+                      showHelp={showHelp}
+                      quickSwitchOverride={undefined}
+                    />
+                  ),
                   "small"
                 ),
               ]

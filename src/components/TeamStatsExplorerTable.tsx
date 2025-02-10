@@ -145,6 +145,10 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     _.isNil(startingState.showExtraInfo) ? false : startingState.showExtraInfo
   );
 
+  const [showPlayStyles, setShowPlayStyles] = useState(
+    _.isNil(startingState.showPlayStyles) ? false : startingState.showPlayStyles
+  );
+
   // Basic filter:
   const manualFilterSelected =
     confs.indexOf(ConfSelectorConstants.queryFiltersName) >= 0; //(if so this will override the ordering)
@@ -227,9 +231,6 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       : startingState.luck
   );
 
-  /** Show team and individual grades */
-  const [showPlayTypes, setShowPlayTypes] = useState(false); //TODO
-
   // Grades:
 
   const [divisionStatsCache, setDivisionStatsCache] = useState(
@@ -240,7 +241,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   useEffect(() => {
     if (
       showGrades ||
-      showPlayTypes ||
+      showPlayStyles ||
       advancedFilterStr.includes("rank_") ||
       advancedFilterStr.includes("pctile_")
     ) {
@@ -256,7 +257,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         );
       }
     }
-  }, [year, gender, showGrades, showPlayTypes]);
+  }, [year, gender, showGrades, showPlayStyles]);
 
   /** When the params change */
   useEffect(() => {
@@ -266,6 +267,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       maxTableSize,
       confs,
       showExtraInfo,
+      showPlayStyles,
       sortBy: sortBy,
       queryFilters: queryFilters,
       advancedFilter: advancedFilterStr,
@@ -280,6 +282,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     sortBy,
     maxTableSize,
     showExtraInfo,
+    showPlayStyles,
     queryFilters,
     advancedFilterStr,
     isT100,
@@ -458,9 +461,9 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         queryFilters: isConfOnly ? "Conf" : undefined,
         showExpanded: true,
         calcRapm: true,
-        showTeamPlayTypes: !isT100 && !isConfOnly,
+        showTeamPlayTypes: showPlayStyles,
         showGrades: "rank:Combo",
-        showExtraInfo: true,
+        showExtraInfo,
         showRoster: true,
       };
       const confTooltip = (
@@ -534,7 +537,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
 
         // Page control
         {
-          showPlayTypes: false,
+          showPlayTypes: showPlayStyles && teamIndex < MAX_EXTRA_INFO_IN_ROWS,
           showRoster: false, //(won't work without more data)
           adjustForLuck: false, //(won't work without more data)
           showDiffs: false, //(NA for this view)
@@ -561,7 +564,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       .take(parseInt(maxTableSize))
       .flatMap((rows, ii) => {
         const repeatingHeader =
-          showExtraInfo && ii < MAX_EXTRA_INFO_IN_ROWS
+          (showExtraInfo || showPlayStyles) && ii < MAX_EXTRA_INFO_IN_ROWS
             ? 1
             : showGrades
             ? 5
@@ -606,6 +609,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     divisionStatsCache,
     maxTableSize,
     showExtraInfo,
+    showPlayStyles,
   ]);
 
   // 3] View
@@ -864,6 +868,18 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
                   onClick: () =>
                     friendlyChange(
                       () => setShowExtraInfo(!showExtraInfo),
+                      true
+                    ),
+                },
+                {
+                  label: "Style",
+                  tooltip: showPlayStyles
+                    ? "Hide play style breakdowns"
+                    : "Show play style breakdowns (first ${MAX_EXTRA_INFO_IN_ROWS} teams)",
+                  toggled: showPlayStyles,
+                  onClick: () =>
+                    friendlyChange(
+                      () => setShowPlayStyles(!showPlayStyles),
                       true
                     ),
                 },

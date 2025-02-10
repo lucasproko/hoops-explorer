@@ -106,6 +106,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       : teamStats.def_adj_opp?.value) || avgEfficiency);
 
   const topLevelPlayTypeStyles =
+    (teamStats.style as TopLevelPlayAnalysis) ||
     defensiveOverride ||
     PlayTypeUtils.buildTopLevelPlayStyles(
       players,

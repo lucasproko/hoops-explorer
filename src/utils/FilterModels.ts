@@ -243,6 +243,7 @@ export type TeamStatsExplorerParams = {
   showAdvancedFilter?: boolean;
   advancedFilter?: string;
   showGrades?: string;
+  showPlayStyles?: boolean;
   showExtraInfo?: boolean;
   luck?: LuckParams; //(missing iff default)
   maxTableSize?: string;
