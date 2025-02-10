@@ -113,9 +113,6 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
     startingState.queryFilters || ""
   );
   const separatorKeyword = "BREAK";
-  // const queryFiltersAsMap: Record<string, number> = _.fromPairs(
-  //   queryFilters.split(";").map((s, ii) => [_.trim(s), ii + 1])
-  // );
   const { queryFiltersAsMap, queryFilterRowBreaks } = _.transform(
     queryFilters.split(";"),
     (acc, v, ii) => {

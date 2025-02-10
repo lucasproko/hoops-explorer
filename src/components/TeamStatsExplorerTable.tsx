@@ -152,17 +152,13 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   // Basic filter:
   const manualFilterSelected =
     confs.indexOf(ConfSelectorConstants.queryFiltersName) >= 0; //(if so this will override the ordering)
-  const showCustomFilter = true; //TODO: get rid of this
   const [queryFilters, setQueryFilters] = useState(
     startingState.queryFilters || ""
   );
   const [tmpQueryFilters, setTmpQueryFilters] = useState(
     startingState.queryFilters || ""
   );
-  const separatorKeyword = "BREAK";
-  // const queryFiltersAsMap: Record<string, number> = _.fromPairs(
-  //   queryFilters.split(";").map((s, ii) => [_.trim(s), ii + 1])
-  // );
+  const separatorKeyword = "BREAK"; //(not used but leave the logic in here in case we change our mind later)
   const { queryFiltersAsMap, queryFilterRowBreaks } = _.transform(
     queryFilters.split(";"),
     (acc, v, ii) => {
@@ -257,7 +253,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         );
       }
     }
-  }, [year, gender, showGrades, showPlayStyles]);
+  }, [year, gender, showGrades, showPlayStyles, advancedFilterStr]);
 
   /** When the params change */
   useEffect(() => {
@@ -380,8 +376,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     setLoadingOverride(false);
 
     const confFilter = (t: { team: string; conf: string }) => {
-      const manualFilterInUse =
-        !_.isEmpty(queryFiltersAsMap) && !showAdvancedFilter;
+      const manualFilterInUse = !_.isEmpty(queryFiltersAsMap);
       return manualFilterInUse
         ? !_.isNil(queryFiltersAsMap[t.team])
         : confs == "" ||
@@ -430,7 +425,13 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           conf: team.conf_nick || "???",
         });
       })
-      .sortBy((team) => -(team.power || 0))
+      .sortBy((team) => {
+        if (manualFilterSelected) {
+          return queryFiltersAsMap[team.team_name] || 1000;
+        } else {
+          return -(team.power || 0);
+        }
+      })
       .value();
 
     const [teamsPhase2, tmpAvancedFilterError] =
@@ -645,7 +646,18 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     return { label: s, value: s };
   }
   const sortByOptions: Record<string, { label: string; value: string }> = {
-    power: { label: "Default Power Ranking", value: "power" },
+    power: {
+      label: _.thru(undefined, (__) => {
+        if (advancedFilterStr.includes("SORT_BY")) {
+          return "Custom Ranking";
+        } else if (manualFilterSelected) {
+          return "Manual Ordering";
+        } else {
+          return "Default Power Ranking";
+        }
+      }),
+      value: "power",
+    },
   };
 
   const linqEnableTooltip = (
@@ -736,7 +748,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
                 readOnly={false}
                 placeholder={
                   manualFilterSelected
-                    ? `;-separated list of teams, or "BREAK;"`
+                    ? `;-separated list of teams"` //(don't support BREAK, we already add row separators between teams)
                     : `;-separated list of teams`
                 }
                 autocomplete={teamList
