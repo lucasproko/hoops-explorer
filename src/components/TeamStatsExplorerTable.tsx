@@ -670,7 +670,10 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       <span>
         Linq
         <sup>
-          <a target="_blank" href="https://hoop-explorer.blogspot.com/2022/03/">
+          <a
+            target="_blank"
+            href="https://hoop-explorer.blogspot.com/2025/02/using-linq-to-build-advanced-filters-in.html"
+          >
             ?
           </a>
         </sup>
