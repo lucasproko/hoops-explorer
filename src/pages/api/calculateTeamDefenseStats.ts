@@ -62,9 +62,34 @@ function marshallRequest(
     ].join("\n") + "\n";
 
   // Debug logs:
-  //console.log(JSON.stringify(teamStatsQuery(params, currentJsonEpoch, efficiency, lookup, avgEfficiency), CommonApiUtils.efficiencyReplacer(), 3));
-  //console.log(JSON.stringify(teamStatsQuery(params, currentJsonEpoch, {}, {}, avgEfficiency), CommonApiUtils.efficiencyReplacer(), 3));
-  //console.log(JSON.stringify(teamStatsQuery(params, currentJsonEpoch, {}, {}).query, CommonApiUtils.efficiencyReplacer(), 3));
+  // console.log(
+  //   JSON.stringify(
+  //     teamDefenseStatsQuery(
+  //       params,
+  //       currentJsonEpoch,
+  //       efficiency,
+  //       lookup,
+  //       avgEfficiency,
+  //       CommonApiUtils.getHca(params as CommonFilterParams)
+  //     ),
+  //     CommonApiUtils.efficiencyReplacer(),
+  //     3
+  //   )
+  // );
+  // console.log(
+  //   JSON.stringify(
+  //     teamDefensePlayerStatsQuery(
+  //       params,
+  //       currentJsonEpoch,
+  //       efficiency,
+  //       lookup,
+  //       avgEfficiency,
+  //       CommonApiUtils.getHca(params as CommonFilterParams)
+  //     ),
+  //     CommonApiUtils.efficiencyReplacer(),
+  //     3
+  //   )
+  // );
 
   return body;
 }

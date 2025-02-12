@@ -26,7 +26,13 @@ export const teamDefenseStatsQuery = function (
   //params.team = "*";
 
   return {
-    ...commonRuntimeMappings(params, lastDate, publicEfficiency, lookup),
+    ...commonRuntimeMappings(
+      params,
+      lastDate,
+      publicEfficiency,
+      lookup,
+      !seasonVsGameAverageDebugMode
+    ),
     _source: {
       includes: [],
       excludes: [],
