@@ -717,6 +717,7 @@ export class AdvancedFilterUtils {
         };
         // More debugging:
         // if (index < 10 && divStats) {
+        //   console.log(`extra: [${JSON.stringify(p.off_net)}]`);
         //   console.log(`pctile result: ${JSON.stringify(retVal.pctile)}`);
         //   console.log(`rank result: ${JSON.stringify(retVal.rank)}`);
         // }

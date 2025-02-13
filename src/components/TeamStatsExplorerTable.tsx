@@ -85,6 +85,7 @@ import LinqExpressionBuilder from "./shared/LinqExpressionBuilder";
 import { AdvancedFilterUtils } from "../utils/AdvancedFilterUtils";
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import AsyncFormControl from "./shared/AsyncFormControl";
+import { LuckUtils } from "../utils/stats/LuckUtils";
 
 export type TeamStatsExplorerModel = {
   confs: string[];
@@ -406,6 +407,14 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         team.wab = wab;
         team.wins = wins;
         team.losses = losses;
+
+        // Ugh, so some fields are luck adjusted but we don't want that
+        // TODO: longer term provide a "Luck" toggle, though it's not ideal because some stats
+        // (eg style) aren't luck adjusted so it will be a little bit inconsistent
+        // (note that the fields get overwritten/lost in TeamStatsTableUtils.buildRows below because
+        //  adjustForLuck is hard-coded to false but need to do it here so the correct value
+        //  is used in the sort/filter and exp. WAB)
+        LuckUtils.injectLuck(team, undefined, undefined);
 
         const expWinPctVsBubble = TeamEvalUtils.calcWinsAbove(
           team.off_adj_ppp?.value || 100,
