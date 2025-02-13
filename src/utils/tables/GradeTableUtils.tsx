@@ -37,6 +37,7 @@ import { DateUtils } from "../DateUtils";
 import { GoodBadOkTriple } from "../stats/TeamEditorUtils";
 import { truncate } from "fs/promises";
 import { TeamEditorTableUtils } from "./TeamEditorTableUtils";
+import { de } from "date-fns/locale";
 
 export type StatsCaches = {
   comboTier?: DivisionStatistics;
@@ -201,6 +202,27 @@ export type DivisionStatsCache = {
 };
 
 export class GradeTableUtils {
+  /** Picks out the set of stats to use based on tier */
+  static readonly pickDivisonStats = (
+    cache: DivisionStatsCache,
+    gradeConfig: string
+  ): DivisionStatistics | undefined => {
+    const configStr = gradeConfig.split(":");
+    const tierStrTmp = configStr?.[1] || "Combo";
+    switch (tierStrTmp) {
+      case "Combo":
+        return cache.Combo;
+      case "High":
+        return cache.High;
+      case "Medium":
+        return cache.Medium;
+      case "Low":
+        return cache.Low;
+      default:
+        return undefined;
+    }
+  };
+
   /** Create or build a cache contain D1/tier stats for a bunch of team statistics */
   static readonly populateTeamDivisionStatsCache = (
     filterParams: CommonFilterParams,

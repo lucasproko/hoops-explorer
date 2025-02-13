@@ -262,6 +262,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       gender,
       maxTableSize,
       confs,
+      showGrades,
       showExtraInfo,
       showPlayStyles,
       sortBy: sortBy,
@@ -277,6 +278,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     gender,
     sortBy,
     maxTableSize,
+    showGrades,
     showExtraInfo,
     showPlayStyles,
     queryFilters,
@@ -439,7 +441,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         ? AdvancedFilterUtils.applyTeamExplorerFilter(
             teamsPhase1,
             advancedFilterStr,
-            divisionStatsCache.Combo //TODO: pick tier based on showGrades
+            GradeTableUtils.pickDivisonStats(divisionStatsCache, showGrades)
           )
         : [teamsPhase1, undefined];
 
