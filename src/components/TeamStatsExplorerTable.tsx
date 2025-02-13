@@ -230,9 +230,13 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
 
   // Grades:
 
-  const [divisionStatsCache, setDivisionStatsCache] = useState(
-    {} as DivisionStatsCache
-  );
+  const [divisionStatsCache, setDivisionStatsCache] = useState<
+    Record<string, DivisionStatsCache>
+  >({});
+  /** TODO: this is used to trigger the memoized table, but not sure it works since the caches could be stale
+   * since I'm not using a ref? Maybe it's OK because it's in a memo not an effect?
+   */
+  const [divisionStatsRefresh, setDivisionStatsRefresh] = useState<number>(0);
 
   // Events that trigger building or rebuilding the division stats cache
   useEffect(() => {
@@ -242,17 +246,38 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       advancedFilterStr.includes("rank_") ||
       advancedFilterStr.includes("pctile_")
     ) {
-      if (
-        year != divisionStatsCache.year ||
-        gender != divisionStatsCache.gender ||
-        _.isEmpty(divisionStatsCache)
-      ) {
-        if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
-        GradeTableUtils.populateTeamDivisionStatsCache(
-          { year, gender },
-          setDivisionStatsCache
-        );
-      }
+      const yearsToCheck = _.thru(undefined, (__) => {
+        if (year == DateUtils.AllYears) {
+          return DateUtils.coreYears;
+        } else {
+          return [year];
+        }
+      });
+      yearsToCheck.forEach((yearToCheck) => {
+        const currCacheForThisYear = divisionStatsCache[yearToCheck] || {};
+        const yearOrGenderChanged =
+          yearToCheck != currCacheForThisYear.year ||
+          gender != currCacheForThisYear.gender;
+
+        if (_.isEmpty(currCacheForThisYear) || yearOrGenderChanged) {
+          if (!_.isEmpty(currCacheForThisYear)) {
+            setDivisionStatsCache((currCache) => ({
+              ...currCache,
+              [yearToCheck]: {},
+            })); //unset if set
+          }
+          GradeTableUtils.populateTeamDivisionStatsCache(
+            { year: yearToCheck, gender },
+            (newCache) => {
+              setDivisionStatsCache((currCache) => ({
+                ...currCache,
+                [yearToCheck]: newCache,
+              }));
+              setDivisionStatsRefresh((curr) => curr + 1);
+            }
+          );
+        }
+      });
     }
   }, [year, gender, showGrades, showPlayStyles, advancedFilterStr]);
 
@@ -450,7 +475,14 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         ? AdvancedFilterUtils.applyTeamExplorerFilter(
             teamsPhase1,
             advancedFilterStr,
-            GradeTableUtils.pickDivisonStats(divisionStatsCache, showGrades)
+            (year: string) =>
+              gender == "Women" ||
+              year <= DateUtils.yearFromWhichAllMenD1Imported
+                ? divisionStatsCache[year]?.High
+                : GradeTableUtils.pickDivisonStats(
+                    divisionStatsCache[year],
+                    showGrades
+                  )
           )
         : [teamsPhase1, undefined];
 
@@ -567,7 +599,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         },
 
         luckConfig,
-        divisionStatsCache
+        divisionStatsCache[team.year]
       );
       return tableInfo;
     });
@@ -618,7 +650,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     queryFilters,
     advancedFilterStr,
     showGrades,
-    divisionStatsCache,
+    divisionStatsRefresh,
     maxTableSize,
     showExtraInfo,
     showPlayStyles,

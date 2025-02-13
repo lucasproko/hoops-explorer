@@ -590,7 +590,7 @@ export class AdvancedFilterUtils {
   static applyTeamExplorerFilter(
     inData: any[],
     filterStr: string,
-    divStats: DivisionStatistics | undefined,
+    divStats: (year: string) => DivisionStatistics | undefined,
     extraParams: Record<string, string> = {}
   ): [any[], string | undefined] {
     /** Field manipulation to list the field info for which I need to calc rank/%ile */
@@ -641,7 +641,8 @@ export class AdvancedFilterUtils {
     ) => {
       // Going to end with a format like this:
       // style: { "Dribble Jumper": { possPct|pts: { value: XXX } } }
-      return divStats
+      const divStatsForYear = divStats ? divStats(p.year) : undefined;
+      return divStatsForYear
         ? {
             style: _.chain(styleGrades)
               .map((styleField) => {
@@ -649,7 +650,7 @@ export class AdvancedFilterUtils {
                 const isPpp = styleDecomp[1] == "Ppp";
                 const nestedField = isPpp ? "pts" : "possPct";
                 const retVal = GradeUtils.getPercentile(
-                  divStats,
+                  divStatsForYear,
                   styleField,
                   p.style?.[styleDecomp[0]]?.[nestedField]?.value,
                   false
@@ -687,12 +688,13 @@ export class AdvancedFilterUtils {
       false, //(multi-year ... not supported for teams)
       AdvancedFilterUtils.tidyTeamExplorerClauses,
       (p: any, index: number) => {
+        const divStatsForYear = divStats ? divStats(p.year) : undefined;
         const retVal: any = {
           p,
-          pctile: divStats
+          pctile: divStatsForYear
             ? _.merge(
                 GradeUtils.buildTeamPercentiles(
-                  divStats,
+                  divStatsForYear,
                   p,
                   pctileFields,
                   false
@@ -700,11 +702,11 @@ export class AdvancedFilterUtils {
                 buildStyleGrades(p, stylePctileFields)
               )
             : {},
-          rank: divStats
+          rank: divStatsForYear
             ? _.merge(
                 _.mapValues(
                   GradeUtils.buildTeamPercentiles(
-                    divStats,
+                    divStatsForYear,
                     p,
                     rankFields,
                     true

@@ -574,10 +574,18 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   const [positionalStatsCache, setPositionalStatsCache] = useState<
     Record<string, PositionStatsCache>
   >({});
+  /** TODO: this is used to trigger the memoized table, but not sure it works since the caches could be stale
+   * since I'm not using a ref? Maybe it's OK because it's in a memo not an effect?
+   */
   const [divisionStatsRefresh, setDivisionStatsRefresh] = useState<number>(0);
 
   useEffect(() => {
-    if (showGrades || transferPredictionMode) {
+    if (
+      showGrades ||
+      transferPredictionMode ||
+      advancedFilterStr.includes("rank_") ||
+      advancedFilterStr.includes("pctile_")
+    ) {
       //(if transferPredictionMode we'd like some grades so we can show the ranks associated with predicted grades)
 
       const yearsToCheck = _.thru(
