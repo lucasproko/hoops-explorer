@@ -434,7 +434,20 @@ export class AdvancedFilterUtils {
   static singleYearfixObjectFormat(s: string) {
     return s
       .replace(/ALL/g, "($.player_code)")
-      .replace(/((team_stats[.])?(?:off|def)_[0-9a-zA-Z_]+)/g, "$.p.$1?.value")
+      .replace(
+        /((team_stats[.])?(?:off|def)_[0-9a-zA-Z_]+)/g,
+        (
+          substr: string,
+          ignoredCaptureGroup: string,
+          maybeTeamStats: string | undefined
+        ) => {
+          return maybeTeamStats
+            ? `$.p.team_stats.${AdvancedFilterUtils.teamFixObjectFormat(
+                substr.substring(maybeTeamStats.length)
+              ).substring(4)}` //(replace $.p. with team stats prefix)
+            : `$.p.${substr}?.value`;
+        }
+      )
       .replace(/(^| |[(!*+/-])(adj_[0-9a-zA-Z_]+)/g, "$1$.$2")
       .replace(/roster[.]height/g, "$.normht")
       .replace(/transfer_(src|dest)/g, "$.transfer_$1")
