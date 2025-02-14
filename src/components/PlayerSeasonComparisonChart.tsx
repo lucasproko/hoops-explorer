@@ -958,6 +958,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
       ? AdvancedFilterUtils.applyPlayerFilter(
           dataToFilter,
           datasetFilterStr,
+          (year: string) => undefined, //(player rank queries not yet supported)
+          (year: string) => undefined, //(team rank queries not yet supported)
           {
             x: decompAxis(xAxis).linq,
             y: decompAxis(yAxis).linq,
@@ -973,6 +975,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
       ? AdvancedFilterUtils.applyPlayerFilter(
           filteredData,
           highlightFilterStr,
+          (year: string) => undefined, //(player rank queries not yet supported)
+          (year: string) => undefined, //(team rank queries not yet supported)
           {},
           true
         )

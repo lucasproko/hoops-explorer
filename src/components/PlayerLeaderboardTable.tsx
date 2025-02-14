@@ -851,7 +851,15 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       advancedFilterStr.length > 0
         ? AdvancedFilterUtils.applyPlayerFilter(
             playersPhase1,
-            advancedFilterStr
+            advancedFilterStr,
+            (year: string) =>
+              GradeTableUtils.pickDivisonStats(
+                divisionStatsCache, //TODO does this want to be the pos cache at some point?
+                year,
+                gender,
+                showGrades
+              ),
+            (year: string) => undefined //(team rank queries not yet supported)
           )
         : [playersPhase1, undefined];
 

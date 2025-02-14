@@ -3,6 +3,7 @@ import Enumerable from "linq";
 import { transition } from "d3";
 import { DivisionStatistics, Statistic } from "./StatModels";
 import { GradeUtils } from "./stats/GradeUtils";
+import { DivisionStatsCache } from "./tables/GradeTableUtils";
 
 /** Library accepts strings. but typescript extension doesn't */
 type TypeScriptWorkaround1 = (element: any, index: number) => boolean;
@@ -594,86 +595,12 @@ export class AdvancedFilterUtils {
     extraParams: Record<string, string> = {}
   ): [any[], string | undefined] {
     /** Field manipulation to list the field info for which I need to calc rank/%ile */
-    const buildGradeQueries = (
-      filterStrIn: string,
-      prefix: string
-    ): [string[], string[]] => {
-      const allGradeQueries =
-        filterStrIn.match(
-          new RegExp(`${prefix}_(?:off|def|adj|raw)_[a-zA-Z_0-9]+`, "g")
-        ) || [];
-
-      const gradeFieldsIncStyle = allGradeQueries.map((preField) =>
-        // Converts to the field name in the input object
-        AdvancedFilterUtils.tidyTeamExplorerClauses(
-          preField.substring(prefix == "rank" ? 5 : 7),
-          false
-        ).replace(/[$][.]p[.](?:off_|def_)([a-zA-Z_0-9]+).*/, "$1")
-      );
-
-      const gradeFieldsNotStyle = gradeFieldsIncStyle.filter(
-        (field) => !_.startsWith(field, "$.p.style")
-      );
-      const styleGradesFields = _.chain(gradeFieldsIncStyle)
-        .filter((field) => _.startsWith(field, "$.p.style"))
-        .map((field) =>
-          field
-            .replace(/[$][.]p[.]style.*["]([^"]+)["].*[.]possPct.*/, "$1|Pct")
-            .replace(/[$][.]p[.]style.*["]([^"]+)["].*[.]pts.*/, "$1|Ppp")
-        )
-        .value();
-
-      return [gradeFieldsNotStyle, styleGradesFields];
-    };
-    const pctileToRank = (val: Statistic | undefined) => {
-      if (val) {
-        const pcile = val?.value || 0;
-        const rank = 1 + Math.round((1 - pcile) * (val?.samples || 0)); //(+1, since 100% is rank==1)
-        return { value: rank };
-      } else {
-        return undefined;
-      }
-    };
-    const buildStyleGrades = (
-      p: any,
-      styleGrades: string[],
-      convertToRank: boolean = false
-    ) => {
-      // Going to end with a format like this:
-      // style: { "Dribble Jumper": { possPct|pts: { value: XXX } } }
-      const divStatsForYear = divStats ? divStats(p.year) : undefined;
-      return divStatsForYear
-        ? {
-            style: _.chain(styleGrades)
-              .map((styleField) => {
-                const styleDecomp = styleField.split("|");
-                const isPpp = styleDecomp[1] == "Ppp";
-                const nestedField = isPpp ? "pts" : "possPct";
-                const retVal = GradeUtils.getPercentile(
-                  divStatsForYear,
-                  styleField,
-                  p.style?.[styleDecomp[0]]?.[nestedField]?.value,
-                  false
-                );
-                return [
-                  styleDecomp[0],
-                  {
-                    [nestedField]: convertToRank
-                      ? pctileToRank(retVal)
-                      : retVal,
-                  },
-                ];
-              })
-              .fromPairs()
-              .value(),
-          }
-        : {};
-    };
-    const [rankFields, styleRankFields] = buildGradeQueries(filterStr, "rank");
-    const [pctileFields, stylePctileFields] = buildGradeQueries(
+    const [rankFields, styleRankFields] = AdvancedFilterUtils.buildGradeQueries(
       filterStr,
-      "pctile"
+      "rank"
     );
+    const [pctileFields, stylePctileFields] =
+      AdvancedFilterUtils.buildGradeQueries(filterStr, "pctile");
 
     // Ranking / Pctile debug
     // console.log(`rank: ${JSON.stringify(rankFields)}`);
@@ -691,31 +618,20 @@ export class AdvancedFilterUtils {
         const divStatsForYear = divStats ? divStats(p.year) : undefined;
         const retVal: any = {
           p,
-          pctile: divStatsForYear
-            ? _.merge(
-                GradeUtils.buildTeamPercentiles(
-                  divStatsForYear,
-                  p,
-                  pctileFields,
-                  false
-                ),
-                buildStyleGrades(p, stylePctileFields)
-              )
-            : {},
-          rank: divStatsForYear
-            ? _.merge(
-                _.mapValues(
-                  GradeUtils.buildTeamPercentiles(
-                    divStatsForYear,
-                    p,
-                    rankFields,
-                    true
-                  ),
-                  pctileToRank
-                ),
-                buildStyleGrades(p, styleRankFields, true)
-              )
-            : {},
+          pctile: AdvancedFilterUtils.buildGrades(
+            p,
+            divStatsForYear,
+            pctileFields,
+            stylePctileFields,
+            false
+          ),
+          rank: AdvancedFilterUtils.buildGrades(
+            p,
+            divStatsForYear,
+            rankFields,
+            styleRankFields,
+            true
+          ),
         };
         // More debugging:
         // if (index < 10 && divStats) {
@@ -733,6 +649,8 @@ export class AdvancedFilterUtils {
   static applyPlayerFilter(
     inData: any[],
     filterStr: string,
+    playerDivStats: (year: string) => DivisionStatistics | undefined,
+    teamDivStats: (year: string) => DivisionStatistics | undefined,
     extraParams: Record<string, string> = {},
     multiYear: boolean = false
   ): [any[], string | undefined] {
@@ -919,4 +837,116 @@ export class AdvancedFilterUtils {
       }
     }
   }
+
+  // Grade query logic:
+
+  /** Extracts the fields for which rank/pctil need to be calculated */
+  private static buildGradeQueries = (
+    filterStrIn: string,
+    prefix: string
+  ): [string[], string[]] => {
+    const allGradeQueries =
+      filterStrIn.match(
+        new RegExp(`${prefix}_(?:off|def|adj|raw)_[a-zA-Z_0-9]+`, "g")
+      ) || [];
+
+    const gradeFieldsIncStyle = allGradeQueries.map((preField) =>
+      // Converts to the field name in the input object
+      AdvancedFilterUtils.tidyTeamExplorerClauses(
+        preField.substring(prefix == "rank" ? 5 : 7),
+        false
+      ).replace(/[$][.]p[.](?:off_|def_)([a-zA-Z_0-9]+).*/, "$1")
+    );
+
+    const gradeFieldsNotStyle = gradeFieldsIncStyle.filter(
+      (field) => !_.startsWith(field, "$.p.style")
+    );
+    const styleGradesFields = _.chain(gradeFieldsIncStyle)
+      .filter((field) => _.startsWith(field, "$.p.style"))
+      .map((field) =>
+        field
+          .replace(/[$][.]p[.]style.*["]([^"]+)["].*[.]possPct.*/, "$1|Pct")
+          .replace(/[$][.]p[.]style.*["]([^"]+)["].*[.]pts.*/, "$1|Ppp")
+      )
+      .value();
+
+    return [gradeFieldsNotStyle, styleGradesFields];
+  };
+
+  /** Quick util to switch from pctil that GradeUtils returns to rank */
+  private static pctileToRank = (val: Statistic | undefined) => {
+    if (val) {
+      const pcile = val?.value || 0;
+      const rank = 1 + Math.round((1 - pcile) * (val?.samples || 0)); //(+1, since 100% is rank==1)
+      return { value: rank };
+    } else {
+      return undefined;
+    }
+  };
+
+  /** Builds the style grades for Linq expressions */
+  private static buildStyleGrades = (
+    p: any,
+    divStatsForYear: DivisionStatistics,
+    styleGrades: string[],
+    convertToRank: boolean = false
+  ) => {
+    // Going to end with a format like this:
+    // style: { "Dribble Jumper": { possPct|pts: { value: XXX } } }
+    return divStatsForYear
+      ? {
+          style: _.chain(styleGrades)
+            .map((styleField) => {
+              const styleDecomp = styleField.split("|");
+              const isPpp = styleDecomp[1] == "Ppp";
+              const nestedField = isPpp ? "pts" : "possPct";
+              const retVal = GradeUtils.getPercentile(
+                divStatsForYear,
+                styleField,
+                p.style?.[styleDecomp[0]]?.[nestedField]?.value,
+                false
+              );
+              return [
+                styleDecomp[0],
+                {
+                  [nestedField]: convertToRank
+                    ? AdvancedFilterUtils.pctileToRank(retVal)
+                    : retVal,
+                },
+              ];
+            })
+            .fromPairs()
+            .value(),
+        }
+      : {};
+  };
+
+  /** Builds the rank / style grades for Linq expressions */
+  private static buildGrades = (
+    p: any,
+    divStatsForYear: DivisionStatistics | undefined,
+    statGrades: string[],
+    styleGrades: string[],
+    convertToRank: boolean = false
+  ) => {
+    return divStatsForYear
+      ? _.merge(
+          _.mapValues(
+            GradeUtils.buildTeamPercentiles(
+              divStatsForYear,
+              p,
+              statGrades,
+              convertToRank
+            ),
+            (s) => (convertToRank ? AdvancedFilterUtils.pctileToRank(s) : s)
+          ),
+          AdvancedFilterUtils.buildStyleGrades(
+            p,
+            divStatsForYear,
+            styleGrades,
+            convertToRank
+          )
+        )
+      : {};
+  };
 }

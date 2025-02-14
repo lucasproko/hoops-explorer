@@ -476,13 +476,12 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
             teamsPhase1,
             advancedFilterStr,
             (year: string) =>
-              gender == "Women" ||
-              year <= DateUtils.yearFromWhichAllMenD1Imported
-                ? divisionStatsCache[year]?.High
-                : GradeTableUtils.pickDivisonStats(
-                    divisionStatsCache[year],
-                    showGrades
-                  )
+              GradeTableUtils.pickDivisonStats(
+                divisionStatsCache,
+                year,
+                gender,
+                showGrades
+              )
           )
         : [teamsPhase1, undefined];
 

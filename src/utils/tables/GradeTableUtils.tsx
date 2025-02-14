@@ -204,22 +204,29 @@ export type DivisionStatsCache = {
 export class GradeTableUtils {
   /** Picks out the set of stats to use based on tier */
   static readonly pickDivisonStats = (
-    cache: DivisionStatsCache,
+    cache: Record<string, DivisionStatsCache>,
+    year: string,
+    gender: string,
     gradeConfig: string
   ): DivisionStatistics | undefined => {
-    const configStr = gradeConfig.split(":");
-    const tierStrTmp = configStr?.[1] || "Combo";
-    switch (tierStrTmp) {
-      case "Combo":
-        return cache.Combo;
-      case "High":
-        return cache.High;
-      case "Medium":
-        return cache.Medium;
-      case "Low":
-        return cache.Low;
-      default:
-        return undefined;
+    if (gender == "Women" || year <= DateUtils.yearFromWhichAllMenD1Imported) {
+      return cache[year]?.High;
+    } else {
+      const configStr = gradeConfig.split(":");
+      const tierStrTmp = configStr?.[1] || "Combo";
+      const cacheYear = cache[year];
+      switch (tierStrTmp) {
+        case "Combo":
+          return cacheYear?.Combo;
+        case "High":
+          return cacheYear?.High;
+        case "Medium":
+          return cacheYear?.Medium;
+        case "Low":
+          return cacheYear?.Low;
+        default:
+          return undefined;
+      }
     }
   };
 
