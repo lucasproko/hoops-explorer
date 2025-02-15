@@ -13,6 +13,9 @@
 npm-debug.log*
 coverage
 transfers_2024.json
+#(rename this every year)
+public/leaderboards/lineups/*2024*
+leaderboardDebug/*
 
 .vercel
 .metals

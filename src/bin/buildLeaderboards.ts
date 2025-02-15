@@ -70,6 +70,7 @@ import {
   PlayTypeUtils,
   TopLevelPlayAnalysis,
 } from "../utils/stats/PlayTypeUtils";
+import calculateTeamDefenseStats from "../pages/api/calculateTeamDefenseStats";
 
 //process.argv 2... are the command line args passed via "-- (args)"
 
@@ -215,11 +216,13 @@ const onlyHasTopConferences =
   inGender != "Men" || inYear < DateUtils.yearFromWhichAllMenD1Imported;
 
 var testTeamFilter = undefined as Set<string> | undefined;
+const isDebugMode = _.find(commandLine, (p) => _.startsWith(p, "--debug"));
+
 //(generic test set for debugging)
 //testTeamFilter = new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers", "Fordham", "Coppin St." ]);
 //(used this to build sample:)
 //testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
-if (!_.find(commandLine, (p) => _.startsWith(p, "--debug")) && testTeamFilter) {
+if (!isDebugMode && testTeamFilter) {
   console.log(
     `************************************ ` +
       `WARNING: [testTeamFilter] set (=[${_.toArray(
@@ -233,6 +236,10 @@ if (testTeamFilter) {
     `INFO: using the following test filter: [${_.toArray(testTeamFilter)}]`
   );
 }
+
+const rootFilePath = isDebugMode
+  ? "./leaderboardDebug"
+  : "./public/leaderboards/lineups";
 
 /** All the conferences in a given tier plus the "guest" teams if it's not in the right tier */
 const mutableConferenceMap = {} as Record<string, string[]>;
@@ -317,6 +324,45 @@ export async function main() {
         return {};
       });
     console.log(`Loaded [${_.size(rosterGeoMap)}] geo entries`);
+  }
+
+  /** For defensive purposes we grab a cache of the set of players */
+
+  const teamDefenseEnabled = false;
+  var variableAllPlayerStatsCacheByTeam: Record<string, IndivStatSet[]> = {};
+  if (teamDefenseEnabled) {
+    console.log(`Fetching player leaderboard for [${inGender}] [${inYear}]`);
+    const playerJsons = await Promise.all(
+      ["High", "Medium", "Low"].map((tier) => {
+        const subYear = inYear.substring(0, 4);
+        return fs
+          .readFile(
+            `./public/leaderboards/lineups/players_all_${inGender}_${subYear}_${tier}.json`
+          )
+          .then((s: any) => JSON.parse(s))
+          .catch((err: any) => {
+            console.log(
+              `Couldn't load player data [${inGender}[${subYear}][${tier}]]: [${err}]`
+            );
+            return {};
+          });
+      })
+    );
+    var numPlayers = 0;
+    variableAllPlayerStatsCacheByTeam = _.chain(playerJsons)
+      .flatMap((response, tierIndex) => {
+        const players = (response?.players || []) as Array<IndivStatSet>;
+        numPlayers += players.length; //(just for diagnostics)
+        return players;
+      })
+      .groupBy((p) => p.team)
+      .value();
+
+    console.log(
+      `Cached [${numPlayers}] players in [${_.size(
+        variableAllPlayerStatsCacheByTeam
+      )}] teams`
+    );
   }
 
   /** If any teams aren't in the conf then add them here for error reporting */
@@ -464,27 +510,43 @@ export async function main() {
           const lineupResponse = new MutableAsyncResponse();
           const teamResponse = new MutableAsyncResponse();
           const playerResponse = new MutableAsyncResponse();
+          const teamDefenseResponse = new MutableAsyncResponse();
 
-          await Promise.all([
-            calculateLineupStats(
-              {
-                url: `https://hoop-explorer.com/?${requestParams}`,
-              } as unknown as NextApiRequest,
-              lineupResponse as unknown as NextApiResponse
-            ),
-            calculateOnOffStats(
-              {
-                url: `https://hoop-explorer.com/?${teamRequestParms}`,
-              } as unknown as NextApiRequest,
-              teamResponse as unknown as NextApiResponse
-            ),
-            calculateOnOffPlayerStats(
-              {
-                url: `https://hoop-explorer.com/?${requestParams}`,
-              } as unknown as NextApiRequest,
-              playerResponse as unknown as NextApiResponse
-            ),
-          ]);
+          await Promise.all(
+            [
+              calculateLineupStats(
+                {
+                  url: `https://hoop-explorer.com/?${requestParams}`,
+                } as unknown as NextApiRequest,
+                lineupResponse as unknown as NextApiResponse
+              ),
+              calculateOnOffStats(
+                {
+                  url: `https://hoop-explorer.com/?${teamRequestParms}`,
+                } as unknown as NextApiRequest,
+                teamResponse as unknown as NextApiResponse
+              ),
+              calculateOnOffPlayerStats(
+                {
+                  url: `https://hoop-explorer.com/?${requestParams}`,
+                } as unknown as NextApiRequest,
+                playerResponse as unknown as NextApiResponse
+              ),
+            ].concat(
+              teamDefenseEnabled &&
+                inNaturalTier &&
+                !_.isEmpty(variableAllPlayerStatsCacheByTeam)
+                ? [
+                    calculateTeamDefenseStats(
+                      {
+                        url: `https://hoop-explorer.com/?${requestParams}`,
+                      } as unknown as NextApiRequest,
+                      teamDefenseResponse as unknown as NextApiResponse
+                    ),
+                  ]
+                : []
+            )
+          );
 
           // Also we're going to try fetching the roster
 
@@ -1532,7 +1594,7 @@ export async function combineDivisionStatsFiles(player: Boolean = false) {
   const allPosGroupsComplete = posGroups.map(async (posInfix) => {
     const filesToCombine: Promise<[String, DivisionStatistics[]]>[] = tiers.map(
       (tier) => {
-        const divisionStatsInFilename = `./public/leaderboards/lineups/stats_${playerInfix}${posInfix}all_${inGender}_${inYear.substring(
+        const divisionStatsInFilename = `${rootFilePath}/stats_${playerInfix}${posInfix}all_${inGender}_${inYear.substring(
           0,
           4
         )}_${tier}.json`;
@@ -1596,7 +1658,7 @@ export async function combineDivisionStatsFiles(player: Boolean = false) {
           });
     };
 
-    const divisionStatsComboFilename = `./public/leaderboards/lineups/stats_${playerInfix}${posInfix}all_${inGender}_${inYear.substring(
+    const divisionStatsComboFilename = `${rootFilePath}/stats_${playerInfix}${posInfix}all_${inGender}_${inYear.substring(
       0,
       4
     )}_Combo.json`;
@@ -1620,7 +1682,7 @@ export async function combineDivisionStatsFiles(player: Boolean = false) {
     );
 
     const filesToOutput = _.map(resolvedFiles, (stats, tier) => {
-      const divisionStatsOutFilename = `./public/leaderboards/lineups/stats_${playerInfix}${posInfix}all_${inGender}_${inYear.substring(
+      const divisionStatsOutFilename = `${rootFilePath}/stats_${playerInfix}${posInfix}all_${inGender}_${inYear.substring(
         0,
         4
       )}_${tier}.json`;
@@ -1761,7 +1823,7 @@ if (!testMode) {
             `${kv[0]} lineup count: [${sortedLineups.length}] ([${kv[1].length}])`
           );
           console.log(`${kv[0]} lineup length: [${sortedLineupsStr.length}]`);
-          const lineupFilename = `./public/leaderboards/lineups/lineups_${
+          const lineupFilename = `${rootFilePath}/lineups_${
             kv[0]
           }_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
           const lineupsWritePromise = _.isEmpty(sortedLineups)
@@ -1771,7 +1833,7 @@ if (!testMode) {
             `${kv[0]} player count: [${players.length}] ([${kv[2].length}])`
           );
           console.log(`${kv[0]} player length: [${playersStr.length}]`);
-          const playersFilename = `./public/leaderboards/lineups/players_${
+          const playersFilename = `${rootFilePath}/players_${
             kv[0]
           }_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
           const playersWritePromise = fs.writeFile(
@@ -1779,7 +1841,7 @@ if (!testMode) {
             playersStr
           );
 
-          const teamFilename = `./public/leaderboards/lineups/teams_${
+          const teamFilename = `${rootFilePath}/teams_${
             kv[0]
           }_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
           console.log(`${kv[0]} team count: ${teamInfo.length}`);
@@ -1804,7 +1866,7 @@ if (!testMode) {
                 )
               : Promise.resolve();
 
-          const detailedTeamFilename = `./public/leaderboards/lineups/team_details_${
+          const detailedTeamFilename = `${rootFilePath}/team_details_${
             kv[0]
           }_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
 
@@ -1829,7 +1891,7 @@ if (!testMode) {
                 )
               : Promise.resolve();
 
-          const teamStatFilename = `./public/leaderboards/lineups/team_stats_${
+          const teamStatFilename = `${rootFilePath}/team_stats_${
             kv[0]
           }_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
           console.log(`${kv[0]} team stats count: ${teamStatInfo.length}`);
@@ -1858,7 +1920,7 @@ if (!testMode) {
           if (writeDivisionStats) {
             GradeUtils.buildAndInjectTeamDivisionStatsLUT(mutableDivisionStats);
           }
-          const divisionStatsFilename = `./public/leaderboards/lineups/stats_${
+          const divisionStatsFilename = `${rootFilePath}/stats_${
             kv[0]
           }_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
           const divisionStatsWritePromise = writeDivisionStats
@@ -1883,7 +1945,7 @@ if (!testMode) {
               }
             });
           }
-          const playerDivisionStatsFilename = `./public/leaderboards/lineups/stats_players_${
+          const playerDivisionStatsFilename = `${rootFilePath}/stats_players_${
             kv[0]
           }_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
           const playerDivisionStatsWritePromise = writeDivisionStats
@@ -1898,7 +1960,7 @@ if (!testMode) {
                 const mutablePosGroupDivStats =
                   mutablePlayerDivisionStats_byPosGroup[posGroup];
                 if (mutablePosGroupDivStats) {
-                  const playerDivisionStatsFilename = `./public/leaderboards/lineups/stats_players_pos${posGroup}_${
+                  const playerDivisionStatsFilename = `${rootFilePath}/stats_players_pos${posGroup}_${
                     kv[0]
                   }_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
                   return fs.writeFile(
