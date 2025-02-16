@@ -229,32 +229,38 @@ export class GradeUtils {
   /** Add play style stats to a team (division) stats collection */
   static buildAndInjectPlayStyleStats = (
     playStyle: TopLevelPlayAnalysis,
+    defensivePlayStyle: TopLevelPlayAnalysis | undefined,
     mutableDivisionStats: DivisionStatistics,
     inNaturalTier: boolean
   ) => {
-    _.forEach(playStyle, (playStyleInfo, playStyleType) => {
-      const updateForField = (field: string, stat: Statistic) => {
-        if (!_.isNil(stat.value)) {
-          if (!mutableDivisionStats.tier_samples[field]) {
-            mutableDivisionStats.tier_samples[field] = [];
-          }
-          mutableDivisionStats.tier_samples[field]!.push(stat.value);
+    _.forEach([playStyle, defensivePlayStyle], (tmpPlayStyle, isDef) => {
+      const defPrefix = isDef == 1 ? "Def" : "";
+      if (tmpPlayStyle) {
+        _.forEach(tmpPlayStyle, (playStyleInfo, playStyleType) => {
+          const updateForField = (field: string, stat: Statistic) => {
+            if (!_.isNil(stat.value)) {
+              if (!mutableDivisionStats.tier_samples[field]) {
+                mutableDivisionStats.tier_samples[field] = [];
+              }
+              mutableDivisionStats.tier_samples[field]!.push(stat.value);
 
-          if (inNaturalTier) {
-            if (!mutableDivisionStats.dedup_samples[field]) {
-              mutableDivisionStats.dedup_samples[field] = [];
+              if (inNaturalTier) {
+                if (!mutableDivisionStats.dedup_samples[field]) {
+                  mutableDivisionStats.dedup_samples[field] = [];
+                }
+                mutableDivisionStats.dedup_samples[field]!.push(stat.value);
+              }
             }
-            mutableDivisionStats.dedup_samples[field]!.push(stat.value);
+          };
+          const possPctField = `${playStyleType}|${defPrefix}Pct`;
+          updateForField(possPctField, playStyleInfo.possPct);
+          const pppField = `${playStyleType}|${defPrefix}Ppp`;
+          updateForField(pppField, playStyleInfo.pts);
+          if (playStyleInfo.adj_pts) {
+            const adjPppField = `${playStyleType}|${defPrefix}AdjPpp`;
+            updateForField(adjPppField, playStyleInfo.adj_pts);
           }
-        }
-      };
-      const possPctField = `${playStyleType}|Pct`;
-      updateForField(possPctField, playStyleInfo.possPct);
-      const pppField = `${playStyleType}|Ppp`;
-      updateForField(pppField, playStyleInfo.pts);
-      if (playStyleInfo.adj_pts) {
-        const adjPppField = `${playStyleType}|AdjPpp`;
-        updateForField(adjPppField, playStyleInfo.adj_pts);
+        });
       }
     });
   };

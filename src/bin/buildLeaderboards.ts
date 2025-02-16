@@ -11,7 +11,6 @@
 // System imports
 import { NextApiRequest, NextApiResponse } from "next";
 import { promises as fs } from "fs";
-import zlib from "zlib";
 
 import _ from "lodash";
 
@@ -328,12 +327,16 @@ export async function main() {
 
   /** For defensive purposes we grab a cache of the set of players */
 
-  const teamDefenseEnabled = false;
-  var variableAllPlayerStatsCacheByTeam: Record<string, IndivStatSet[]> = {};
+  const teamDefenseEnabled = false; //isDebugMode;
+  var varAllPlayerStatsCacheByTeam: Record<string, IndivStatSet[]> = {};
   if (teamDefenseEnabled) {
     console.log(`Fetching player leaderboard for [${inGender}] [${inYear}]`);
+    const tiersForThisYear =
+      inYear < DateUtils.yearFromWhichAllMenD1Imported
+        ? ["High"]
+        : ["High", "Medium", "Low"];
     const playerJsons = await Promise.all(
-      ["High", "Medium", "Low"].map((tier) => {
+      tiersForThisYear.map((tier) => {
         const subYear = inYear.substring(0, 4);
         return fs
           .readFile(
@@ -349,7 +352,7 @@ export async function main() {
       })
     );
     var numPlayers = 0;
-    variableAllPlayerStatsCacheByTeam = _.chain(playerJsons)
+    varAllPlayerStatsCacheByTeam = _.chain(playerJsons)
       .flatMap((response, tierIndex) => {
         const players = (response?.players || []) as Array<IndivStatSet>;
         numPlayers += players.length; //(just for diagnostics)
@@ -360,7 +363,7 @@ export async function main() {
 
     console.log(
       `Cached [${numPlayers}] players in [${_.size(
-        variableAllPlayerStatsCacheByTeam
+        varAllPlayerStatsCacheByTeam
       )}] teams`
     );
   }
@@ -512,6 +515,11 @@ export async function main() {
           const playerResponse = new MutableAsyncResponse();
           const teamDefenseResponse = new MutableAsyncResponse();
 
+          const isCalculatingTeamDefense =
+            teamDefenseEnabled &&
+            inNaturalTier &&
+            !_.isEmpty(varAllPlayerStatsCacheByTeam);
+
           await Promise.all(
             [
               calculateLineupStats(
@@ -533,9 +541,7 @@ export async function main() {
                 playerResponse as unknown as NextApiResponse
               ),
             ].concat(
-              teamDefenseEnabled &&
-                inNaturalTier &&
-                !_.isEmpty(variableAllPlayerStatsCacheByTeam)
+              isCalculatingTeamDefense
                 ? [
                     calculateTeamDefenseStats(
                       {
@@ -751,6 +757,19 @@ export async function main() {
                 teamBaseline
               );
 
+            /**/
+            // console.log(
+            //   `???? ${JSON.stringify(teamDefenseResponse.getJsonResponse())}`
+            // );
+
+            // Also calculate defense
+            const topLevelDefensePlayTypeStyles = isCalculatingTeamDefense
+              ? PlayTypeUtils.buildTeamDefenseBreakdown(
+                  teamDefenseResponse.getJsonResponse(),
+                  varAllPlayerStatsCacheByTeam
+                )
+              : undefined;
+
             const defSos = teamBaseline?.def_adj_opp?.value || avgEfficiency;
             const topLevelPlayTypeStylesAdj: TopLevelPlayAnalysis = _.chain(
               topLevelPlayTypeStyles
@@ -767,6 +786,7 @@ export async function main() {
 
             GradeUtils.buildAndInjectPlayStyleStats(
               topLevelPlayTypeStylesAdj,
+              topLevelDefensePlayTypeStyles,
               mutableDivisionStats,
               inNaturalTier
             );
@@ -897,6 +917,7 @@ export async function main() {
                 ...teamBaselineWithLuck,
                 ...extraFields,
                 style: topLevelPlayTypeStyles,
+                def_style: topLevelDefensePlayTypeStyles,
                 game_info: undefined, //(unset game_info, it's already covered more efficiently via oppoInfo)
               });
             }

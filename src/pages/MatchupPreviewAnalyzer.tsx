@@ -56,6 +56,7 @@ import { efficiencyAverages } from "../utils/public-data/efficiencyAverages";
 import ShotChartDiagView from "../components/diags/ShotChartDiagView";
 import { DateUtils } from "../utils/DateUtils";
 import InternalNavBarInRow from "../components/shared/InternalNavBarInRow";
+import { PlayTypeUtils } from "../utils/stats/PlayTypeUtils";
 
 const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
   useEffect(() => {
@@ -389,7 +390,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
 
       const defA =
         !_.isEmpty(dataEvent.defensiveInfoA) && showDefA
-          ? PlayTypeDiagUtils.buildTeamDefenseBreakdown(
+          ? PlayTypeUtils.buildTeamDefenseBreakdown(
               dataEvent.defensiveInfoA,
               seasonVsGameAverageDebugMode
                 ? _.mapValues(
@@ -403,7 +404,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
       const showDefB = (breakdownViewArr?.[1] || "off") == "def";
       const defB =
         !_.isEmpty(dataEvent.defensiveInfoA) && showDefB
-          ? PlayTypeDiagUtils.buildTeamDefenseBreakdown(
+          ? PlayTypeUtils.buildTeamDefenseBreakdown(
               dataEvent.defensiveInfoB,
               allPlayerStatsCache
             )
