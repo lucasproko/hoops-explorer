@@ -1801,6 +1801,54 @@ export class PlayTypeUtils {
 
   // Some utils
 
+  /** Convert from getTeamDefense response to the team defense that we process */
+  static parseTeamDefenseResponse(
+    jsonResp: any[]
+  ): Record<
+    string,
+    { teamStats: TeamStatSet; playerStats: Array<IndivStatSet> }
+  > {
+    const teamsStatsByTeam: Record<string, TeamStatSet> = _.chain(
+      jsonResp?.[0]?.aggregations?.tri_filter?.buckets?.baseline?.opponents
+        ?.buckets || []
+    )
+      .groupBy((t) => t["key"])
+      .mapValues(
+        //(convert from  team defense to opponent offense)
+        (vv) => vv[0] || ({} as TeamStatSet)
+        // Previously I was getting team defense not opponent offense, but the
+        // stats weren't entirely identical (buglet!) so I switched to the slower but more
+        // accurate opponent offense
+        // _.mapKeys(vv[0] || ({} as TeamStatSet), (v, k) =>
+        //   _.startsWith(k, "total_def_") ? `total_off_${k.substring(10)}` : k
+        // ) as TeamStatSet
+      )
+      .value();
+
+    const playerStatsByTeam: Record<string, Array<IndivStatSet>> = _.chain(
+      jsonResp?.[1]?.aggregations?.tri_filter?.buckets?.baseline?.opponents
+        ?.buckets || []
+    )
+      .groupBy((t) => t["key"])
+      .mapValues((vv) => vv[0]?.player?.buckets || [])
+      .value();
+
+    return _.chain(teamsStatsByTeam)
+      .toPairs()
+      .transform((acc, kv) => {
+        const team = kv[0];
+        const teamStats = kv[1];
+        const playerStats = playerStatsByTeam[team];
+        if (playerStats) {
+          acc[team] = {
+            teamStats,
+            playerStats,
+          };
+        }
+      }, {} as Record<string, { teamStats: TeamStatSet; playerStats: Array<IndivStatSet> }>)
+      .value();
+  }
+
   /** Goes from all 5 position classes to a smaller/simple position family */
   private static buildPosFamily(
     pos: string,

@@ -109,8 +109,8 @@ export class MutableAsyncResponse {
     this.resultJson = j;
     return this;
   }
-  getJsonResponse() {
-    return this.resultJson.responses?.[0] || {};
+  getJsonResponse(index: number = 0) {
+    return this.resultJson.responses?.[index] || {};
   }
 }
 
@@ -327,7 +327,7 @@ export async function main() {
 
   /** For defensive purposes we grab a cache of the set of players */
 
-  const teamDefenseEnabled = false; //isDebugMode;
+  const teamDefenseEnabled = true; //(keep this flag for a bit in case we need to pull the feature)
   var varAllPlayerStatsCacheByTeam: Record<string, IndivStatSet[]> = {};
   if (teamDefenseEnabled) {
     console.log(`Fetching player leaderboard for [${inGender}] [${inYear}]`);
@@ -757,19 +757,6 @@ export async function main() {
                 teamBaseline
               );
 
-            /**/
-            // console.log(
-            //   `???? ${JSON.stringify(teamDefenseResponse.getJsonResponse())}`
-            // );
-
-            // Also calculate defense
-            const topLevelDefensePlayTypeStyles = isCalculatingTeamDefense
-              ? PlayTypeUtils.buildTeamDefenseBreakdown(
-                  teamDefenseResponse.getJsonResponse(),
-                  varAllPlayerStatsCacheByTeam
-                )
-              : undefined;
-
             const defSos = teamBaseline?.def_adj_opp?.value || avgEfficiency;
             const topLevelPlayTypeStylesAdj: TopLevelPlayAnalysis = _.chain(
               topLevelPlayTypeStyles
@@ -784,9 +771,40 @@ export async function main() {
               })
               .value();
 
+            // Also calculate defense
+            const topLevelDefensePlayTypeStyles = isCalculatingTeamDefense
+              ? _.chain(
+                  PlayTypeUtils.buildTeamDefenseBreakdown(
+                    PlayTypeUtils.parseTeamDefenseResponse([
+                      teamDefenseResponse.getJsonResponse(0),
+                      teamDefenseResponse.getJsonResponse(1),
+                    ]),
+                    varAllPlayerStatsCacheByTeam
+                  )
+                ) //(adj_pts gets injected by buildTeamDefenseBreakdown but not buildTopLevelPlayStyles)
+                  .mapValues((stat) => _.omit(stat, "adj_pts"))
+                  .value()
+              : undefined;
+
+            const offSos = teamBaseline?.off_adj_opp?.value || avgEfficiency;
+            const topLevelDefensePlayTypeStylesAdj =
+              topLevelDefensePlayTypeStyles
+                ? _.chain(topLevelDefensePlayTypeStyles)
+                    .mapValues((stat) => {
+                      return {
+                        ...stat,
+                        adj_pts: {
+                          value:
+                            ((stat.pts?.value || 0) * avgEfficiency) / offSos,
+                        },
+                      };
+                    })
+                    .value()
+                : undefined;
+
             GradeUtils.buildAndInjectPlayStyleStats(
               topLevelPlayTypeStylesAdj,
-              topLevelDefensePlayTypeStyles,
+              topLevelDefensePlayTypeStylesAdj,
               mutableDivisionStats,
               inNaturalTier
             );
