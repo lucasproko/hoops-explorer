@@ -755,29 +755,35 @@ export class TeamStatsTableUtils {
                         showHelp={showHelp}
                         quickSwitchOverride={undefined}
                       />,
-                    ].concat([
-                      <TeamPlayTypeDiagRadar
-                        players={getRosterStats(
-                          queryKey,
-                          rosterStats,
-                          otherQueryIndex
-                        )}
-                        rosterStatsByCode={globalRosterStatsByCode}
-                        teamStats={teamStatsByCombinedQuery(
-                          queryKey,
-                          otherQueryIndex
-                        )}
-                        defensiveOverride={
-                          teamStatsByCombinedQuery(queryKey, otherQueryIndex)
-                            .def_style
-                        }
-                        avgEfficiency={avgEfficiency}
-                        showGrades={showGrades}
-                        grades={divisionStatsCache}
-                        showHelp={showHelp}
-                        quickSwitchOverride={undefined}
-                      />,
-                    ])
+                    ].concat(
+                      true
+                        ? []
+                        : [
+                            <TeamPlayTypeDiagRadar
+                              players={getRosterStats(
+                                queryKey,
+                                rosterStats,
+                                otherQueryIndex
+                              )}
+                              rosterStatsByCode={globalRosterStatsByCode}
+                              teamStats={teamStatsByCombinedQuery(
+                                queryKey,
+                                otherQueryIndex
+                              )}
+                              defensiveOverride={
+                                teamStatsByCombinedQuery(
+                                  queryKey,
+                                  otherQueryIndex
+                                ).def_style
+                              }
+                              avgEfficiency={avgEfficiency}
+                              showGrades={showGrades}
+                              grades={divisionStatsCache}
+                              showHelp={showHelp}
+                              quickSwitchOverride={undefined}
+                            />,
+                          ]
+                    )
                   ),
                   "small"
                 ),
