@@ -511,7 +511,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       const teamParams = {
         team: team.team_name,
         gender: gender,
-        year: year,
+        year: team.year,
         minRank: "0",
         maxRank: isT100 ? "100" : "400",
         queryFilters: isConfOnly ? "Conf" : undefined,
@@ -574,7 +574,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       );
 
       const tableInfo = TeamStatsTableUtils.buildRows(
-        { team: team.team_name, year, gender },
+        { team: team.team_name, year: team.year, gender },
         {
           baseline: team,
           global: team,
