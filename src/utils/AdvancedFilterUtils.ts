@@ -1,9 +1,7 @@
-import _, { at } from "lodash";
+import _ from "lodash";
 import Enumerable from "linq";
-import { transition } from "d3";
 import { DivisionStatistics, Statistic } from "./StatModels";
 import { GradeUtils } from "./stats/GradeUtils";
-import { DivisionStatsCache } from "./tables/GradeTableUtils";
 
 /** Library accepts strings. but typescript extension doesn't */
 type TypeScriptWorkaround1 = (element: any, index: number) => boolean;
@@ -188,6 +186,30 @@ export class AdvancedFilterUtils {
     "off_style_reb_scramble_ppp",
     "off_style_transition_pct",
     "off_style_transition_ppp",
+    "def_style_rim_attack_pct",
+    "def_style_rim_attack_ppp",
+    "def_style_attack_kick_pct",
+    "def_style_attack_kick_ppp",
+    "def_style_dribble_jumper_pct",
+    "def_style_dribble_jumper_ppp",
+    "def_style_mid_range_pct",
+    "def_style_mid_range_ppp",
+    "def_style_perimeter_cut_pct",
+    "def_style_perimeter_cut_ppp",
+    "def_style_big_cut_roll_pct",
+    "def_style_big_cut_roll_ppp",
+    "def_style_post_up_pct",
+    "def_style_post_up_ppp",
+    "def_style_post_kick_pct",
+    "def_style_post_kick_ppp",
+    "def_style_pick_pop_pct",
+    "def_style_pick_pop_ppp",
+    "def_style_high_low_pct",
+    "def_style_high_low_ppp",
+    "def_style_reb_scramble_pct",
+    "def_style_reb_scramble_ppp",
+    "def_style_transition_pct",
+    "def_style_transition_ppp",
   ];
 
   static readonly teamExplorerAutocomplete = AdvancedFilterUtils.operators
@@ -504,7 +526,9 @@ export class AdvancedFilterUtils {
       .replace(
         /(off|def)_style_([0-9a-zA-Z_]+)_(pct|ppp)/g,
         (substr: string, offDef: string, styleType: string, pctPpp: string) =>
-          `$.p.style?.${AdvancedFilterUtils.styleFromAutocomplete(
+          `$.p.${
+            offDef == "def" ? "style_def" : "style" //(have to reverse prefix to avoid colliding with def_ below)
+          }?.${AdvancedFilterUtils.styleFromAutocomplete(
             styleType,
             pctPpp
           )}?.value`
@@ -616,6 +640,7 @@ export class AdvancedFilterUtils {
       AdvancedFilterUtils.tidyTeamExplorerClauses,
       (p: any, index: number) => {
         const divStatsForYear = divStats ? divStats(p.year) : undefined;
+        p.style_def = p.def_style; // (ugly, need def_style to not collide with other def_* fields)
         const retVal: any = {
           p,
           pctile: AdvancedFilterUtils.buildGrades(
@@ -634,8 +659,15 @@ export class AdvancedFilterUtils {
           ),
         };
         // More debugging:
-        // if (index < 10 && divStats) {
-        //   console.log(`extra: [${JSON.stringify(p.off_net)}]`);
+        // if (index < 10 && retVal) {
+        //   console.log(
+        //     `fields: [${pctileFields}][${stylePctileFields}][${rankFields}][${styleRankFields}]`
+        //   );
+        //   console.log(
+        //     `extra: [${JSON.stringify(p.style)}][${JSON.stringify(
+        //       p.style_def
+        //     )}]`
+        //   );
         //   console.log(`pctile result: ${JSON.stringify(retVal.pctile)}`);
         //   console.log(`rank result: ${JSON.stringify(retVal.rank)}`);
         // }
@@ -737,6 +769,9 @@ export class AdvancedFilterUtils {
   ): [any[], string | undefined] {
     const filterFrags = filterStr.split("SORT_BY");
     const where = tidyClauses(filterFrags[0], multiYear);
+
+    //DEBUG
+    //console.log(`applyFilter: [${filterStr}] -> [${where}]`);
 
     const wherePlusMaybeInsert = _.isEmpty(extraParams)
       ? where
@@ -858,13 +893,27 @@ export class AdvancedFilterUtils {
       ).replace(/[$][.]p[.](?:off_|def_)([a-zA-Z_0-9]+).*/, "$1")
     );
 
+    //DEBUG
+    //console.log(`gradeFieldsIncStyle: ${JSON.stringify(gradeFieldsIncStyle)}`);
+
     const gradeFieldsNotStyle = gradeFieldsIncStyle.filter(
-      (field) => !_.startsWith(field, "$.p.style")
+      (field) =>
+        !_.startsWith(field, "$.p.style") &&
+        !_.startsWith(field, "$.p.style_def")
     );
     const styleGradesFields = _.chain(gradeFieldsIncStyle)
-      .filter((field) => _.startsWith(field, "$.p.style"))
+      .filter(
+        (field) =>
+          _.startsWith(field, "$.p.style") ||
+          _.startsWith(field, "$.p.style_def")
+      )
       .map((field) =>
         field
+          .replace(
+            /[$][.]p[.]style_def.*["]([^"]+)["].*[.]possPct.*/,
+            "$1|DefPct"
+          )
+          .replace(/[$][.]p[.]style_def.*["]([^"]+)["].*[.]pts.*/, "$1|DefPpp")
           .replace(/[$][.]p[.]style.*["]([^"]+)["].*[.]possPct.*/, "$1|Pct")
           .replace(/[$][.]p[.]style.*["]([^"]+)["].*[.]pts.*/, "$1|Ppp")
       )
@@ -891,31 +940,80 @@ export class AdvancedFilterUtils {
     styleGrades: string[],
     convertToRank: boolean = false
   ) => {
+    const buildField = (
+      styleField: string,
+      offDef: "off" | "def"
+    ): [string, Statistic | undefined] => {
+      const styleDecomp = styleField.split("|");
+      const isPpp = styleDecomp[1] == "Ppp" || styleDecomp[1] == "DefPpp";
+      const nestedField = isPpp ? "pts" : "possPct";
+      const styleKey = offDef == "off" ? "style" : "def_style";
+      //(this is the pointer to the original object so is def_style ie the team_details field name
+      // as opposed to the temp style_def I use internally to avoid collision with def_ regexes)
+      const retVal = _.thru(
+        GradeUtils.getPercentile(
+          divStatsForYear,
+          styleField,
+          p[styleKey]?.[styleDecomp[0]]?.[nestedField]?.value,
+          false
+        ),
+        (raw) =>
+          _.isNil(raw)
+            ? raw
+            : offDef == "off" || !isPpp
+            ? raw
+            : {
+                ...raw,
+                value: 1 - (raw?.value || 0), //(for defense, switch the %ile around)
+              }
+      );
+      return [
+        styleDecomp[0],
+        {
+          [nestedField]: convertToRank
+            ? AdvancedFilterUtils.pctileToRank(retVal)
+            : retVal,
+        },
+      ];
+    };
     // Going to end with a format like this:
     // style: { "Dribble Jumper": { possPct|pts: { value: XXX } } }
+    const [offStyleGrades, defStyleGrades] = _.partition(
+      styleGrades,
+      (field) => !field.includes("|Def")
+    );
     return divStatsForYear
       ? {
-          style: _.chain(styleGrades)
-            .map((styleField) => {
-              const styleDecomp = styleField.split("|");
-              const isPpp = styleDecomp[1] == "Ppp";
-              const nestedField = isPpp ? "pts" : "possPct";
-              const retVal = GradeUtils.getPercentile(
-                divStatsForYear,
-                styleField,
-                p.style?.[styleDecomp[0]]?.[nestedField]?.value,
-                false
+          style: _.chain(offStyleGrades)
+            .transform((acc, styleField) => {
+              const [styleKey, styleVal] = buildField(styleField, "off");
+              if (!acc[styleKey]) {
+                acc[styleKey] = styleVal;
+              } else {
+                acc[styleKey] = {
+                  ...acc[styleKey],
+                  ...styleVal,
+                };
+              }
+            }, {} as Record<string, any>)
+            .value(),
+          style_def: _.chain(defStyleGrades)
+            .transform((acc, styleField) => {
+              const [styleKey, styleVal] = buildField(
+                styleField.replace("|Def", "|"),
+                "def"
               );
-              return [
-                styleDecomp[0],
-                {
-                  [nestedField]: convertToRank
-                    ? AdvancedFilterUtils.pctileToRank(retVal)
-                    : retVal,
-                },
-              ];
-            })
-            .fromPairs()
+              //(TODO: for now we'll continue to use the offensive grades to build the %iles
+              // until I've had a chance to move them over everywhere)
+              if (!acc[styleKey]) {
+                acc[styleKey] = styleVal;
+              } else {
+                acc[styleKey] = {
+                  ...acc[styleKey],
+                  ...styleVal,
+                };
+              }
+            }, {} as Record<string, any>)
             .value(),
         }
       : {};

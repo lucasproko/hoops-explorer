@@ -209,7 +209,7 @@ export class GradeTableUtils {
     gender: string,
     gradeConfig: string
   ): DivisionStatistics | undefined => {
-    if (gender == "Women" || year <= DateUtils.yearFromWhichAllMenD1Imported) {
+    if (gender == "Women" || year < DateUtils.yearFromWhichAllMenD1Imported) {
       return cache[year]?.High;
     } else {
       const configStr = gradeConfig.split(":");
