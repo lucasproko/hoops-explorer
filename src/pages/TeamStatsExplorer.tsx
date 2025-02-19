@@ -103,6 +103,10 @@ const TeamStatsExplorerPage: NextPage<Props> = ({ testMode }) => {
           : [],
         !rawParams.showExtraInfo ? ["showExtraInfo"] : [],
         !rawParams.showPlayStyles ? ["showPlayStyles"] : [],
+        rawParams.playStyleConfig ==
+        ParamDefaults.defaultTeamExplorerPlayStyleConfig
+          ? ["playStyleConfig"]
+          : [],
         !rawParams.showGrades ? ["showGrades"] : [],
         _.isNil(rawParams.showAdvancedFilter) || rawParams.showAdvancedFilter
           ? ["showAdvancedFilter"]

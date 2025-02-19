@@ -145,6 +145,7 @@ export class TeamStatsTableUtils {
   ): TeamStatsOnOffBase {
     const {
       showPlayTypes,
+      playTypeConfig,
       showRoster,
       adjustForLuck,
       showDiffs,
@@ -737,29 +738,35 @@ export class TeamStatsTableUtils {
                       showHelp={showHelp}
                     />
                   ) : (
-                    [
-                      <TeamPlayTypeDiagRadar
-                        players={getRosterStats(
-                          queryKey,
-                          rosterStats,
-                          otherQueryIndex
-                        )}
-                        rosterStatsByCode={globalRosterStatsByCode}
-                        teamStats={teamStatsByCombinedQuery(
-                          queryKey,
-                          otherQueryIndex
-                        )}
-                        avgEfficiency={avgEfficiency}
-                        showGrades={showGrades}
-                        grades={divisionStatsCache}
-                        showHelp={showHelp}
-                        quickSwitchOverride={undefined}
-                      />,
-                    ].concat(
-                      true
-                        ? []
-                        : [
+                    (!playTypeConfig || playTypeConfig.off
+                      ? [
+                          <TeamPlayTypeDiagRadar
+                            title={"Offense"}
+                            players={getRosterStats(
+                              queryKey,
+                              rosterStats,
+                              otherQueryIndex
+                            )}
+                            rosterStatsByCode={globalRosterStatsByCode}
+                            teamStats={teamStatsByCombinedQuery(
+                              queryKey,
+                              otherQueryIndex
+                            )}
+                            avgEfficiency={avgEfficiency}
+                            showGrades={showGrades}
+                            grades={divisionStatsCache}
+                            showHelp={showHelp}
+                            quickSwitchOverride={undefined}
+                          />,
+                        ]
+                      : []
+                    ).concat(
+                      (!playTypeConfig || playTypeConfig.def) &&
+                        teamStatsByCombinedQuery(queryKey, otherQueryIndex)
+                          .def_style
+                        ? [
                             <TeamPlayTypeDiagRadar
+                              title={"Defense"}
                               players={getRosterStats(
                                 queryKey,
                                 rosterStats,
@@ -783,6 +790,7 @@ export class TeamStatsTableUtils {
                               quickSwitchOverride={undefined}
                             />,
                           ]
+                        : []
                     )
                   ),
                   "small"

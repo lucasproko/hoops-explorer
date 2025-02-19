@@ -244,6 +244,7 @@ export type TeamStatsExplorerParams = {
   advancedFilter?: string;
   showGrades?: string;
   showPlayStyles?: boolean;
+  playStyleConfig?: string; //currently "off"/"def"/"offdef"
   showExtraInfo?: boolean;
   luck?: LuckParams; //(missing iff default)
   maxTableSize?: string;
@@ -400,8 +401,9 @@ export class ParamDefaults {
   static readonly defaultLineupLboardSortBy = "desc:diff_adj_ppp";
   static readonly defaultLineupLboardFilter = "";
   static readonly defaultLineupLboardLuckDiagMode = false;
-  // Team leaderboards
+  // Team stats explorer
   static readonly defaultTeamExplorerMaxTableSize = "100";
+  static readonly defaultTeamExplorerPlayStyleConfig = "offdef";
   // Player leaderboard
   static readonly defaultPlayerLboardMinPos = "20";
   static readonly defaultPlayerLboardMaxTableSize = "100";

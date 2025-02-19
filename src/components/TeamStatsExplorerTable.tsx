@@ -149,6 +149,10 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   const [showPlayStyles, setShowPlayStyles] = useState(
     _.isNil(startingState.showPlayStyles) ? false : startingState.showPlayStyles
   );
+  const [playStyleConfig, setPlayStyleConfig] = useState(
+    startingState.playStyleConfig ||
+      ParamDefaults.defaultTeamExplorerPlayStyleConfig
+  );
 
   // Basic filter:
   const manualFilterSelected =
@@ -279,7 +283,14 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         }
       });
     }
-  }, [year, gender, showGrades, showPlayStyles, advancedFilterStr]);
+  }, [
+    year,
+    gender,
+    showGrades,
+    showPlayStyles,
+    playStyleConfig,
+    advancedFilterStr,
+  ]);
 
   /** When the params change */
   useEffect(() => {
@@ -291,6 +302,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       showGrades,
       showExtraInfo,
       showPlayStyles,
+      playStyleConfig,
       sortBy: sortBy,
       queryFilters: queryFilters,
       advancedFilter: advancedFilterStr,
@@ -307,6 +319,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     showGrades,
     showExtraInfo,
     showPlayStyles,
+    playStyleConfig,
     queryFilters,
     advancedFilterStr,
     isT100,
@@ -581,6 +594,10 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         // Page control
         {
           showPlayTypes: showPlayStyles && teamIndex < MAX_EXTRA_INFO_IN_ROWS,
+          playTypeConfig: {
+            off: playStyleConfig.includes("off"),
+            def: playStyleConfig.includes("def"),
+          },
           showRoster: false, //(won't work without more data)
           adjustForLuck: false, //(won't work without more data)
           showDiffs: false, //(NA for this view)
@@ -653,6 +670,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     maxTableSize,
     showExtraInfo,
     showPlayStyles,
+    playStyleConfig,
   ]);
 
   // 3] View
@@ -929,6 +947,13 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
                     ),
                 },
                 {
+                  label: "|",
+                  tooltip: "",
+                  toggled: true,
+                  onClick: () => {},
+                  isLabelOnly: true,
+                },
+                {
                   label: "Style",
                   tooltip: showPlayStyles
                     ? "Hide play style breakdowns"
@@ -939,6 +964,57 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
                       () => setShowPlayStyles(!showPlayStyles),
                       true
                     ),
+                },
+                {
+                  label: ":",
+                  tooltip: "",
+                  toggled: true,
+                  onClick: () => {},
+                  isLabelOnly: true,
+                },
+                {
+                  label: "Off",
+                  tooltip: showPlayStyles
+                    ? playStyleConfig.includes("off")
+                      ? "Hide offensive play style breakdowns"
+                      : `Show offensive play style breakdowns`
+                    : "(Select Style to enable)",
+                  toggled: showPlayStyles && playStyleConfig.includes("off"),
+                  onClick: () => {
+                    if (showPlayStyles) {
+                      const newVal = _.thru(playStyleConfig, (curr) => {
+                        if (curr.includes("off"))
+                          return curr.replace("off", "");
+                        else return "off" + curr;
+                      });
+                      friendlyChange(
+                        () => setPlayStyleConfig(newVal),
+                        newVal != playStyleConfig
+                      );
+                    } //(else ignore clicks, style not enabled)
+                  },
+                },
+                {
+                  label: "Def",
+                  tooltip: showPlayStyles
+                    ? playStyleConfig.includes("def")
+                      ? "Hide defensive play style breakdowns"
+                      : `Show defensive play style breakdowns`
+                    : "(Select Style to enable)",
+                  toggled: showPlayStyles && playStyleConfig.includes("def"),
+                  onClick: () => {
+                    if (showPlayStyles) {
+                      const newVal = _.thru(playStyleConfig, (curr) => {
+                        if (curr.includes("def"))
+                          return curr.replace("def", "");
+                        else return curr + "def";
+                      });
+                      friendlyChange(
+                        () => setPlayStyleConfig(newVal),
+                        newVal != playStyleConfig
+                      );
+                    } //(else ignore clicks, style not enabled)
+                  },
                 },
               ],
               showHelp
