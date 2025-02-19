@@ -511,7 +511,9 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
                           defensiveBreakdownB ? " Defense" : ""
                         }`,
                     dataEvent.rosterStatsB,
-                    dataEvent.teamStatsB,
+                    matchupFilterParams.oppoTeam == AvailableTeams.noOpponent
+                      ? dataEvent.teamStatsA //(contains the SoS info needed for adj defense)
+                      : dataEvent.teamStatsB,
                     avgEfficiency,
                     divisionStatsCache,
                     showHelp,
