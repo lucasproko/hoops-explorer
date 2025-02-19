@@ -932,7 +932,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
                   label: "Style",
                   tooltip: showPlayStyles
                     ? "Hide play style breakdowns"
-                    : "Show play style breakdowns (first ${MAX_EXTRA_INFO_IN_ROWS} teams)",
+                    : `Show play style breakdowns (first ${MAX_EXTRA_INFO_IN_ROWS} teams)`,
                   toggled: showPlayStyles,
                   onClick: () =>
                     friendlyChange(
