@@ -20,7 +20,7 @@ import LoadingOverlay from "@ronchalant/react-loading-overlay";
 //@ts-ignore
 import Select from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLink, faPen, faEye } from "@fortawesome/free-solid-svg-icons";
+import { faLink, faClipboard } from "@fortawesome/free-solid-svg-icons";
 import ClipboardJS from "clipboard";
 
 // Component imports
@@ -413,36 +413,37 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
 
   // 2] Processing
 
-  const table = React.useMemo(() => {
-    setLoadingOverride(false);
-
-    const confFilter = (t: { team: string; conf: string }) => {
-      const manualFilterInUse = !_.isEmpty(queryFiltersAsMap);
-      return manualFilterInUse
-        ? !_.isNil(queryFiltersAsMap[t.team])
-        : confs == "" ||
-            confs.indexOf(t.conf) >= 0 ||
-            (confs.indexOf(ConfSelectorConstants.highMajorConfsNick) >= 0 &&
-              ConfSelectorConstants.powerSixConfsStr.indexOf(t.conf) >= 0) ||
-            (confs.indexOf(ConfSelectorConstants.nonHighMajorConfsNick) >= 0 &&
-              ConfSelectorConstants.powerSixConfsStr.indexOf(t.conf) < 0);
-    };
-
-    const teamsPhase1 = _.chain(dataEvent.teams || [])
+  /** Handy util to filter teams by conference */
+  const confFilter = (t: { team: string; conf: string }) => {
+    const manualFilterInUse = !_.isEmpty(queryFiltersAsMap);
+    return manualFilterInUse
+      ? !_.isNil(queryFiltersAsMap[t.team])
+      : confs == "" ||
+          confs.indexOf(t.conf) >= 0 ||
+          (confs.indexOf(ConfSelectorConstants.highMajorConfsNick) >= 0 &&
+            ConfSelectorConstants.powerSixConfsStr.indexOf(t.conf) >= 0) ||
+          (confs.indexOf(ConfSelectorConstants.nonHighMajorConfsNick) >= 0 &&
+            ConfSelectorConstants.powerSixConfsStr.indexOf(t.conf) < 0);
+  };
+  /** Builds a list of JSON objects with basic filtering, subsequent phases render */
+  const phase1Processing = (teams: any[], applyConfFilter: boolean = true) => {
+    return _.chain(teams)
       .map((team, teamIndex) => {
         const confNick = ConferenceToNickname[team.conf || ""] || "???";
-        const { wab, wins, losses } = _.transform(
+        const { wab, wae, wins, losses } = _.transform(
           team.opponents || [],
           (acc, game) => {
             const isWin = (game.team_scored || 0) >= (game.oppo_scored || 0);
             acc.wab += isWin ? game.wab || 0 : (game.wab || 0) - 1;
+            acc.wab += isWin ? game.wae || 0 : (game.wae || 0) - 1;
             acc.wins += isWin ? 1 : 0;
             acc.losses += isWin ? 0 : 1;
           },
-          { wab: 0.0, wins: 0, losses: 0 }
+          { wab: 0.0, wae: 0.0, wins: 0, losses: 0 }
         );
         team.conf_nick = confNick;
         team.wab = wab;
+        team.wae = wae;
         team.wins = wins;
         team.losses = losses;
 
@@ -453,6 +454,12 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         //  adjustForLuck is hard-coded to false but need to do it here so the correct value
         //  is used in the sort/filter and exp. WAB)
         LuckUtils.injectLuck(team, undefined, undefined);
+
+        // this is a bit horrible but this field gets overwritten by some React node for visual
+        // purposes, so we re-create it here every time for sorting / filtering / clipboard
+        team.off_raw_net = {
+          value: (team.off_ppp?.value || 100) - (team.def_ppp?.value || 100),
+        };
 
         const expWinPctVsBubble = TeamEvalUtils.calcWinsAbove(
           team.off_adj_ppp?.value || 100,
@@ -469,10 +476,12 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         return team;
       })
       .filter((team) => {
-        return confFilter({
-          team: team.team_name,
-          conf: team.conf_nick || "???",
-        });
+        return applyConfFilter
+          ? confFilter({
+              team: team.team_name,
+              conf: team.conf_nick || "???",
+            })
+          : true;
       })
       .sortBy((team) => {
         if (manualFilterSelected) {
@@ -482,20 +491,52 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         }
       })
       .value();
+  };
 
-    //TODO: key this off dropdown
-    // AdvancedFilterUtils.generateTeamExplorerCsv(
-    //   teamsPhase1,
-    //   showGrades
-    //     ? (year: string) =>
-    //         GradeTableUtils.pickDivisonStats(
-    //           divisionStatsCache,
-    //           year,
-    //           gender,
-    //           showGrades
-    //         )
-    //     : undefined
-    // );
+  // 2.1 Export
+
+  const buildExportStr = (filtered: boolean): string => {
+    const teamsPhase1 = phase1Processing(dataEvent.teams || [], filtered);
+    const finalData = _.thru(teamsPhase1, (phase1) => {
+      const [teamsPhase2, tmpAvancedFilterError] =
+        advancedFilterStr.length > 0 && filtered
+          ? AdvancedFilterUtils.applyTeamExplorerFilter(
+              phase1,
+              advancedFilterStr,
+              (year: string) =>
+                GradeTableUtils.pickDivisonStats(
+                  divisionStatsCache,
+                  year,
+                  gender,
+                  showGrades
+                )
+            )
+          : [phase1, undefined];
+
+      return teamsPhase2;
+    });
+
+    const [header, dataRows] = AdvancedFilterUtils.generateTeamExplorerCsv(
+      finalData,
+      showGrades
+        ? (year: string) =>
+            GradeTableUtils.pickDivisonStats(
+              divisionStatsCache,
+              year,
+              gender,
+              showGrades
+            )
+        : undefined
+    );
+
+    return [header].concat(dataRows).join("\n");
+  };
+
+  // 2.2 Display
+
+  const table = React.useMemo(() => {
+    setLoadingOverride(false);
+    const teamsPhase1 = phase1Processing(dataEvent.teams || []);
 
     const [teamsPhase2, tmpAvancedFilterError] =
       advancedFilterStr.length > 0
@@ -706,7 +747,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       <OverlayTrigger placement="auto" overlay={tooltip}>
         <Button
           className="float-left"
-          id={`copyLink_teamExplorerStatsTable`}
+          id={`copyLink_teamStatsExplorer`}
           variant="outline-secondary"
           size="sm"
         >
@@ -809,7 +850,34 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           {getCopyLinkButton()}
         </Col>
         <Col lg={1} className="mt-1">
-          <GenericTogglingMenu></GenericTogglingMenu>
+          <GenericTogglingMenu>
+            <GenericTogglingMenuItem
+              text={
+                <span>
+                  <FontAwesomeIcon icon={faClipboard} />
+                  {"  "}Export all teams to CSV
+                </span>
+              }
+              truthVal={false}
+              onSelect={() => {
+                //TODO: need some fancy overlay / async
+                navigator.clipboard.writeText(buildExportStr(false));
+              }}
+            />
+            <GenericTogglingMenuItem
+              text={
+                <span>
+                  <FontAwesomeIcon icon={faClipboard} />
+                  {"  "}Export filtered teams to CSV
+                </span>
+              }
+              truthVal={false}
+              onSelect={() => {
+                //TODO: need some fancy overlay / async
+                navigator.clipboard.writeText(buildExportStr(true));
+              }}
+            />
+          </GenericTogglingMenu>
         </Col>
       </Form.Group>
       <Row>

@@ -227,17 +227,44 @@ export class AdvancedFilterUtils {
     "def_style_transition_ppp",
   ];
 
+  /** Some fields don't have ranks because I decided they weren't worth the mem usage: */
+  static hasRank(field: string): boolean {
+    const missingRank =
+      _.endsWith(field, "_ast_mid") ||
+      _.endsWith(field, "_twop_ast") ||
+      _.endsWith(field, "_twopmid_ast") ||
+      _.endsWith(field, "_scramble_efg") ||
+      _.endsWith(field, "_scramble_threep_ast") ||
+      _.endsWith(field, "_scramble_twopmid_ast") ||
+      _.endsWith(field, "_scramble_twoprim") ||
+      _.endsWith(field, "_scramble_twoprim_ast") ||
+      _.endsWith(field, "_scramble_twopmid") ||
+      _.endsWith(field, "_scramble_twoprimr") ||
+      _.endsWith(field, "_scramble_twopmidr") ||
+      _.endsWith(field, "_scramble_assist") ||
+      _.endsWith(field, "_trans_efg") ||
+      _.endsWith(field, "_trans_threep_ast") ||
+      _.endsWith(field, "_trans_twopmid_ast") ||
+      _.endsWith(field, "_trans_twoprim") ||
+      _.endsWith(field, "_trans_twoprim_ast") ||
+      _.endsWith(field, "_trans_twopmid") ||
+      _.endsWith(field, "_trans_twoprimr") ||
+      _.endsWith(field, "_trans_twopmidr") ||
+      _.endsWith(field, "_trans_assist") ||
+      _.endsWith(field, "_ft");
+    return !missingRank;
+  }
   static readonly teamExplorerAutocomplete = AdvancedFilterUtils.operators
     .concat(AdvancedFilterUtils.teamExplorerMetadata)
     .concat(
       _.flatten([
         AdvancedFilterUtils.teamExplorerGradedStats,
-        AdvancedFilterUtils.teamExplorerGradedStats.map(
-          (field) => `rank_${field}`
-        ),
-        AdvancedFilterUtils.teamExplorerGradedStats.map(
-          (field) => `pctile_${field}`
-        ),
+        AdvancedFilterUtils.teamExplorerGradedStats
+          .filter(AdvancedFilterUtils.hasRank)
+          .map((field) => `rank_${field}`),
+        AdvancedFilterUtils.teamExplorerGradedStats
+          .filter(AdvancedFilterUtils.hasRank)
+          .map((field) => `pctile_${field}`),
       ])
     );
 
@@ -537,7 +564,7 @@ export class AdvancedFilterUtils {
       .replace(/((?:off|def)_[0-9a-zA-Z_]+)/g, "$.p.$1?.value")
       .replace(/adj_net/g, "$.p.off_net?.value")
       .replace(/raw_net/g, "$.p.off_raw_net?.value")
-      .replace(/((?:off|def)_(?:scramble|trans))_pct/, "$1")
+      .replace(/((?:off|def)_(?:scramble|trans))_pct/g, "$1")
       .replace(/(^| |[(!*+/-])(adj_[0-9a-zA-Z_]+)/g, "$1$.$2")
       .replace(/(off|def)_reb/g, "$1_orb"); //(nicer version of rebound name)
   }
@@ -650,9 +677,11 @@ export class AdvancedFilterUtils {
       //   console.log(
       //     `fields [${filterStr}]: [${pctileFields}][${stylePctileFields}][${rankFields}][${styleRankFields}]`
       //   );
-      //   // console.log(
-      //   //   `extra: [${JSON.stringify(p.style)}][${JSON.stringify(p.style_def)}]`
-      //   // );
+      //   console.log(
+      //     `extra: [${JSON.stringify(p.off_raw_net)}][${JSON.stringify(
+      //       p.style_def
+      //     )}]`
+      //   );
       //   console.log(`pctile result: ${JSON.stringify(retVal.pctile)}`);
       //   console.log(`rank result: ${JSON.stringify(retVal.rank)}`);
       // }

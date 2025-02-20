@@ -649,7 +649,7 @@ export class GradeUtils {
     //(hack to fix field naming funkiness)
     divStats.tier_lut.off_raw_net = divStats.tier_lut.def_net;
 
-    return GradeUtils.buildPercentiles(
+    const retVal = GradeUtils.buildPercentiles(
       divStats,
       team,
       offDefFieldList,
@@ -657,6 +657,7 @@ export class GradeUtils {
       supportRank,
       buildLutMissCache
     );
+    return retVal;
   };
 
   /** Play style stats are most usefully consumed as percentiles - this builds the %iles */
