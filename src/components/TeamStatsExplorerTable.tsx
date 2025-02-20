@@ -20,7 +20,11 @@ import LoadingOverlay from "@ronchalant/react-loading-overlay";
 //@ts-ignore
 import Select from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLink, faClipboard } from "@fortawesome/free-solid-svg-icons";
+import {
+  faLink,
+  faClipboard,
+  faDownload,
+} from "@fortawesome/free-solid-svg-icons";
 import ClipboardJS from "clipboard";
 
 // Component imports
@@ -867,6 +871,29 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
             <GenericTogglingMenuItem
               text={
                 <span>
+                  <FontAwesomeIcon icon={faDownload} />
+                  {"  "}Export all teams to CSV
+                </span>
+              }
+              truthVal={false}
+              onSelect={() => {
+                //TODO: need some fancy overlay / async
+                const blob = new Blob([buildExportStr(false)], {
+                  type: "text/plain",
+                });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement("a");
+                link.href = url;
+                link.download = "all_team_explorer_stats.csv";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+              }}
+            />
+            <GenericTogglingMenuItem
+              text={
+                <span>
                   <FontAwesomeIcon icon={faClipboard} />
                   {"  "}Export filtered teams to CSV
                 </span>
@@ -877,6 +904,29 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
                 navigator.clipboard.writeText(buildExportStr(true));
               }}
             />
+            <GenericTogglingMenuItem
+              text={
+                <span>
+                  <FontAwesomeIcon icon={faDownload} />
+                  {"  "}Export filtered teams to CSV
+                </span>
+              }
+              truthVal={false}
+              onSelect={() => {
+                //TODO: need some fancy overlay / async
+                const blob = new Blob([buildExportStr(true)], {
+                  type: "text/plain",
+                });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement("a");
+                link.href = url;
+                link.download = "filtered_team_explorer_stats.csv";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+              }}
+            />{" "}
           </GenericTogglingMenu>
         </Col>
       </Form.Group>
