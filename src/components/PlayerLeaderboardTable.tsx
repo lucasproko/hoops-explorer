@@ -2165,7 +2165,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 value={advancedFilterStr}
                 error={advancedFilterError}
                 autocomplete={
-                  AdvancedFilterUtils.playerLboardWithTeamStatsAutcomplete
+                  AdvancedFilterUtils.playerLboardWithTeamStatsAutocomplete
                 }
                 richTextReplacements={playerLeaderboardRichTextReplacements}
                 callback={(newVal: string) =>

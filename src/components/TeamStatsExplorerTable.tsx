@@ -483,6 +483,20 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       })
       .value();
 
+    //TODO: key this off dropdown
+    // AdvancedFilterUtils.generateTeamExplorerCsv(
+    //   teamsPhase1,
+    //   showGrades
+    //     ? (year: string) =>
+    //         GradeTableUtils.pickDivisonStats(
+    //           divisionStatsCache,
+    //           year,
+    //           gender,
+    //           showGrades
+    //         )
+    //     : undefined
+    // );
+
     const [teamsPhase2, tmpAvancedFilterError] =
       advancedFilterStr.length > 0
         ? AdvancedFilterUtils.applyTeamExplorerFilter(

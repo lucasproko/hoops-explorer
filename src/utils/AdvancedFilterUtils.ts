@@ -25,6 +25,21 @@ export class AdvancedFilterUtils {
 
   static readonly operatorsSet = new Set<string>(AdvancedFilterUtils.operators);
 
+  static readonly teamExplorerMetadata = [
+    // Basic metadata:
+    "team_name",
+    "conf",
+    "conf_nick",
+    "year",
+    "wins",
+    "losses",
+
+    // Advanced metadata:
+    "wab",
+    "wae",
+    "exp_wab",
+    "power",
+  ];
   static readonly teamExplorerGradedStats = [
     // Efficiency:
     "off_adj_ppp",
@@ -213,6 +228,7 @@ export class AdvancedFilterUtils {
   ];
 
   static readonly teamExplorerAutocomplete = AdvancedFilterUtils.operators
+    .concat(AdvancedFilterUtils.teamExplorerMetadata)
     .concat(
       _.flatten([
         AdvancedFilterUtils.teamExplorerGradedStats,
@@ -223,22 +239,7 @@ export class AdvancedFilterUtils {
           (field) => `pctile_${field}`
         ),
       ])
-    )
-    .concat([
-      // Basic metadata:
-      "team_name",
-      "conf",
-      "conf_nick",
-      "year",
-      "wins",
-      "losses",
-
-      // Advanced metadata:
-      "wab",
-      "wae",
-      "exp_wab",
-      "power",
-    ]);
+    );
 
   /** Auto-complete names to data model mapping */
   static readonly styleFromAutocompleteLut: Record<string, string> = {
@@ -398,7 +399,7 @@ export class AdvancedFilterUtils {
       "hs_region_dmv",
     ]);
 
-  static readonly playerLboardWithTeamStatsAutcomplete =
+  static readonly playerLboardWithTeamStatsAutocomplete =
     AdvancedFilterUtils.playerLeaderBoardAutocomplete.concat(
       AdvancedFilterUtils.teamExplorerAutocomplete
         .filter(
@@ -611,13 +612,11 @@ export class AdvancedFilterUtils {
       _.trim,
     ])(s, multiYear);
 
-  /** Builds a where/orderBy chain by interpreting the string either side of SORT_BY */
-  static applyTeamExplorerFilter(
-    inData: any[],
+  /** A common accessor for both Linq filter/sort and CSV building */
+  private static buildTeamExplorerRows(
     filterStr: string,
-    divStats: (year: string) => DivisionStatistics | undefined,
-    extraParams: Record<string, string> = {}
-  ): [any[], string | undefined] {
+    divStats: (year: string) => DivisionStatistics | undefined
+  ): (p: any, index: number) => any {
     /** Field manipulation to list the field info for which I need to calc rank/%ile */
     const [rankFields, styleRankFields] = AdvancedFilterUtils.buildGradeQueries(
       filterStr,
@@ -626,6 +625,49 @@ export class AdvancedFilterUtils {
     const [pctileFields, stylePctileFields] =
       AdvancedFilterUtils.buildGradeQueries(filterStr, "pctile");
 
+    return (p: any, index: number) => {
+      const divStatsForYear = divStats ? divStats(p.year) : undefined;
+      p.style_def = p.def_style; // (ugly, need def_style to not collide with other def_* fields)
+      const retVal: any = {
+        p,
+        pctile: AdvancedFilterUtils.buildGrades(
+          p,
+          divStatsForYear,
+          pctileFields,
+          stylePctileFields,
+          false
+        ),
+        rank: AdvancedFilterUtils.buildGrades(
+          p,
+          divStatsForYear,
+          rankFields,
+          styleRankFields,
+          true
+        ),
+      };
+      //More debugging:
+      // if (index < 10 && retVal) {
+      //   console.log(
+      //     `fields [${filterStr}]: [${pctileFields}][${stylePctileFields}][${rankFields}][${styleRankFields}]`
+      //   );
+      //   // console.log(
+      //   //   `extra: [${JSON.stringify(p.style)}][${JSON.stringify(p.style_def)}]`
+      //   // );
+      //   console.log(`pctile result: ${JSON.stringify(retVal.pctile)}`);
+      //   console.log(`rank result: ${JSON.stringify(retVal.rank)}`);
+      // }
+
+      return retVal;
+    };
+  }
+
+  /** Builds a where/orderBy chain by interpreting the string either side of SORT_BY */
+  static applyTeamExplorerFilter(
+    inData: any[],
+    filterStr: string,
+    divStats: (year: string) => DivisionStatistics | undefined,
+    extraParams: Record<string, string> = {}
+  ): [any[], string | undefined] {
     // Ranking / Pctile debug
     // console.log(`rank: ${JSON.stringify(rankFields)}`);
     // console.log(`style rank: ${JSON.stringify(styleRankFields)}`);
@@ -638,42 +680,7 @@ export class AdvancedFilterUtils {
       extraParams,
       false, //(multi-year ... not supported for teams)
       AdvancedFilterUtils.tidyTeamExplorerClauses,
-      (p: any, index: number) => {
-        const divStatsForYear = divStats ? divStats(p.year) : undefined;
-        p.style_def = p.def_style; // (ugly, need def_style to not collide with other def_* fields)
-        const retVal: any = {
-          p,
-          pctile: AdvancedFilterUtils.buildGrades(
-            p,
-            divStatsForYear,
-            pctileFields,
-            stylePctileFields,
-            false
-          ),
-          rank: AdvancedFilterUtils.buildGrades(
-            p,
-            divStatsForYear,
-            rankFields,
-            styleRankFields,
-            true
-          ),
-        };
-        // More debugging:
-        // if (index < 10 && retVal) {
-        //   console.log(
-        //     `fields: [${pctileFields}][${stylePctileFields}][${rankFields}][${styleRankFields}]`
-        //   );
-        //   console.log(
-        //     `extra: [${JSON.stringify(p.style)}][${JSON.stringify(
-        //       p.style_def
-        //     )}]`
-        //   );
-        //   console.log(`pctile result: ${JSON.stringify(retVal.pctile)}`);
-        //   console.log(`rank result: ${JSON.stringify(retVal.rank)}`);
-        // }
-
-        return retVal;
-      }
+      AdvancedFilterUtils.buildTeamExplorerRows(filterStr, divStats)
     );
   }
 
@@ -872,6 +879,48 @@ export class AdvancedFilterUtils {
       }
     }
   }
+
+  ////////////////////////////////////////////////////////////
+
+  // CSV export logic:
+
+  static generateTeamExplorerCsv = (
+    inData: any[],
+    divStats?: (year: string) => DivisionStatistics | undefined,
+    extraParams?: Record<string, string>
+  ): [string, string[]] => {
+    const headerFields = divStats
+      ? _.drop(
+          AdvancedFilterUtils.teamExplorerAutocomplete,
+          AdvancedFilterUtils.operators.length
+        )
+      : AdvancedFilterUtils.teamExplorerMetadata.concat(
+          AdvancedFilterUtils.teamExplorerGradedStats
+        );
+
+    const rawExpressionString = headerFields.join(" , ");
+    const expressionString = AdvancedFilterUtils.tidyTeamExplorerClauses(
+      `JSON.stringify([${rawExpressionString}])`,
+      false
+    );
+
+    const divStatsWithFallback = divStats || ((y: string) => undefined);
+    const rowBuilder = AdvancedFilterUtils.buildTeamExplorerRows(
+      rawExpressionString,
+      divStatsWithFallback
+    );
+    const enumData = Enumerable.from(inData.map(rowBuilder));
+    const results = enumData
+      .select(expressionString as unknown as TypeScriptWorkaround2)
+      .toArray() as string[];
+
+    return [
+      headerFields.join(","),
+      results.map((r) => r.substring(1, r.length - 1)),
+    ];
+  };
+
+  ////////////////////////////////////////////////////////////
 
   // Grade query logic:
 
