@@ -864,8 +864,10 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
               }
               truthVal={false}
               onSelect={() => {
-                //TODO: need some fancy overlay / async
-                navigator.clipboard.writeText(buildExportStr(false));
+                friendlyChange(() => {
+                  navigator.clipboard.writeText(buildExportStr(false));
+                  setLoadingOverride(false);
+                }, true);
               }}
             />
             <GenericTogglingMenuItem
@@ -877,18 +879,20 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
               }
               truthVal={false}
               onSelect={() => {
-                //TODO: need some fancy overlay / async
-                const blob = new Blob([buildExportStr(false)], {
-                  type: "text/plain",
-                });
-                const url = URL.createObjectURL(blob);
-                const link = document.createElement("a");
-                link.href = url;
-                link.download = "all_team_explorer_stats.csv";
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                URL.revokeObjectURL(url);
+                friendlyChange(() => {
+                  const blob = new Blob([buildExportStr(false)], {
+                    type: "text/plain",
+                  });
+                  const url = URL.createObjectURL(blob);
+                  const link = document.createElement("a");
+                  link.href = url;
+                  link.download = "all_team_explorer_stats.csv";
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                  URL.revokeObjectURL(url);
+                  setLoadingOverride(false);
+                }, true);
               }}
             />
             <GenericTogglingMenuItem
@@ -900,8 +904,10 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
               }
               truthVal={false}
               onSelect={() => {
-                //TODO: need some fancy overlay / async
-                navigator.clipboard.writeText(buildExportStr(true));
+                friendlyChange(() => {
+                  navigator.clipboard.writeText(buildExportStr(true));
+                  setLoadingOverride(false);
+                }, true);
               }}
             />
             <GenericTogglingMenuItem
@@ -913,18 +919,20 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
               }
               truthVal={false}
               onSelect={() => {
-                //TODO: need some fancy overlay / async
-                const blob = new Blob([buildExportStr(true)], {
-                  type: "text/plain",
-                });
-                const url = URL.createObjectURL(blob);
-                const link = document.createElement("a");
-                link.href = url;
-                link.download = "filtered_team_explorer_stats.csv";
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                URL.revokeObjectURL(url);
+                friendlyChange(() => {
+                  const blob = new Blob([buildExportStr(true)], {
+                    type: "text/plain",
+                  });
+                  const url = URL.createObjectURL(blob);
+                  const link = document.createElement("a");
+                  link.href = url;
+                  link.download = "filtered_team_explorer_stats.csv";
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                  URL.revokeObjectURL(url);
+                  setLoadingOverride(false);
+                }, true);
               }}
             />{" "}
           </GenericTogglingMenu>
