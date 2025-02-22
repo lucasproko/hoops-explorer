@@ -21,7 +21,12 @@ import LoadingOverlay from "@ronchalant/react-loading-overlay";
 // @ts-ignore
 import Select, { components } from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLink, faFilter } from "@fortawesome/free-solid-svg-icons";
+import {
+  faLink,
+  faFilter,
+  faClipboard,
+  faDownload,
+} from "@fortawesome/free-solid-svg-icons";
 import ClipboardJS from "clipboard";
 
 // Component imports
@@ -704,11 +709,11 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     )} ${usefulFormatBuilder(player.code || "")}`;
   };
 
-  /** Only rebuild the expensive table if one of the parameters that controls it changes */
-  const { table, maybeMap } = React.useMemo(() => {
-    setLoadingOverride(false); //(rendering)
-    setGeoLoadingOverride(false); //(rendering)
-
+  /** Builds a list of JSON objects with basic filtering, subsequent phases render */
+  const phase1Processing = (
+    dataEventPlayers: any[],
+    applyMiscFilters: boolean = true
+  ): { playersPhase1: any[]; isFiltered: boolean | undefined } => {
     const specialCases = {
       P6: Power6Conferences,
       MM: NonP6Conferences,
@@ -731,19 +736,20 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           )
         )
       : undefined;
-    const dataEventPlayers = dataEvent?.players || [];
 
     //TODO: make this a % or an int?
     // Filter and limit players part 1/2
     const minPossNum = parseInt(minPoss) || 0;
-    const confDataEventPlayers = dataEventPlayers.filter((player) => {
-      return (
-        (!confSet || confSet.has(player.conf || "Unknown")) &&
-        (!posClassSet || posClassSet.has(player.posClass || "Unknown")) &&
-        player.off_team_poss?.value >= minPossNum
-      );
-      //(we do the "spurious" minPossNum check so we can detect filter presence and use to add a ranking)
-    });
+    const confDataEventPlayers = applyMiscFilters
+      ? dataEventPlayers.filter((player) => {
+          return (
+            (!confSet || confSet.has(player.conf || "Unknown")) &&
+            (!posClassSet || posClassSet.has(player.posClass || "Unknown")) &&
+            player.off_team_poss?.value >= minPossNum
+          );
+          //(we do the "spurious" minPossNum check so we can detect filter presence and use to add a ranking)
+        })
+      : dataEventPlayers;
 
     /** These hacks aren't too unpleasant since they are only used within this fn and for display */
     var varNoGeoFilters = true;
@@ -834,7 +840,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                   dataEvent.teams[`${player.team}_${player.year || year}`] ||
                   {};
               }
-              return isMatch;
+              return isMatch || !applyMiscFilters;
             })
             .sortBy(
               skipSort
@@ -846,6 +852,67 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                   ]
             )
             .value();
+
+    const isFiltered =
+      (advancedFilterStr.length > 0 && !advancedFilterError) ||
+      confDataEventPlayers.length < dataEventPlayers.length ||
+      (filterStr || "") != "" ||
+      posClasses != "" ||
+      (geoMode && !varNoGeoFilters);
+
+    return { playersPhase1, isFiltered };
+  };
+
+  /** Export teams to string */
+  const buildExportStr = (filtered: boolean): string => {
+    const { playersPhase1, isFiltered } = phase1Processing(
+      dataEvent?.players || [],
+      filtered
+    );
+
+    const [players, tmpAvancedFilterError] =
+      advancedFilterStr.length > 0 && filtered
+        ? AdvancedFilterUtils.applyPlayerFilter(
+            playersPhase1,
+            advancedFilterStr,
+            (year: string) =>
+              GradeTableUtils.pickDivisonStats(
+                divisionStatsCache, //TODO does this want to be the pos cache at some point?
+                year,
+                gender,
+                showGrades
+              ),
+            (year: string) => undefined //(team rank queries not yet supported)
+          )
+        : [playersPhase1, undefined];
+
+    const [header, dataRows] = AdvancedFilterUtils.generatePlayerLeaderboardCsv(
+      players,
+      showGrades
+        ? (year: string) =>
+            GradeTableUtils.pickDivisonStats(
+              divisionStatsCache,
+              year,
+              gender,
+              showGrades
+            )
+        : undefined
+    );
+
+    return [header].concat(dataRows).join("\n");
+  };
+
+  /** Only rebuild the expensive table if one of the parameters that controls it changes */
+  const { table, maybeMap } = React.useMemo(() => {
+    setLoadingOverride(false); //(rendering)
+    setGeoLoadingOverride(false); //(rendering)
+
+    // Marshalling of player object
+
+    const { playersPhase1, isFiltered } = phase1Processing(
+      dataEvent?.players || [],
+      true
+    );
 
     const [players, tmpAvancedFilterError] =
       advancedFilterStr.length > 0
@@ -866,6 +933,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     if (advancedFilterStr.length > 0)
       setAdvancedFilterError(tmpAvancedFilterError);
 
+    // Rendering:
+
     const usefulSortCombo = useRapm
       ? factorMins
         ? sortBy != "desc:diff_adj_rapm_prod" &&
@@ -881,13 +950,6 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       : sortBy != "desc:diff_adj_rtg" &&
         sortBy != "desc:off_adj_rtg" &&
         sortBy != "asc:def_adj_rtg";
-
-    const isFiltered =
-      (advancedFilterStr.length > 0 && !advancedFilterError) ||
-      confDataEventPlayers.length < dataEventPlayers.length ||
-      (filterStr || "") != "" ||
-      posClasses != "" ||
-      (geoMode && !varNoGeoFilters);
 
     /** Either the sort is not one of the 3 pre-calced, or there is a filter */
     const isGeneralSortOrFilter =
@@ -2154,6 +2216,87 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                   )
                 }
               />
+              <Dropdown.Divider />
+              <GenericTogglingMenuItem
+                text={
+                  <span>
+                    <FontAwesomeIcon icon={faClipboard} />
+                    {"  "}Export all players to CSV
+                  </span>
+                }
+                truthVal={false}
+                onSelect={() => {
+                  friendlyChange(() => {
+                    navigator.clipboard.writeText(buildExportStr(false));
+                    setLoadingOverride(false);
+                  }, true);
+                }}
+              />
+              <GenericTogglingMenuItem
+                text={
+                  <span>
+                    <FontAwesomeIcon icon={faDownload} />
+                    {"  "}Export all players to CSV
+                  </span>
+                }
+                truthVal={false}
+                onSelect={() => {
+                  friendlyChange(() => {
+                    const blob = new Blob([buildExportStr(false)], {
+                      type: "text/plain",
+                    });
+                    const url = URL.createObjectURL(blob);
+                    const link = document.createElement("a");
+                    link.href = url;
+                    link.download = "all_team_explorer_stats.csv";
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    URL.revokeObjectURL(url);
+                    setLoadingOverride(false);
+                  }, true);
+                }}
+              />
+              <GenericTogglingMenuItem
+                text={
+                  <span>
+                    <FontAwesomeIcon icon={faClipboard} />
+                    {"  "}Export filtered players to CSV
+                  </span>
+                }
+                truthVal={false}
+                onSelect={() => {
+                  friendlyChange(() => {
+                    navigator.clipboard.writeText(buildExportStr(true));
+                    setLoadingOverride(false);
+                  }, true);
+                }}
+              />
+              <GenericTogglingMenuItem
+                text={
+                  <span>
+                    <FontAwesomeIcon icon={faDownload} />
+                    {"  "}Export filtered players to CSV
+                  </span>
+                }
+                truthVal={false}
+                onSelect={() => {
+                  friendlyChange(() => {
+                    const blob = new Blob([buildExportStr(true)], {
+                      type: "text/plain",
+                    });
+                    const url = URL.createObjectURL(blob);
+                    const link = document.createElement("a");
+                    link.href = url;
+                    link.download = "filtered_team_explorer_stats.csv";
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    URL.revokeObjectURL(url);
+                    setLoadingOverride(false);
+                  }, true);
+                }}
+              />{" "}
             </GenericTogglingMenu>
           </Form.Group>
         </Form.Row>

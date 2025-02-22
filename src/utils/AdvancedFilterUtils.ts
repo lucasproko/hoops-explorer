@@ -713,15 +713,10 @@ export class AdvancedFilterUtils {
     );
   }
 
-  /** Builds a where/orderBy chain by interpreting the string either side of SORT_BY */
-  static applyPlayerFilter(
-    inData: any[],
-    filterStr: string,
-    playerDivStats: (year: string) => DivisionStatistics | undefined,
-    teamDivStats: (year: string) => DivisionStatistics | undefined,
-    extraParams: Record<string, string> = {},
-    multiYear: boolean = false
-  ): [any[], string | undefined] {
+  /** A common accessor for both Linq filter/sort and CSV building */
+  private static buildPlayerRows(
+    multiYear: boolean
+  ): (p: any, index: number) => any {
     const buildSingleYearRetVal = (p: any, index: number) => {
       const retVal = {
         p: p,
@@ -784,13 +779,25 @@ export class AdvancedFilterUtils {
         : buildSingleYearRetVal(p, index);
     };
 
+    return buildRetVal;
+  }
+
+  /** Builds a where/orderBy chain by interpreting the string either side of SORT_BY */
+  static applyPlayerFilter(
+    inData: any[],
+    filterStr: string,
+    playerDivStats: (year: string) => DivisionStatistics | undefined,
+    teamDivStats: (year: string) => DivisionStatistics | undefined,
+    extraParams: Record<string, string> = {},
+    multiYear: boolean = false
+  ): [any[], string | undefined] {
     return AdvancedFilterUtils.applyFilter(
       inData,
       filterStr,
       extraParams,
       multiYear,
       AdvancedFilterUtils.tidyPlayerClauses,
-      buildRetVal
+      AdvancedFilterUtils.buildPlayerRows(multiYear)
     );
   }
 
@@ -913,10 +920,10 @@ export class AdvancedFilterUtils {
 
   // CSV export logic:
 
+  /** Team explorer CSV logic */
   static generateTeamExplorerCsv = (
     inData: any[],
-    divStats?: (year: string) => DivisionStatistics | undefined,
-    extraParams?: Record<string, string>
+    divStats?: (year: string) => DivisionStatistics | undefined
   ): [string, string[]] => {
     const headerFields = divStats
       ? _.drop(
@@ -929,7 +936,7 @@ export class AdvancedFilterUtils {
 
     const rawExpressionString = headerFields.join(" , ");
     const expressionString = AdvancedFilterUtils.tidyTeamExplorerClauses(
-      `JSON.stringify([${rawExpressionString}])`,
+      `JSON.stringify([ ${rawExpressionString} ])`,
       false
     );
 
@@ -938,6 +945,44 @@ export class AdvancedFilterUtils {
       rawExpressionString,
       divStatsWithFallback
     );
+    const enumData = Enumerable.from(inData.map(rowBuilder));
+    const results = enumData
+      .select(expressionString as unknown as TypeScriptWorkaround2)
+      .toArray() as string[];
+
+    return [
+      headerFields.join(","),
+      results.map((r) => r.substring(1, r.length - 1)),
+    ];
+  };
+
+  /** Player leaderboard CSV logic */
+  static generatePlayerLeaderboardCsv = (
+    inData: any[],
+    playerDivStats?: (year: string) => DivisionStatistics | undefined
+  ): [string, string[]] => {
+    const posGroups = ["_PG_", "_SG_", "_SF_", "_PF_", "_C_"];
+    const headerFields = _.drop(
+      AdvancedFilterUtils.playerLeaderBoardAutocomplete,
+      AdvancedFilterUtils.operators.length
+    )
+      .filter(
+        (field) =>
+          !_.startsWith(field, "hs_region") &&
+          field != "posConfidences" &&
+          field != "posFreqs"
+      ) //(expand these into their arrays)
+      .concat(posGroups.map((pos) => `posConfidences[${pos}]`))
+      .concat(posGroups.map((pos) => `posFreqs[${pos}]`));
+
+    const rawExpressionString = headerFields.join(" , ");
+    const expressionString = AdvancedFilterUtils.tidyPlayerClauses(
+      `JSON.stringify([ ${rawExpressionString} ])`,
+      false
+    );
+
+    const divStatsWithFallback = playerDivStats || ((y: string) => undefined);
+    const rowBuilder = AdvancedFilterUtils.buildPlayerRows(false);
     const enumData = Enumerable.from(inData.map(rowBuilder));
     const results = enumData
       .select(expressionString as unknown as TypeScriptWorkaround2)

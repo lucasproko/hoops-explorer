@@ -499,6 +499,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
 
   // 2.1 Export
 
+  /** Export teams to string */
   const buildExportStr = (filtered: boolean): string => {
     const teamsPhase1 = phase1Processing(dataEvent.teams || [], filtered);
     const finalData = _.thru(teamsPhase1, (phase1) => {
