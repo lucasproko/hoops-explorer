@@ -500,6 +500,7 @@ export class AdvancedFilterUtils {
         }
       )
       .replace(/(^| |[(!*+/-])(adj_[0-9a-zA-Z_]+)/g, "$1$.$2")
+      .replace(/((?:off|def)_[a-z_]+_rank)[?][.]value/g, "$1") //(off|def_..._rank is just a number not a Statistic)
       .replace(/roster[.]height/g, "$.normht")
       .replace(/transfer_(src|dest)/g, "$.transfer_$1")
       .replace(/player_(name|code)/g, "$.player_$1")
@@ -980,6 +981,9 @@ export class AdvancedFilterUtils {
       `JSON.stringify([ ${rawExpressionString} ])`,
       false
     );
+
+    //DEBUG
+    //console.log(`expressionString: ${expressionString}`);
 
     const divStatsWithFallback = playerDivStats || ((y: string) => undefined);
     const rowBuilder = AdvancedFilterUtils.buildPlayerRows(false);
