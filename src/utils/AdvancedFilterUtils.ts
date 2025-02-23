@@ -578,6 +578,8 @@ export class AdvancedFilterUtils {
   static gradeConvert(s: string) {
     return (
       s
+        .replace(/rank_[$][.]p[.]team_stats[.]/g, "$.rank_team_stats.")
+        .replace(/pctile_[$][.]p[.]team_stats[.]/g, "$.pctile_team_stats.")
         .replace(/rank_[$][.]p[.]/g, "$.rank.")
         .replace(/pctile_[$][.]p[.]/g, "$.pctile.")
         // Special cases where for some reason the underlying value is transformed by *100 (but the grade is on the original)
@@ -659,10 +661,11 @@ export class AdvancedFilterUtils {
     /** Field manipulation to list the field info for which I need to calc rank/%ile */
     const [rankFields, styleRankFields] = AdvancedFilterUtils.buildGradeQueries(
       filterStr,
-      "rank"
+      "rank_",
+      false
     );
     const [pctileFields, stylePctileFields] =
-      AdvancedFilterUtils.buildGradeQueries(filterStr, "pctile");
+      AdvancedFilterUtils.buildGradeQueries(filterStr, "pctile_", false);
 
     return (p: any, index: number) => {
       const divStatsForYear = divStats ? divStats(p.year) : undefined;
@@ -735,14 +738,36 @@ export class AdvancedFilterUtils {
     /** Field manipulation to list the field info for which I need to calc rank/%ile */
     const [rankFields, styleRankFields] = AdvancedFilterUtils.buildGradeQueries(
       filterStr,
-      "rank"
+      "rank_",
+      true
     );
+    const [teamRankFields, teamStyleRankFields] =
+      AdvancedFilterUtils.buildGradeQueries(
+        filterStr,
+        "rank_team_stats[.]",
+        true
+      );
     const [pctileFields, stylePctileFields] =
-      AdvancedFilterUtils.buildGradeQueries(filterStr, "pctile");
+      AdvancedFilterUtils.buildGradeQueries(filterStr, "pctile_", true);
+    const [teamPctileFields, teamStylePctileFields] =
+      AdvancedFilterUtils.buildGradeQueries(
+        filterStr,
+        "pctile_team_stats[.]",
+        true
+      );
+
+    // DIAG:
+    // console.log(
+    //   `Special case terms (${filterStr}): [${rankFields}][${styleRankFields}][${teamRankFields}][${teamStyleRankFields}]/` +
+    //     `[${pctileFields}][${stylePctileFields}][${teamPctileFields}][${teamStylePctileFields}]`
+    // );
 
     const buildSingleYearRetVal = (p: any, index: number) => {
-      const divStatsForYear = playerDivStats //TODO: should support team ranks when possible
+      const divStatsForYear = playerDivStats
         ? playerDivStats(p.year)
+        : undefined;
+      const teamDivStatsForYear = teamDivStats
+        ? teamDivStats(p.year)
         : undefined;
       const retVal = {
         p: p,
@@ -771,7 +796,7 @@ export class AdvancedFilterUtils {
         adj_rapm_margin_pred:
           (p.off_adj_rapm_pred?.value || 0) - (p.def_adj_rapm_pred?.value || 0),
 
-        // Percentile and rank:
+        // Percentile and rank, including team stats:
         pctile: AdvancedFilterUtils.buildGrades(
           p,
           divStatsForYear,
@@ -784,6 +809,20 @@ export class AdvancedFilterUtils {
           divStatsForYear,
           rankFields,
           styleRankFields,
+          true
+        ),
+        pctile_team_stats: AdvancedFilterUtils.buildGrades(
+          p.team_stats,
+          teamDivStatsForYear,
+          teamPctileFields,
+          teamStylePctileFields,
+          false
+        ),
+        rank_team_stats: AdvancedFilterUtils.buildGrades(
+          p.team_stats,
+          teamDivStatsForYear,
+          teamRankFields,
+          teamStyleRankFields,
           true
         ),
       };
@@ -880,7 +919,11 @@ export class AdvancedFilterUtils {
     const sortingFrags = _.drop(filterFrags, 1);
 
     //DIAG:
-    //console.log(`?Q = ${wherePlusMaybeInsert} SORT_BY: ${sortingFrags.map(s => AdvancedFilterUtils.tidyClauses(s, multiYear))}`);
+    // console.log(
+    //   `?Q = ${wherePlusMaybeInsert} SORT_BY: ${sortingFrags.map((s) =>
+    //     tidyClauses(s, multiYear)
+    //   )}`
+    // );
 
     const sortByFns: Array<EnumToEnum> = sortingFrags.map(
       (sortingFrag, index) => {
@@ -1032,7 +1075,10 @@ export class AdvancedFilterUtils {
       .concat(
         // If the user includes team stats then we'll append these at the end:
         filterStr.match(
-          new RegExp(`team_stats[.](?:off|def|adj|raw)_[a-zA-Z_0-9]+`, "g")
+          new RegExp(
+            `(?:rank_|pctile_)?team_stats[.](?:off|def|adj|raw)_[a-zA-Z_0-9]+`,
+            "g"
+          )
         ) || []
       );
 
@@ -1072,20 +1118,34 @@ export class AdvancedFilterUtils {
   /** Extracts the fields for which rank/pctil need to be calculated */
   private static buildGradeQueries = (
     filterStrIn: string,
-    prefix: string
+    prefix: string,
+    isPlayer: boolean
   ): [string[], string[]] => {
     const allGradeQueries =
       filterStrIn.match(
-        new RegExp(`${prefix}_(?:off|def|adj|raw)_[a-zA-Z_0-9]+`, "g")
+        new RegExp(`${prefix}(?:off|def|adj|raw)_[a-zA-Z_0-9]+`, "g")
       ) || [];
 
-    const gradeFieldsIncStyle = allGradeQueries.map((preField) =>
-      // Converts to the field name in the input object
-      AdvancedFilterUtils.tidyTeamExplorerClauses(
-        preField.substring(prefix == "rank" ? 5 : 7),
-        false
-      ).replace(/[$][.]p[.](?:off_|def_)([a-zA-Z_0-9]+).*/, "$1")
-    );
+    const gradeFieldsIncStyle = isPlayer
+      ? allGradeQueries.map((preField) =>
+          // Converts to the field name in the input object
+          AdvancedFilterUtils.tidyPlayerClauses(
+            preField.substring(_.startsWith(prefix, "rank") ? 5 : 7),
+            false
+          )
+            .replace(/[$][.]p[.](?:off_|def_)([a-zA-Z_0-9]+).*/, "$1")
+            .replace(
+              /[$][.]p[.]team_stats[.](?:off_|def_)([a-zA-Z_0-9]+).*/,
+              "$1"
+            )
+        )
+      : allGradeQueries.map((preField) =>
+          // Converts to the field name in the input object
+          AdvancedFilterUtils.tidyTeamExplorerClauses(
+            preField.substring(_.startsWith(prefix, "rank") ? 5 : 7),
+            false
+          ).replace(/[$][.]p[.](?:off_|def_)([a-zA-Z_0-9]+).*/, "$1")
+        );
 
     //DEBUG
     //console.log(`gradeFieldsIncStyle: ${JSON.stringify(gradeFieldsIncStyle)}`);

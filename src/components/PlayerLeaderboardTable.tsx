@@ -576,6 +576,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   const [divisionStatsCache, setDivisionStatsCache] = useState<
     Record<string, DivisionStatsCache>
   >({});
+  const [teamDivisionStatsCache, setTeamDivisionStatsCache] = useState<
+    Record<string, DivisionStatsCache>
+  >({});
   const [positionalStatsCache, setPositionalStatsCache] = useState<
     Record<string, PositionStatsCache>
   >({});
@@ -608,6 +611,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       yearsToCheck.forEach((yearToCheck) => {
         const currCacheForThisYear = divisionStatsCache[yearToCheck] || {};
         const currPosCacheForThisYear = positionalStatsCache[yearToCheck] || {};
+        const currTeamCacheForThisYear =
+          teamDivisionStatsCache[yearToCheck] || {};
         const yearOrGenderChanged =
           yearToCheck != currCacheForThisYear.year ||
           gender != currCacheForThisYear.gender;
@@ -635,6 +640,29 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               setDivisionStatsRefresh((curr) => curr + 1);
             }
           );
+        }
+        if (_.isEmpty(currTeamCacheForThisYear) || yearOrGenderChanged) {
+          if (
+            advancedFilterStr.includes("rank_team_stats") ||
+            advancedFilterStr.includes("pctile_team_stats")
+          ) {
+            if (!_.isEmpty(currTeamCacheForThisYear)) {
+              setTeamDivisionStatsCache((currCache) => ({
+                ...currCache,
+                [yearToCheck]: {},
+              })); //unset if set
+            }
+            GradeTableUtils.populateTeamDivisionStatsCache(
+              { year: yearToCheck, gender },
+              (newCache) => {
+                setTeamDivisionStatsCache((currCache) => ({
+                  ...currCache,
+                  [yearToCheck]: newCache,
+                }));
+                setDivisionStatsRefresh((curr) => curr + 1);
+              }
+            );
+          }
         }
 
         if (showGrades) {
@@ -882,7 +910,13 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 gender,
                 showGrades
               ),
-            (year: string) => undefined //(team rank queries not yet supported)
+            (year: string) =>
+              GradeTableUtils.pickDivisonStats(
+                teamDivisionStatsCache,
+                year,
+                gender,
+                showGrades
+              )
           )
         : [playersPhase1, undefined];
 
@@ -897,7 +931,16 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               gender,
               showGrades
             )
-        : undefined
+        : undefined,
+      (
+        year: string //(we only use this to inject team stats explicitly mentioned so ignore whether grades are enabled)
+      ) =>
+        GradeTableUtils.pickDivisonStats(
+          teamDivisionStatsCache,
+          year,
+          gender,
+          showGrades
+        )
     );
 
     return [header].concat(dataRows).join("\n");
@@ -927,7 +970,13 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 gender,
                 showGrades
               ),
-            (year: string) => undefined //(team rank queries not yet supported)
+            (year: string) =>
+              GradeTableUtils.pickDivisonStats(
+                teamDivisionStatsCache,
+                year,
+                gender,
+                showGrades
+              )
           )
         : [playersPhase1, undefined];
 
