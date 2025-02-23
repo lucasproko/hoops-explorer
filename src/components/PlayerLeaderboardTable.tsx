@@ -887,6 +887,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         : [playersPhase1, undefined];
 
     const [header, dataRows] = AdvancedFilterUtils.generatePlayerLeaderboardCsv(
+      advancedFilterStr,
       players,
       showGrades
         ? (year: string) =>

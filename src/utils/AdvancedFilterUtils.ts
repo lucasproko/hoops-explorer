@@ -228,7 +228,7 @@ export class AdvancedFilterUtils {
   ];
 
   /** Some fields don't have ranks because I decided they weren't worth the mem usage: */
-  static hasRank(field: string): boolean {
+  static teamFieldHasRank(field: string): boolean {
     const missingRank =
       _.endsWith(field, "_ast_mid") ||
       _.endsWith(field, "_twop_ast") ||
@@ -260,10 +260,10 @@ export class AdvancedFilterUtils {
       _.flatten([
         AdvancedFilterUtils.teamExplorerGradedStats,
         AdvancedFilterUtils.teamExplorerGradedStats
-          .filter(AdvancedFilterUtils.hasRank)
+          .filter(AdvancedFilterUtils.teamFieldHasRank)
           .map((field) => `rank_${field}`),
         AdvancedFilterUtils.teamExplorerGradedStats
-          .filter(AdvancedFilterUtils.hasRank)
+          .filter(AdvancedFilterUtils.teamFieldHasRank)
           .map((field) => `pctile_${field}`),
       ])
     );
@@ -284,8 +284,8 @@ export class AdvancedFilterUtils {
     transition: "Transition",
   };
 
-  static readonly playerLeaderBoardAutocomplete =
-    AdvancedFilterUtils.operators.concat([
+  static readonly playerLeaderBoardAutocomplete = AdvancedFilterUtils.operators
+    .concat([
       // Basic metadata:
       "conf",
       "team",
@@ -424,7 +424,12 @@ export class AdvancedFilterUtils {
 
       // Regional views:
       "hs_region_dmv",
-    ]);
+    ])
+    .concat(
+      ["rank_", "pctile_"].flatMap((prefix) =>
+        _.keys(GradeUtils.playerFields).map((field) => `${prefix}${field}`)
+      )
+    );
 
   static readonly playerLboardWithTeamStatsAutocomplete =
     AdvancedFilterUtils.playerLeaderBoardAutocomplete.concat(
@@ -571,9 +576,14 @@ export class AdvancedFilterUtils {
   }
 
   static gradeConvert(s: string) {
-    return s
-      .replace(/rank_[$][.]p[.]/g, "$.rank.")
-      .replace(/pctile_[$][.]p[.]/g, "$.pctile.");
+    return (
+      s
+        .replace(/rank_[$][.]p[.]/g, "$.rank.")
+        .replace(/pctile_[$][.]p[.]/g, "$.pctile.")
+        // Special cases where for some reason the underlying value is transformed by *100 (but the grade is on the original)
+        .replace(/rank_[(]100[*][$][.]p[.]/g, "($.rank.")
+        .replace(/pctile_[(]100[*][$][.]p[.]/g, "($.pctile.")
+    );
   }
 
   static avoidAssigmentOperator(s: string) {
@@ -617,6 +627,7 @@ export class AdvancedFilterUtils {
         multiYear
           ? AdvancedFilterUtils.multiYearfixObjectFormat
           : AdvancedFilterUtils.singleYearfixObjectFormat,
+        AdvancedFilterUtils.gradeConvert,
         AdvancedFilterUtils.convertPositions,
         AdvancedFilterUtils.convertPercentages,
         AdvancedFilterUtils.normHeightInQuotes,
@@ -716,9 +727,23 @@ export class AdvancedFilterUtils {
 
   /** A common accessor for both Linq filter/sort and CSV building */
   private static buildPlayerRows(
+    filterStr: string,
+    playerDivStats: (year: string) => DivisionStatistics | undefined,
+    teamDivStats: (year: string) => DivisionStatistics | undefined,
     multiYear: boolean
   ): (p: any, index: number) => any {
+    /** Field manipulation to list the field info for which I need to calc rank/%ile */
+    const [rankFields, styleRankFields] = AdvancedFilterUtils.buildGradeQueries(
+      filterStr,
+      "rank"
+    );
+    const [pctileFields, stylePctileFields] =
+      AdvancedFilterUtils.buildGradeQueries(filterStr, "pctile");
+
     const buildSingleYearRetVal = (p: any, index: number) => {
+      const divStatsForYear = playerDivStats //TODO: should support team ranks when possible
+        ? playerDivStats(p.year)
+        : undefined;
       const retVal = {
         p: p,
         player_name: p.key,
@@ -745,12 +770,29 @@ export class AdvancedFilterUtils {
         adj_prod_margin_rank: p.adj_prod_margin_rank,
         adj_rapm_margin_pred:
           (p.off_adj_rapm_pred?.value || 0) - (p.def_adj_rapm_pred?.value || 0),
+
+        // Percentile and rank:
+        pctile: AdvancedFilterUtils.buildGrades(
+          p,
+          divStatsForYear,
+          pctileFields,
+          stylePctileFields,
+          false
+        ),
+        rank: AdvancedFilterUtils.buildGrades(
+          p,
+          divStatsForYear,
+          rankFields,
+          styleRankFields,
+          true
+        ),
       };
       //DIAG:
       //if (index < 10) console.log(`OBJ ${JSON.stringify({ ...retVal, p: undefined })}`);
       return retVal;
     };
     const buildMultiYearRetVal = (p: any, index: number) => {
+      // (Doesn't currently support ranks)
       const retVal = {
         p: p,
         player_name: p.orig?.key || p.actualResults?.key,
@@ -798,7 +840,12 @@ export class AdvancedFilterUtils {
       extraParams,
       multiYear,
       AdvancedFilterUtils.tidyPlayerClauses,
-      AdvancedFilterUtils.buildPlayerRows(multiYear)
+      AdvancedFilterUtils.buildPlayerRows(
+        filterStr,
+        playerDivStats,
+        teamDivStats,
+        multiYear
+      )
     );
   }
 
@@ -959,8 +1006,10 @@ export class AdvancedFilterUtils {
 
   /** Player leaderboard CSV logic */
   static generatePlayerLeaderboardCsv = (
+    filterStr: string,
     inData: any[],
-    playerDivStats?: (year: string) => DivisionStatistics | undefined
+    playerDivStats?: (year: string) => DivisionStatistics | undefined,
+    teamDivStats?: (year: string) => DivisionStatistics | undefined
   ): [string, string[]] => {
     const posGroups = ["_PG_", "_SG_", "_SF_", "_PF_", "_C_"];
     const headerFields = _.drop(
@@ -969,12 +1018,23 @@ export class AdvancedFilterUtils {
     )
       .filter(
         (field) =>
+          playerDivStats || //(remove rank/pctile fields if grades not being added)
+          (!_.startsWith(field, "rank_") && !_.startsWith(field, "pctile_"))
+      )
+      .filter(
+        (field) =>
           !_.startsWith(field, "hs_region") &&
           field != "posConfidences" &&
           field != "posFreqs"
       ) //(expand these into their arrays)
       .concat(posGroups.map((pos) => `posConfidences[${pos}]`))
-      .concat(posGroups.map((pos) => `posFreqs[${pos}]`));
+      .concat(posGroups.map((pos) => `posFreqs[${pos}]`))
+      .concat(
+        // If the user includes team stats then we'll append these at the end:
+        filterStr.match(
+          new RegExp(`team_stats[.](?:off|def|adj|raw)_[a-zA-Z_0-9]+`, "g")
+        ) || []
+      );
 
     const rawExpressionString = headerFields.join(" , ");
     const expressionString = AdvancedFilterUtils.tidyPlayerClauses(
@@ -985,8 +1045,15 @@ export class AdvancedFilterUtils {
     //DEBUG
     //console.log(`expressionString: ${expressionString}`);
 
-    const divStatsWithFallback = playerDivStats || ((y: string) => undefined);
-    const rowBuilder = AdvancedFilterUtils.buildPlayerRows(false);
+    const playerDivStatsWithFallback =
+      playerDivStats || ((y: string) => undefined);
+    const teamDivStatsWithFallback = teamDivStats || ((y: string) => undefined);
+    const rowBuilder = AdvancedFilterUtils.buildPlayerRows(
+      rawExpressionString,
+      playerDivStatsWithFallback,
+      teamDivStatsWithFallback,
+      false
+    );
     const enumData = Enumerable.from(inData.map(rowBuilder));
     const results = enumData
       .select(expressionString as unknown as TypeScriptWorkaround2)
