@@ -437,7 +437,14 @@ export class AdvancedFilterUtils {
         .filter(
           (field) => _.startsWith(field, "off_") || _.startsWith(field, "def_")
         )
-        .map((field) => `team_stats.${field}`)
+        .flatMap((field) =>
+          [`team_stats.${field}`].concat(
+            AdvancedFilterUtils.teamFieldHasRank(field) &&
+              !field.includes("_style_") //TODO: style ranks not working yet
+              ? [`rank_team_stats.${field}`, `pctile_team_stats.${field}`]
+              : []
+          )
+        )
     );
 
   static playerSeasonComparisonAutocomplete = _.flatMap(
