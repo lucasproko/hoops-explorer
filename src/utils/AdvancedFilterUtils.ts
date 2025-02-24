@@ -439,8 +439,7 @@ export class AdvancedFilterUtils {
         )
         .flatMap((field) =>
           [`team_stats.${field}`].concat(
-            AdvancedFilterUtils.teamFieldHasRank(field) &&
-              !field.includes("_style_") //TODO: style ranks not working yet
+            AdvancedFilterUtils.teamFieldHasRank(field)
               ? [`rank_team_stats.${field}`, `pctile_team_stats.${field}`]
               : []
           )
@@ -674,6 +673,11 @@ export class AdvancedFilterUtils {
     const [pctileFields, stylePctileFields] =
       AdvancedFilterUtils.buildGradeQueries(filterStr, "pctile_", false);
 
+    //DIAG:
+    // console.log(
+    //   `fields [${filterStr}]: [${pctileFields}][${stylePctileFields}][${rankFields}][${styleRankFields}]`
+    // );
+
     return (p: any, index: number) => {
       const divStatsForYear = divStats ? divStats(p.year) : undefined;
       p.style_def = p.def_style; // (ugly, need def_style to not collide with other def_* fields)
@@ -763,7 +767,7 @@ export class AdvancedFilterUtils {
         true
       );
 
-    // DIAG:
+    //DIAG:
     // console.log(
     //   `Special case terms (${filterStr}): [${rankFields}][${styleRankFields}][${teamRankFields}][${teamStyleRankFields}]/` +
     //     `[${pctileFields}][${stylePctileFields}][${teamPctileFields}][${teamStylePctileFields}]`
@@ -1157,26 +1161,42 @@ export class AdvancedFilterUtils {
     //DEBUG
     //console.log(`gradeFieldsIncStyle: ${JSON.stringify(gradeFieldsIncStyle)}`);
 
+    const isStyleField = (field: string) =>
+      _.startsWith(field, "$.p.style") ||
+      _.startsWith(field, "$.p.style_def") ||
+      _.startsWith(field, "$.p.team_stats.style") ||
+      _.startsWith(field, "$.p.team_stats.style_def");
+
     const gradeFieldsNotStyle = gradeFieldsIncStyle.filter(
-      (field) =>
-        !_.startsWith(field, "$.p.style") &&
-        !_.startsWith(field, "$.p.style_def")
+      (field) => !isStyleField(field)
     );
     const styleGradesFields = _.chain(gradeFieldsIncStyle)
-      .filter(
-        (field) =>
-          _.startsWith(field, "$.p.style") ||
-          _.startsWith(field, "$.p.style_def")
-      )
+      .filter(isStyleField)
       .map((field) =>
         field
           .replace(
             /[$][.]p[.]style_def.*["]([^"]+)["].*[.]possPct.*/,
             "$1|DefPct"
           )
+          .replace(
+            /[$][.]p[.]team_stats[.]style_def.*["]([^"]+)["].*[.]possPct.*/,
+            "$1|DefPct"
+          )
           .replace(/[$][.]p[.]style_def.*["]([^"]+)["].*[.]pts.*/, "$1|DefPpp")
+          .replace(
+            /[$][.]p[.]team_stats[.]style_def.*["]([^"]+)["].*[.]pts.*/,
+            "$1|DefPpp"
+          )
           .replace(/[$][.]p[.]style.*["]([^"]+)["].*[.]possPct.*/, "$1|Pct")
+          .replace(
+            /[$][.]p[.]team_stats[.]style.*["]([^"]+)["].*[.]possPct.*/,
+            "$1|Pct"
+          )
           .replace(/[$][.]p[.]style.*["]([^"]+)["].*[.]pts.*/, "$1|Ppp")
+          .replace(
+            /[$][.]p[.]team_stats[.]style.*["]([^"]+)["].*[.]pts.*/,
+            "$1|Ppp"
+          )
       )
       .value();
 
