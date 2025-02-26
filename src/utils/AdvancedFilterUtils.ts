@@ -435,7 +435,11 @@ export class AdvancedFilterUtils {
     AdvancedFilterUtils.playerLeaderBoardAutocomplete.concat(
       AdvancedFilterUtils.teamExplorerAutocomplete
         .filter(
-          (field) => _.startsWith(field, "off_") || _.startsWith(field, "def_")
+          (field) =>
+            _.startsWith(field, "off_") ||
+            _.startsWith(field, "def_") ||
+            _.startsWith(field, "adj_") ||
+            _.startsWith(field, "raw_")
         )
         .flatMap((field) =>
           [`team_stats.${field}`].concat(
@@ -497,7 +501,7 @@ export class AdvancedFilterUtils {
     return s
       .replace(/ALL/g, "($.player_code)")
       .replace(
-        /((team_stats[.])?(?:off|def)_[0-9a-zA-Z_]+)/g,
+        /((team_stats[.])?(?:off|def|adj|raw)_[0-9a-zA-Z_]+)/g,
         (
           substr: string,
           ignoredCaptureGroup: string,

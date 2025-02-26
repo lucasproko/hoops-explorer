@@ -34,6 +34,7 @@ import { UrlRouting } from "../utils/UrlRouting";
 import Head from "next/head";
 import { LeaderboardUtils, TransferModel } from "../utils/LeaderboardUtils";
 import { DateUtils } from "../utils/DateUtils";
+import { LuckUtils } from "../utils/stats/LuckUtils";
 
 type Props = {
   testMode?: boolean; //works around SSR issues, see below
@@ -259,7 +260,17 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
             ? _.chain(teamStats)
                 .flatMap((d) => d.teams || [])
                 .flatten()
-                .map((t) => [`${t.team_name}_${t.year}`, t])
+                .map((t) => {
+                  // Some processing that is needed in TeamStatsExplorerTable.phase1Processing
+                  // (see there for details)
+                  // TODO: should add this logic to a TableUtils
+                  LuckUtils.injectLuck(t, undefined, undefined);
+                  t.off_raw_net = {
+                    value:
+                      (t.off_ppp?.value || 100) - (t.def_ppp?.value || 100),
+                  };
+                  return [`${t.team_name}_${t.year}`, t];
+                })
                 .fromPairs()
                 .value()
             : undefined,
