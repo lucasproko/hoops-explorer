@@ -923,6 +923,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     const [header, dataRows] = AdvancedFilterUtils.generatePlayerLeaderboardCsv(
       advancedFilterStr,
       players,
+      !(startingState.includePrevYear || false), //(if true we want to export both available seasons)
       showGrades
         ? (year: string) =>
             GradeTableUtils.pickDivisonStats(

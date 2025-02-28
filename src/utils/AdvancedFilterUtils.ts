@@ -465,6 +465,11 @@ export class AdvancedFilterUtils {
             return prefix == "prev_" ? [field] : []; //(return player_name|code just once)
           } else if (_.startsWith(field, "transfer_")) {
             return prefix == "prev_" ? [field] : [`next_${field}`]; //(return transfer_X and next_transfer_X)
+          } else if (
+            _.startsWith(field, "rank_") ||
+            _.startsWith(field, "pctile_")
+          ) {
+            return []; // Don't currently support rank/pctile for prev/next
           } else {
             return [`${prefix}${field}`];
           }
@@ -501,7 +506,7 @@ export class AdvancedFilterUtils {
     return s
       .replace(/ALL/g, "($.player_code)")
       .replace(
-        /((team_stats[.])?(?:off|def|adj|raw)_[0-9a-zA-Z_]+)/g,
+        /((team_stats[.])?(?:off|def)_[0-9a-zA-Z_]+)/g, //(don't include adj, see below)
         (
           substr: string,
           ignoredCaptureGroup: string,
@@ -514,7 +519,19 @@ export class AdvancedFilterUtils {
             : `$.p.${substr}?.value`;
         }
       )
-      .replace(/(^| |[(!*+/-])(adj_[0-9a-zA-Z_]+)/g, "$1$.$2")
+      .replace(
+        /((team_stats[.])(?:adj|raw)_[0-9a-zA-Z_]+)/g, //adj and raw when team stats _is_ specified
+        (
+          substr: string,
+          ignoredCaptureGroup: string,
+          maybeTeamStats: string
+        ) => {
+          return `$.p.team_stats.${AdvancedFilterUtils.teamFixObjectFormat(
+            substr.substring(maybeTeamStats.length)
+          ).substring(4)}`; //(replace $.p. with team stats prefix)
+        }
+      )
+      .replace(/(^| |[(!*+/-])(adj_[0-9a-zA-Z_]+)/g, "$1$.$2") //adj for players (team_stats above) .. note no rank
       .replace(/((?:off|def)_[a-z_]+_rank)[?][.]value/g, "$1") //(off|def_..._rank is just a number not a Statistic)
       .replace(/roster[.]height/g, "$.normht")
       .replace(/transfer_(src|dest)/g, "$.transfer_$1")
@@ -526,6 +543,7 @@ export class AdvancedFilterUtils {
       .replace(/[$][.]p[.]def_ftr[?][.]value/g, "(100*$.p.def_ftr?.value)") //(fouls called/50)
       .replace(/roster[.]/g, "roster?.") //(roster not always present)
       .replace(/(off|def)_reb/g, "$1_orb"); //(nicer version of rebound name)
+    //TODO: handle any field with prev_ in front of it, so like "prev_$." .. note adj_ is special case
   }
   static multiYearfixObjectFormat(s: string) {
     return s
@@ -1066,6 +1084,7 @@ export class AdvancedFilterUtils {
   static generatePlayerLeaderboardCsv = (
     filterStr: string,
     inData: any[],
+    includesPrevYear: boolean,
     playerDivStats?: (year: string) => DivisionStatistics | undefined,
     teamDivStats?: (year: string) => DivisionStatistics | undefined
   ): [string, string[]] => {
