@@ -1120,7 +1120,7 @@ export class AdvancedFilterUtils {
     teamDivStats?: (year: string) => DivisionStatistics | undefined
   ): [string, string[]] => {
     const posGroups = ["_PG_", "_SG_", "_SF_", "_PF_", "_C_"];
-    const headerFields = _.drop(
+    const headerFieldsPhase1 = _.drop(
       AdvancedFilterUtils.playerLeaderBoardAutocomplete,
       AdvancedFilterUtils.operators.length
     )
@@ -1136,9 +1136,24 @@ export class AdvancedFilterUtils {
           field != "posFreqs"
       ) //(expand these into their arrays)
       .concat(posGroups.map((pos) => `posConfidences[${pos}]`))
-      .concat(posGroups.map((pos) => `posFreqs[${pos}]`))
+      .concat(posGroups.map((pos) => `posFreqs[${pos}]`));
+    const headerFields = headerFieldsPhase1
+      .concat(
+        includesPrevYear
+          ? headerFieldsPhase1
+              .filter(
+                (field) =>
+                  !_.startsWith(field, "rank_") &&
+                  !_.startsWith(field, "pctile_") && //(don't currently support prev_ ranks)
+                  !_.startsWith(field, "player_") &&
+                  !_.startsWith(field, "transfer_") //(didn't generate prev_ for theses)
+              )
+              .map((field) => `prev_${field}`)
+          : []
+      )
       .concat(
         // If the user includes team stats then we'll append these at the end:
+        // (currently don't support this for "prev_" fields)
         filterStr.match(
           new RegExp(
             `(?:rank_|pctile_)?team_stats[.](?:off|def|adj|raw)_[a-zA-Z_0-9]+`,
