@@ -490,9 +490,11 @@ export class AdvancedFilterUtils {
     }
   );
 
+  /** Common boolean operations */
   static fixBoolOps(s: String) {
     return s.replace(/ AND /g, " && ").replace(/ OR /g, " || ");
   }
+  /** Use words for digits for autocomplete reasons - turn them back */
   static fieldReplacements(s: string) {
     return s
       .replace(/twop/g, "2p")
@@ -502,6 +504,7 @@ export class AdvancedFilterUtils {
       .replace(/def_fc/g, "def_ftr")
       .replace(/(off|def)_poss/g, "$1_team_poss");
   }
+  /** Misc transforms to map nice auto-complete-y terms to the ugly objects (normal mode, eg player leaderboard) */
   static singleYearfixObjectFormat(s: string) {
     return s
       .replace(/ALL/g, "($.player_code)")
@@ -532,19 +535,20 @@ export class AdvancedFilterUtils {
         }
       )
       .replace(/(^| |[(!*+/-])(adj_[0-9a-zA-Z_]+)/g, "$1$.$2") //adj for players (team_stats above) .. note no rank
+      .replace(/prev_(adj_[0-9a-zA-Z_]+)/g, "$.prev_$1") //adj for players (prev year only) .. note no rank
       .replace(/((?:off|def)_[a-z_]+_rank)[?][.]value/g, "$1") //(off|def_..._rank is just a number not a Statistic)
       .replace(/roster[.]height/g, "$.normht")
       .replace(/transfer_(src|dest)/g, "$.transfer_$1")
       .replace(/player_(name|code)/g, "$.player_$1")
       .replace(
-        /(^| |[(!*+/-])(roster[.][a-z]+|pos[CF][a-z]+|tier|team|conf|year)/g,
+        /(^| |[(!*+/-]|prev_)(roster[.][a-z]+|pos[CF][a-z]+|tier|team|conf|year)/g,
         "$1$.p.$2"
       )
       .replace(/[$][.]p[.]def_ftr[?][.]value/g, "(100*$.p.def_ftr?.value)") //(fouls called/50)
       .replace(/roster[.]/g, "roster?.") //(roster not always present)
       .replace(/(off|def)_reb/g, "$1_orb"); //(nicer version of rebound name)
-    //TODO: handle any field with prev_ in front of it, so like "prev_$." .. note adj_ is special case
   }
+  /** Misc transforms to map nice auto-complete-y terms to the ugly objects (multi-year, eg player season comparison mode) */
   static multiYearfixObjectFormat(s: string) {
     return s
       .replace(
@@ -579,6 +583,7 @@ export class AdvancedFilterUtils {
     )}"]?.${suffix == "pct" ? "possPct" : "pts"}`;
   };
 
+  /** Converts team stats explorer autocomplete terms to ugly object formats */
   static teamFixObjectFormat(s: string) {
     return s
       .replace(
@@ -603,6 +608,7 @@ export class AdvancedFilterUtils {
       .replace(/(off|def)_reb/g, "$1_orb"); //(nicer version of rebound name)
   }
 
+  /** A second phase of transforms to make rank_ and pctile_ terms point to the right place */
   static gradeConvert(s: string) {
     return (
       s
@@ -611,14 +617,24 @@ export class AdvancedFilterUtils {
         .replace(/rank_[$][.]p[.]/g, "$.rank.")
         .replace(/pctile_[$][.]p[.]/g, "$.pctile.")
         // Special cases where for some reason the underlying value is transformed by *100 (but the grade is on the original)
-        .replace(/rank_[(]100[*][$][.]p[.]/g, "($.rank.")
-        .replace(/pctile_[(]100[*][$][.]p[.]/g, "($.pctile.")
+        .replace(/rank_[(]100[*][$][.]p[.]/g, "(100*$.rank.")
+        .replace(/pctile_[(]100[*][$][.]p[.]/g, "(100*$.pctile.")
     );
   }
 
+  /** A second phase of transforms to make prev_ terms point to the right place */
+  static prevYearConvert(s: string) {
+    return s
+      .replace(/prev_[$][.]normht/g, "$.prev_normht")
+      .replace(/prev_[$][.]p[.]/g, "$.p.prevYear?.")
+      .replace(/prev_[(]100[*][$][.]p[.]/g, "(100*$.p.prevYear?.");
+  }
+
+  /** Handle == operation */
   static avoidAssigmentOperator(s: string) {
     return s.replace(/([^!<>])=[=]*/g, "$1==");
   }
+  /** Convert from nice position designators to their index */
   static convertPositions(s: string) {
     return s
       .replace(/\[(?:_PG_|_1_)\]/g, "[0]")
@@ -639,6 +655,7 @@ export class AdvancedFilterUtils {
   static removeAscDesc(s: string) {
     return s.replace(/(ASC|DESC)/g, "");
   }
+  /** Add HS regions you've mapped out here */
   static convertRegionalBounds(s: string) {
     return s.replace(
       "hs_region_dmv",
@@ -658,6 +675,7 @@ export class AdvancedFilterUtils {
           ? AdvancedFilterUtils.multiYearfixObjectFormat
           : AdvancedFilterUtils.singleYearfixObjectFormat,
         AdvancedFilterUtils.gradeConvert,
+        AdvancedFilterUtils.prevYearConvert,
         AdvancedFilterUtils.convertPositions,
         AdvancedFilterUtils.convertPercentages,
         AdvancedFilterUtils.normHeightInQuotes,
@@ -795,6 +813,28 @@ export class AdvancedFilterUtils {
     //     `[${pctileFields}][${stylePctileFields}][${teamPctileFields}][${teamStylePctileFields}]`
     // );
 
+    const buildAdjStats = (p: any, prefix: string) => {
+      return {
+        [`${prefix}adj_rapm_margin`]:
+          (p.off_adj_rapm?.value || 0) - (p.def_adj_rapm?.value || 0),
+        [`${prefix}adj_rtg_margin`]:
+          (p.off_adj_rtg?.value || 0) - (p.def_adj_rtg?.value || 0),
+        [`${prefix}adj_rapm_prod_margin`]:
+          (p.off_adj_rapm?.value || 0) * (p.off_team_poss_pct?.value || 0) -
+          (p.def_adj_rapm?.value || 0) * (p.def_team_poss_pct?.value || 0),
+        [`${prefix}adj_prod_margin`]:
+          (p.off_adj_rtg?.value || 0) * (p.off_team_poss_pct?.value || 0) -
+          (p.def_adj_rtg?.value || 0) * (p.def_team_poss_pct?.value || 0),
+        // Already have these but makes the query formatting simpler
+        [`${prefix}adj_rapm_margin_rank`]: p.adj_rapm_margin_rank,
+        [`${prefix}adj_rtg_margin_rank`]: p.adj_rtg_margin_rank,
+        [`${prefix}adj_rapm_prod_margin_rank`]: p.adj_rapm_prod_margin_rank,
+        [`${prefix}adj_prod_margin_rank`]: p.adj_prod_margin_rank,
+        [`${prefix}adj_rapm_margin_pred`]:
+          (p.off_adj_rapm_pred?.value || 0) - (p.def_adj_rapm_pred?.value || 0),
+      };
+    };
+
     const buildSingleYearRetVal = (p: any, index: number) => {
       const divStatsForYear = playerDivStats
         ? playerDivStats(p.year)
@@ -810,26 +850,17 @@ export class AdvancedFilterUtils {
         transfer_dest: p.transfer_dest || "",
         // Normalize so can do height comparisons
         normht: AdvancedFilterUtils.normHeightString(p.roster?.height || ""),
+        prev_normht: p.prevYear
+          ? AdvancedFilterUtils.normHeightString(
+              p.prevYear.roster?.height || ""
+            )
+          : undefined,
         // These need to be derived
-        adj_rapm_margin:
-          (p.off_adj_rapm?.value || 0) - (p.def_adj_rapm?.value || 0),
-        adj_rtg_margin:
-          (p.off_adj_rtg?.value || 0) - (p.def_adj_rtg?.value || 0),
-        adj_rapm_prod_margin:
-          (p.off_adj_rapm?.value || 0) * (p.off_team_poss_pct?.value || 0) -
-          (p.def_adj_rapm?.value || 0) * (p.def_team_poss_pct?.value || 0),
-        adj_prod_margin:
-          (p.off_adj_rtg?.value || 0) * (p.off_team_poss_pct?.value || 0) -
-          (p.def_adj_rtg?.value || 0) * (p.def_team_poss_pct?.value || 0),
-        // Already have these but makes the query formatting simpler
-        adj_rapm_margin_rank: p.adj_rapm_margin_rank,
-        adj_rtg_margin_rank: p.adj_rtg_margin_rank,
-        adj_rapm_prod_margin_rank: p.adj_rapm_prod_margin_rank,
-        adj_prod_margin_rank: p.adj_prod_margin_rank,
-        adj_rapm_margin_pred:
-          (p.off_adj_rapm_pred?.value || 0) - (p.def_adj_rapm_pred?.value || 0),
+        ...buildAdjStats(p, ""),
+        ...(p.prevYear ? buildAdjStats(p.prevYear, "prev_") : {}),
 
         // Percentile and rank, including team stats:
+        //TODO: need to handle prevYear
         pctile: AdvancedFilterUtils.buildGrades(
           p,
           divStatsForYear,

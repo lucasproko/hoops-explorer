@@ -43,6 +43,24 @@ describe("AdvancedFilterUtils", () => {
     const result = AdvancedFilterUtils.singleYearfixObjectFormat(input);
     expect(result).toEqual(expectedOutput);
   });
+  test("singleYearfixObjectFormat should format adj player object correctly (prev)", () => {
+    const input = "prev_adj_rtg";
+    const expectedOutput = "$.prev_adj_rtg";
+    const result = AdvancedFilterUtils.singleYearfixObjectFormat(input);
+    expect(result).toEqual(expectedOutput);
+  });
+  test("singleYearfixObjectFormat should format height correctly", () => {
+    const input = "roster.height";
+    const expectedOutput = "$.normht";
+    const result = AdvancedFilterUtils.singleYearfixObjectFormat(input);
+    expect(result).toEqual(expectedOutput);
+  });
+  test("singleYearfixObjectFormat should format height correctly (prev)", () => {
+    const input = "prev_roster.height";
+    const expectedOutput = "prev_$.normht";
+    const result = AdvancedFilterUtils.singleYearfixObjectFormat(input);
+    expect(result).toEqual(expectedOutput);
+  });
 
   test("multiYearfixObjectFormat should format object correctly", () => {
     const input = "prev_off_ppp";
@@ -69,11 +87,36 @@ describe("AdvancedFilterUtils", () => {
     const result = AdvancedFilterUtils.gradeConvert(input);
     expect(result).toEqual(expectedOutput);
   });
+  test("gradeConvert should convert grade % strings correctly", () => {
+    const input = "rank_(100*$.p.team_stats.off_ppp";
+    const expectedOutput = "(100*$.rank.team_stats.off_ppp";
+    const result = AdvancedFilterUtils.gradeConvert(input);
+    expect(result).toEqual(expectedOutput);
+  });
 
   test("gradeConvert should convert grade strings correctly (%ile)", () => {
     const input = "pctile_$.p.team_stats.off_ppp";
     const expectedOutput = "$.pctile_team_stats.off_ppp";
     const result = AdvancedFilterUtils.gradeConvert(input);
+    expect(result).toEqual(expectedOutput);
+  });
+
+  test("prevYearConvert should convert prev year string correct (normht)", () => {
+    const input = "prev_$.normht";
+    const expectedOutput = "$.prev_normht";
+    const result = AdvancedFilterUtils.prevYearConvert(input);
+    expect(result).toEqual(expectedOutput);
+  });
+  test("prevYearConvert should convert prev year string correct", () => {
+    const input = "prev_$.p.off_rtg";
+    const expectedOutput = "$.p.prevYear?.off_rtg";
+    const result = AdvancedFilterUtils.prevYearConvert(input);
+    expect(result).toEqual(expectedOutput);
+  });
+  test("prevYearConvert should convert grade % strings correctly", () => {
+    const input = "prev_(100*$.p.def_rtg";
+    const expectedOutput = "(100*$.p.prevYear?.def_rtg";
+    const result = AdvancedFilterUtils.prevYearConvert(input);
     expect(result).toEqual(expectedOutput);
   });
 
