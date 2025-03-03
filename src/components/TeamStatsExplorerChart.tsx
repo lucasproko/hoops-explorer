@@ -140,84 +140,17 @@ const decompAxis = (axis: string): AxisDecomposition => {
 };
 
 /** The list of pre-built player charts, exported so that other elements can list them */
-export const overallPlayerChartPresets = [
-  [
-    "Transfer predictions",
-    {
-      title: "How transfers fared compared to their predicted RAPM",
-      datasetFilter: "Transfers",
-      xAxis: "Off RAPM: actual - predicted",
-      yAxis: "Def RAPM: actual - predicted",
-      dotColor: "RAPM margin",
-      dotSize: "Possession% (off)",
-      dotColorMap: "RAPM",
-      labelStrategy: "Top/Bottom 10",
-    },
-  ],
-  [
-    "Freshmen vs Rankings",
-    {
-      title:
-        "How Freshmen fared compared to a prediction based on their HS ranking",
-      datasetFilter: "Ranked Freshmen",
-      xAxis: "Off RAPM: actual - predicted",
-      yAxis: "Def RAPM: actual - predicted",
-      dotColor: "RAPM margin",
-      dotSize: "Possession% (off)",
-      dotColorMap: "RAPM",
-      labelStrategy: "Top/Bottom 10",
-    },
-  ],
-  [
-    "Fr to Soph Jumps",
-    {
-      title: "Increase in production from Freshman to Soph years",
-      datasetFilter: `prev_roster.year_class == "Fr" AND next_roster.year_class == "So" SORT_BY (next_adj_rapm_margin - prev_adj_rapm_margin) DESC`,
-      xAxis: "prev_adj_rapm_margin",
-      yAxis: "next_adj_rapm_margin",
-      dotColor: "next_adj_rapm_margin - prev_adj_rapm_margin",
-      dotSize: "Possession% (off)",
-      dotColorMap: "RAPM",
-      labelStrategy: "Top/Bottom 10",
-    },
-  ],
-  [
-    "Jr -> Sr Off Rating Jump",
-    {
-      title: "How the Jr->Sr Off Rating changes vs the Jr Off Rtg",
-      datasetFilter: `(prev_team == next_team) SORT_BY (next_off_rtg - prev_off_rtg)  DESC`,
-      highlightFilter: `prev_roster.year_class == "Jr" AND next_roster.year_class == "Sr" `,
-      xAxis: `prev_off_rtg  //LABEL Previous Season Off Rating`,
-      yAxis: "next_off_rtg - prev_off_rtg //LABEL Off Rating Jump",
-      dotColor: "next_off_rtg",
-      dotSize: "Possession% (off)",
-      dotColorMap: "Off Rtg",
-      labelStrategy: "Top/Bottom 10",
-    },
-  ],
-  [
-    "Super Senior Offense",
-    {
-      title: "Super Senior Off Rtg/Usage, ranked by offensive RAPM production",
-      datasetFilter: `ALL SORT_BY next_off_adj_rapm* next_off_team_poss_pct DESC`,
-      highlightFilter: `prev_roster.year_class == "Sr"`,
-      xAxis: `next_off_rtg //LABEL Off Rating //LIMITS auto,135`,
-      yAxis: "next_off_usage*100 //LABEL Usage%",
-      dotColor: "next_off_adj_rapm*next_off_team_poss_pct",
-      dotSize: "Possession% (off)",
-      dotColorMap: "oRAPM",
-      labelStrategy: "Top 25",
-    },
-  ],
-] as Array<[string, PlayerSeasonComparisonParams]>;
+export const overallTeamChartPresets = [] as Array<
+  [string, PlayerSeasonComparisonParams]
+>;
 
 /** Currently only since PortalPalooza kicked off in earnest (need to keep up to date with PlayerSeasonComparison) */
-const supportedYears = DateUtils.coreYears.filter((y) => y >= "2021/22");
+const supportedYears = ["2021/22", "2022/23"];
 export const multiYearScenarios = {
   "2021+": supportedYears,
 } as Record<string, string[]>;
 
-const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
+const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
   startingState,
   dataEvent,
   onChangeState,
@@ -250,7 +183,9 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
     startingState.year || DateUtils.mostRecentYearWithData
   );
 
-  const [gender, setGender] = useState("Men"); // TODO ignore input just take Men
+  const [gender, setGender] = useState(
+    startingState.gender || ParamDefaults.defaultGender
+  );
 
   const [queryFilters, setQueryFilters] = useState(
     startingState.queryFilters || ""
@@ -304,41 +239,9 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
   const [datasetFilterError, setAdvancedFilterError] = useState(
     undefined as string | undefined
   );
-  const datasetFilterPresets = [
-    ["All players", "ALL"],
-    [
-      "Transfers",
-      "(prev_team != next_team) AND prev_team SORT_BY next_adj_rapm_margin DESC",
-    ],
-    [
-      "Ranked Freshmen",
-      `!prev_team AND next_roster.year_class == "Fr" SORT_BY next_adj_rapm_margin DESC`,
-    ],
-    [
-      "Freshmen -> Sophomores",
-      `prev_roster.year_class == "Fr" AND next_roster.year_class == "So" SORT_BY next_adj_rapm_margin DESC`,
-    ],
-    [
-      "Sophomores -> Juniors",
-      `prev_roster.year_class == "So" AND next_roster.year_class == "Jr" SORT_BY next_adj_rapm_margin DESC`,
-    ],
-    [
-      "Juniors -> Seniors",
-      `prev_roster.year_class == "Jr" AND next_roster.year_class == "Sr" SORT_BY next_adj_rapm_margin DESC`,
-    ],
-    [
-      "Seniors -> Super-Seniors",
-      `prev_roster.year_class == "Sr" SORT_BY next_adj_rapm_margin DESC`,
-    ],
-    [
-      "Rotation+ caliber previous year",
-      `prev_adj_rapm_margin >= 2 SORT_BY next_adj_rapm_margin DESC`,
-    ],
-    [
-      "Starter+ caliber previous year",
-      `prev_adj_rapm_margin >= 3.5 SORT_BY next_adj_rapm_margin DESC`,
-    ],
-  ] as Array<[string, string]>;
+  const datasetFilterPresets = [["All teams", "ALL"]] as Array<
+    [string, string]
+  >;
 
   // Highlight text (show/hide):
   const [highlightFilterStr, setHighlightFilterStr] = useState(
@@ -450,7 +353,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
   useEffect(() => {
     if (title && !xAxis && !yAxis) {
       const maybePreset = _.find(
-        overallPlayerChartPresets,
+        overallTeamChartPresets,
         (kv) => kv[0] == title
       );
       if (maybePreset) applyPresetChart(maybePreset[1]);
@@ -1551,7 +1454,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
               }, true);
             }}
           />
-          {overallPlayerChartPresets.map((preset) =>
+          {overallTeamChartPresets.map((preset) =>
             buildOverallPresetMenuItem(preset[0], preset[1])
           )}
         </Dropdown.Menu>
@@ -1995,4 +1898,4 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
     </Container>
   );
 };
-export default PlayerSeasonComparisonChart;
+export default TeamStatsExplorerChart;
