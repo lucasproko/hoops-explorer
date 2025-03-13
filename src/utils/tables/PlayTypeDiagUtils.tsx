@@ -532,11 +532,13 @@ export class PlayTypeDiagUtils {
           const rawPct = rawVal?.possPct?.value || 0;
 
           return {
-            game_id: singleGameMode
-              ? `${nameTeamA} ${menuItemTeamB}`
-              : `Sample_${nameTeamA}`,
+            game_id: _.isEmpty(menuItemTeamB)
+              ? `Sample ${nameTeamA}`
+              : `${nameTeamA} ${menuItemTeamB}`,
             team: isTeamA ? nameTeamA : gameInfo?.teamB || "Unknown",
-            opponent: !isTeamA ? nameTeamA : gameInfo?.teamB || "Unknown",
+            opponent: !isTeamA
+              ? nameTeamA
+              : gameInfo?.teamB || menuItemTeamB || "Unknown",
             game_date: gameInfo?.dateStr || "Unknown",
             team_score: isTeamA
               ? gameInfo?.scoreTeamA || 0

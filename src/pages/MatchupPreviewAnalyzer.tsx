@@ -29,7 +29,9 @@ import { LineupStatsModel } from "../components/LineupStatsTable";
 import GenericCollapsibleCard from "../components/shared/GenericCollapsibleCard";
 import Footer from "../components/shared/Footer";
 import HeaderBar from "../components/shared/HeaderBar";
-import ToggleButtonGroup from "../components/shared/ToggleButtonGroup";
+import ToggleButtonGroup, {
+  ToggleButtonItem,
+} from "../components/shared/ToggleButtonGroup";
 
 // Utils:
 import {
@@ -214,6 +216,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
       ? ParamDefaults.defaultShotChartShowZones
       : startingMatchupFilterParams.shotChartsShowZones
   );
+  const [csvData, setCsvData] = useState<object[]>([]);
 
   function getRootUrl(params: MatchupFilterParams) {
     return UrlRouting.getMatchupPreviewUrl(params);
@@ -425,45 +428,125 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
         title="Play Type Breakdown"
         helpLink={maybeShowDocs()}
       >
-        {matchupFilterParams.oppoTeam != AvailableTeams.noOpponent &&
-        !_.isEmpty(divisionStatsCache) ? (
+        {!_.isEmpty(divisionStatsCache) ? (
           <Container>
             <Row>
               <Col xs={12} className="text-center small">
                 <ToggleButtonGroup
-                  items={[
+                  items={(matchupFilterParams.oppoTeam !=
+                  AvailableTeams.noOpponent
+                    ? [
+                        {
+                          label: "Off v Def",
+                          tooltip:
+                            "Show Top Team Offense vs Bottom Team Defense",
+                          toggled: breakdownView == "off;def",
+                          onClick: () => setBreakdownView("off;def"),
+                        },
+                        {
+                          label: "Def v Off",
+                          tooltip:
+                            "Show Top Team Defense vs Bottom Team Offense",
+                          toggled: breakdownView == "def;off",
+                          onClick: () => setBreakdownView("def;off"),
+                        },
+                        {
+                          label: "Off v Off",
+                          tooltip:
+                            "Show Top Team Offense vs Bottom Team Offense",
+                          toggled: breakdownView == "off;off",
+                          onClick: () => setBreakdownView("off;off"),
+                        },
+                        {
+                          label: "Def v Def",
+                          tooltip:
+                            "Show Top Team Defense vs Bottom Team Defense",
+                          toggled: breakdownView == "def;def",
+                          onClick: () => setBreakdownView("def;def"),
+                        },
+                      ]
+                    : ([] as Array<any>)
+                  ).concat([
                     {
-                      label: "Off v Def",
-                      tooltip: "Show Top Team Offense vs Bottom Team Defense",
-                      toggled: breakdownView == "off;def",
-                      onClick: () => setBreakdownView("off;def"),
-                    },
-                    {
-                      label: "Def v Off",
-                      tooltip: "Show Top Team Defense vs Bottom Team Offense",
-                      toggled: breakdownView == "def;off",
-                      onClick: () => setBreakdownView("def;off"),
-                    },
-                    {
-                      label: "Off v Off",
-                      tooltip: "Show Top Team Offense vs Bottom Team Offense",
-                      toggled: breakdownView == "off;off",
-                      onClick: () => setBreakdownView("off;off"),
-                    },
-                    {
-                      label: "Def v Def",
-                      tooltip: "Show Top Team Defense vs Bottom Team Defense",
-                      toggled: breakdownView == "def;def",
-                      onClick: () => setBreakdownView("def;def"),
-                    },
-                    {
-                      label: "| LEGEND",
+                      label:
+                        matchupFilterParams.oppoTeam !=
+                        AvailableTeams.noOpponent
+                          ? "| LEGEND |"
+                          : "LEGEND |",
                       tooltip: PlayTypeDiagUtils.buildLegendText,
                       toggled: true,
                       onClick: () => {},
                       isLabelOnly: true,
                     },
-                  ]}
+                    {
+                      tooltip: null,
+                      toggled: true,
+                      onClick: () => {},
+                      isLabelOnly: true,
+                      label: PlayTypeDiagUtils.buildCsvDownload(
+                        "CSV",
+                        `${matchupFilterParams.team || "Unknown"} ${
+                          matchupFilterParams.oppoTeam || ""
+                        }`,
+                        csvData,
+                        () => {
+                          const dataTeamA: object[] =
+                            PlayTypeDiagUtils.buildTeamStyleBreakdownData(
+                              `${matchupFilterParams.team || "Unknown"}${
+                                breakdownViewArr?.[0] == "def" ? " Defense" : ""
+                              }`,
+                              true,
+                              "", // (always unknown who the opponent is)
+                              dataEvent.rosterStatsA,
+                              dataEvent.teamStatsA,
+                              avgEfficiency,
+                              divisionStatsCache,
+                              false,
+                              breakdownViewArr?.[0] == "def"
+                                ? defensiveBreakdownA
+                                : undefined
+                            );
+                          const dataTeamB: object[] =
+                            _.isEmpty(divisionStatsCache) ||
+                            (_.isEmpty(dataEvent.rosterStatsB.global) &&
+                              matchupFilterParams.oppoTeam ==
+                                AvailableTeams.noOpponent &&
+                              _.isEmpty(dataEvent.rosterStatsA.global))
+                              ? []
+                              : PlayTypeDiagUtils.buildTeamStyleBreakdownData(
+                                  matchupFilterParams.oppoTeam ==
+                                    AvailableTeams.noOpponent
+                                    ? `${
+                                        matchupFilterParams.team || "Unknown"
+                                      } Defense`
+                                    : `${
+                                        matchupFilterParams.oppoTeam ||
+                                        "Unknown"
+                                      }${
+                                        breakdownViewArr?.[1] == "def"
+                                          ? " Defense"
+                                          : ""
+                                      }`,
+                                  true,
+                                  "", // (always unknown who the opponent is)
+                                  dataEvent.rosterStatsB,
+                                  matchupFilterParams.oppoTeam ==
+                                    AvailableTeams.noOpponent
+                                    ? dataEvent.teamStatsA //(contains the SoS info needed for adj defense)
+                                    : dataEvent.teamStatsB,
+                                  avgEfficiency,
+                                  divisionStatsCache,
+                                  false,
+                                  matchupFilterParams.oppoTeam ==
+                                    AvailableTeams.noOpponent
+                                    ? defensiveBreakdownA
+                                    : defensiveBreakdownB
+                                );
+                          setCsvData(dataTeamA.concat(dataTeamB));
+                        }
+                      ),
+                    },
+                  ])}
                 />
               </Col>
             </Row>
@@ -539,7 +622,13 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
         )}
       </GenericCollapsibleCard>
     );
-  }, [dataEvent, divisionStatsCache, allPlayerStatsCache, breakdownView]);
+  }, [
+    dataEvent,
+    divisionStatsCache,
+    allPlayerStatsCache,
+    breakdownView,
+    csvData,
+  ]);
 
   /** Only rebuild the chart if the data changes, or if one of the filter params changes */
   const shotChart = React.useMemo(() => {
