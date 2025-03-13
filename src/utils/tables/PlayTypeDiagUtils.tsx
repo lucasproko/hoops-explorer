@@ -51,6 +51,7 @@ import { RosterStatsModel } from "../../components/RosterStatsTable";
 import { TeamStatsModel } from "../../components/TeamStatsTable";
 import { TopLevelPlayAnalysis } from "../stats/PlayTypeUtils";
 import { GradeUtils } from "../stats/GradeUtils";
+import { RosterStatsByCode } from "../StatModels";
 
 /** Encapsulates some of the logic used to build the diag visualiations in XxxPlayTypeDiags */
 export class PlayTypeDiagUtils {
@@ -445,15 +446,25 @@ export class PlayTypeDiagUtils {
     avgEfficiency: number,
     grades: DivisionStatsCache,
     singleGameMode: boolean,
-    defensiveOverride?: TopLevelPlayAnalysis
+    defensiveOverride?: TopLevelPlayAnalysis,
+    rosterStatsByCodeOverride?: RosterStatsByCode
   ): Record<string, string | number>[] => {
-    const rosterInfo = teamStats.global.roster || {};
+    const globalRosterStatsByCode = _.thru(
+      rosterStatsByCodeOverride,
+      (override) => {
+        if (override) {
+          return override;
+        } else {
+          const rosterInfo = teamStats.global.roster || {};
 
-    /** Largest sample of player stats, by player key - use for ORtg calcs */
-    const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(
-      players.global,
-      rosterInfo,
-      true //(injects positional info into the player stats, needed for play style analysis below)
+          /** Largest sample of player stats, by player key - use for ORtg calcs */
+          return RosterTableUtils.buildRosterTableByCode(
+            players.global,
+            rosterInfo,
+            true //(injects positional info into the player stats, needed for play style analysis below)
+          );
+        }
+      }
     );
 
     const playersIn = players.baseline;
@@ -521,7 +532,9 @@ export class PlayTypeDiagUtils {
           const rawPct = rawVal?.possPct?.value || 0;
 
           return {
-            game_id: `${nameTeamA} ${menuItemTeamB}`,
+            game_id: singleGameMode
+              ? `${nameTeamA} ${menuItemTeamB}`
+              : `Sample_${nameTeamA}`,
             team: isTeamA ? nameTeamA : gameInfo?.teamB || "Unknown",
             opponent: !isTeamA ? nameTeamA : gameInfo?.teamB || "Unknown",
             game_date: gameInfo?.dateStr || "Unknown",

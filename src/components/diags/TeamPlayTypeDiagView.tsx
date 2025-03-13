@@ -55,6 +55,7 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
   grades,
   showHelp,
 }) => {
+  const [csvData, setCsvData] = useState<object[]>([]);
   const [quickSwitch, setQuickSwitch] = useState<string | undefined>(undefined);
   const [quickSwitchTimer, setQuickSwitchTimer] = useState<
     NodeJS.Timer | undefined
@@ -335,6 +336,42 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
           {tableType == "breakdown"
             ? PlayTypeDiagUtils.buildLegend("[LEGEND]")
             : null}
+          {tableType == "breakdown" && grades ? <span> | </span> : null}
+          {tableType == "breakdown" && grades
+            ? PlayTypeDiagUtils.buildCsvDownload(
+                "[CSV]",
+                `play_types_${title}`,
+                csvData,
+                () => {
+                  const playStyleData: object[] =
+                    PlayTypeDiagUtils.buildTeamStyleBreakdownData(
+                      title,
+                      true,
+                      "",
+                      {
+                        on: [],
+                        off: [],
+                        other: [],
+                        baseline: players,
+                        global: [],
+                      },
+                      {
+                        on: StatModels.emptyTeam(),
+                        off: StatModels.emptyTeam(),
+                        other: [],
+                        baseline: teamStats,
+                        global: StatModels.emptyTeam(),
+                      },
+                      avgEfficiency,
+                      grades,
+                      false,
+                      undefined,
+                      rosterStatsByCode
+                    );
+                  setCsvData(playStyleData);
+                }
+              )
+            : null}
         </span>
         <br />
         {tableType == "breakdown" ? (
@@ -375,6 +412,7 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({
     teamStats,
     quickSwitch,
     quickSwitchTimer,
+    csvData,
   ]);
 };
 export default TeamPlayTypeDiagView;
