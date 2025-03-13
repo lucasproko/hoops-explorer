@@ -15,6 +15,8 @@ import { AvailableTeams } from "./internal-data/AvailableTeams";
 
 // Library imports:
 import fetch from "isomorphic-unfetch";
+import { GameInfoStatSet } from "./StatModels";
+import { LineupUtils } from "./stats/LineupUtils";
 
 const debugLogResponses = false;
 
@@ -242,7 +244,7 @@ export class RequestUtils {
   /** Makes an API call to elasticsearch to get the roster */
   static fetchOpponents(
     params: CommonFilterParams,
-    resultCallback: (gameObjs: any[]) => void,
+    resultCallback: (gameObjs: GameInfoStatSet[]) => void,
     dataLastUpdated: Record<string, number>,
     isDebug: boolean
   ) {
@@ -267,13 +269,21 @@ export class RequestUtils {
         currentJsonEpoch,
         isDebug
       );
+      const makeUnique = (gameInfoObjs: Array<GameInfoStatSet>) => {
+        //TODO: should actually combine inside the LineupUtils call, but this will do for now
+        return _.sortedUniqBy(
+          gameInfoObjs,
+          (gameInfoObj) => gameInfoObj.opponent || "" + gameInfoObj.date || ""
+        );
+      };
       if (cachedJson && !_.isEmpty(cachedJson)) {
         //(ignore placeholders here)
+        const oppoList = LineupUtils.getGameInfo(
+          cachedJson?.responses?.[0]?.aggregations?.game_info || {}
+        );
         resultCallback(
-          _.orderBy(
-            cachedJson?.responses?.[0]?.aggregations?.game_info?.buckets || [],
-            RequestUtils.buildDateStr,
-            "desc"
+          makeUnique(
+            _.orderBy(oppoList, (gameInfoObj) => gameInfoObj.date, "desc")
           )
         );
       } else {
@@ -283,7 +293,7 @@ export class RequestUtils {
           response.json().then(function (json: any) {
             // Cache result locally:
             if (isDebug) {
-              console.log(`CACHE_KEY=[${ParamPrefixes.lineup}${paramStr}]`);
+              console.log(`CACHE_KEY=[${ParamPrefixes.gameInfo}${paramStr}]`);
               //(this is a bit chatty)
               //console.log(`CACHE_VAL=[${JSON.stringify(json)}]`);
             }
@@ -297,11 +307,12 @@ export class RequestUtils {
                 isDebug
               );
             }
+            const oppoList = LineupUtils.getGameInfo(
+              json?.responses?.[0]?.aggregations?.game_info || {}
+            );
             resultCallback(
-              _.orderBy(
-                json?.responses?.[0]?.aggregations?.game_info?.buckets || [],
-                RequestUtils.buildDateStr,
-                "desc"
+              makeUnique(
+                _.orderBy(oppoList, (gameInfoObj) => gameInfoObj.date, "desc")
               )
             );
           });
@@ -314,17 +325,12 @@ export class RequestUtils {
 
   // Utils:
 
-  /** Builds a date string from the result of a game query */
-  static buildDateStr(gameInfoObj: any) {
-    return (
-      gameInfoObj?.game_info?.buckets?.[0]?.key_as_string || "????-??-??"
-    ).substring(0, 10);
-  }
-
   /** Builds a score string from the result of a game query */
   static buildScoreInfo(gameInfoObj: any) {
-    const scoreInfoObj = gameInfoObj?.game_info?.buckets?.[0]?.end_of_game?.hits
-      ?.hits?.[0]?._source?.score_info?.end || { scored: 0, allowed: 0 };
+    const scoreInfoObj = {
+      scored: gameInfoObj.num_pts_for || 0,
+      allowed: gameInfoObj.num_pts_against || 0,
+    };
 
     return `${scoreInfoObj.scored > scoreInfoObj.allowed ? "W" : "L"} ${
       scoreInfoObj.scored

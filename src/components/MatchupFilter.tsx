@@ -157,14 +157,14 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
   }
 
   const buildMenuItem = (gameInfoObj: any) => {
-    const oppoAndLocation = (gameInfoObj?.key || "Unknown")
+    const oppoAndLocation = (gameInfoObj.opponent || "?:Unknown")
       .replace(/^A:/, "@ ")
       .replace(/^H:/, "")
       .replace(/^N:/, "vs ");
 
-    return `${oppoAndLocation} (${RequestUtils.buildDateStr(
-      gameInfoObj
-    )}): ${RequestUtils.buildScoreInfo(gameInfoObj)}`;
+    return `${oppoAndLocation} (${
+      gameInfoObj.date || "????-??-??"
+    }): ${RequestUtils.buildScoreInfo(gameInfoObj)}`;
   };
 
   /** Builds a lineup filter from the various state elements, and also any secondary filters

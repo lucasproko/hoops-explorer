@@ -241,6 +241,8 @@ export class LineupUtils {
           .map((b: any) => {
             const opponent = bb?.key || "?:Unknown";
             const date = (b?.key_as_string || "????-??-??").substring(0, 10);
+            const maybe_end_of_game_info =
+              b?.end_of_game?.hits?.hits?.[0]?._source?.score_info?.end;
             if (mutableOpponents)
               mutableOpponents[`${date} ${opponent}`] = {
                 opponent: opponent,
@@ -256,8 +258,10 @@ export class LineupUtils {
               num_off_poss: b?.num_off_poss?.value || b?.off_poss?.value || 0,
               num_def_poss: b?.num_def_poss?.value || b?.def_poss?.value || 0,
               // These are only available for the lineup version
-              num_pts_for: b?.num_pts_for?.value || 0,
-              num_pts_against: b?.num_pts_against?.value || 0,
+              num_pts_for:
+                b?.num_pts_for?.value || maybe_end_of_game_info?.scored,
+              num_pts_against:
+                b?.num_pts_against?.value || maybe_end_of_game_info?.allowed,
             };
           });
       }),

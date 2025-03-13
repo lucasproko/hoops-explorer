@@ -40,12 +40,15 @@ import {
   PlayerCode,
   LineupStintTeamStats,
   ShotStats,
+  GameInfoStatSet,
 } from "../utils/StatModels";
 import { QueryUtils } from "../utils/QueryUtils";
 import { dataLastUpdated } from "../utils/internal-data/dataLastUpdated";
 import { ClientRequestCache } from "../utils/ClientRequestCache";
 import { UrlRouting } from "../utils/UrlRouting";
 import { DateUtils } from "../utils/DateUtils";
+import { LineupUtils } from "../utils/stats/LineupUtils";
+import { RequestUtils } from "../utils/RequestUtils";
 
 type Props = {
   onStats: (
@@ -124,7 +127,12 @@ const CustomMatchupFilter: React.FunctionComponent<Props> = ({
   useEffect(() => {
     // On load,
     if (_.isEmpty(opponentList) && commonParams.team) {
-      fetchOpponents(commonParams);
+      RequestUtils.fetchOpponents(
+        commonParams,
+        (results) => setOpponentList(results),
+        dataLastUpdated,
+        isDebug
+      );
     }
   }, []);
 
@@ -139,102 +147,26 @@ const CustomMatchupFilter: React.FunctionComponent<Props> = ({
       if (params.team && params.year && params.gender) {
         setOpponentList([]);
         setGame("");
-        fetchOpponents(params);
+        RequestUtils.fetchOpponents(
+          params,
+          (results) => setOpponentList(results),
+          dataLastUpdated,
+          isDebug
+        );
       }
     }
     setCommonParams(params);
   }
 
-  const buildDateStr = (gameInfoObj: any) => {
-    return (
-      gameInfoObj?.game_info?.buckets?.[0]?.key_as_string || "????-??-??"
-    ).substring(0, 10);
-  };
-
-  const buildScoreInfo = (gameInfoObj: any) => {
-    const scoreInfoObj = gameInfoObj?.game_info?.buckets?.[0]?.end_of_game?.hits
-      ?.hits?.[0]?._source?.score_info?.end || { scored: 0, allowed: 0 };
-
-    return `${scoreInfoObj.scored > scoreInfoObj.allowed ? "W" : "L"} ${
-      scoreInfoObj.scored
-    }-${scoreInfoObj.allowed}`;
-  };
-
-  const buildMenuItem = (gameInfoObj: any) => {
-    const oppoAndLocation = (gameInfoObj?.key || "Unknown")
+  const buildMenuItem = (gameInfoObj: GameInfoStatSet) => {
+    const oppoAndLocation = (gameInfoObj.opponent || "?:Unknown")
       .replace(/^A:/, "@ ")
       .replace(/^H:/, "")
       .replace(/^N:/, "vs ");
 
-    return `${oppoAndLocation} (${buildDateStr(gameInfoObj)}): ${buildScoreInfo(
-      gameInfoObj
-    )}`;
-  };
-
-  /** Makes an API call to elasticsearch to get the roster */
-  const fetchOpponents = (params: CommonFilterParams) => {
-    const { gender, year, team } = params;
-    if (gender && year && team) {
-      const genderYear = `${gender}_${year}`;
-      const currentJsonEpoch = dataLastUpdated[genderYear] || -1;
-
-      const query: CommonFilterParams = {
-        gender: gender,
-        year: year,
-        team: team,
-        baseQuery: "start_min:0",
-        minRank: ParamDefaults.defaultMinRank,
-        maxRank: ParamDefaults.defaultMaxRank,
-      };
-      const paramStr = QueryUtils.stringify(query);
-      // Check if it's in the cache:
-      const cachedJson = ClientRequestCache.decacheResponse(
-        paramStr,
-        ParamPrefixes.gameInfo,
-        currentJsonEpoch,
-        isDebug
-      );
-      if (cachedJson && !_.isEmpty(cachedJson)) {
-        //(ignore placeholders here)
-        setOpponentList(
-          _.orderBy(
-            cachedJson?.responses?.[0]?.aggregations?.game_info?.buckets || [],
-            buildDateStr,
-            "desc"
-          )
-        );
-      } else {
-        fetch(`/api/getGameInfo?${paramStr}`).then(function (
-          response: fetch.IsomorphicResponse
-        ) {
-          response.json().then(function (json: any) {
-            // Cache result locally:
-            if (isDebug) {
-              console.log(`CACHE_KEY=[${ParamPrefixes.lineup}${paramStr}]`);
-              //(this is a bit chatty)
-              //console.log(`CACHE_VAL=[${JSON.stringify(json)}]`);
-            }
-            if (response.ok) {
-              //(never cache errors)
-              ClientRequestCache.cacheResponse(
-                paramStr,
-                ParamPrefixes.gameInfo,
-                json,
-                currentJsonEpoch,
-                isDebug
-              );
-            }
-            setOpponentList(
-              _.orderBy(
-                json?.responses?.[0]?.aggregations?.game_info?.buckets || [],
-                buildDateStr,
-                "desc"
-              )
-            );
-          });
-        });
-      }
-    }
+    return `${oppoAndLocation} (${
+      gameInfoObj.date || "????-??-??"
+    }): ${RequestUtils.buildScoreInfo(gameInfoObj)}`;
   };
 
   /** Builds a lineup filter from the various state elements, and also any secondary filters

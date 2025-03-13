@@ -205,10 +205,10 @@ const CommonFilter: CommonFilterI = ({
             },
             games: results.map((r) => {
               return {
-                date: RequestUtils.buildDateStr(r),
+                date: r.date || "????-??-??",
                 score: RequestUtils.buildScoreInfo(r),
-                opponent: (r.key || "?:Unknown").substring(2),
-                location: _.thru(r.key || "??", (key) => {
+                opponent: (r.opponent || "?:Unknown").substring(2),
+                location: _.thru(r.opponent || "??", (key) => {
                   if (key.startsWith("H:")) {
                     return "Home";
                   } else if (key.startsWith("A:")) {
