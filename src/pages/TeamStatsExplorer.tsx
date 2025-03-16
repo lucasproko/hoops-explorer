@@ -7,6 +7,7 @@ import Router, { useRouter } from "next/router";
 
 // Next imports:
 import { NextPage } from "next";
+import fetch from "isomorphic-unfetch";
 
 // Lodash:
 import _ from "lodash";
@@ -34,6 +35,7 @@ import { LeaderboardUtils } from "../utils/LeaderboardUtils";
 import TeamStatsExplorerTable, {
   TeamStatsExplorerModel,
 } from "../components/TeamStatsExplorerTable";
+import { QueryUtils } from "../utils/QueryUtils";
 
 type Props = {
   testMode?: boolean; //works around SSR issues, see below
@@ -134,7 +136,38 @@ const TeamStatsExplorerPage: NextPage<Props> = ({ testMode }) => {
     const gender = paramObj.gender || ParamDefaults.defaultGender;
     const fullYear = paramObj.year || DateUtils.mostRecentYearWithLboardData;
 
-    if (fullYear != currYear || gender != currGender) {
+    if (paramObj.secretQuery) {
+      const reqObj = {
+        year: fullYear,
+        team: "Maryland", //(this just needs to point to any valid team)
+        gender,
+        minRank: 0,
+        maxRank: 400,
+        baseQuery: paramObj.secretQuery,
+      };
+      fetch(`/api/calculateAllTeamStats?${QueryUtils.stringify(reqObj)}`).then(
+        (response: fetch.IsomorphicResponse) => {
+          return response.ok
+            ? response.json().then((j: any) => {
+                setDataSubEvent({
+                  bubbleOffenses: {},
+                  bubbleDefenses: {},
+                  confs: [],
+                  teams: (
+                    j?.responses?.[0]?.aggregations?.tri_filter?.buckets
+                      ?.baseline?.teams?.buckets || []
+                  ).map((team: any) => {
+                    team.team_name = team.key || "???";
+                    return team;
+                  }),
+                  lastUpdated: -1,
+                });
+                return j;
+              })
+            : Promise.resolve({ error: "No data available" });
+        }
+      );
+    } else if (fullYear != currYear || gender != currGender) {
       // Only need to do this if the data source has changed
       setCurrYear(fullYear);
       setCurrGender(gender);

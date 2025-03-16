@@ -248,6 +248,7 @@ export type TeamStatsExplorerParams = {
   showExtraInfo?: boolean;
   luck?: LuckParams; //(missing iff default)
   maxTableSize?: string;
+  secretQuery?: string; //(allows table view of all teams)
 };
 
 export type OffseasonLeaderboardParams = {

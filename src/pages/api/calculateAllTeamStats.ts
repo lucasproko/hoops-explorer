@@ -3,8 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 // Application imports
 import { CommonApiUtils } from "../../utils/CommonApiUtils";
-import { teamDefenseStatsQuery } from "../../utils/es-queries/teamDefenseStatsQueryTemplate";
-import { teamDefensePlayerStatsQuery } from "../../utils/es-queries/teamDefensePlayerStatsQueryTemplate";
+import { allTeamStatsQuery } from "../../utils/es-queries/allTeamsQueryTemplate";
 import {
   ParamPrefixes,
   CommonFilterParams,
@@ -33,24 +32,11 @@ function marshallRequest(
           : `*${yearStr}*,-women*,-player_*,-bad*,-kenpom*,-shot_events_*`,
       }),
       JSON.stringify(
-        teamDefenseStatsQuery(
-          params,
-          currentJsonEpoch,
-          efficiency,
-          lookup,
-          avgEfficiency,
-          CommonApiUtils.getHca(params as CommonFilterParams)
-        ),
-        CommonApiUtils.efficiencyReplacer()
-      ),
-      JSON.stringify({
-        index: isGenderWomen
-          ? `player_events_women_*${yearStr}*,-bad*,-kenpom*`
-          : `player_events*${yearStr}*,-player_events_women*,-bad*,-kenpom*`,
-      }),
-      JSON.stringify(
-        teamDefensePlayerStatsQuery(
-          params,
+        allTeamStatsQuery(
+          {
+            ...params,
+            team: "*",
+          },
           currentJsonEpoch,
           efficiency,
           lookup,
@@ -94,7 +80,7 @@ function marshallRequest(
   return body;
 }
 
-async function calculateTeamDefenseStats(
+async function calculateAllTeamStats(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -107,4 +93,4 @@ async function calculateTeamDefenseStats(
     marshallRequest
   );
 }
-export default calculateTeamDefenseStats;
+export default calculateAllTeamStats;
