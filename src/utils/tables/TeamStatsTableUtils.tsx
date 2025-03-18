@@ -756,6 +756,39 @@ export class TeamStatsTableUtils {
                             showGrades={showGrades}
                             grades={divisionStatsCache}
                             showHelp={showHelp}
+                            quickSwitchOptions={
+                              playTypeConfig?.def &&
+                              teamStatsByCombinedQuery(
+                                queryKey,
+                                otherQueryIndex
+                              ).def_style
+                                ? undefined
+                                : [
+                                    {
+                                      title: "Defense",
+                                      players: getRosterStats(
+                                        queryKey,
+                                        rosterStats,
+                                        otherQueryIndex
+                                      ),
+                                      rosterStatsByCode:
+                                        globalRosterStatsByCode,
+                                      teamStats: teamStatsByCombinedQuery(
+                                        queryKey,
+                                        otherQueryIndex
+                                      ),
+                                      defensiveOverride:
+                                        teamStatsByCombinedQuery(
+                                          queryKey,
+                                          otherQueryIndex
+                                        ).def_style,
+                                      showGrades: showGrades,
+                                      avgEfficiency,
+                                      showHelp,
+                                      quickSwitchOverride: undefined,
+                                    },
+                                  ]
+                            }
                             quickSwitchOverride={undefined}
                           />,
                         ]

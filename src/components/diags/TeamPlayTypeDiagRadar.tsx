@@ -76,7 +76,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   grades,
   showHelp,
   playCountToUse,
-  defensiveOverride,
+  defensiveOverride: defensiveOverrideIn,
   quickSwitchOverride,
   startWithRaw,
 }) => {
@@ -98,6 +98,10 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       ? _.find(quickSwitchOptions || [], (opt) => opt.title == quickSwitch)
           ?.teamStats
       : teamStatsIn) || StatModels.emptyTeam();
+  const defensiveOverride = quickSwitch
+    ? _.find(quickSwitchOptions || [], (opt) => opt.title == quickSwitch)
+        ?.defensiveOverride
+    : defensiveOverrideIn;
 
   const sosAdjustment =
     avgEfficiency /
