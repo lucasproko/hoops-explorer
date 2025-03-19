@@ -17,7 +17,7 @@ export const efficiencyAverages: Record<string, number> = {
   "Women_2021/22": 91.5,
   "Women_2022/23": 92.4,
   "Women_2023/24": 92.9,
-  "Women_2024/25": 93.8,
+  "Women_2024/25": 93.5,
 
   fallback: 100.0,
 };
