@@ -10,7 +10,7 @@ import {
   ParamDefaults,
 } from "../../utils/FilterModels";
 
-const queryPrefix = ParamPrefixes.game;
+const queryPrefix = ParamPrefixes.allTeamInfo;
 
 function marshallRequest(
   index: string,
