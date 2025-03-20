@@ -208,6 +208,9 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   const [advancedFilterError, setAdvancedFilterError] = useState(
     undefined as string | undefined
   );
+  const [secretQuery, setSecretQuery] = useState<string | undefined>(
+    _.trim(startingState.secretQuery)
+  );
 
   const [year, setYear] = useState(
     startingState.year || DateUtils.mostRecentYearWithLboardData
@@ -313,6 +316,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       t100: isT100,
       confOnly: isConfOnly,
       showAdvancedFilter,
+      secretQuery,
     });
   }, [
     confs,
@@ -329,6 +333,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     isT100,
     isConfOnly,
     showAdvancedFilter,
+    secretQuery,
   ]);
 
   /** Set this to be true on expensive operations */
@@ -464,6 +469,14 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         team.off_raw_net = {
           value: (team.off_ppp?.value || 100) - (team.def_ppp?.value || 100),
         };
+        if (!team.off_net) {
+          //(SECRET_QUERY mode doesn't include this so calculate)
+          team.off_net = {
+            value:
+              (team.off_adj_ppp?.value || 100) -
+              (team.def_adj_ppp?.value || 100),
+          };
+        }
 
         const expWinPctVsBubble = TeamEvalUtils.calcWinsAbove(
           team.off_adj_ppp?.value || 100,
@@ -490,6 +503,8 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       .sortBy((team) => {
         if (manualFilterSelected) {
           return queryFiltersAsMap[team.team_name] || 1000;
+        } else if (secretQuery?.length) {
+          return -(team.off_net?.value || 0);
         } else {
           return -(team.power || 0);
         }
@@ -721,7 +736,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     gender,
     year,
     confs,
-    dataEvent,
+    dataEvent, //(also includes changes to secretQuery)
     sortBy,
     queryFilters,
     advancedFilterStr,
@@ -772,11 +787,13 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           return "Custom Ranking";
         } else if (manualFilterSelected) {
           return "Manual Ordering";
+        } else if (secretQuery?.length) {
+          return "Adjusted Efficiency";
         } else {
           return "Default Power Ranking";
         }
       }),
-      value: "power",
+      value: "power", //(this is ignored, see sortBy filter for what's actually applied)
     },
   };
 
@@ -1011,12 +1028,24 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           <Form.Group as={Col} xs={12} sm={12} md={12} lg={12}>
             <LinqExpressionBuilder
               prompt="eg 'off_adj_ppp > 110.0 SORT_BY def_adj_ppp ASC'"
-              value={advancedFilterStr}
+              value={advancedFilterStr.concat(
+                secretQuery
+                  ? `${
+                      _.endsWith(advancedFilterStr, " ") ? "" : " "
+                    }SECRET_QUERY ` + secretQuery
+                  : ""
+              )}
               error={advancedFilterError}
-              autocomplete={AdvancedFilterUtils.teamExplorerAutocomplete}
+              autocomplete={AdvancedFilterUtils.teamExplorerAutocomplete.concat(
+                "SECRET_QUERY"
+              )}
               richTextReplacements={undefined}
               callback={(newVal: string) =>
-                friendlyChange(() => setAdvancedFilterStr(newVal), true)
+                friendlyChange(() => {
+                  const splits = newVal.split("SECRET_QUERY ");
+                  setAdvancedFilterStr(splits[0]);
+                  setSecretQuery(splits[1]);
+                }, true)
               }
               showHelp={showHelp}
             />
