@@ -214,7 +214,10 @@ export class RequestUtils {
   }
 
   /** Switch from one of the request types to the URL */
-  static requestContextToUrl(context: ParamPrefixesType, paramStr: string) {
+  static requestContextToUrl(
+    context: ParamPrefixesType,
+    paramStr: string
+  ): string {
     switch (context) {
       case ParamPrefixes.game:
         return `/api/calculateOnOffStats?${paramStr}`;
@@ -234,6 +237,8 @@ export class RequestUtils {
         return `/api/getGameInfo?${paramStr}`;
       case ParamPrefixes.defensiveInfo:
         return `/api/calculateTeamDefenseStats?${paramStr}`;
+      case ParamPrefixes.allTeamInfo:
+        return `/api/calculateAllTeamStats?${paramStr}`;
     }
   }
 
