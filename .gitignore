@@ -12,7 +12,7 @@
 .DS_Store
 npm-debug.log*
 coverage
-transfers_2024.json
+transfers_2025.json
 #(rename this every year)
 public/leaderboards/lineups/*2024*
 leaderboardDebug/*
