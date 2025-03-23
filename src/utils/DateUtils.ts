@@ -68,7 +68,7 @@ export class DateUtils {
   static readonly firstYearWithData = _.last(DateUtils.coreYears)!;
 
   /** The first year for which we had bulk date (ie not just hand-picked) */
-  static readonly mostRecetYearWithData = _.first(DateUtils.coreYears)!;
+  static readonly lastYearWithData = _.first(DateUtils.coreYears)!;
 
   /** Used for defaults for everything but leaderboards (which get updated later) */
   static readonly mostRecentYearWithData: string = "2024/25";
@@ -78,7 +78,7 @@ export class DateUtils {
    * Also don't forget to ensure "transfer_${prev_season}.json" is copied from GCS to public/leaderboards/roster_movement
    *
    */
-  static readonly offseasonPredictionYear: string = "2024/25";
+  static readonly offseasonPredictionYear: string = "2025/26";
 
   /** Used for leaderboard defaults, which lags behind (player + lineups, currently teams but that might change later) */
   static readonly mostRecentYearWithLboardData: string = "2024/25";
@@ -93,7 +93,7 @@ export class DateUtils {
   static readonly firstYearWithShotChartData: string = "2023/24";
 
   /** Don't have player geo before here */
-  static readonly firstYearWithRosterGeoData: string = "2023/24"; //"2023/24";
+  static readonly firstYearWithRosterGeoData: string = "2023/24";
 
   // These are old years in which the normal rules don't apply:
 
@@ -119,14 +119,15 @@ export class DateUtils {
     withAll: boolean,
     withExtra: boolean
   ) =>
-    DateUtils.coreYears
-      .filter((y) => y <= DateUtils.mostRecentYearWithLboardData)
+    (withNextYear &&
+    DateUtils.offseasonPredictionYear > DateUtils.mostRecentYearWithLboardData
+      ? [DateUtils.offseasonPredictionYear]
+      : []
+    )
       .concat(
-        withNextYear &&
-          DateUtils.offseasonPredictionYear >
-            DateUtils.mostRecentYearWithLboardData
-          ? [DateUtils.offseasonPredictionYear]
-          : []
+        DateUtils.coreYears.filter(
+          (y) => y <= DateUtils.mostRecentYearWithLboardData
+        )
       )
       .concat(withAll ? ["All"] : [])
       .concat(withExtra ? ["Extra"] : []);
@@ -136,7 +137,7 @@ export class DateUtils {
    */
   static readonly teamEditorYears = (offseasonMode: boolean) =>
     offseasonMode
-      ? _.drop(DateUtils.lboardYearListOptions(true, false, false), 1) //(include off-season but not very first year)
+      ? _.dropRight(DateUtils.lboardYearListOptions(true, false, false), 1) //(include off-season but not very first year)
       : DateUtils.lboardYearListOptions(false, false, false); //(include all seasons for which we have data)
 
   /** All years supported by the leaderboard - plus sometimes "Extra" but never "All" ... TODO: figure out why?! */
@@ -174,7 +175,9 @@ export class DateUtils {
 
   /** Get the previous season */
   static readonly getPrevYear = (y: string) => {
-    if (y == "2024/25") {
+    if (y == "2025/26") {
+      return "2024/25";
+    } else if (y == "2024/25") {
       return "2023/24";
     } else if (y == "2023/24") {
       return "2022/23";
@@ -194,7 +197,9 @@ export class DateUtils {
   };
   /** Get the next season */
   static readonly getNextYear = (y: string) => {
-    if (y == "2023/24") {
+    if (y == "2024/25") {
+      return "2025/26";
+    } else if (y == "2023/24") {
       return "2024/25";
     } else if (y == "2022/23") {
       return "2023/24";
@@ -222,8 +227,10 @@ export class DateUtils {
 
   /** Get the offseason of the current season */
   static readonly getOffseasonOfYear = (y: string) => {
-    if (y == "2024/25") {
+    if (y == "2025/26") {
       //TODO: can calculate programmatically
+      return "2026";
+    } else if (y == "2024/25") {
       return "2025";
     } else if (y == "2023/24") {
       return "2024";

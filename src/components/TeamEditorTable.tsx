@@ -509,7 +509,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
         _.find(DateUtils.coreYears, year) ||
         (year < DateUtils.firstYearWithData
           ? DateUtils.firstYearWithData!
-          : DateUtils.mostRecetYearWithData);
+          : DateUtils.lastYearWithData);
 
       const yearOrGenderChanged =
         yearToUse != divisionStatsCache.year ||
