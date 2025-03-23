@@ -1492,9 +1492,14 @@ const lowVolumePlayerCheck = (p: IndivStatSet): boolean => {
     Math.max(playerPossPctCapped - lowVolThresholdMid) / lowVolThresholdMid;
   const thresh = highThresh + alpha * (lowThresh - highThresh);
 
+  // Simplier version .. just include anyone who played >=8% of mins (3.2+mpg)
   return Boolean(
-    p.off_adj_rapm && p.def_adj_rapm && offRapm - defRapm >= thresh + classBonus
+    p.off_adj_rapm && p.def_adj_rapm && playerPossPctCapped >= 0.08
   ).valueOf();
+
+  // return Boolean(
+  //   p.off_adj_rapm && p.def_adj_rapm && offRapm - defRapm >= thresh + classBonus
+  // ).valueOf();
 };
 
 /** Handy util to cut a player's stats down to the bare min needed for evaluating them */

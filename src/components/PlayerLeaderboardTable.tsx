@@ -771,9 +771,10 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     const confDataEventPlayers = applyMiscFilters
       ? dataEventPlayers.filter((player) => {
           return (
-            (!confSet || confSet.has(player.conf || "Unknown")) &&
-            (!posClassSet || posClassSet.has(player.posClass || "Unknown")) &&
-            player.off_team_poss?.value >= minPossNum
+            ((!confSet || confSet.has(player.conf || "Unknown")) &&
+              (!posClassSet || posClassSet.has(player.posClass || "Unknown")) &&
+              player.off_team_poss?.value >= minPossNum) ||
+            minPossNum == 0
           );
           //(we do the "spurious" minPossNum check so we can detect filter presence and use to add a ranking)
         })
@@ -1126,7 +1127,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           ) : (
             `#${player[`def_adj_${rtg}_rank`]}`
           );
-        return year == "All" && !fullDataSetSeasons.has(player.year) ? (
+        return (year == "All" && !fullDataSetSeasons.has(player.year)) ||
+          _.isUndefined(player.off_adj_rtg_rank) ? (
           <OverlayTrigger placement="auto" overlay={rankingsTooltip}>
             <span>
               {generalRank}

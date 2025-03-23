@@ -316,6 +316,7 @@ export type PlayerSeasonComparisonParams = {
   dotColorMap?: string;
   labelStrategy?: string;
   toggledPlayers?: string;
+  includeLowVolPlayers?: boolean;
 };
 
 export type TeamLeaderboardParams = {
