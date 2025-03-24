@@ -882,15 +882,17 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
   // First enrich with (luck, on-ball defense, manual overrides and...) ORtg etc
 
-  const modelKeys: [OnOffBaselineOtherEnum, number][] = (
+  /** Show on/off first, baseline last (order important because of [[varFirstRowKey]]) */
+  const modelKeysDisplayOrder: [OnOffBaselineOtherEnum, number][] = (
     [
-      ["baseline", 0],
       ["on", 0],
       ["off", 0],
     ] as [OnOffBaselineOtherEnum, number][]
-  ).concat((teamStats.other || []).map((__, ii) => ["other", ii]));
+  )
+    .concat((teamStats.other || []).map((__, ii) => ["other", ii]))
+    .concat([["baseline", 0]]);
 
-  modelKeys.forEach(([queryKey, otherQueryIndex]) => {
+  modelKeysDisplayOrder.forEach(([queryKey, otherQueryIndex]) => {
     const playerList = allPlayers
       .map((triple) =>
         queryKey == "other" ? triple.other?.[otherQueryIndex] : triple[queryKey]
@@ -943,7 +945,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     var varFirstRowKey: string | undefined = undefined;
 
     // Inject ORtg and DRB and Poss% (ie mutate player idempotently)
-    modelKeys.forEach(([queryKey, otherQueryIndex]) => {
+    modelKeysDisplayOrder.forEach(([queryKey, otherQueryIndex]) => {
       const stat = getPlayerStats(queryKey, player, otherQueryIndex);
       const teamStat = getTeamStats(queryKey, teamStats, otherQueryIndex);
 
