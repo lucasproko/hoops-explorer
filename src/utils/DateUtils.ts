@@ -15,7 +15,7 @@ export class DateUtils {
   static readonly frontPageIsOffseasonLeaderboard: Boolean = false;
 
   /** During portal mania show the off-season leaderboard with extra in/out metrics */
-  static readonly showOffseasonMetrics: Boolean = false;
+  static readonly showOffseasonMetrics: Boolean = true;
 
   /** This year is being written to GCS daily, others are statically part of the website - DO NOT USE OUTSIDE OF THIS CONTEXT */
   static readonly inSeasonYear: string = "2024/25";
