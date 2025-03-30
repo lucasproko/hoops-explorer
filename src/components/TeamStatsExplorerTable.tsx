@@ -820,6 +820,157 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     <span>Linq</span>
   );
 
+  const quickToggleBar = (
+    <ToggleButtonGroup
+      items={_.flatten([
+        [
+          //TODO: need some work to plumb into getTeamDetails
+          // {
+          //   label: "T100",
+          //   tooltip: "Show teams' stats vs T100 opposition",
+          //   toggled: isT100,
+          //   onClick: () =>
+          //     friendlyChange(() => {
+          //       setIsT100(!isT100);
+          //       setIsConfOnly(false);
+          //     }, true),
+          // },
+          // {
+          //   label: "Conf",
+          //   tooltip: "Show teams' stats vs conference opposition",
+          //   toggled: isConfOnly,
+          //   onClick: () =>
+          //     friendlyChange(() => {
+          //       setIsT100(false);
+          //       setIsConfOnly(!isConfOnly);
+          //     }, true),
+          // },
+        ],
+        [
+          {
+            label: "Grades",
+            tooltip: showGrades
+              ? "Hide team ranks/percentiles"
+              : "Show team ranks/percentiles",
+            toggled: showGrades != "",
+            onClick: () =>
+              friendlyChange(
+                () =>
+                  setShowGrades(
+                    showGrades ? "" : ParamDefaults.defaultEnabledGrade
+                  ),
+                true
+              ),
+          },
+          {
+            label: "Extra",
+            tooltip: showExtraInfo
+              ? "Hide extra stats info"
+              : `Show extra stats info (first ${MAX_EXTRA_INFO_IN_ROWS} teams)`,
+            toggled: showExtraInfo,
+            onClick: () =>
+              friendlyChange(() => setShowExtraInfo(!showExtraInfo), true),
+          },
+          {
+            label: "|",
+            tooltip: "",
+            toggled: true,
+            onClick: () => {},
+            isLabelOnly: true,
+          },
+          {
+            label: "Style",
+            tooltip: showPlayStyles
+              ? "Hide play style breakdowns"
+              : `Show play style breakdowns (first ${MAX_EXTRA_INFO_IN_ROWS} teams)`,
+            toggled: showPlayStyles,
+            onClick: () =>
+              friendlyChange(() => setShowPlayStyles(!showPlayStyles), true),
+          },
+          {
+            label: ":",
+            tooltip: "",
+            toggled: true,
+            onClick: () => {},
+            isLabelOnly: true,
+          },
+          {
+            label: "Off",
+            tooltip: showPlayStyles
+              ? playStyleConfig.includes("off")
+                ? "Hide offensive play style breakdowns"
+                : `Show offensive play style breakdowns`
+              : "(Select Style to enable)",
+            toggled: showPlayStyles && playStyleConfig.includes("off"),
+            onClick: () => {
+              if (showPlayStyles) {
+                const newVal = _.thru(playStyleConfig, (curr) => {
+                  if (curr.includes("off")) return curr.replace("off", "");
+                  else return "off" + curr;
+                });
+                friendlyChange(
+                  () => setPlayStyleConfig(newVal),
+                  newVal != playStyleConfig
+                );
+              } //(else ignore clicks, style not enabled)
+            },
+          },
+          {
+            label: "Def",
+            tooltip: showPlayStyles
+              ? playStyleConfig.includes("def")
+                ? "Hide defensive play style breakdowns"
+                : `Show defensive play style breakdowns`
+              : "(Select Style to enable)",
+            toggled: showPlayStyles && playStyleConfig.includes("def"),
+            onClick: () => {
+              if (showPlayStyles) {
+                const newVal = _.thru(playStyleConfig, (curr) => {
+                  if (curr.includes("def")) return curr.replace("def", "");
+                  else return curr + "def";
+                });
+                friendlyChange(
+                  () => setPlayStyleConfig(newVal),
+                  newVal != playStyleConfig
+                );
+              } //(else ignore clicks, style not enabled)
+            },
+          },
+        ],
+        showHelp
+          ? [
+              //TODO: what to show here?
+              // {
+              //   label: <a href="https://hoop-explorer.blogspot.com/2020/07/understanding-lineup-analyzer-page.html" target="_blank">?</a>,
+              //   tooltip: "Open a page that explains some of the elements of this table",
+              //   toggled: false,
+              //   onClick: () => {}
+              // }
+            ]
+          : [],
+      ])}
+    />
+  );
+
+  const maxTeamsInput = (
+    <InputGroup>
+      <InputGroup.Prepend>
+        <InputGroup.Text id="maxTeams">Max Teams</InputGroup.Text>
+      </InputGroup.Prepend>
+      <AsyncFormControl
+        startingVal={
+          startingState.maxTableSize ||
+          ParamDefaults.defaultTeamExplorerMaxTableSize
+        }
+        validate={(t: string) => t.match("^[0-9]*$") != null}
+        onChange={(t: string) =>
+          friendlyChange(() => setMaxTableSize(t), t != maxTableSize)
+        }
+        timeout={400}
+        placeholder="eg 100"
+      />
+    </InputGroup>
+  );
   return (
     <Container>
       <Form.Group as={Row}>
@@ -1062,163 +1213,18 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         }}
       >
         <Col xs={12} sm={12} md={8} lg={8} className="pt-1 mb-1">
-          <ToggleButtonGroup
-            items={_.flatten([
-              [
-                //TODO: need some work to plumb into getTeamDetails
-                // {
-                //   label: "T100",
-                //   tooltip: "Show teams' stats vs T100 opposition",
-                //   toggled: isT100,
-                //   onClick: () =>
-                //     friendlyChange(() => {
-                //       setIsT100(!isT100);
-                //       setIsConfOnly(false);
-                //     }, true),
-                // },
-                // {
-                //   label: "Conf",
-                //   tooltip: "Show teams' stats vs conference opposition",
-                //   toggled: isConfOnly,
-                //   onClick: () =>
-                //     friendlyChange(() => {
-                //       setIsT100(false);
-                //       setIsConfOnly(!isConfOnly);
-                //     }, true),
-                // },
-              ],
-              [
-                //TODO Style
-                {
-                  label: "Grades",
-                  tooltip: showGrades
-                    ? "Hide team ranks/percentiles"
-                    : "Show team ranks/percentiles",
-                  toggled: showGrades != "",
-                  onClick: () =>
-                    friendlyChange(
-                      () =>
-                        setShowGrades(
-                          showGrades ? "" : ParamDefaults.defaultEnabledGrade
-                        ),
-                      true
-                    ),
-                },
-                {
-                  label: "Extra",
-                  tooltip: showExtraInfo
-                    ? "Hide extra stats info"
-                    : `Show extra stats info (first ${MAX_EXTRA_INFO_IN_ROWS} teams)`,
-                  toggled: showExtraInfo,
-                  onClick: () =>
-                    friendlyChange(
-                      () => setShowExtraInfo(!showExtraInfo),
-                      true
-                    ),
-                },
-                {
-                  label: "|",
-                  tooltip: "",
-                  toggled: true,
-                  onClick: () => {},
-                  isLabelOnly: true,
-                },
-                {
-                  label: "Style",
-                  tooltip: showPlayStyles
-                    ? "Hide play style breakdowns"
-                    : `Show play style breakdowns (first ${MAX_EXTRA_INFO_IN_ROWS} teams)`,
-                  toggled: showPlayStyles,
-                  onClick: () =>
-                    friendlyChange(
-                      () => setShowPlayStyles(!showPlayStyles),
-                      true
-                    ),
-                },
-                {
-                  label: ":",
-                  tooltip: "",
-                  toggled: true,
-                  onClick: () => {},
-                  isLabelOnly: true,
-                },
-                {
-                  label: "Off",
-                  tooltip: showPlayStyles
-                    ? playStyleConfig.includes("off")
-                      ? "Hide offensive play style breakdowns"
-                      : `Show offensive play style breakdowns`
-                    : "(Select Style to enable)",
-                  toggled: showPlayStyles && playStyleConfig.includes("off"),
-                  onClick: () => {
-                    if (showPlayStyles) {
-                      const newVal = _.thru(playStyleConfig, (curr) => {
-                        if (curr.includes("off"))
-                          return curr.replace("off", "");
-                        else return "off" + curr;
-                      });
-                      friendlyChange(
-                        () => setPlayStyleConfig(newVal),
-                        newVal != playStyleConfig
-                      );
-                    } //(else ignore clicks, style not enabled)
-                  },
-                },
-                {
-                  label: "Def",
-                  tooltip: showPlayStyles
-                    ? playStyleConfig.includes("def")
-                      ? "Hide defensive play style breakdowns"
-                      : `Show defensive play style breakdowns`
-                    : "(Select Style to enable)",
-                  toggled: showPlayStyles && playStyleConfig.includes("def"),
-                  onClick: () => {
-                    if (showPlayStyles) {
-                      const newVal = _.thru(playStyleConfig, (curr) => {
-                        if (curr.includes("def"))
-                          return curr.replace("def", "");
-                        else return curr + "def";
-                      });
-                      friendlyChange(
-                        () => setPlayStyleConfig(newVal),
-                        newVal != playStyleConfig
-                      );
-                    } //(else ignore clicks, style not enabled)
-                  },
-                },
-              ],
-              showHelp
-                ? [
-                    //TODO: what to show here?
-                    // {
-                    //   label: <a href="https://hoop-explorer.blogspot.com/2020/07/understanding-lineup-analyzer-page.html" target="_blank">?</a>,
-                    //   tooltip: "Open a page that explains some of the elements of this table",
-                    //   toggled: false,
-                    //   onClick: () => {}
-                    // }
-                  ]
-                : [],
-            ])}
-          />
+          {quickToggleBar}
         </Col>
         <Form.Group as={Col} lg="3">
-          <InputGroup>
-            <InputGroup.Prepend>
-              <InputGroup.Text id="maxTeams">Max Teams</InputGroup.Text>
-            </InputGroup.Prepend>
-            <AsyncFormControl
-              startingVal={
-                startingState.maxTableSize ||
-                ParamDefaults.defaultTeamExplorerMaxTableSize
-              }
-              validate={(t: string) => t.match("^[0-9]*$") != null}
-              onChange={(t: string) =>
-                friendlyChange(() => setMaxTableSize(t), t != maxTableSize)
-              }
-              timeout={400}
-              placeholder="eg 100"
-            />
-          </InputGroup>
+          {maxTeamsInput}
+        </Form.Group>
+      </Row>
+      <Row className="d-md-none">
+        <Col xs={12} sm={12} md={8} lg={8} className="pt-1 mb-1">
+          {quickToggleBar}
+        </Col>
+        <Form.Group as={Col} lg="3">
+          {maxTeamsInput}
         </Form.Group>
       </Row>
       <Row>
