@@ -222,10 +222,15 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
 
   const [sortBy, setSortBy] = useState(startingState.sortBy || "power");
 
-  const teamList = _.flatMap(AvailableTeams.byName, (teams, __) => {
-    const maybeTeam = teams.find((t) => t.year == year && t.gender == gender);
-    return maybeTeam ? [maybeTeam.team] : [];
-  });
+  const teamList =
+    year == "All"
+      ? _.keys(AvailableTeams.byName)
+      : _.flatMap(AvailableTeams.byName, (teams, __) => {
+          const maybeTeam = teams.find(
+            (t) => t.year == year && t.gender == gender
+          );
+          return maybeTeam ? [maybeTeam.team] : [];
+        });
 
   /** Show team and individual grades */
   const [showGrades, setShowGrades] = useState(

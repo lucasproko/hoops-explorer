@@ -174,6 +174,11 @@ export const absolutePositionFixes: Record<
       position: "CG",
     },
   },
+  "Men_Kentucky_2024/25": {
+    "Garrison, Brandon": {
+      position: "PF/C",
+    },
+  },
   "Women_Villanova_2024/25": {
     //(discussion by email)
     "Orihel, Kaitlyn": { position: "WF" },
