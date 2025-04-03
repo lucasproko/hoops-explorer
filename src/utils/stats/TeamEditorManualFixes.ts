@@ -6,6 +6,7 @@ import { freshmenMen2021_22 } from "../public-data/freshmenMen2021_22";
 import { freshmenMen2022_23 } from "../public-data/freshmenMen2022_23";
 import { freshmenMen2023_24 } from "../public-data/freshmenMen2023_24";
 import { freshmenMen2024_25 } from "../public-data/freshmenMen2024_25";
+import { freshmenMen2025_26 } from "../public-data/freshmenMen2025_26";
 import { superSeniors2021_22 } from "../public-data/superSeniors2021_22";
 import { leftTeam2021_22 } from "../public-data/leftTeam2021_22";
 import { superSeniors2022_23 } from "../public-data/superSeniors2022_23";
@@ -51,6 +52,11 @@ export class TeamEditorManualFixes {
       return TeamEditorManualFixes.buildOverrides(
         freshmenMen2024_25,
         "Men_2024/25"
+      );
+    } else if (genderYear == "Men_2024/25") {
+      return TeamEditorManualFixes.buildOverrides(
+        freshmenMen2025_26,
+        "Men_2025/26"
       );
     } else {
       return {};
@@ -1648,6 +1654,19 @@ export class TeamEditorManualFixes {
         const combinedOverrides = TeamEditorManualFixes.combineOverrides(
           mutableToRet,
           manualOverrides_Men_2024_25,
+          {},
+          {} //(use prev season until have calculated this season's)
+        );
+        return combinedOverrides;
+      } else if (genderYear == "Men_2024/25") {
+        const manualOverrides_Men_2025_26: Record<
+          string,
+          TeamEditorManualFixModel
+        > = {};
+
+        const combinedOverrides = TeamEditorManualFixes.combineOverrides(
+          mutableToRet,
+          manualOverrides_Men_2025_26,
           {},
           {} //(use prev season until have calculated this season's)
         );

@@ -1143,6 +1143,7 @@ export class TeamEditorUtils {
           transfersLastYear[code] || [],
           (txfer) => txfer.f == p.team && txfer.t == team
         );
+
         const doubleTransfer = getMaybeDoubleTransfer(code, p); //(note this always implies transferringIn in practice)
         const notAgingOut =
           includeSuperSeniors ||
@@ -1153,10 +1154,24 @@ export class TeamEditorUtils {
           !offSeasonMode ||
           (notAgingOut && !isTransferringOut);
         const onTeam = wasOnTeam || wasPlayerTxferLastYear;
-        const notOnExcludeList = !mutableExcludeSet[key];
-        if (!notOnExcludeList) {
+        const notOnExcludeListMainCheck = !mutableExcludeSet[key];
+        if (!notOnExcludeListMainCheck) {
           mutableExcludeSet[key] = p.key; //(fill this in with the name of the player for display purposes)
         }
+        const notOnExcludeListTransferCheck = _.thru(
+          wasPlayerTxferLastYear && notOnExcludeListMainCheck,
+          (caseToCheck) => {
+            // These players' key will be different (not ending ::) so we adjust and re-check
+            if (caseToCheck) {
+              const adjustedTransferKey = key.split(":")[0] + "::";
+              return !mutableExcludeSet[adjustedTransferKey];
+            } else {
+              return true;
+            }
+          }
+        );
+        const notOnExcludeList =
+          notOnExcludeListMainCheck && notOnExcludeListTransferCheck;
 
         if (wasOnTeam && isTransferringOut && p.year == year) {
           //(this year only)

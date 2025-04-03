@@ -69,6 +69,10 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - queryFilters + ov
         options={
           Array [
             Object {
+              "label": "2025/26",
+              "value": "2025/26",
+            },
+            Object {
               "label": "2024/25",
               "value": "2024/25",
             },
@@ -1083,6 +1087,10 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
         onChange={[Function]}
         options={
           Array [
+            Object {
+              "label": "2025/26",
+              "value": "2025/26",
+            },
             Object {
               "label": "2024/25",
               "value": "2024/25",
@@ -19001,6 +19009,10 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
         options={
           Array [
             Object {
+              "label": "2025/26",
+              "value": "2025/26",
+            },
+            Object {
               "label": "2024/25",
               "value": "2024/25",
             },
@@ -34771,6 +34783,10 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
         options={
           Array [
             Object {
+              "label": "2025/26",
+              "value": "2025/26",
+            },
+            Object {
               "label": "2024/25",
               "value": "2024/25",
             },
@@ -48678,6 +48694,10 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - transfer in+out +
         onChange={[Function]}
         options={
           Array [
+            Object {
+              "label": "2025/26",
+              "value": "2025/26",
+            },
             Object {
               "label": "2024/25",
               "value": "2024/25",
