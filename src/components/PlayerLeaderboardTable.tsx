@@ -30,7 +30,7 @@ import {
 import ClipboardJS from "clipboard";
 
 // Component imports
-import GenericTable, { GenericTableOps } from "./GenericTable";
+import GenericTable, { GenericTableOps, GenericTableRow } from "./GenericTable";
 import GenericTogglingMenu from "./shared/GenericTogglingMenu";
 import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
@@ -58,7 +58,7 @@ import { PlayerLeaderboardTracking } from "../utils/internal-data/LeaderboardTra
 
 import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 import { AdvancedFilterUtils } from "../utils/AdvancedFilterUtils";
-import { IndivStatSet, Statistic } from "../utils/StatModels";
+import { IndivStatSet, Statistic, TeamStatSet } from "../utils/StatModels";
 import { TransferModel } from "../utils/LeaderboardUtils";
 import { DateUtils } from "../utils/DateUtils";
 import ConferenceSelector from "./shared/ConferenceSelector";
@@ -127,6 +127,7 @@ const sortOptions: Array<any> = _.flatten(
           keycol[0] != "adj_prod" &&
           keycol[0] != "adj_rapm" &&
           keycol[0] != "adj_rapm_prod" &&
+          keycol[0] != "net_rapm" &&
           keycol[0] != "adj_opp"
         ) {
           // only do diff for a few:
@@ -244,7 +245,7 @@ const playerLeaderboardRichTextReplacements: Record<
 
 // Functional component
 
-const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
+const PlayerLeaderboardTable: React.FC<Props> = ({ // Use React.FC for typing
   startingState,
   dataEvent,
   onChangeState,
@@ -267,7 +268,42 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
 
   // 1] Data Model
 
-  const [clipboard, setClipboard] = useState(null as null | ClipboardJS);
+  const [clipboard, setClipboard] = useState<ClipboardJS | null>(null); // Explicit type
+
+  // Add back initClipboard
+  /** This grovelling is needed to ensure that clipboard is only loaded client side */
+  function initClipboard() {
+    if (null == clipboard) {
+      var newClipboard = new ClipboardJS(`#copyLink_playerLeaderboard`, {
+        text: function (trigger) {
+          return window.location.href;
+        },
+      });
+      newClipboard.on("success", (event: ClipboardJS.Event) => {
+        //(unlike other tables, don't add to history)
+        // Clear the selection in some visually pleasing way
+        setTimeout(function () {
+          event.clearSelection();
+        }, 150);
+      });
+      setClipboard(newClipboard);
+    }
+  }
+  
+  // Add back friendlyChange
+  /** At the expense of some time makes it easier to see when changes are happening */
+  const friendlyChange = (
+    change: () => void,
+    guard: boolean,
+    timeout: number = 250
+  ) => {
+    if (guard) {
+      setLoadingOverride(true);
+      setTimeout(() => {
+        change();
+      }, timeout);
+    }
+  };
 
   // 2] State
 
@@ -397,8 +433,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   /** When switching between rating and prod, also switch common sort bys over */
   const toggleFactorMins = () => {
     const newSortBy = factorMins
-      ? sortBy.replace("_rapm_prod", "_rapm").replace("_prod", "_rtg")
-      : sortBy.replace("_rapm", "_rapm_prod").replace("_rtg", "_prod");
+      ? sortBy.replace("_rapm_prod", "_rapm").replace("_prod", "_rtg").replace("net_rapm", "net_rapm")
+      : sortBy.replace("_rapm", "_rapm_prod").replace("_rtg", "_prod").replace("net_rapm", "net_rapm");
     if (newSortBy != sortBy && !_.endsWith(sortBy, "_pred")) {
       setSortBy(newSortBy);
     }
@@ -407,8 +443,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   /** When switching between RAPM and rtg, also switch common sort bys over */
   const toggleUseRapm = () => {
     const newSortBy = useRapm
-      ? sortBy.replace("_rapm_prod", "_prod").replace("_rapm", "_rtg")
-      : sortBy.replace("_rtg", "_rapm").replace("adj_prod", "adj_rapm_prod");
+      ? sortBy.replace("_rapm_prod", "_prod").replace("_rapm", "_rtg").replace("net_rapm", "net_rtg")
+      : sortBy.replace("_rtg", "_rapm").replace("adj_prod", "adj_rapm_prod").replace("net_rtg", "net_rapm");
     if (newSortBy != sortBy) {
       setSortBy(newSortBy);
     }
@@ -417,25 +453,23 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   /** Put these options at the front */
   const mostUsefulSubset = factorMins
     ? [
-        "desc:diff_adj_prod",
-        "desc:diff_adj_rapm_prod",
+        "desc:net_rapm",
         "desc:off_adj_prod",
         "desc:off_adj_rapm_prod",
         "asc:def_adj_prod",
         "asc:def_adj_rapm_prod",
       ]
     : [
-        "desc:diff_adj_rtg",
-        "desc:diff_adj_rapm",
+        "desc:net_rapm",
         "desc:off_adj_rtg",
         "desc:off_adj_rapm",
         "asc:def_adj_rtg",
         "asc:def_adj_rapm",
       ];
   const transferPredictionSorters = {
-    "desc:diff_adj_rapm_pred": {
+    "desc:net_rapm_pred": {
       label: "Predicted RAPM margin",
-      value: "desc:diff_adj_rapm_pred",
+      value: "desc:net_rapm_pred",
     },
     "desc:off_adj_rapm_pred": {
       label: "Predicted RAPM offense",
@@ -875,9 +909,20 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               skipSort
                 ? [] //(can save on a sort if using the generated sort-order, or if sorting is disabled)
                 : [
-                    LineupTableUtils.sorter(sortBy),
-                    (p) => p.baseline?.off_team_poss?.value || 0,
-                    (p) => p.key,
+                    (p: any) => {
+                      // Special case for net_rapm and related fields
+                      const sortKey = sortBy.replace("desc:", "").replace("asc:", "");
+                      if (sortKey === "net_rapm") {
+                        // Calculate net value for proper sorting
+                        const offVal = p.off_adj_rapm?.value ?? 0;
+                        const defVal = p.def_adj_rapm?.value ?? 0;
+                        return sortBy.startsWith("desc:") ? -(offVal - defVal) : (offVal - defVal);
+                      }
+                      // Use standard sorter for other fields
+                      return LineupTableUtils.sorter(sortBy)(p);
+                    },
+                    (p: any) => p.baseline?.off_team_poss?.value || 0,
+                    (p: any) => p.key,
                   ]
             )
             .value();
@@ -985,6 +1030,20 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     if (advancedFilterStr.length > 0)
       setAdvancedFilterError(tmpAvancedFilterError);
 
+    // Deduplication logic (inspired by _old version)
+    const deduplicatedPlayers = tier === "All" ?
+      players.filter((player, index, self) => {
+        if (index === 0) return true; // Always keep the first player
+        const prevPlayer = self[index - 1];
+        // Remove if key, team, and year match the previous player
+        return !(
+          player.key === prevPlayer.key &&
+          player.team === prevPlayer.team &&
+          player.year === prevPlayer.year
+        );
+      })
+      : players; // No deduplication needed if not 'All' tier
+
     // Rendering:
 
     const usefulSortCombo = useRapm
@@ -1053,7 +1112,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         return <span style={{ whiteSpace: "nowrap" }}>{s}</span>;
       };
 
-      player.def_usage = (
+      // Store the formatted position element separately
+      player.def_usage_formatted = (
         <OverlayTrigger
           placement="auto"
           overlay={TableDisplayUtils.buildPositionTooltip(
@@ -1069,6 +1129,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           </small>
         </OverlayTrigger>
       );
+      // Keep player.def_usage as the original stat object/value
+      // (No assignment here leaves player.def_usage untouched)
 
       const confNickname = ConferenceToNickname[player.conf] || "???";
       const teamSeasonLookup = `${startingState.gender}_${player.team}_${startingState.year}`;
@@ -1150,16 +1212,11 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       const rankings = getRankings();
 
       const playerLboardTooltip = (
-        <Tooltip id={`lboard_${playerIndex}_${nextYearState}`}>
+        <Tooltip id={`lboard_${player.code}`}>
           {player.roster?.origin ? (
-            <span>
-              {player.roster?.origin}
-              <br />
-              <br />
-            </span>
+            <span>{player.roster?.origin}<br /><br /></span>
           ) : null}
-          Open new tab showing all the player's seasons, in the multi-year
-          version of the leaderboard
+          Open new tab showing all the player's seasons
         </Tooltip>
       );
       const playerTeamEditorTooltip = (
@@ -1664,17 +1721,140 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               : [],
           ]);
     };
-    const tableData = _.take(players, parseInt(maxTableSize)).flatMap(
-      (player, playerIndex) => {
+    const tableData = _.take(players, parseInt(maxTableSize)).map(
+      (player: IndivStatSet, playerIndex: number) => {
         const nextYearState =
           startingState.includePrevYear && player.prevYear ? "y1ofN" : "y1of1";
-        return builderPlayerLine(player, playerIndex, nextYearState).concat(
-          startingState.includePrevYear && player.prevYear
-            ? builderPlayerLine(player.prevYear, playerIndex, "y2of2")
-            : []
+        
+        // Create a single row object with all required properties
+        // Start by getting the player title and other fields from the original function
+        const originalRows = builderPlayerLine(player, playerIndex, nextYearState);
+        
+        // Process the original data directly
+        if (originalRows.length === 0) {
+          // No data available for this player
+          return null;
+        }
+        
+        // We need to calculate net_rapm value because it's used for color coding
+        // and may not be present in the player data
+        const getSafeStatValue = (stat: any): number => {
+          if (typeof stat?.value === 'number') {
+            return stat.value;
+          }
+          return 0; // Default to 0 if not a valid stat object
+        };
+        const netRapmValue = getSafeStatValue(player.off_adj_rapm) - getSafeStatValue(player.def_adj_rapm);
+        
+        // Build Player Name link Element
+        const playerLboardTooltip = (
+          <Tooltip id={`lboard_${player.code}`}>
+            {player.roster?.origin ? (
+              <span>{player.roster?.origin}<br /><br /></span>
+            ) : null}
+            Open new tab showing all the player's seasons
+          </Tooltip>
+        );
+        const playerLeaderboardParams = {
+          tier: "All",
+          year: DateUtils.AllYears,
+          filter: `${player.key}:;`,
+          sortBy: "desc:year",
+          showInfoSubHeader: true,
+        };
+        const playerEl = (
+          <OverlayTrigger placement="auto" overlay={playerLboardTooltip}>
+            <a
+              target="_blank"
+              style={{ wordWrap: "normal" }}
+              href={UrlRouting.getPlayerLeaderboardUrl(playerLeaderboardParams)}
+            >
+              {player.key}
+            </a>
+          </OverlayTrigger>
+        );
+
+        // Build Team link Element
+        const teamTooltip = (
+          <Tooltip id={`team_${player.code}`}>
+            Open new tab with a detailed analysis view for this team
+          </Tooltip>
+        );
+        const teamParams = {
+          team: player.team,
+          gender: gender,
+          year: player.year || year,
+          minRank: "0",
+          maxRank: isT100 ? "100" : "400",
+          queryFilters: isConfOnly ? "Conf" : undefined,
+          // Add other necessary params as needed
+        };
+        const teamEl = (
+          <OverlayTrigger placement="auto" overlay={teamTooltip}>
+            <a target="_blank" href={UrlRouting.getGameUrl(teamParams, {})}>
+              {player.team}
+            </a>
+          </OverlayTrigger>
+        );
+                
+        // Create a flat rowData object for GenericTable
+        const rowData: Record<string, any> = {
+          // Assign pre-built elements directly
+          title: playerEl, 
+          team: teamEl,
+          // Position column - Pass the string directly
+          position: player.posClass || player.roster?.pos || "?", 
+          
+          // RAPM columns
+          off_adj_rapm: player.off_adj_rapm,
+          def_adj_rapm: player.def_adj_rapm,
+          net_rapm: player.off_adj_rapm_margin || { value: netRapmValue },
+          
+          // Adjusted Rating columns
+          off_adj_rtg: player.off_adj_rtg,
+          def_adj_rtg: player.def_adj_rtg,
+          adj_rtg_margin: player.off_adj_rtg_margin || { 
+            value: (getSafeStatValue(player.off_adj_rtg) - getSafeStatValue(player.def_adj_rtg))
+          },
+          
+          // Shooting percentage columns
+          off_efg: player.off_efg,
+          off_3p: player.off_3p,
+          off_2p: player.off_2p,
+          off_2pmid: player.off_2pmid,
+          off_2prim: player.off_2prim,
+          
+          // Shooting rates columns
+          off_3pr: player.off_3pr,
+          off_2pmidr: player.off_2pmidr,
+          off_2primr: player.off_2primr,
+          
+          // Other columns
+          off_usage: player.off_usage,
+          off_assist: player.off_assist,
+          off_to: player.off_to,
+          
+          // Rebounding - Separate fields
+          off_orb: player.off_orb,
+          def_orb: player.def_orb || player.off_drb,
+          team_poss_pct: player.off_team_poss_pct
+        };
+
+        // DEBUG: Log the rowData to check title and team elements
+        // if (playerIndex < 3) { // Log first 3 rows
+        //     console.log(`Row ${playerIndex} rowData:`, rowData);
+        //     console.log(`Row ${playerIndex} title:`, rowData.title); // Specifically log title
+        //     console.log(`Row ${playerIndex} team:`, rowData.team);   // Specifically log team
+        // }
+
+        // Build the row, passing the flat rowData object
+        return GenericTableOps.buildDataRow(
+          rowData, 
+          GenericTableOps.defaultFormatter, // Use default prefix (access keys directly)
+          (_key: string, _value: any) => "" 
         );
       }
-    );
+    ).filter((row): row is GenericTableRow => row !== null); // Filter out any null rows with type assertion
 
     setNumFilteredStr(
       isFiltered
@@ -1693,17 +1873,45 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       ? RosterTableUtils.buildInformationalSubheader(true, true)
       : [];
 
+    // Define the table fields using the updated function, passing context
+    const tableFields = CommonTableDefs.singleRowPlayerLeaderboardOnOffStyle(
+      factorMins,
+      startingState.useRapm === false ? false : true,
+      gender,
+      year,
+      isT100,
+      isConfOnly
+    );
+
+    // Create a group header for the table columns at the top - Align spans with the tableFields
+    const groupHeaderRow = GenericTableOps.buildSubHeaderRow([
+        // Player (3 cols: title, team, pos) + Sep (1)
+        ["Player Info", 4],
+        // Adj. Impact (RAPM: 3 cols: off, def, net) + Sep (1)
+        ["Adj. Impact (RAPM)", 4],
+        // Adj. Impact (Rating: 3 cols: off, def, net) + Sep (1)
+        ["Adj. Impact (Rating)", 4],
+        // Shooting % (5 cols: eFG, 3P, 2P, Mid, Rim) + Sep (1)
+        ["Shooting %", 6],
+        // Shooting Rates (3 cols: 3PR, MidR, RimR) + Sep (1)
+        ["Shooting Rates", 4],
+        // Other (6 cols: Usg, A%, TO%, OR%, DR%, Poss%)
+        ["Other", 6] 
+      ], "small text-center font-weight-bold");
+
+    // Filter out any undefined or null values from tableData
+    const filteredTableData = tableData.filter(Boolean);
+
     return {
       table: (
         <GenericTable
           tableCopyId="playerLeaderboardTable"
-          tableFields={CommonTableDefs.onOffIndividualTable(
-            true,
-            possAsPct,
-            factorMins,
-            true
-          )}
-          tableData={maybeSubheaderRow.concat(tableData)}
+          tableFields={tableFields} // Use the generated table fields
+          tableData={[
+            groupHeaderRow, // Moved group header first
+            ...maybeSubheaderRow,
+            ...filteredTableData
+          ]}
           cellTooltipMode="none"
           extraInfoLookups={{
             //(see buildLeaderboards)
@@ -1794,6 +2002,10 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     dataEvent,
     geoBoundsChecker,
     geoCenterInfo,
+    gender,
+    year,
+    isT100,
+    isConfOnly
   ]);
 
   // 3.2] Sorting utils
@@ -1842,24 +2054,6 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       </OverlayTrigger>
     );
   };
-  /** This grovelling is needed to ensure that clipboard is only loaded client side */
-  function initClipboard() {
-    if (null == clipboard) {
-      var newClipboard = new ClipboardJS(`#copyLink_playerLeaderboard`, {
-        text: function (trigger) {
-          return window.location.href;
-        },
-      });
-      newClipboard.on("success", (event: ClipboardJS.Event) => {
-        //(unlike other tables, don't add to history)
-        // Clear the selection in some visually pleasing way
-        setTimeout(function () {
-          event.clearSelection();
-        }, 150);
-      });
-      setClipboard(newClipboard);
-    }
-  }
 
   // Advanced filter text
 
@@ -1972,22 +2166,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     return <components.MultiValueContainer {...newProps} />;
   };
 
-  /** At the expense of some time makes it easier to see when changes are happening */
-  const friendlyChange = (
-    change: () => void,
-    guard: boolean,
-    timeout: number = 250
-  ) => {
-    if (guard) {
-      setLoadingOverride(true);
-      setTimeout(() => {
-        change();
-      }, timeout);
-    }
-  };
-
   return (
-    <Container>
+    <Container fluid style={{ padding: 0, margin: 0 }}>
       <LoadingOverlay
         active={needToLoadQuery()}
         spinner
@@ -1995,7 +2175,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       >
         {dataEvent.syntheticData ? null : (
           <Form.Group as={Row}>
-            <Col xs={6} sm={6} md={3} lg={2}>
+            <Col xs={6} sm={6} md={3} lg={2} xl={2}>
               <Select
                 styles={{ menu: (base: any) => ({ ...base, zIndex: 2000 }) }}
                 value={stringToOption(genderUnreliable)}
@@ -2014,7 +2194,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 }}
               />
             </Col>
-            <Col xs={6} sm={6} md={3} lg={2}>
+            <Col xs={6} sm={6} md={3} lg={2} xl={2}>
               <Select
                 styles={{ menu: (base: any) => ({ ...base, zIndex: 2000 }) }}
                 value={stringToOption(yearUnreliable)}
@@ -2036,7 +2216,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               />
             </Col>
             <Col className="w-100" bsPrefix="d-lg-none d-md-none" />
-            <Col xs={12} sm={12} md={6} lg={6}>
+            <Col xs={12} sm={12} md={6} lg={6} xl={6}>
               <ConferenceSelector
                 emptyLabel={`All ${
                   !_.isEmpty(transferInfoSplit[0]) ? "Transfers" : "Teams"
@@ -2084,7 +2264,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               />
             </InputGroup>
           </Form.Group>
-          <Col xs={12} sm={12} md={4} lg={4}>
+          <Col xs={12} sm={12} md={4} lg={4} xl={4}>
             <Select
               isClearable={true}
               styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
@@ -2502,7 +2682,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           </Col>
         </Row>
         <Row className="mt-2">
-          <Col style={{ paddingLeft: "5px", paddingRight: "5px" }}>
+          <Col style={{ paddingLeft: "1px", paddingRight: "1px" }}>
             {geoMode ? (
               <LoadingOverlay
                 active={geoLoadingOverride}
