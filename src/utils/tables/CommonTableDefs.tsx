@@ -406,7 +406,7 @@ export class CommonTableDefs {
         expandedView
           ? "Free throw rate (off) and Fouls called/50 possessions (def) in selected lineups"
           : "Free throw rate in selected lineups",
-        CbbColors.picker(...CbbColors.p_ftr)
+        GenericTableOps.defaultColorPicker
       ),
       sep2: GenericTableOps.addColSeparator(),
       "3pr": GenericTableOps.addDataCol(
@@ -529,8 +529,8 @@ export class CommonTableDefs {
           } else {
             elementToRender = val?.toString() || "-";
           }
-          // Wrap the element in a div with left alignment
-          return <div style={{ textAlign: 'left' }}>{elementToRender}</div>;
+          // Wrap the element in a div with left alignment and no wrapping
+          return <div style={{ textAlign: 'left', whiteSpace: 'nowrap' }}>{elementToRender}</div>;
         }
       ),
       // Team column
@@ -543,10 +543,11 @@ export class CommonTableDefs {
             if (React.isValidElement(val)) {
                return val;
             }
-            return val?.toString() || "-";
+            // Add nowrap styling
+            return <span style={{ whiteSpace: 'nowrap' }}>{val?.toString() || "-"}</span>;
           }
         ),
-        colWidth: 20
+        //colWidth: 20
       },
       // Position column
       position: GenericTableOps.addDataCol(
@@ -620,39 +621,22 @@ export class CommonTableDefs {
         GenericTableOps.pointsOrHtmlFormatter
       ),
       sep0_6: GenericTableOps.addColSeparator(),
-      // Add Adjusted Rating columns
-      off_adj_rtg: GenericTableOps.addPtsCol(
-        "Off+",
-        "Offensive adjusted rating",
-        CbbColors.picker(CbbColors.diff10_p100_redGreen[1], CbbColors.diff10_p100_redGreen[0])
-      ),
-      def_adj_rtg: GenericTableOps.addPtsCol(
-        "Def+",
-        "Defensive adjusted rating",
-        CbbColors.picker(...CbbColors.diff10_p100_redGreen)
-      ),
-      adj_rtg_margin: GenericTableOps.addPtsCol(
-        "Net+",
-        "Net adjusted rating (Off - Def)",
-        CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)
-      ),
-      sep1: GenericTableOps.addColSeparator(),
-       // Shooting percentage columns - Higher is better -> Red, Green (use index [1] then [0])
+      // Shooting percentage columns - Higher is better -> Red, Green (use index [1] then [0])
       off_efg: GenericTableOps.addDataCol(
         "eFG%",
         "Effective field goal% (3 pointers count 1.5x as much)",
          CbbColors.picker(CbbColors.eFG[1], CbbColors.eFG[0]),
         GenericTableOps.percentOrHtmlFormatter
       ),
-      off_3p: GenericTableOps.addPctCol(
-        "3P%",
-        "3 point field goal percentage",
-         CbbColors.picker(CbbColors.fg3P[1], CbbColors.fg3P[0])
-      ),
       off_2p: GenericTableOps.addPctCol(
         "2P%",
         "2 point field goal percentage",
          CbbColors.picker(CbbColors.fg2P[1], CbbColors.fg2P[0])
+      ),
+      off_3p: GenericTableOps.addPctCol(
+        "3P%",
+        "3 point field goal percentage",
+         CbbColors.picker(CbbColors.fg3P[1], CbbColors.fg3P[0])
       ),
       off_2pmid: GenericTableOps.addPctCol(
         "Mid%",
@@ -684,6 +668,11 @@ export class CommonTableDefs {
          CbbColors.picker(...CbbColors.fgr),
         GenericTableOps.percentOrHtmlFormatter
       ),
+      off_ftr: GenericTableOps.addPctCol(
+        "FTR",
+        "Free Throw Rate (FTA/FGA)",
+        CbbColors.picker(...CbbColors.fgr)
+      ),
       sep3: GenericTableOps.addColSeparator(),
        // Other stats columns
       off_usage: GenericTableOps.addDataCol(
@@ -713,6 +702,16 @@ export class CommonTableDefs {
          "DR%",
          "Defensive rebounding % in selected lineups",
          CbbColors.picker(CbbColors.p_dReb[1], CbbColors.p_dReb[0])
+      ),
+      def_stl: GenericTableOps.addPctCol(
+        "Stl%",
+        "Steal % in selected lineups",
+        CbbColors.picker(CbbColors.p_def_TO, CbbColors.p_def_TO)
+      ),
+      def_blk: GenericTableOps.addPctCol(
+        "Blk%",
+        "Block % in selected lineups",
+        CbbColors.picker(CbbColors.p_def_2P_rim, CbbColors.p_def_2P_rim)
       ),
       // Added Poss%
       team_poss_pct: GenericTableOps.addPctCol(
@@ -1008,7 +1007,7 @@ export class CommonTableDefs {
     ftr: GenericTableOps.addPctCol(
       "FTR",
       "Free throw rate for selected lineups",
-      CommonTableDefs.picker(...CbbColors.diff10_redGreen)
+      CbbColors.picker(...CbbColors.fgr)
     ),
     "sep2-1": GenericTableOps.addColSeparator(),
     assist: GenericTableOps.addPctCol(

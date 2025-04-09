@@ -1810,19 +1810,13 @@ const PlayerLeaderboardTable: React.FC<Props> = ({ // Use React.FC for typing
           def_adj_rapm: player.def_adj_rapm,
           net_rapm: player.off_adj_rapm_margin || { value: netRapmValue },
           
-          // Adjusted Rating columns
-          off_adj_rtg: player.off_adj_rtg,
-          def_adj_rtg: player.def_adj_rtg,
-          adj_rtg_margin: player.off_adj_rtg_margin || { 
-            value: (getSafeStatValue(player.off_adj_rtg) - getSafeStatValue(player.def_adj_rtg))
-          },
-          
           // Shooting percentage columns
           off_efg: player.off_efg,
           off_3p: player.off_3p,
           off_2p: player.off_2p,
           off_2pmid: player.off_2pmid,
           off_2prim: player.off_2prim,
+          off_ftr: player.off_ftr, // Added
           
           // Shooting rates columns
           off_3pr: player.off_3pr,
@@ -1837,7 +1831,9 @@ const PlayerLeaderboardTable: React.FC<Props> = ({ // Use React.FC for typing
           // Rebounding - Separate fields
           off_orb: player.off_orb,
           def_orb: player.def_orb || player.off_drb,
-          team_poss_pct: player.off_team_poss_pct
+          def_stl: player.def_to, // Use def_to for Steal %
+          def_blk: player.def_2prim, // Use def_2prim for Block %
+          team_poss_pct: player.off_team_poss_pct // Moved
         };
 
         // DEBUG: Log the rowData to check title and team elements
@@ -1883,20 +1879,18 @@ const PlayerLeaderboardTable: React.FC<Props> = ({ // Use React.FC for typing
       isConfOnly
     );
 
-    // Create a group header for the table columns at the top - Align spans with the tableFields
+    // Create a group header for the table columns at the top - Correct spans for moved FTR
     const groupHeaderRow = GenericTableOps.buildSubHeaderRow([
         // Player (3 cols: title, team, pos) + Sep (1)
         ["Player Info", 4],
-        // Adj. Impact (RAPM: 3 cols: off, def, net) + Sep (1)
+        // Adj. Impact (RAPM: 3 cols: off, def, net) + 1 Seps
         ["Adj. Impact (RAPM)", 4],
-        // Adj. Impact (Rating: 3 cols: off, def, net) + Sep (1)
-        ["Adj. Impact (Rating)", 4],
-        // Shooting % (5 cols: eFG, 3P, 2P, Mid, Rim) + Sep (1)
+        // Shooting % (5 cols: eFG, 2P, 3P, Mid, Rim) + 1 Seps
         ["Shooting %", 6],
-        // Shooting Rates (3 cols: 3PR, MidR, RimR) + Sep (1)
-        ["Shooting Rates", 4],
-        // Other (6 cols: Usg, A%, TO%, OR%, DR%, Poss%)
-        ["Other", 6] 
+        // Shooting Rates (4 cols: 3PR, MidR, RimR, FTR) + Sep (1)
+        ["Shooting Rates", 5],
+        // Other (8 cols: Usg, A%, TO%, OR%, DR%, Stl%, Blk%, Poss%)
+        ["Other", 8]
       ], "small text-center font-weight-bold");
 
     // Filter out any undefined or null values from tableData
